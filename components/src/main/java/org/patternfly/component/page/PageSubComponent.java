@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link Page} sub-components. */
 abstract class PageSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     PageSubComponent(String subComponentId, String subComponentName, E element) {

@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link Modal} sub-components. */
 abstract class ModalSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     ModalSubComponent(String subComponentId, String subComponentName, E element) {

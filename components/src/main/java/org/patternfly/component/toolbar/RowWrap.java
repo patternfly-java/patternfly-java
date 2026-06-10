@@ -18,6 +18,7 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the row wrapping behavior for {@link Toolbar} content. */
 public enum RowWrap implements TypedModifier {
 
     wrap("wrap"),

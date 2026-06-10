@@ -23,14 +23,17 @@
  * <h2>Key Classes</h2>
  *
  * <ul>
- *     <li>{@link org.patternfly.style.Classes} - Constants for PatternFly CSS class names</li>
- *     <li>{@link org.patternfly.style.Modifiers} - Reusable modifier interfaces for common styling flags</li>
  *     <li>{@link org.patternfly.style.Breakpoint} - Responsive breakpoint definitions (sm, md, lg, xl, 2xl)</li>
+ *     <li>{@link org.patternfly.style.BreakpointCollector} - Stream collector for building breakpoint maps</li>
  *     <li>{@link org.patternfly.style.Breakpoints} - Container for breakpoint-specific values</li>
- *     <li>{@link org.patternfly.style.Variable} - Type-safe CSS variable definitions</li>
- *     <li>{@link org.patternfly.style.Variables} - CSS variable assignments for components</li>
+ *     <li>{@link org.patternfly.style.Classes} - Constants for PatternFly CSS class names</li>
  *     <li>{@link org.patternfly.style.Color} - PatternFly color enumeration</li>
+ *     <li>{@link org.patternfly.style.Modifiers} - Reusable modifier interfaces for common styling flags</li>
  *     <li>{@link org.patternfly.style.Size} - Size enumeration (default, sm, md, lg, xl, 2xl, 3xl, 4xl)</li>
+ *     <li>{@link org.patternfly.style.TypedModifier} - Interface for type-safe modifier application</li>
+ *     <li>{@link org.patternfly.style.Variable} - Type-safe CSS variable definitions</li>
+ *     <li>{@link org.patternfly.style.VariableAssignments} - Utilities for applying CSS variable assignments to elements</li>
+ *     <li>{@link org.patternfly.style.Variables} - CSS variable assignments for components</li>
  * </ul>
  *
  * <h2>CSS Classes</h2>
@@ -153,10 +156,19 @@
  * <p>The package includes enums for specific styling concerns:
  * <ul>
  *     <li>{@link org.patternfly.style.Brightness} - Light/dark theme variants</li>
- *     <li>{@link org.patternfly.style.Status} - Status colors (success, warning, danger, info, custom)</li>
+ *     <li>{@link org.patternfly.style.ExpandableModifier} - Expandable/non-expandable section modifier</li>
+ *     <li>{@link org.patternfly.style.GridBreakpoint} - Responsive grid breakpoints for data list and table</li>
+ *     <li>{@link org.patternfly.style.Inset} - Inset spacing sizes for component padding</li>
+ *     <li>{@link org.patternfly.style.NotificationStatus} - Notification read/unread/attention status</li>
  *     <li>{@link org.patternfly.style.Orientation} - Horizontal/vertical orientation</li>
+ *     <li>{@link org.patternfly.style.Padding} - Padding/no-padding modifier</li>
+ *     <li>{@link org.patternfly.style.Placement} - Popover/tooltip placement positions (top, bottom, start, end)</li>
+ *     <li>{@link org.patternfly.style.Rect} - Simple width/height rectangle value type</li>
+ *     <li>{@link org.patternfly.style.Status} - Status colors (success, warning, danger, info, custom)</li>
  *     <li>{@link org.patternfly.style.Sticky} - Sticky positioning (top/bottom)</li>
+ *     <li>{@link org.patternfly.style.Theme} - Dark/light theme enumeration</li>
  *     <li>{@link org.patternfly.style.Visibility} - Element visibility states</li>
+ *     <li>{@link org.patternfly.style.Width} - Column width percentages for table cells</li>
  * </ul>
  *
  * @see org.patternfly.style.Classes

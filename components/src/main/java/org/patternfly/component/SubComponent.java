@@ -35,6 +35,7 @@ import elemental2.dom.HTMLElement;
 import static java.util.Objects.requireNonNull;
 import static org.patternfly.component.ComponentRegistry.componentRegistry;
 
+/** Base class for sub-components that are part of a larger PatternFly component, such as card headers or modal bodies. */
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,

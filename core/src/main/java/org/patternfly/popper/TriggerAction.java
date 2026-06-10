@@ -15,6 +15,7 @@
  */
 package org.patternfly.popper;
 
+/** @deprecated Deprecated enum of user interaction types that trigger a Popper.js overlay. */
 @Deprecated
 public enum TriggerAction {
 

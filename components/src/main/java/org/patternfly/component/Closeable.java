@@ -21,6 +21,7 @@ import org.patternfly.handler.CloseHandler;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 
+/** Interface for components that can be closed, such as alerts, modals, and popovers. */
 public interface Closeable<E extends Element, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B> {
 
     B onClose(CloseHandler<B> closeHandler);

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+/** Handler invoked when a {@link MenuItemAction} is triggered on a {@link MenuItem}. */
 @FunctionalInterface
 public interface MenuActionHandler {
 

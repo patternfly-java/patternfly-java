@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.list;
 
+/** Tracks whether a {@link SimpleList} contains flat items or grouped items. */
 enum SimpleListType {
 
     undefined,

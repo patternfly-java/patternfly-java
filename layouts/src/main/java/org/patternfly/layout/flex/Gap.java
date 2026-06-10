@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the gap property values for a {@link Flex} layout. */
 public enum Gap implements TypedModifier {
 
     gap("gap"),

@@ -35,7 +35,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Classes.toggle;
 
-// internal subcomponent!
+/** Internal sub-component that renders a toggle button for expandable {@link Tabs}. */
 class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements
         Disabled<HTMLElement, TabsToggle>,
         ElementTextMethods<HTMLElement, TabsToggle> {

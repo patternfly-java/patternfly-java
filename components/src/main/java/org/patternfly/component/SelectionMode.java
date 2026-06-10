@@ -15,6 +15,7 @@
  */
 package org.patternfly.component;
 
+/** Defines how items can be selected in components that support selection, such as menus and navigation. */
 public enum SelectionMode {
 
     /**

@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.stack;
 
+/** An item within a {@link Stack} layout container. */
 public class StackItem extends SubLayout<HTMLElement, StackItem> implements Fill<HTMLElement, StackItem> {
 
     // ------------------------------------------------------ factory

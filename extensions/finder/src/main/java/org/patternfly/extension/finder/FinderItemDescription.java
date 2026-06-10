@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.item;
 
+/** A text description displayed below the main content of a {@link FinderItem}. */
 public class FinderItemDescription extends FinderSubComponent<HTMLElement, FinderItemDescription> implements
         ElementTextMethods<HTMLElement, FinderItemDescription> {
 

@@ -26,6 +26,7 @@ import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 
+/** Helper that conditionally shows a {@link Tooltip} when a text element is truncated (overflows its container). */
 public class TooltipToggle {
 
     private static final double CALCULATE_WIDTH_TIMEOUT = 333;

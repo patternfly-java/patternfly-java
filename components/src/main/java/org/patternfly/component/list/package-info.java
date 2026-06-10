@@ -26,12 +26,23 @@
  * <h2>Components</h2>
  *
  * <ul>
+ *     <li>{@link org.patternfly.component.list.ActionList} - List of actions (buttons, dropdowns)</li>
+ *     <li>{@link org.patternfly.component.list.ActionListGroup} - Group of action list items with a separator</li>
+ *     <li>{@link org.patternfly.component.list.ActionListItem} - Individual item within an action list</li>
+ *     <li>{@link org.patternfly.component.list.DataList} - Flexible list for displaying structured data</li>
+ *     <li>{@link org.patternfly.component.list.DataListAction} - Action area within a data list item</li>
+ *     <li>{@link org.patternfly.component.list.DataListCell} - Content cell within a data list item</li>
+ *     <li>{@link org.patternfly.component.list.DataListExpandableContent} - Expandable content area of a data list item</li>
+ *     <li>{@link org.patternfly.component.list.DataListItem} - Individual item within a data list</li>
+ *     <li>{@link org.patternfly.component.list.DescriptionList} - Key-value pair list with terms and descriptions</li>
+ *     <li>{@link org.patternfly.component.list.DescriptionListDescription} - Description value in a description list group</li>
+ *     <li>{@link org.patternfly.component.list.DescriptionListGroup} - Group containing a term and its description</li>
+ *     <li>{@link org.patternfly.component.list.DescriptionListTerm} - Term label in a description list group</li>
  *     <li>{@link org.patternfly.component.list.List} - Basic unordered or ordered list</li>
  *     <li>{@link org.patternfly.component.list.ListItem} - Item within a basic list</li>
- *     <li>{@link org.patternfly.component.list.ActionList} - List of actions (buttons, dropdowns)</li>
- *     <li>{@link org.patternfly.component.list.DataList} - Flexible list for displaying structured data</li>
- *     <li>{@link org.patternfly.component.list.DescriptionList} - Key-value pair list with terms and descriptions</li>
  *     <li>{@link org.patternfly.component.list.SimpleList} - Selectable list with grouped items</li>
+ *     <li>{@link org.patternfly.component.list.SimpleListGroup} - Group of items within a simple list</li>
+ *     <li>{@link org.patternfly.component.list.SimpleListItem} - Individual selectable item in a simple list</li>
  * </ul>
  *
  * <h2>Usage</h2>

@@ -19,6 +19,7 @@ import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.HTMLElement;
 
+/** Interface for form components that support validation status display, such as text inputs and form selects. */
 public interface Validatable<E extends HTMLElement, B extends TypedBuilder<E, B>> extends TypedBuilder<E, B> {
 
     B validated(ValidationStatus status);

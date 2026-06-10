@@ -20,6 +20,7 @@ import static org.patternfly.style.Classes.resizeBoth;
 import static org.patternfly.style.Classes.resizeHorizontal;
 import static org.patternfly.style.Classes.resizeVertical;
 
+/** Defines the resize directions available for a {@link TextArea}. */
 public enum TextAreaResize {
 
     both(resizeBoth),

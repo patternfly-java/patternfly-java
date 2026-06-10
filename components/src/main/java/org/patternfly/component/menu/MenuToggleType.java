@@ -21,6 +21,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.splitButton;
 import static org.patternfly.style.Classes.text;
 
+/** Defines the visual variants available for a {@link MenuToggle}. */
 public enum MenuToggleType {
 
     default_(""),

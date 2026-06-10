@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.codeEditor;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tab;
 
+/** The text label displayed in a {@link CodeEditorTab}. */
 public class CodeEditorTabText extends CodeEditorSubComponent<HTMLElement, CodeEditorTabText>
         implements ElementTextMethods<HTMLElement, CodeEditorTabText> {
 

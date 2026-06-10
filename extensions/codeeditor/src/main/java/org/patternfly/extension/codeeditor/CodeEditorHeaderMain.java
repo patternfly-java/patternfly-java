@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.main;
 
+/** The main content area within the {@link CodeEditorHeader}. */
 public class CodeEditorHeaderMain extends
         CodeEditorSubComponent<HTMLDivElement, CodeEditorHeaderMain> implements
         ElementTextMethods<HTMLDivElement, CodeEditorHeaderMain> {

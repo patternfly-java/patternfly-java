@@ -36,6 +36,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.textInputGroup;
 import static org.patternfly.style.Classes.utilities;
 
+/** Internal helper that wires typeahead keyboard and click behavior for {@link MenuToggleMenu} implementations. */
 class TypeaheadSupport {
 
     static void typeaheadDefaults(MenuToggleMenu<?> mtm) {

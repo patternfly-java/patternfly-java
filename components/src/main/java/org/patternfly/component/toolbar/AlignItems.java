@@ -18,6 +18,7 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the cross-axis alignment of items within a {@link Toolbar}. */
 public enum AlignItems implements TypedModifier {
 
     center("align-items-center"),

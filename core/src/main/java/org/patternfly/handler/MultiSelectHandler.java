@@ -19,6 +19,12 @@ import java.util.List;
 
 import elemental2.dom.Event;
 
+/**
+ * Functional interface for handling multi-selection changes in a component.
+ *
+ * @param <C> The type of the component.
+ * @param <T> The type of the selected values.
+ */
 @FunctionalInterface
 public interface MultiSelectHandler<C, T> {
 

@@ -15,6 +15,7 @@
  */
 package org.patternfly.componentgroup.theme;
 
+/** Defines the contrast level options (system, default, high contrast, glass) for the {@link ThemeSelector}. */
 enum Contrast implements SystemValue {
 
     SYSTEM("contrast-system", "System") {

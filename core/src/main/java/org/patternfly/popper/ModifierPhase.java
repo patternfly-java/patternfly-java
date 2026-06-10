@@ -15,6 +15,7 @@
  */
 package org.patternfly.popper;
 
+/** @deprecated Deprecated Popper.js lifecycle phases in which modifiers execute. */
 @Deprecated
 public enum ModifierPhase {
 

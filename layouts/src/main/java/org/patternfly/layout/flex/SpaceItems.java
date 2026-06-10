@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the space-items property values for a {@link Flex} layout. */
 public enum SpaceItems implements TypedModifier {
 
     none("space-items-none"),

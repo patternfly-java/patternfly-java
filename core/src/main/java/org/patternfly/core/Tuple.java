@@ -15,6 +15,12 @@
  */
 package org.patternfly.core;
 
+/**
+ * An immutable key-value pair.
+ *
+ * @param <K> The type of the key.
+ * @param <V> The type of the value.
+ */
 public class Tuple<K, V> {
 
     // ------------------------------------------------------ factory

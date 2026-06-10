@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines visibility modifiers to show or hide a component. */
 public enum Visibility implements TypedModifier {
 
     hidden("hidden"),

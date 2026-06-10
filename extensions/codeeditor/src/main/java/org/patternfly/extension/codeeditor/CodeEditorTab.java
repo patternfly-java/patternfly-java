@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.codeEditor;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tab;
 
+/** A tab element in the {@link CodeEditor} header, typically showing an icon and a language name. */
 public class CodeEditorTab extends CodeEditorSubComponent<HTMLDivElement, CodeEditorTab> {
 
     // ------------------------------------------------------ factory

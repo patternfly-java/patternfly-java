@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link CodeBlock} sub-components. */
 abstract class CodeBlockSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     CodeBlockSubComponent(String subComponentId, String subComponentName, E element) {

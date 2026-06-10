@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+/** Defines the internal type of a {@link MenuItem}. */
 enum MenuItemType {
 
     action,

@@ -17,6 +17,11 @@ package org.patternfly.handler;
 
 import elemental2.dom.Event;
 
+/**
+ * Functional interface for handling single selection changes in a component.
+ *
+ * @param <C> The type of the component.
+ */
 @FunctionalInterface
 public interface SelectHandler<C> {
 

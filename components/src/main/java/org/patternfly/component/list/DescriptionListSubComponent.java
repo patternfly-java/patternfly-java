@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link DescriptionList} sub-components. */
 abstract class DescriptionListSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     DescriptionListSubComponent(String subComponentId, String subComponentName, E element) {

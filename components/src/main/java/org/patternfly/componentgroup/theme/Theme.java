@@ -15,6 +15,7 @@
  */
 package org.patternfly.componentgroup.theme;
 
+/** Defines the theme options (default, Project Felt) for the {@link ThemeSelector}. */
 enum Theme implements SystemValue {
 
     DEFAULT("default", "Default"),

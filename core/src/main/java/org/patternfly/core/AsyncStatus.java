@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Defines the status of an asynchronous operation. */
 public enum AsyncStatus {
 
     static_,

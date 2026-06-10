@@ -23,6 +23,7 @@ import elemental2.dom.Element;
 
 import static java.util.stream.Collectors.joining;
 
+/** Utility methods for validating property values such as numeric ranges and enum memberships. */
 public final class Validation {
 
     private static final Logger logger = Logger.getLogger(Validation.class.getName());

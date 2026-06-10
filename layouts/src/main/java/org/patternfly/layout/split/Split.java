@@ -30,9 +30,9 @@ import static org.patternfly.style.Classes.split;
 import static org.patternfly.style.Classes.wrap;
 
 /**
- * The bullseye layout centers content, both vertically and horizontally within a container.
+ * The split layout positions items horizontally, with one item filling the remaining horizontal space.
  *
- * @see <a href="https://www.patternfly.org/layouts/bullseye">https://www.patternfly.org/layouts/bullseye</a>
+ * @see <a href="https://www.patternfly.org/layouts/split">https://www.patternfly.org/layouts/split</a>
  */
 public class Split extends BaseLayout<HTMLElement, Split> implements Gutter<HTMLElement, Split> {
 

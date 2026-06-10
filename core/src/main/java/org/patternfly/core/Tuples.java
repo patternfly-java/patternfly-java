@@ -25,6 +25,12 @@ import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static org.patternfly.core.Tuple.tuple;
 
+/**
+ * An ordered collection of {@link Tuple} instances with lookup by key or value.
+ *
+ * @param <K> The type of the keys.
+ * @param <V> The type of the values.
+ */
 public class Tuples<K, V> implements Iterable<Tuple<K, V>> {
 
     // ------------------------------------------------------ factory

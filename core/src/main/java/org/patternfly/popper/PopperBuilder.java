@@ -43,6 +43,7 @@ import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.Key.Escape;
 import static org.patternfly.popper.PopperPlacement.auto;
 
+/** @deprecated Deprecated builder for creating and configuring Popper.js positioning instances. */
 @Deprecated
 public class PopperBuilder {
 

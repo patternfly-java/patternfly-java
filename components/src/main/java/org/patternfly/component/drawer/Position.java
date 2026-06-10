@@ -18,6 +18,7 @@ package org.patternfly.component.drawer;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the position of the {@link Drawer} panel relative to the main content. */
 public enum Position implements TypedModifier {
 
     start("panel-left"),

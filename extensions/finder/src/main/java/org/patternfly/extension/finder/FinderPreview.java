@@ -22,6 +22,7 @@ import static org.patternfly.extension.finder.FinderClasses.finder;
 import static org.patternfly.extension.finder.FinderClasses.preview;
 import static org.patternfly.style.Classes.component;
 
+/** A preview panel displayed alongside the {@link Finder} columns when an item is selected. */
 public class FinderPreview extends FinderSubComponent<HTMLElement, FinderPreview> {
 
     // ------------------------------------------------------ factory

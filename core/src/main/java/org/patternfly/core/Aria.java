@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Provides constants for common ARIA attribute names used across PatternFly components. */
 public interface Aria {
 
     String atomic = "aria-atomic";

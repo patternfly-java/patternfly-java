@@ -19,6 +19,7 @@ import org.patternfly.style.Classes;
 import org.patternfly.style.Size;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the size variants available for an {@link Icon}. */
 public enum IconSize implements TypedModifier {
 
     sm("sm"),

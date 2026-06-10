@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link MenuToggle} sub-components. */
 abstract class MenuToggleSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     MenuToggleSubComponent(String subComponentId, String subComponentName, E element) {

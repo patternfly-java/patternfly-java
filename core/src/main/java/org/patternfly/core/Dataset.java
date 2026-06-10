@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Provides constants for {@code data-*} attribute names used across PatternFly components. */
 public interface Dataset {
 
     String identifier = "identifier";

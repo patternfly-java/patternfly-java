@@ -21,6 +21,7 @@ import org.patternfly.core.ObservableValue;
 
 import elemental2.dom.Element;
 
+/** Interface for components that can bind to an {@link ObservableValue} and react to value changes. */
 public interface HasObservableValue<E extends Element, B extends TypedBuilder<E, B>, T> extends TypedBuilder<E, B>,
         IsElement<E> {
 

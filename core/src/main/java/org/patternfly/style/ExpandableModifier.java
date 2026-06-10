@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines whether a component section is expandable or non-expandable. */
 public enum ExpandableModifier implements TypedModifier {
 
     expandable("expandable"),

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+/** Defines the HTML input types available for a {@link TextInput}. */
 public enum TextInputType {
 
     date,

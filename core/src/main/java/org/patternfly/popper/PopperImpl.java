@@ -29,7 +29,7 @@ import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
 
 /**
- * Wrapper around {@link PopperJs}
+ * @deprecated Deprecated Popper.js-backed implementation wrapping {@link PopperJs}.
  */
 @Deprecated
 public class PopperImpl implements Popper {

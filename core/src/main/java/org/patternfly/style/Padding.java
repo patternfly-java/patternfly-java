@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines whether a component has padding or no padding. */
 public enum Padding implements TypedModifier {
 
     padding("padding"),

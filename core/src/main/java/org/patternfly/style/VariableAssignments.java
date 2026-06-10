@@ -26,6 +26,7 @@ import org.patternfly.core.Tuple;
 
 import static org.patternfly.style.Breakpoint.default_;
 
+/** Provides fluent builders for assigning values to PatternFly CSS custom properties on HTML and SVG elements. */
 public class VariableAssignments {
 
     static String propertyName(Variable variable, Breakpoint breakpoint) {

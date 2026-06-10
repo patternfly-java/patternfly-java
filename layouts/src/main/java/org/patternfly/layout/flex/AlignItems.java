@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the align-items property values for a {@link Flex} layout. */
 public enum AlignItems implements TypedModifier {
 
     flexStart("align-items-flex-start"),

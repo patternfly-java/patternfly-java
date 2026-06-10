@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link NotificationDrawer} sub-components. */
 abstract class NotificationDrawerSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     NotificationDrawerSubComponent(String subComponentId, String subComponentName, E element) {

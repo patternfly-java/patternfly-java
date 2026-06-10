@@ -42,6 +42,7 @@ import static org.patternfly.style.Classes.menu;
 import static org.patternfly.style.Classes.search;
 import static org.patternfly.style.Classes.themeSelector;
 
+/** A composite component that lets users select color scheme, contrast, and theme preferences. */
 public class ThemeSelector extends BaseComponent<HTMLElement, ThemeSelector> implements Attachable {
 
     // ------------------------------------------------------ factory

@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available color themes for a component. */
 public enum Theme {
 
     dark,

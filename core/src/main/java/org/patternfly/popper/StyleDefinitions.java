@@ -20,6 +20,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+/** @deprecated Deprecated Popper.js native object holding computed style definitions for the popper element. */
 @Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class StyleDefinitions {

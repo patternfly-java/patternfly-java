@@ -35,6 +35,7 @@ import jsinterop.base.Js;
 
 import static java.util.Objects.requireNonNull;
 
+/** Base class for all PatternFly layout components, providing common layout behavior and OUIA support. */
 public abstract class BaseLayout<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Layout,
         OuiaSupport<E, B>,

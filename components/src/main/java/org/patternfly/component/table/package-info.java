@@ -23,14 +23,19 @@
  * <h2>Key Classes</h2>
  *
  * <ul>
+ *     <li>{@link org.patternfly.component.table.Cell} - Base class for table cells (Th and Td)</li>
  *     <li>{@link org.patternfly.component.table.Table} - Main table component</li>
- *     <li>{@link org.patternfly.component.table.Thead} - Table header section</li>
- *     <li>{@link org.patternfly.component.table.Tbody} - Table body section</li>
- *     <li>{@link org.patternfly.component.table.Tr} - Table row</li>
- *     <li>{@link org.patternfly.component.table.Th} - Table header cell</li>
- *     <li>{@link org.patternfly.component.table.Td} - Table data cell</li>
  *     <li>{@link org.patternfly.component.table.TableCaption} - Table caption</li>
  *     <li>{@link org.patternfly.component.table.TableText} - Wrapped/truncated cell text</li>
+ *     <li>{@link org.patternfly.component.table.TableType} - Enumeration of table types (table, tree table)</li>
+ *     <li>{@link org.patternfly.component.table.Tbody} - Table body section</li>
+ *     <li>{@link org.patternfly.component.table.Td} - Table data cell</li>
+ *     <li>{@link org.patternfly.component.table.Th} - Table header cell</li>
+ *     <li>{@link org.patternfly.component.table.Thead} - Table header section</li>
+ *     <li>{@link org.patternfly.component.table.TitleCell} - Title cell for tree table rows with expand/collapse toggle</li>
+ *     <li>{@link org.patternfly.component.table.Tr} - Table row</li>
+ *     <li>{@link org.patternfly.component.table.TreeViewGridBreakpoint} - Responsive breakpoints for tree view grid layout</li>
+ *     <li>{@link org.patternfly.component.table.Wrap} - Enumeration of text wrapping options for table cells</li>
  * </ul>
  *
  * <h2>Usage</h2>

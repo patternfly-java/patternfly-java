@@ -15,6 +15,7 @@
  */
 package org.patternfly.extension.finder;
 
+/** Handler for populating a {@link FinderPreview} when a {@link FinderItem} is selected. */
 @FunctionalInterface
 public interface PreviewHandler {
 

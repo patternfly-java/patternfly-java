@@ -24,6 +24,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 
+/** The header section of the {@link CodeEditor}, containing actions, links, and a tab. */
 public class CodeEditorHeader extends CodeEditorSubComponent<HTMLDivElement, CodeEditorHeader>
         implements Modifiers.Plain<HTMLDivElement, CodeEditorHeader> {
 

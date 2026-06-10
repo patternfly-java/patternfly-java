@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link Navigation} sub-components. */
 abstract class NavigationSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     NavigationSubComponent(String subComponentId, String subComponentName, E element) {

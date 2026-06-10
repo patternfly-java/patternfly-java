@@ -17,6 +17,7 @@ package org.patternfly.popper;
 
 import jsinterop.annotations.JsFunction;
 
+/** @deprecated Deprecated Popper.js callback for updating options on an existing popper instance. */
 @Deprecated
 @JsFunction
 @FunctionalInterface

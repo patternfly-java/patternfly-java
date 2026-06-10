@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import elemental2.dom.Event;
 
+/** Predicate that determines whether a menu should stay open after an interaction. */
 @FunctionalInterface
 public interface StayOpenPredicate {
 

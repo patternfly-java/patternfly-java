@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the alignment property values for a {@link Flex} layout. */
 public enum Align implements TypedModifier {
 
     left("align-left"),

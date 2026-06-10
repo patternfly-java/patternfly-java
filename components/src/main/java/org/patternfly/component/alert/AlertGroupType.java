@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.alert;
 
+/** Defines the display type of an {@link AlertGroup}: static inline, toast overlay, or dynamic. */
 public enum AlertGroupType {
 
     staticInline,

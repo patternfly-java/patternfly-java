@@ -17,6 +17,7 @@ package org.patternfly.component.skeleton;
 
 import org.patternfly.style.Classes;
 
+/** Defines the shape variants available for a {@link Skeleton} placeholder. */
 public enum Shape {
 
     circle("circle"),

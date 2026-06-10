@@ -17,6 +17,7 @@ package org.patternfly.popper;
 
 import jsinterop.annotations.JsFunction;
 
+/** @deprecated Deprecated Popper.js callback invoked after the first positioning update. */
 @Deprecated
 @JsFunction
 @FunctionalInterface

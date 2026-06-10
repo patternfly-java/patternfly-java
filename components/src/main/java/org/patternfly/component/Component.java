@@ -15,6 +15,7 @@
  */
 package org.patternfly.component;
 
+/** Marker interface for all PatternFly components, providing access to the {@link ComponentType}. */
 public interface Component {
 
     ComponentType componentType();

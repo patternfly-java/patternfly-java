@@ -22,6 +22,7 @@ import elemental2.dom.Element;
 
 import static org.patternfly.style.Classes.modifier;
 
+/** Contains modifier interfaces that toggle CSS modifier classes on component elements. */
 public interface Modifiers {
 
     // ------------------------------------------------------ flags (a-z)

@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the read status of a notification item. */
 public enum NotificationStatus implements TypedModifier {
 
     read("read"),

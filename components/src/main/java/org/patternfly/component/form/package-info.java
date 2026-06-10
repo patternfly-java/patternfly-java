@@ -23,19 +23,31 @@
  * <h2>Components</h2>
  *
  * <ul>
+ *     <li>{@link org.patternfly.component.form.Checkbox} - Checkbox control</li>
+ *     <li>{@link org.patternfly.component.form.CheckboxBody} - Body content area of a checkbox</li>
+ *     <li>{@link org.patternfly.component.form.CheckboxDescription} - Description text for a checkbox</li>
  *     <li>{@link org.patternfly.component.form.Form} - Top-level form container</li>
- *     <li>{@link org.patternfly.component.form.FormGroup} - Groups a label with a control and helper text</li>
- *     <li>{@link org.patternfly.component.form.FormGroupLabel} - Label for a form group</li>
- *     <li>{@link org.patternfly.component.form.FormGroupControl} - Control area within a form group</li>
- *     <li>{@link org.patternfly.component.form.FormSection} - Groups related form groups under a heading</li>
  *     <li>{@link org.patternfly.component.form.FormActionGroup} - Contains form action buttons (submit, cancel)</li>
  *     <li>{@link org.patternfly.component.form.FormAlert} - Displays an alert within a form</li>
+ *     <li>{@link org.patternfly.component.form.FormControl} - Base class for form controls with validation support</li>
  *     <li>{@link org.patternfly.component.form.FormFieldGroup} - Nestable field group with header and body</li>
- *     <li>{@link org.patternfly.component.form.TextInput} - Single-line text input</li>
- *     <li>{@link org.patternfly.component.form.TextArea} - Multi-line text input</li>
+ *     <li>{@link org.patternfly.component.form.FormFieldGroupBody} - Body area of a form field group</li>
+ *     <li>{@link org.patternfly.component.form.FormFieldGroupHeader} - Header area of a form field group with title and actions</li>
+ *     <li>{@link org.patternfly.component.form.FormGroup} - Groups a label with a control and helper text</li>
+ *     <li>{@link org.patternfly.component.form.FormGroupControl} - Control area within a form group</li>
+ *     <li>{@link org.patternfly.component.form.FormGroupLabel} - Label for a form group</li>
+ *     <li>{@link org.patternfly.component.form.FormGroupRole} - Enumeration of form group ARIA roles (radiogroup, group)</li>
+ *     <li>{@link org.patternfly.component.form.FormSection} - Groups related form groups under a heading</li>
  *     <li>{@link org.patternfly.component.form.FormSelect} - Native select dropdown</li>
- *     <li>{@link org.patternfly.component.form.Checkbox} - Checkbox control</li>
+ *     <li>{@link org.patternfly.component.form.FormSelectOption} - Individual option within a form select</li>
+ *     <li>{@link org.patternfly.component.form.FormSelectOptionGroup} - Option group within a form select</li>
  *     <li>{@link org.patternfly.component.form.Radio} - Radio button control</li>
+ *     <li>{@link org.patternfly.component.form.RadioBody} - Body content area of a radio button</li>
+ *     <li>{@link org.patternfly.component.form.RadioDescription} - Description text for a radio button</li>
+ *     <li>{@link org.patternfly.component.form.TextArea} - Multi-line text input</li>
+ *     <li>{@link org.patternfly.component.form.TextAreaResize} - Enumeration of text area resize options</li>
+ *     <li>{@link org.patternfly.component.form.TextInput} - Single-line text input</li>
+ *     <li>{@link org.patternfly.component.form.TextInputType} - Enumeration of text input types (text, email, password, etc.)</li>
  * </ul>
  *
  * <h2>Usage</h2>

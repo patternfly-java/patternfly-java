@@ -75,6 +75,7 @@ import static org.patternfly.style.Classes.filtered;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
+/** A column in the {@link Finder}, displaying a list of {@link FinderItem}s that can be selected, filtered, and sorted. */
 public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> implements
         ComponentContext<HTMLElement, FinderColumn>,
         HasAsyncItems<HTMLElement, FinderColumn, FinderItem>,

@@ -19,6 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+/** @deprecated Deprecated Popper.js native rectangle with position and dimensions. */
 @Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class Rect {

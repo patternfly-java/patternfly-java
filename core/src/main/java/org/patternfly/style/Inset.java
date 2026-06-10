@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available inset sizes for component spacing. */
 public enum Inset implements TypedModifier {
 
     none("inset-none"),

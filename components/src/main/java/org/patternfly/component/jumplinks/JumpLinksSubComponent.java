@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link JumpLinks} sub-components. */
 abstract class JumpLinksSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     JumpLinksSubComponent(String subComponentId, String subComponentName, E element) {

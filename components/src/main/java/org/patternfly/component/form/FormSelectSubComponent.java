@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link FormSelect} sub-components. */
 abstract class FormSelectSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     FormSelectSubComponent(String subComponentId, String subComponentName, E element) {

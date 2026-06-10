@@ -19,6 +19,7 @@ import org.patternfly.core.Version;
 
 import static org.patternfly.style.Breakpoint.default_;
 
+/** Provides CSS class name constants and helper methods for building PatternFly component and modifier class names. */
 @SuppressWarnings("SpellCheckingInspection")
 public interface Classes {
 

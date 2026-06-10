@@ -21,6 +21,7 @@ import org.jboss.elemento.TypedBuilder;
 
 import elemental2.dom.Element;
 
+/** Interface for enums that represent a CSS modifier class, providing both the raw value and the fully qualified modifier. */
 public interface TypedModifier {
 
     /**

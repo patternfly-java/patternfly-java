@@ -17,6 +17,7 @@ package org.patternfly.component.label;
 
 import elemental2.dom.Event;
 
+/** Handler invoked when an editable {@link Label} edit is completed. */
 @FunctionalInterface
 public interface LabelEditCompleteHandler {
 

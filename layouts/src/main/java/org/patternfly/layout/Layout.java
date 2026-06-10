@@ -15,6 +15,7 @@
  */
 package org.patternfly.layout;
 
+/** Common interface implemented by all PatternFly layout components. */
 public interface Layout {
 
     LayoutType layoutType();

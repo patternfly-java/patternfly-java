@@ -17,6 +17,11 @@ package org.patternfly.handler;
 
 import elemental2.dom.Event;
 
+/**
+ * Functional interface for handling generic events on a component.
+ *
+ * @param <C> The type of the component.
+ */
 @FunctionalInterface
 public interface ComponentHandler<C> {
 

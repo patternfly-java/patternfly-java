@@ -24,6 +24,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.keyboard;
 import static org.patternfly.style.Classes.shortcuts;
 
+/** Container for {@link CodeEditorLink} elements in the {@link CodeEditor} header. */
 public class CodeEditorLinks extends CodeEditorSubComponent<HTMLDivElement, CodeEditorLinks> {
 
     // ------------------------------------------------------ factory

@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.level;
 
+/** An item within a {@link Level} layout container. */
 public class LevelItem extends SubLayout<HTMLElement, LevelItem> implements Fill<HTMLElement, LevelItem> {
 
     // ------------------------------------------------------ factory

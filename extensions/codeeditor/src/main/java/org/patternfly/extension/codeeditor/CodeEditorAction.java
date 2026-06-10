@@ -35,6 +35,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.tooltip.Tooltip.tooltip;
 import static org.patternfly.icon.IconSets.fas.copy;
 
+/** An action button in the {@link CodeEditor} header, such as a copy-to-clipboard button. */
 public class CodeEditorAction extends CodeEditorSubComponent<HTMLElement, CodeEditorAction>
         implements
         ComponentIcon<HTMLElement, CodeEditorAction> {

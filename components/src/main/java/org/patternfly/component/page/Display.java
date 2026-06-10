@@ -18,6 +18,7 @@ package org.patternfly.component.page;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the display layout for {@link Masthead} content: inline or stacked. */
 public enum Display implements TypedModifier {
 
     inline("display-inline"),

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component;
 
+/** Interface for components that expose a typed value, such as form controls and inputs. */
 public interface HasValue<T> {
 
     T value();

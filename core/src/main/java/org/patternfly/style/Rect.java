@@ -17,6 +17,7 @@ package org.patternfly.style;
 
 import java.util.Objects;
 
+/** Represents a width-height dimension pair. */
 public class Rect {
 
     public final int width;

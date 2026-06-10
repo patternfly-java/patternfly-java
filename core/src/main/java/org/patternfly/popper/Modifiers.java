@@ -20,6 +20,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.patternfly.popper.PopperPlacement.auto;
 
+/** @deprecated Deprecated factory methods for creating common Popper.js modifiers. */
 @Deprecated
 public interface Modifiers {
 

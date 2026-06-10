@@ -26,15 +26,24 @@
  * <ul>
  *     <li>{@link org.patternfly.component.menu.Menu} - Core menu component with configurable type and selection mode</li>
  *     <li>{@link org.patternfly.component.menu.MenuContent} - Scrollable content area of a menu</li>
- *     <li>{@link org.patternfly.component.menu.MenuList} - List of menu items</li>
- *     <li>{@link org.patternfly.component.menu.MenuItem} - Individual menu item (action, link, or checkbox)</li>
+ *     <li>{@link org.patternfly.component.menu.MenuFooter} - Footer area for additional actions</li>
  *     <li>{@link org.patternfly.component.menu.MenuGroup} - Groups menu items under a heading</li>
+ *     <li>{@link org.patternfly.component.menu.MenuHeader} - Header area of a menu</li>
+ *     <li>{@link org.patternfly.component.menu.MenuItem} - Individual menu item (action, link, or checkbox)</li>
+ *     <li>{@link org.patternfly.component.menu.MenuItemAction} - Action button within a menu item</li>
+ *     <li>{@link org.patternfly.component.menu.MenuList} - List of menu items</li>
+ *     <li>{@link org.patternfly.component.menu.MenuSearch} - Search/filter input within a menu</li>
  *     <li>{@link org.patternfly.component.menu.MenuToggle} - Toggle button that opens/closes a menu</li>
+ *     <li>{@link org.patternfly.component.menu.MenuToggleAction} - Action button within a split-button menu toggle</li>
  *     <li>{@link org.patternfly.component.menu.Dropdown} - Pre-configured menu for dropdown use cases</li>
+ *     <li>{@link org.patternfly.component.menu.DropdownMenu} - Menu variant used within dropdown components</li>
  *     <li>{@link org.patternfly.component.menu.SingleSelect} - Pre-configured menu for single selection</li>
  *     <li>{@link org.patternfly.component.menu.MultiSelect} - Pre-configured menu for multiple selection</li>
- *     <li>{@link org.patternfly.component.menu.MenuSearch} - Search/filter input within a menu</li>
- *     <li>{@link org.patternfly.component.menu.MenuFooter} - Footer area for additional actions</li>
+ *     <li>{@link org.patternfly.component.menu.SingleTypeahead} - Single-select typeahead with search input</li>
+ *     <li>{@link org.patternfly.component.menu.MultiTypeahead} - Multi-select typeahead with filter input</li>
+ *     <li>{@link org.patternfly.component.menu.MenuType} - Enumeration of menu types (menu, select, checkbox)</li>
+ *     <li>{@link org.patternfly.component.menu.MenuToggleType} - Enumeration of menu toggle variants (default, plain, split button)</li>
+ *     <li>{@link org.patternfly.component.menu.MenuActionHandler} - Handler interface for menu item action events</li>
  * </ul>
  *
  * <h2>Usage</h2>

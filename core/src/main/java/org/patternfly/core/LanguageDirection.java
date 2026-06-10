@@ -21,6 +21,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.DomGlobal.window;
 
+/** Represents the text direction (left-to-right or right-to-left) of an element. */
 public enum LanguageDirection {
 
     ltr,

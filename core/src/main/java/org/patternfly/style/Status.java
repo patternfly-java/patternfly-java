@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the severity status variants for alerts, icons, and other status-aware components. */
 public enum Status implements TypedModifier {
 
     danger("danger"),

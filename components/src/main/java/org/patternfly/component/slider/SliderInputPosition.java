@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.slider;
 
+/** Defines where the numeric input field is positioned relative to the {@link Slider} thumb. */
 public enum SliderInputPosition {
 
     aboveThumb,

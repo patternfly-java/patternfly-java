@@ -15,6 +15,7 @@
  */
 package org.patternfly.componentgroup.theme;
 
+/** Marker interface for theme enum values that can represent a "follow system preference" option. */
 interface SystemValue {
 
     default boolean systemValue() {

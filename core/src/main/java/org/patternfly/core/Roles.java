@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Provides constants for WAI-ARIA role attribute values used across PatternFly components. */
 @SuppressWarnings("SpellCheckingInspection")
 public interface Roles {
 

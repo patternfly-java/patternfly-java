@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.actions;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
+/** Container for action buttons and dropdowns displayed on a {@link FinderItem}. */
 public class FinderItemActions extends FinderSubComponent<HTMLElement, FinderItemActions> {
 
     // ------------------------------------------------------ factory

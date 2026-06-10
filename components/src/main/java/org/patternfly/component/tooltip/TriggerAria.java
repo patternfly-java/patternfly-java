@@ -17,6 +17,7 @@ package org.patternfly.component.tooltip;
 
 import org.patternfly.core.Aria;
 
+/** Defines which ARIA attribute is applied to the trigger element of a {@link Tooltip}. */
 public enum TriggerAria {
 
     describedBy(Aria.describedBy),

@@ -17,6 +17,7 @@ package org.patternfly.component.truncate;
 
 import org.patternfly.style.Classes;
 
+/** Defines where text is truncated in a {@link Truncate} component: at the start, middle, or end. */
 public enum TruncatePosition {
 
     start(Classes.end),

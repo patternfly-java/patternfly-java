@@ -19,6 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+/** @deprecated Deprecated Popper.js native state object holding positioning data. */
 @Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class State {

@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.gallery;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
+/** An item within a {@link Gallery} layout container. */
 public class GalleryItem extends SubLayout<HTMLElement, GalleryItem> {
 
     // ------------------------------------------------------ factory

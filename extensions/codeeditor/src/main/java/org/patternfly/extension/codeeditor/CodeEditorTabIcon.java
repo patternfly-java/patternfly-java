@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.codeEditor;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tab;
 
+/** The icon displayed in a {@link CodeEditorTab}. */
 public class CodeEditorTabIcon extends CodeEditorSubComponent<HTMLElement, CodeEditorTabIcon> {
 
     // ------------------------------------------------------ factory

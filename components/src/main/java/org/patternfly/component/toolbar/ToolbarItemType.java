@@ -18,6 +18,7 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the semantic type of a {@link ToolbarItem} within a {@link Toolbar}. */
 public enum ToolbarItemType implements TypedModifier {
 
     bulkSelect("bulk-select"),

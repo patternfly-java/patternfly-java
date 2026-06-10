@@ -21,6 +21,7 @@ import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Status;
 
+/** Defines the severity levels used by alerts, notifications, and other status-aware components. */
 public enum Severity {
 
     custom(Status.custom, IconSets.rhUi::notificationFill),

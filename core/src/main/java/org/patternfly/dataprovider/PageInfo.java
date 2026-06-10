@@ -18,6 +18,7 @@ package org.patternfly.dataprovider;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
+/** Holds pagination state (page number, page size, visible count, total count) for a {@link DataProvider}. */
 public class PageInfo {
 
     public static final int DEFAULT_PAGE_SIZE = 20;

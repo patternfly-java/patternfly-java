@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the display property values for a {@link Flex} layout. */
 public enum Display implements TypedModifier {
 
     flex("flex"),

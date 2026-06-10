@@ -15,6 +15,7 @@
  */
 package org.patternfly.component;
 
+/** Enumerates all PatternFly component types with their short ID and OUIA component name. */
 public enum ComponentType {
 
     // Internal component used for the template component

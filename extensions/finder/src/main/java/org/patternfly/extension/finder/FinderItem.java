@@ -74,6 +74,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 import static org.patternfly.style.Size.lg;
 import static org.patternfly.style.Size.xs;
 
+/** An item within a {@link FinderColumn}, representing a selectable entry with optional icon, description, and actions. */
 public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> implements
         ComponentContext<HTMLElement, FinderItem>,
         ComponentIcon<HTMLElement, FinderItem>,

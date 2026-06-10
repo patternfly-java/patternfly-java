@@ -23,6 +23,7 @@ import static org.jboss.elemento.svg.SVG.path;
 import static org.jboss.elemento.svg.SVG.svg;
 import static org.patternfly.token.Token.globalIconColorRegular;
 
+/** Defines the color scheme options (system, light, dark) for the {@link ThemeSelector}. */
 enum Color implements SystemValue {
 
     SYSTEM("system", "System", "Follow system preference",

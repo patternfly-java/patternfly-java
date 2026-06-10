@@ -27,9 +27,9 @@ import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.level;
 
 /**
- * The bullseye layout centers content, both vertically and horizontally within a container.
+ * The level layout distributes space equally between items and centers them on the cross axis.
  *
- * @see <a href="https://www.patternfly.org/layouts/bullseye">https://www.patternfly.org/layouts/bullseye</a>
+ * @see <a href="https://www.patternfly.org/layouts/level">https://www.patternfly.org/layouts/level</a>
  */
 public class Level extends BaseLayout<HTMLElement, Level> implements Gutter<HTMLElement, Level> {
 

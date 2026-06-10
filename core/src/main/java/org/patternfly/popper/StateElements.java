@@ -20,6 +20,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+/** @deprecated Deprecated Popper.js native object holding references to the trigger, popper, and arrow elements. */
 @Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class StateElements {

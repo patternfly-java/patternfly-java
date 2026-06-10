@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.divider;
 
+/** Defines the HTML element type used to render a {@link Divider}. */
 public enum DividerType {
 
     li,

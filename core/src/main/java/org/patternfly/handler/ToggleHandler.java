@@ -17,6 +17,11 @@ package org.patternfly.handler;
 
 import elemental2.dom.Event;
 
+/**
+ * Functional interface for handling toggle (expand/collapse) events in a component.
+ *
+ * @param <C> The type of the component.
+ */
 @FunctionalInterface
 public interface ToggleHandler<C> {
 

@@ -15,6 +15,7 @@
  */
 package org.patternfly.layout;
 
+/** Enumerates the available PatternFly layout types with their identifiers and OUIA names. */
 public enum LayoutType {
 
     Bullseye("be", "PF6/Layout/Bullseye"),

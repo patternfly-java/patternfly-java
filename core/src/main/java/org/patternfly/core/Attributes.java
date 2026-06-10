@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Provides constants for common HTML attribute names used across PatternFly components. */
 public interface Attributes {
 
     String hidden = "hidden";

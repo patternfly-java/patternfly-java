@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link Checkbox} sub-components. */
 abstract class CheckboxSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     CheckboxSubComponent(String subComponentId, String subComponentName, E element) {

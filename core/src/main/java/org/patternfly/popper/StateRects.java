@@ -19,6 +19,7 @@ import jsinterop.annotations.JsType;
 
 import static jsinterop.annotations.JsPackage.GLOBAL;
 
+/** @deprecated Deprecated Popper.js native object holding bounding rectangles for the reference and popper elements. */
 @Deprecated
 @JsType(isNative = true, namespace = GLOBAL, name = "Object")
 public class StateRects {

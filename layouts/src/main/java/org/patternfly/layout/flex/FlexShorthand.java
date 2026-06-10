@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the flex shorthand property values for a {@link Flex} layout. */
 public enum FlexShorthand implements TypedModifier {
 
     default_("flex-default"),

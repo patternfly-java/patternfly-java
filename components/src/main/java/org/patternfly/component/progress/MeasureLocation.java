@@ -17,6 +17,7 @@ package org.patternfly.component.progress;
 
 import org.patternfly.style.Classes;
 
+/** Defines where the progress measure label is displayed relative to the {@link Progress} bar. */
 public enum MeasureLocation {
 
     none(null),

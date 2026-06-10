@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the placement position (top, bottom, left, right) and alignment (start, end) for overlays and tooltips. */
 public enum Placement implements TypedModifier {
 
     top("top", Classes.modifier(Classes.top), Alignment.NONE),

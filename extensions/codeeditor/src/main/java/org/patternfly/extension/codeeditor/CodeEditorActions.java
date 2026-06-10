@@ -23,6 +23,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.controls;
 
+/** Container for {@link CodeEditorAction} buttons in the {@link CodeEditor} header. */
 public class CodeEditorActions extends CodeEditorSubComponent<HTMLDivElement, CodeEditorActions> {
 
     // ------------------------------------------------------ factory

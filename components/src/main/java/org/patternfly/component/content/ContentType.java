@@ -37,6 +37,7 @@ import static org.jboss.elemento.Elements.ul;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 
+/** Defines the HTML element types available for a {@link Content} component. */
 public enum ContentType {
 
     _default(() -> div().element(), null),

@@ -17,6 +17,7 @@ package org.patternfly.popper;
 
 import jsinterop.annotations.JsFunction;
 
+/** @deprecated Deprecated Popper.js modifier function that operates on positioning state. */
 @Deprecated
 @JsFunction
 @FunctionalInterface

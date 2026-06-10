@@ -31,6 +31,7 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.EventType.change;
 
+/** Manages a single theme dimension (color, contrast, or theme) by applying CSS classes and persisting the selection to local storage. */
 class ThemeManager<E extends Enum<E> & SystemValue> {
 
     private static final Logger logger = Logger.getLogger(ThemeManager.class.getName());

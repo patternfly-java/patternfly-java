@@ -18,6 +18,7 @@ package org.patternfly.core;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/** Utility methods for numeric calculations such as percentage computation. */
 public class Numbers {
 
     public static double percentage(double value, double max) {

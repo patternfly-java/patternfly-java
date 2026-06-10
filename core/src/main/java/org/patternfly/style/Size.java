@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available sizes for a component. */
 public enum Size implements TypedModifier {
 
     xs("xs"),

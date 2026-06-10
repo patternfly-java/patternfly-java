@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines horizontal or vertical orientation for a component. */
 public enum Orientation implements TypedModifier {
 
     horizontal("horizontal"),

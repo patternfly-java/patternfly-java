@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the align-self property values for a {@link Flex} layout. */
 public enum AlignSelf implements TypedModifier {
 
     flexStart("align-self-flex-start"),

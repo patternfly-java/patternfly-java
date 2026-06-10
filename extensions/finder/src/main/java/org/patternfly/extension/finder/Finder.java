@@ -30,6 +30,8 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Key;
+import org.jboss.elemento.flow.FlowContext;
+import org.jboss.elemento.flow.Task;
 import org.patternfly.component.AddItemHandler;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
@@ -39,8 +41,6 @@ import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Dataset;
-import org.jboss.elemento.flow.FlowContext;
-import org.jboss.elemento.flow.Task;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Bordered;
 
@@ -64,6 +64,10 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.selected;
 
+/**
+ * A finder provides column-based hierarchical navigation inspired by the macOS Finder. Each column displays a list of items,
+ * and selecting an item populates the next column with its children or shows a preview.
+ */
 public class Finder extends BaseComponent<HTMLElement, Finder> implements
         Attachable,
         Bordered<HTMLElement, Finder>,

@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the justify-content property values for a {@link Flex} layout. */
 public enum JustifyContent implements TypedModifier {
 
     flexStart("justify-content-flex-start"),

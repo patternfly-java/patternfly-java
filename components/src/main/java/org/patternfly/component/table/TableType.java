@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.table;
 
+/** Defines whether a {@link Table} uses a flat grid or tree grid ARIA role. */
 public enum TableType {
 
     table("grid"),

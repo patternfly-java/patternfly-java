@@ -18,6 +18,7 @@ package org.patternfly.component.table;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the text wrapping behavior for {@link Table} cells. */
 public enum Wrap implements TypedModifier {
 
     wrap("wrap"),

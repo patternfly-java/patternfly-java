@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link TextInputGroup} sub-components. */
 abstract class TextInputGroupSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     TextInputGroupSubComponent(String subComponentId, String subComponentName, E element) {

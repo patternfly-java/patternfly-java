@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.accordion;
 
+/** Defines the HTML element type used to render an {@link Accordion}. */
 public enum AccordionType {
 
     dl, div

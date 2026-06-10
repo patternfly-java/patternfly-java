@@ -18,6 +18,7 @@ package org.patternfly.style;
 import org.patternfly.core.Version;
 
 // In an extra class to simplify unit testing
+/** Internal helper for building PatternFly CSS custom property names. */
 class VariableNames {
 
     static String utilName(String firstElement, String... otherElements) {

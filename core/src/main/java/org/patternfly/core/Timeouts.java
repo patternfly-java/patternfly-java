@@ -15,6 +15,7 @@
  */
 package org.patternfly.core;
 
+/** Provides timeout constants (in milliseconds) used across PatternFly components. */
 public interface Timeouts {
 
     int LOADING_TIMEOUT = 222;

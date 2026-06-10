@@ -26,6 +26,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 
+/** A composite component that combines a page title, breadcrumb, and actions into a standard page header layout. */
 public class PageHeader extends BaseComponent<HTMLElement, PageHeader> implements
         ComponentIcon<HTMLElement, PageHeader> {
 

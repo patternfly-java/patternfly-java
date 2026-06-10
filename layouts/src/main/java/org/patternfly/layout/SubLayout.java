@@ -34,6 +34,7 @@ import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
 
+/** Base class for layout sub-components such as items within a layout container. */
 public abstract class SubLayout<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,

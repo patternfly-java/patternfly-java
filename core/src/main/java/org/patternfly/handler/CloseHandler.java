@@ -19,6 +19,12 @@ import java.util.List;
 
 import elemental2.dom.Event;
 
+/**
+ * Functional interface for handling close events in a component. Provides a two-phase protocol: {@link #shouldClose}
+ * is called first to determine whether the close action should proceed, and {@link #onClose} is called if it should.
+ *
+ * @param <C> The type of the component.
+ */
 @FunctionalInterface
 public interface CloseHandler<C> {
 

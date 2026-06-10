@@ -17,6 +17,7 @@ package org.patternfly.component.drawer;
 
 import org.patternfly.style.Classes;
 
+/** Defines the background color variants available for a {@link Drawer} panel. */
 public enum DrawerColor {
 
     light200("light-200"),

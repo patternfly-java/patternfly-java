@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Provides constants for common CSS custom property element names used when building PatternFly variables. */
 public interface Variables {
 
     String Color = "Color";

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.form;
 
+/** Defines the ARIA role applied to a {@link FormGroup}. */
 public enum FormGroupRole {
 
     @SuppressWarnings("SpellCheckingInspection")

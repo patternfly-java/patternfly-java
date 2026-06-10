@@ -18,6 +18,7 @@ package org.patternfly.layout.flex;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the flex-wrap property values for a {@link Flex} layout. */
 public enum FlexWrap implements TypedModifier {
 
     wrap("wrap"),

@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Classes.split;
 
+/** An item within a {@link Split} layout container. */
 public class SplitItem extends SubLayout<HTMLElement, SplitItem> implements Fill<HTMLElement, SplitItem> {
 
     // ------------------------------------------------------ factory

@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.wizard;
 
+/** Handler invoked when a {@link WizardStep} is entered during {@link Wizard} navigation. */
 @FunctionalInterface
 public interface WizardStepEnterHandler {
 

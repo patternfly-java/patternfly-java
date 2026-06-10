@@ -15,6 +15,7 @@
  */
 package org.patternfly.extension.finder;
 
+/** CSS class constants used by the {@link Finder} component and its sub-components. */
 interface FinderClasses {
 
     String column = "column";

@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines sticky positioning for a component at the top or bottom of its container. */
 public enum Sticky implements TypedModifier {
 
     top("sticky-top"),

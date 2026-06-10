@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available percentage-based width modifiers for a component. */
 public enum Width implements TypedModifier {
 
     width10("width-10"),

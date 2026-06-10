@@ -19,6 +19,7 @@ import org.patternfly.style.Classes;
 
 import static org.patternfly.style.Classes.modifier;
 
+/** Defines the position of an icon relative to the text in a {@link ComponentIconAndText} component. */
 public enum IconPosition {
 
     start(modifier(Classes.start)),

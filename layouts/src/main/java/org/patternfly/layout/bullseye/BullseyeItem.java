@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.bullseye;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.layout;
 
+/** An item within a {@link Bullseye} layout container. */
 public class BullseyeItem extends SubLayout<HTMLElement, BullseyeItem> {
 
     // ------------------------------------------------------ factory

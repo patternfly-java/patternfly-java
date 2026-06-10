@@ -21,6 +21,7 @@ import org.patternfly.component.SubComponent;
 
 import elemental2.dom.HTMLElement;
 
+/** Base class for {@link Toolbar} sub-components. */
 abstract class ToolbarSubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> extends SubComponent<E, B> {
 
     ToolbarSubComponent(String subComponentId, String subComponentName, E element) {

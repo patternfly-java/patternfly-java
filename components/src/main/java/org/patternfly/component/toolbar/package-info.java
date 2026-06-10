@@ -23,13 +23,18 @@
  * <h2>Key Classes</h2>
  *
  * <ul>
+ *     <li>{@link org.patternfly.component.toolbar.AlignItems} - Enumeration of cross-axis alignment options for toolbar items</li>
+ *     <li>{@link org.patternfly.component.toolbar.RowWrap} - Enumeration of row wrapping options for toolbar content</li>
  *     <li>{@link org.patternfly.component.toolbar.Toolbar} - Main toolbar container</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarColor} - Enumeration of toolbar color variants (no-background, primary, secondary)</li>
  *     <li>{@link org.patternfly.component.toolbar.ToolbarContent} - Content section within a toolbar</li>
- *     <li>{@link org.patternfly.component.toolbar.ToolbarGroup} - Group of toolbar items</li>
- *     <li>{@link org.patternfly.component.toolbar.ToolbarItem} - Individual toolbar item</li>
- *     <li>{@link org.patternfly.component.toolbar.ToolbarToggleGroup} - Responsive toggle group</li>
  *     <li>{@link org.patternfly.component.toolbar.ToolbarFilterContent} - Filter content with label groups</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarFilterLabelGroup} - Label group for displaying active filter labels</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarGroup} - Group of toolbar items</li>
  *     <li>{@link org.patternfly.component.toolbar.ToolbarGroupType} - Typed group variants (action, filter, etc.)</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarItem} - Individual toolbar item</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarItemType} - Typed item variants (bulk-select, overflow-menu, etc.)</li>
+ *     <li>{@link org.patternfly.component.toolbar.ToolbarToggleGroup} - Responsive toggle group</li>
  * </ul>
  *
  * <h2>Usage</h2>

@@ -33,6 +33,7 @@ import static org.patternfly.style.Classes.layout;
 import static org.patternfly.style.Variable.componentVar;
 import static org.patternfly.style.Variables.Order;
 
+/** An item within a {@link Grid} layout container. */
 public class GridItem extends SubLayout<HTMLElement, GridItem> {
 
     // ------------------------------------------------------ factory

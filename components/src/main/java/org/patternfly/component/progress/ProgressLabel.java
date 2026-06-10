@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.progress;
 
+/** Functional interface for providing a custom label string for a {@link Progress} component. */
 @FunctionalInterface
 public interface ProgressLabel {
 

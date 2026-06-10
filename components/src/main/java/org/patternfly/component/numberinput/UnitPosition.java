@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.numberinput;
 
+/** Defines the position of the unit label relative to the input in a {@link NumberInput}. */
 public enum UnitPosition {
     before,
     after

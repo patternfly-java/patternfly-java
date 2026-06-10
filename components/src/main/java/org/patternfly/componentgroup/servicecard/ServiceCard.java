@@ -24,6 +24,7 @@ import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 
+/** A composite card component that presents a service or application with an icon and descriptive content. */
 public class ServiceCard extends BaseComponent<HTMLElement, ServiceCard> implements
         ComponentIcon<HTMLElement, ServiceCard> {
 

@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available color options for components such as labels and badges. */
 public enum Color {
 
     grey(null),

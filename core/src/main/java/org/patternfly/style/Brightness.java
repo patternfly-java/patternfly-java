@@ -15,6 +15,7 @@
  */
 package org.patternfly.style;
 
+/** Defines the available brightness levels for component backgrounds. */
 public enum Brightness implements TypedModifier {
 
     light("light"),

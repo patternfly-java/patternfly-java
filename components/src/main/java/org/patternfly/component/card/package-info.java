@@ -55,11 +55,14 @@
  * }
  *
  * @see Card
- * @see CardHeader
- * @see CardTitle
+ * @see CardActions
  * @see CardBody
- * @see CardFooter
  * @see CardExpandableContent
+ * @see CardFooter
+ * @see CardHeader
+ * @see CardSelectableActions
+ * @see CardSubtitle
+ * @see CardTitle
  * @see <a href="https://www.patternfly.org/components/card">PatternFly Card</a>
  */
 package org.patternfly.component.card;

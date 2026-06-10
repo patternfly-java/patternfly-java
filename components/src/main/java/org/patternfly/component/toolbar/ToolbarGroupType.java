@@ -18,6 +18,7 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the semantic type of a {@link ToolbarGroup} within a {@link Toolbar}. */
 public enum ToolbarGroupType implements TypedModifier {
 
     actionGroup("action-group"),

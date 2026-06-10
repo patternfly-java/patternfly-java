@@ -65,7 +65,7 @@ import static org.patternfly.style.Classes.overflow;
 import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Placement.bottomStart;
 
-// internal subcomponent!
+/** Internal sub-component that renders an overflow menu for tabs that do not fit in the visible area. */
 class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements Modifiers.Disabled<HTMLElement, OverflowTab> {
 
     // ------------------------------------------------------ factory

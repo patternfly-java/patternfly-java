@@ -19,6 +19,7 @@ import org.jboss.elemento.Callback;
 
 import elemental2.promise.Promise;
 
+/** @deprecated Deprecated interface for controlling a Popper.js positioning instance. */
 @Deprecated
 public interface Popper {
 

@@ -18,6 +18,7 @@ package org.patternfly.component.toolbar;
 import org.patternfly.style.Classes;
 import org.patternfly.style.TypedModifier;
 
+/** Defines the background color variants available for a {@link Toolbar}. */
 public enum ToolbarColor implements TypedModifier {
 
     noBackground("no-background"),

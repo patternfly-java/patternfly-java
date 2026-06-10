@@ -33,6 +33,7 @@ import static org.patternfly.style.Classes.current;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
+/** A selectable item within a {@link Template} component. */
 public class TemplateItem extends TemplateSubComponent<HTMLElement, TemplateItem> implements
         ComponentContext<HTMLElement, TemplateItem>,
         HasIdentifier<HTMLElement, TemplateItem> {

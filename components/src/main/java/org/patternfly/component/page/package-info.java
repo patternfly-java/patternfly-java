@@ -20,6 +20,28 @@
  * sidebar for navigation, and a main content area with sections. It includes support for the masthead, sidebar, page sections,
  * breadcrumbs, navigation, tabs, and groups.
  *
+ * <h2>Key Classes</h2>
+ *
+ * <ul>
+ *     <li>{@link org.patternfly.component.page.Display} - Enumeration of page section display modes (inline, stack)</li>
+ *     <li>{@link org.patternfly.component.page.Masthead} - Application header with branding, navigation toggle, and tools</li>
+ *     <li>{@link org.patternfly.component.page.MastheadBrand} - Brand area within the masthead</li>
+ *     <li>{@link org.patternfly.component.page.MastheadContent} - Content area for header tools in the masthead</li>
+ *     <li>{@link org.patternfly.component.page.MastheadLogo} - Logo link within the masthead brand</li>
+ *     <li>{@link org.patternfly.component.page.MastheadMain} - Main area of the masthead containing toggle and brand</li>
+ *     <li>{@link org.patternfly.component.page.MastheadToggle} - Navigation sidebar toggle button in the masthead</li>
+ *     <li>{@link org.patternfly.component.page.Page} - Top-level page layout container</li>
+ *     <li>{@link org.patternfly.component.page.PageBreadcrumb} - Breadcrumb section within a page</li>
+ *     <li>{@link org.patternfly.component.page.PageGroup} - Group of page sections</li>
+ *     <li>{@link org.patternfly.component.page.PageMain} - Main content area of the page</li>
+ *     <li>{@link org.patternfly.component.page.PageNavigation} - Navigation section within a page</li>
+ *     <li>{@link org.patternfly.component.page.PageSection} - Content section within the page main area</li>
+ *     <li>{@link org.patternfly.component.page.PageSidebar} - Sidebar container for vertical navigation</li>
+ *     <li>{@link org.patternfly.component.page.PageSidebarBody} - Body content within the page sidebar</li>
+ *     <li>{@link org.patternfly.component.page.PageTabs} - Tabs section within a page</li>
+ *     <li>{@link org.patternfly.component.page.PageWizard} - Wizard section within a page</li>
+ * </ul>
+ *
  * <h2>Usage</h2>
  *
  * {@snippet :

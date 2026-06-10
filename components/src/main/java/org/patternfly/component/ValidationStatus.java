@@ -24,6 +24,7 @@ import org.patternfly.style.Status;
 
 import static org.patternfly.style.Classes.modifier;
 
+/** Defines the validation states available for {@link Validatable} form components. */
 public enum ValidationStatus {
 
     default_(Status.info, null, null),

@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.title;
 
 // TODO Refactor elements to match the empty state header, title and title text
+/** The header of a {@link FinderColumn}, displaying the column title and optional actions. */
 public class FinderColumnHeader extends FinderSubComponent<HTMLElement, FinderColumnHeader> implements
         ElementTextDelegate<HTMLElement, FinderColumnHeader> {
 

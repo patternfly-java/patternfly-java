@@ -20,6 +20,7 @@ import org.jboss.elemento.logger.Logger;
 
 import elemental2.promise.Promise;
 
+/** @deprecated Deprecated fallback implementation used when Popper.js is not available. */
 @Deprecated
 public class PopperError implements Popper {
 
