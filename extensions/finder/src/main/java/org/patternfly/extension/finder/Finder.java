@@ -39,7 +39,6 @@ import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Dataset;
-import org.jboss.elemento.flow.Flow;
 import org.jboss.elemento.flow.FlowContext;
 import org.jboss.elemento.flow.Task;
 import org.patternfly.style.Classes;
@@ -56,6 +55,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.EventType.bind;
+import static org.jboss.elemento.flow.Flow.sequential;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.extension.finder.FinderClasses.columns;
 import static org.patternfly.extension.finder.FinderClasses.finder;
@@ -76,6 +76,8 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     }
 
     // ------------------------------------------------------ instance
+
+    private static final String STOP_SELECT_KEY = "stop-select";
 
     FinderPreview preview;
     private final Map<String, FinderColumn> items;
@@ -120,10 +122,7 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     @Override
     public Finder add(FinderColumn item) {
-        item.finder = this;
-        cc.add(item.element());
-        items.put(item.identifier(), item);
-        aur.added(item);
+        internalAdd(item);
         item.load();
         return this;
     }
@@ -197,6 +196,19 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
     }
 
     /**
+     * Parses and selects items along the given finder path string, handling async column loading at each level. The path must
+     * use the format produced by {@link FinderPath#toString()}: {@code col1=item1/col2=item2/col3}. The last segment may omit
+     * the item identifier to represent a column with no selected item.
+     *
+     * @param path the encoded finder path string
+     * @return a {@link Promise} that resolves with the {@link ResolvedFinderPath} of successfully selected items
+     * @see #select(FinderPath)
+     */
+    public Promise<ResolvedFinderPath> select(String path) {
+        return select(FinderPath.parse(path));
+    }
+
+    /**
      * Selects items along the given finder path, handling async column loading at each level. The first column in the path must
      * already be present in this finder. Each item selection may trigger creation and async loading of the next column (via
      * {@link FinderItem#nextColumn(java.util.function.Supplier)}).
@@ -217,22 +229,8 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         for (FinderSegment segment : path) {
             tasks.add(ctx -> selectSegment(segment.columnId, segment.itemId, ctx));
         }
-        return Flow.sequential(context, tasks)
-                .failFast(true)
+        return sequential(context, tasks)
                 .then(ctx -> Promise.resolve(path()));
-    }
-
-    /**
-     * Parses and selects items along the given finder path string, handling async column loading at each level. The path must
-     * use the format produced by {@link FinderPath#toString()}: {@code col1=item1/col2=item2/col3}. The last segment may omit
-     * the item identifier to represent a column with no selected item.
-     *
-     * @param path the encoded finder path string
-     * @return a {@link Promise} that resolves with the {@link ResolvedFinderPath} of successfully selected items
-     * @see #select(FinderPath)
-     */
-    public Promise<ResolvedFinderPath> select(String path) {
-        return select(FinderPath.parse(path));
     }
 
     @Override
@@ -288,38 +286,41 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
 
     // ------------------------------------------------------ internal
 
-    private Promise<FlowContext> selectSegment(String columnId, String itemId, FlowContext context) {
-        FinderColumn column = items.get(columnId);
-        if (column == null) {
-            return context.reject("Column not found: " + columnId);
-        }
-        return column.load().then(__ -> {
-            if (itemId == null) {
-                markActive(column);
-                return context.resolve();
-            }
-            FinderItem item = column.findItem(itemId);
-            if (item == null) {
-                return context.reject("Item not found: " + itemId + " in column " + columnId);
-            }
-            select(column);
-            column.select(item);
-            if (item.hasNext()) {
-                FinderColumn nextCol = item.createNextColumn();
-                if (nextCol != null) {
-                    addColumnWithoutLoad(nextCol);
-                }
-            }
-            item.previewItem(this, column, item);
-            return context.resolve();
-        });
-    }
-
-    private void addColumnWithoutLoad(FinderColumn column) {
+    private void internalAdd(FinderColumn column) {
         column.finder = this;
         cc.add(column.element());
         items.put(column.identifier(), column);
         aur.added(column);
+    }
+
+    private Promise<FlowContext> selectSegment(String columnId, String itemId, FlowContext context) {
+        if (context.get(STOP_SELECT_KEY) != null) {
+            return context.resolve();
+        }
+        FinderColumn column = items.get(columnId);
+        if (column == null) {
+            context.set(STOP_SELECT_KEY, true);
+            return context.resolve();
+        }
+        return column.load().then(__ -> {
+            select(column);
+            if (itemId == null) {
+                context.set(STOP_SELECT_KEY, true);
+                return context.resolve();
+            }
+            FinderItem item = column.findItem(itemId);
+            if (item == null) {
+                context.set(STOP_SELECT_KEY, true);
+                return context.resolve();
+            }
+            column.select(item);
+            FinderColumn nextColumn = item.supplyNextColumn();
+            if (nextColumn != null) {
+                internalAdd(nextColumn);
+            }
+            item.previewItem(this, column, item);
+            return context.resolve();
+        });
     }
 
     void select(FinderColumn column) {
@@ -403,7 +404,7 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                 // If FinderItem.nextColumn is not null, it would return a
                 // new column not in the Finder.items map and not attached to the DOM!
                 // It is safe to assume that the next column is in the item map because
-                // it has been selected. FinderItem.handleClick() took care about this.
+                // it has been selected. FinderItem.handleClick() took care of this.
                 FinderColumn nextColumn = nextColumn(column);
                 if (nextColumn != null) {
                     FinderItem targetItem = null;

@@ -285,11 +285,9 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
 
         finder.select(column);
         column.select(item);
-        if (hasNext()) {
-            FinderColumn nextColumnInstance = nextColumn.get();
-            if (nextColumnInstance != null) {
-                finder.addItem(nextColumnInstance);
-            }
+        FinderColumn nextColumn = supplyNextColumn();
+        if (nextColumn != null) {
+            finder.addItem(nextColumn);
         }
         previewItem(finder, column, item);
     }
@@ -307,7 +305,7 @@ public class FinderItem extends FinderSubComponent<HTMLElement, FinderItem> impl
         return nextColumn != null;
     }
 
-    FinderColumn createNextColumn() {
+    FinderColumn supplyNextColumn() {
         return nextColumn != null ? nextColumn.get() : null;
     }
 
