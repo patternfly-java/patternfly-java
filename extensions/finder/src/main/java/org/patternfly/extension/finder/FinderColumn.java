@@ -476,6 +476,12 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     // ------------------------------------------------------ internal
 
+    void fireSelect(FinderItem item) {
+        if (item != null) {
+            selectHandler.forEach(sh -> sh.onSelect(new Event(""), item, true));
+        }
+    }
+
     FinderItem findItem(String identifier) {
         return items.get(identifier);
     }

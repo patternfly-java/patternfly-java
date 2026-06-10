@@ -217,9 +217,10 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
      * already be present in this finder. Each item selection may trigger creation and async loading of the next column (via
      * {@link FinderItem#nextColumn(java.util.function.Supplier)}).
      * <p>
-     * Select and preview events are fired for every item in the path. If a segment cannot be resolved (column not found, item
-     * not found after loading), the promise resolves with a partial {@link ResolvedFinderPath} containing only the successfully
-     * selected segments.
+     * Select and preview events are fired only for the deepest successfully resolved item, not for intermediate segments. If a
+     * segment cannot be resolved (column not found, item not found after loading), the promise resolves with a partial
+     * {@link ResolvedFinderPath} containing only the successfully selected segments, and events are fired for the last resolved
+     * item.
      *
      * @param path the finder path to select
      * @return a {@link Promise} that resolves with the {@link ResolvedFinderPath} of successfully selected items
@@ -234,7 +235,10 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
             tasks.add(ctx -> selectSegment(segment.columnId, segment.itemId, ctx));
         }
         return sequential(context, tasks)
-                .then(ctx -> Promise.resolve(path()));
+                .then(ctx -> {
+                    fireSelectAndPreview();
+                    return Promise.resolve(path());
+                });
     }
 
     @Override
@@ -297,6 +301,24 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
         aur.added(column);
     }
 
+    private void fireSelectAndPreview() {
+        FinderColumn lastColumn = null;
+        FinderItem lastItem = null;
+        for (FinderColumn column : items.values()) {
+            FinderItem selected = column.selectedItem();
+            if (selected != null) {
+                lastColumn = column;
+                lastItem = selected;
+            } else {
+                break;
+            }
+        }
+        if (lastColumn != null && lastItem != null) {
+            lastColumn.fireSelect(lastItem);
+            lastItem.previewItem(this, lastColumn, lastItem);
+        }
+    }
+
     private Promise<FlowContext> selectSegment(String columnId, String itemId, FlowContext context) {
         if (context.get(STOP_SELECT_KEY) != null) {
             return context.resolve();
@@ -317,12 +339,11 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                 context.set(STOP_SELECT_KEY, true);
                 return context.resolve();
             }
-            column.select(item);
+            column.select(item, true, false);
             FinderColumn nextColumn = item.supplyNextColumn();
             if (nextColumn != null) {
                 internalAdd(nextColumn);
             }
-            item.previewItem(this, column, item);
             return context.resolve();
         });
     }
@@ -396,6 +417,10 @@ public class Finder extends BaseComponent<HTMLElement, Finder> implements
                     scrollIntoView(previousColumn);
                     FinderItem previousItem = previousColumn.item(targetItem.dataset.get(Dataset.identifier));
                     if (previousItem != null) {
+                        // Don't use handleClick() here — it would call Finder.select(column)
+                        // which removes all columns after this one, collapsing the navigation tree.
+                        // Instead, fire select and preview events directly for the already-selected item.
+                        previousColumn.fireSelect(previousItem);
                         previousItem.previewItem(this, previousColumn, previousItem);
                     }
                 }
