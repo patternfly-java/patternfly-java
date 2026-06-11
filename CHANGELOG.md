@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Change `PredefinedIcon.predefinedIcon(String)` to return a circle-question fallback icon with `pf-m-unknown` styling instead of throwing `IllegalArgumentException` for unknown icon names
+- Migrate renamed FontAwesome 6 icon references in showcase data (`archive` → `boxArchive`, `hdd` → `hardDrive`, `edit` → `penToSquare`)
+
+### Upgrades
+
+- Upgrade Elemento from 2.5.2 to 2.5.3
+- Upgrade J2CL tools BOM from 0.5 to 0.6
+
 ## [0.9.2] - 2026-06-10
 
 ### Added
