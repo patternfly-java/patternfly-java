@@ -41,7 +41,7 @@ class NotFound implements Page {
         return singletonList(pageSection()
                 .add(content()
                         .add(title(1, "Not Found"))
-                        .add(p().text("Page " + notFound.route + " not found")))
+                        .add(p().text("Page " + notFound.route() + " not found")))
                 .element());
     }
 }
