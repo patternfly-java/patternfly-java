@@ -74,7 +74,6 @@ public final class MarkdownManifest {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private static LoadData<MarkdownData> markdownLoader(String markdownId) {
         return (place, parameter) -> Markdown.load(markdownId);
     }
@@ -83,7 +82,7 @@ public final class MarkdownManifest {
 
     public NavigationItem navItem(PlaceManager pm, String route) {
         Place place = pm.place(route);
-        return navigationItem(place.route, place.title, place.route);
+        return navigationItem(place.path(), place.title(), place.path());
     }
 
     public org.patternfly.component.navigation.ExpandableNavigationGroup navGroup(PlaceManager pm, String groupId) {
@@ -97,7 +96,7 @@ public final class MarkdownManifest {
             for (ManifestItem child : group.children) {
                 if ("page".equals(child.type)) {
                     Place place = pm.place(child.route);
-                    navGroup.addItem(navigationItem(place.route, place.title, place.route));
+                    navGroup.addItem(navigationItem(place.path(), place.title(), place.path()));
                 } else if ("group".equals(child.type)) {
                     navGroup.addGroup(navGroup(pm, child.id));
                 }

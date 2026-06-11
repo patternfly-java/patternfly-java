@@ -98,7 +98,7 @@ public final class Showcase {
                 .notFound(NotFound::new)
                 .register(new AnnotatedPlaces())
                 .register(manifest.places())
-                .afterPlace((pm, place) -> navigation.select(place.route));
+                .afterPlace((pm, place) -> navigation.select(place.path()));
 
         navigation
                 .addGroup(navigationGroup("learn", "Learn")
@@ -173,7 +173,7 @@ public final class Showcase {
     // ------------------------------------------------------ internal
 
     private NavigationItem ni(String route) {
-        return ni(route, placeManager.place(route).title);
+        return ni(route, placeManager.place(route).title());
     }
 
     private NavigationItem ni(String route, String text) {
