@@ -11,7 +11,7 @@
     "images:download": "node images.mjs"
   },
   "dependencies": {
-    "@github/relative-time-element": "^5.0.0",
+    "@github/relative-time-element": "^5.2.0",
     "@patternfly/patternfly": "^6.5.2"
   },
   "devDependencies": {
