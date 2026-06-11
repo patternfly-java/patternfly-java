@@ -52,7 +52,7 @@
           {
             "id": "disk-utility",
             "name": "Disk Utility",
-            "icon": "fas.hdd",
+            "icon": "fas.hardDrive",
             "actions": ["icon:fas.play"],
             "meta": { "Kind": "Application", "Size": "22 MB" }
           }
@@ -83,21 +83,21 @@
                 "id": "index-html",
                 "name": "index.html",
                 "icon": "fas.fileCode",
-                "actions": ["icon:fas.edit", "kebab:Preview|Delete"],
+                "actions": ["icon:fas.penToSquare", "kebab:Preview|Delete"],
                 "meta": { "Kind": "HTML Document", "Size": "4.2 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "styles-css",
                 "name": "styles.css",
                 "icon": "fas.fileCode",
-                "actions": ["icon:fas.edit", "icon:fas.trash"],
+                "actions": ["icon:fas.penToSquare", "icon:fas.trash"],
                 "meta": { "Kind": "CSS Stylesheet", "Size": "12.8 KB", "Modified": "2024-03-01" }
               },
               {
                 "id": "app-js",
                 "name": "app.js",
                 "icon": "fas.fileCode",
-                "actions": ["icon:fas.edit", "icon:fas.trash"],
+                "actions": ["icon:fas.penToSquare", "icon:fas.trash"],
                 "meta": { "Kind": "JavaScript", "Size": "28.5 KB", "Modified": "2024-02-28" }
               },
               {
@@ -116,21 +116,21 @@
                         "id": "header-jsx",
                         "name": "Header.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
+                        "actions": ["icon:fas.penToSquare", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "3.1 KB", "Modified": "2024-02-25" }
                       },
                       {
                         "id": "footer-jsx",
                         "name": "Footer.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
+                        "actions": ["icon:fas.penToSquare", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "1.8 KB", "Modified": "2024-02-20" }
                       },
                       {
                         "id": "sidebar-jsx",
                         "name": "Sidebar.jsx",
                         "icon": "fas.fileCode",
-                        "actions": ["icon:fas.edit", "kebab:Compile|Delete"],
+                        "actions": ["icon:fas.penToSquare", "kebab:Compile|Delete"],
                         "meta": { "Kind": "JSX Component", "Size": "4.5 KB", "Modified": "2024-03-01" }
                       }
                     ]
@@ -139,7 +139,7 @@
                     "id": "utils-js",
                     "name": "utils.js",
                     "icon": "fas.fileCode",
-                    "actions": ["icon:fas.edit", "icon:fas.trash"],
+                    "actions": ["icon:fas.penToSquare", "icon:fas.trash"],
                     "meta": { "Kind": "JavaScript", "Size": "2.4 KB", "Modified": "2024-01-15" }
                   }
                 ]
@@ -156,7 +156,7 @@
                 "id": "main-dart",
                 "name": "main.dart",
                 "icon": "fas.fileCode",
-                "actions": ["icons:fas.edit", "kebab:Compile|Delete"],
+                "actions": ["icon:fas.penToSquare", "kebab:Compile|Delete"],
                 "meta": { "Kind": "Dart Source", "Size": "6.1 KB" }
               }
             ]
@@ -189,7 +189,7 @@
       {
         "id": "archive-zip",
         "name": "archive.zip",
-        "icon": "fas.archive",
+        "icon": "fas.boxArchive",
         "actions": ["link:Extract"],
         "meta": { "Kind": "ZIP Archive", "Size": "45.2 MB", "Modified": "2024-03-05" }
       },

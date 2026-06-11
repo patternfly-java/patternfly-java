@@ -321,6 +321,7 @@ public interface Classes {
     String truncate = "truncate";
     String typeahead = "typeahead";
     String unit = "unit";
+    String unknown = "unknown"; // special PatternFly Java modifier
     String unread = "unread";
     String utilities = "utilities";
     String value = "value";

@@ -21,6 +21,10 @@
     display: none !important;
 }
 
+.pf-m-unknown {
+    color: var(--pf-t--global--color--status--danger--default);
+}
+
 /* ===================================================================
    Shared styles for components using the popover API
    =================================================================== */
