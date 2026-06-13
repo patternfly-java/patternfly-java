@@ -17,7 +17,7 @@
   "devDependencies": {
     "@patternfly/documentation-framework": "^6.44.1",
     "@shikijs/rehype": "^4.2.0",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "http-server": "^14.1.1",
     "puppeteer": "^25.1.0",
     "rehype-slug": "^6.0.0",
