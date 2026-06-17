@@ -89,7 +89,7 @@
         <version.patternfly>6.5.2</version.patternfly>
 
         <!-- Plugin versions -->
-        <version.central.publishing.plugin>0.10.0</version.central.publishing.plugin>
+        <version.central.publishing.plugin>0.11.0</version.central.publishing.plugin>
         <version.degraph.plugin>4.0.3</version.degraph.plugin>
         <version.editorconfig.plugin>0.2.0</version.editorconfig.plugin>
         <version.frontend.plugin>2.0.1</version.frontend.plugin>
