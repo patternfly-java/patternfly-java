@@ -1,18 +1,18 @@
 {
-  "name": "icons",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "generate": "node src/scripts/generate.mjs"
-  },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@patternfly/patternfly": "^6.5.2",
     "@patternfly/react-icons": "^6.5.1",
-    "@types/node": "^25.9.2",
+    "@types/node": "^25.9.3",
     "camelcase": "^9.0.0"
   },
-  "packageManager": "pnpm@11.5.2"
+  "name": "icons",
+  "packageManager": "pnpm@11.7.0",
+  "private": true,
+  "scripts": {
+    "generate": "node src/scripts/generate.mjs"
+  },
+  "type": "module"
 }

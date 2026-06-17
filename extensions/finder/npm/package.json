@@ -1,17 +1,16 @@
 {
-  "name": "@patternfly-java/finder",
-  "private": false,
-  "version": "0.9.3-SNAPSHOT",
-  "description": "CSS for the PatternFly Java finder extension.",
-  "homepage": "https://patternfly-java.github.io/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
-  },
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
   "bugs": {
     "url": "https://github.com/patternfly-java/patternfly-java/issues"
   },
-  "license": "Apache-2.0",
+  "description": "CSS for the PatternFly Java finder extension.",
+  "exports": {
+    ".": "./finder.css"
+  },
+  "files": [
+    "finder.css"
+  ],
+  "homepage": "https://patternfly-java.github.io/",
   "keywords": [
     "css",
     "java",
@@ -21,17 +20,18 @@
     "elemento",
     "finder"
   ],
-  "author": "Harald Pehl <harald.pehl@gmail.com>",
-  "style": "finder.css",
+  "license": "Apache-2.0",
   "main": "finder.css",
-  "exports": {
-    ".": "./finder.css"
-  },
-  "files": [
-    "finder.css"
-  ],
+  "name": "@patternfly-java/finder",
+  "packageManager": "pnpm@11.7.0",
   "peerDependencies": {
     "@patternfly/patternfly": "^6.5.2"
   },
-  "packageManager": "pnpm@11.5.2"
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
+  },
+  "style": "finder.css",
+  "version": "0.9.3-SNAPSHOT"
 }

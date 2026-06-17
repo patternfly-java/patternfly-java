@@ -1,34 +1,7 @@
 {
-  "name": "@patternfly-java/charts",
-  "private": false,
-  "version": "0.9.3-SNAPSHOT",
-  "description": "Web Components wrapper around PatternFly React Charts",
-  "homepage": "https://patternfly-java.github.io/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
-  },
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
   "bugs": {
     "url": "https://github.com/patternfly-java/patternfly-java/issues"
-  },
-  "license": "Apache-2.0",
-  "keywords": [
-    "java",
-    "gwt",
-    "j2cl",
-    "patternfly",
-    "elemento"
-  ],
-  "author": "Harald Pehl <harald.pehl@gmail.com>",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "clean": "rimraf dist"
-  },
-  "devDependencies": {
-    "rimraf": "^6.1.3",
-    "vite": "^8.0.16"
   },
   "dependencies": {
     "@patternfly/react-charts": "^8.5.1",
@@ -58,5 +31,32 @@
     "victory-voronoi-container": "^37.3.6",
     "victory-zoom-container": "^37.3.6"
   },
-  "packageManager": "pnpm@11.5.2"
+  "description": "Web Components wrapper around PatternFly React Charts",
+  "devDependencies": {
+    "rimraf": "^6.1.3",
+    "vite": "^8.0.16"
+  },
+  "homepage": "https://patternfly-java.github.io/",
+  "keywords": [
+    "java",
+    "gwt",
+    "j2cl",
+    "patternfly",
+    "elemento"
+  ],
+  "license": "Apache-2.0",
+  "name": "@patternfly-java/charts",
+  "packageManager": "pnpm@11.7.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
+  },
+  "scripts": {
+    "build": "vite build",
+    "clean": "rimraf dist",
+    "dev": "vite"
+  },
+  "type": "module",
+  "version": "0.9.3-SNAPSHOT"
 }

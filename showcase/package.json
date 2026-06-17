@@ -1,23 +1,12 @@
 {
-  "name": "patternfly-java-showcase",
-  "private": true,
-  "scripts": {
-    "code": "node code.mjs",
-    "markdown": "node markdown.mjs",
-    "watch": "vite",
-    "prod": "vite build",
-    "http-server": "http-server target/showcase --ssl --cert cert.pem",
-    "images:clean": "rm -rf src/web/images/*",
-    "images:download": "node images.mjs"
-  },
   "dependencies": {
     "@github/relative-time-element": "^5.2.0",
     "@patternfly/patternfly": "^6.5.2"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "^6.44.1",
+    "@patternfly/documentation-framework": "^6.44.2",
     "@shikijs/rehype": "^4.2.0",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "http-server": "^14.1.1",
     "puppeteer": "^25.1.0",
     "rehype-slug": "^6.0.0",
@@ -30,5 +19,16 @@
     "vite": "^8.0.16",
     "yaml": "^2.9.0"
   },
-  "packageManager": "pnpm@11.5.3"
+  "name": "patternfly-java-showcase",
+  "packageManager": "pnpm@11.7.0",
+  "private": true,
+  "scripts": {
+    "code": "node code.mjs",
+    "http-server": "http-server target/showcase --ssl --cert cert.pem",
+    "images:clean": "rm -rf src/web/images/*",
+    "images:download": "node images.mjs",
+    "markdown": "node markdown.mjs",
+    "prod": "vite build",
+    "watch": "vite"
+  }
 }

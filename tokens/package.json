@@ -1,14 +1,14 @@
 {
+  "devDependencies": {
+    "@patternfly/react-tokens": "^6.5.1",
+    "@types/node": "^25.9.3",
+    "camelcase": "^9.0.0"
+  },
   "name": "icons",
+  "packageManager": "pnpm@11.7.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "generate": "node src/scripts/generate.mjs"
   },
-  "devDependencies": {
-    "@patternfly/react-tokens": "^6.5.1",
-    "@types/node": "^25.9.2",
-    "camelcase": "^9.0.0"
-  },
-  "packageManager": "pnpm@11.5.2"
+  "type": "module"
 }
