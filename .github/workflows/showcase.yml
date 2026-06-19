@@ -13,7 +13,7 @@ jobs:
     env:
       MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: actions/setup-node@v6
