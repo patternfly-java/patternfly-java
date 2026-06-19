@@ -20,7 +20,7 @@
     "yaml": "^2.9.0"
   },
   "name": "patternfly-java-showcase",
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.8.0",
   "private": true,
   "scripts": {
     "code": "node code.mjs",
