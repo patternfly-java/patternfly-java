@@ -382,10 +382,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
                     String modifier = status == ValidationStatus.error ? Classes.modifier(danger) : status.modifier;
                     css(modifier);
                 }
-                if (status.icon != null) {
+                if (status.icon() != null) {
                     insertFirst(controlElement, this.statusIconContainer = span()
                             .css(component(menuToggle, Classes.status, Classes.icon))
-                            .add(status.icon.get())
+                            .add(status.icon())
                             .element());
                 }
             }

@@ -73,7 +73,7 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
                 if (this.status.modifier != null) {
                     element().classList.remove(this.status.modifier);
                 }
-                if (this.status.icon != null) {
+                if (this.status.icon() != null) {
                     failSafeRemoveFromParent(validationContainer);
                     validationContainer = null;
                 }
@@ -86,8 +86,8 @@ public abstract class FormControl<E extends HTMLElement, B extends BaseComponent
             if (status.modifier != null) {
                 css(status.modifier);
             }
-            if (status != default_ && status.icon != null) {
-                failSafeValidatedContainer().appendChild(status.icon.get().element());
+            if (status != default_ && status.icon() != null) {
+                failSafeValidatedContainer().appendChild(status.icon().element());
             }
         }
         return that();

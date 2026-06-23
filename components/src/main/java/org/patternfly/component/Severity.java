@@ -15,8 +15,6 @@
  */
 package org.patternfly.component;
 
-import java.util.function.Supplier;
-
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Status;
@@ -24,15 +22,40 @@ import org.patternfly.style.Status;
 /** Defines the severity levels used by alerts, notifications, and other status-aware components. */
 public enum Severity {
 
-    custom(Status.custom, IconSets.rhUi::notificationFill),
+    custom(Status.custom) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.notificationFill();
+        }
+    },
 
-    info(Status.info, IconSets.rhUi::informationFill),
+    info(Status.info) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.informationFill();
+        }
+    },
 
-    success(Status.success, IconSets.rhUi::checkCircleFill),
+    success(Status.success) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.checkCircleFill();
+        }
+    },
 
-    warning(Status.warning, IconSets.rhUi::warningFill),
+    warning(Status.warning) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.warningFill();
+        }
+    },
 
-    danger(Status.danger, IconSets.rhUi::errorFill);
+    danger(Status.danger) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.errorFill();
+        }
+    };
 
     public static Severity of(String severity) {
         return of(Status.of(severity));
@@ -49,12 +72,12 @@ public enum Severity {
     }
 
     public final Status status;
-    public final Supplier<PredefinedIcon> icon;
 
-    Severity(Status status, Supplier<PredefinedIcon> icon) {
-        this.icon = icon;
+    Severity(Status status) {
         this.status = status;
     }
+
+    public abstract PredefinedIcon icon();
 
     public ValidationStatus asValidationStatus() {
         //noinspection EnhancedSwitchMigration
