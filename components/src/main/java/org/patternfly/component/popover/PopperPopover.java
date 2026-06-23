@@ -334,7 +334,7 @@ public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> 
         }
         this.severity = severity;
         css(severity.status.modifier());
-        icon((severity.icon.get().element()));
+        icon((severity.icon().element()));
         return this;
     }
 

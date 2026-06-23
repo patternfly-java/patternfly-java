@@ -321,7 +321,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
     public Label status(Severity severity) {
         css(severity.status.modifier());
         removeIcon();
-        icon(severity.icon.get());
+        icon(severity.icon());
         return this;
     }
 

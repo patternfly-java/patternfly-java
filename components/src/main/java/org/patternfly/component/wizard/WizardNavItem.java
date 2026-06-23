@@ -167,8 +167,8 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
             iconContainer = null;
         } else {
             button.css(status.status.modifier());
-            if (status.icon != null) {
-                icon(status.icon.get());
+            if (status.icon() != null) {
+                icon(status.icon());
             }
             if (screenReaderElement != null) {
                 screenReaderElement.textContent = status.status.value();

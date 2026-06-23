@@ -15,8 +15,6 @@
  */
 package org.patternfly.component;
 
-import java.util.function.Supplier;
-
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -27,23 +25,48 @@ import static org.patternfly.style.Classes.modifier;
 /** Defines the validation states available for {@link Validatable} form components. */
 public enum ValidationStatus {
 
-    default_(Status.info, null, null),
+    default_(Status.info, null) {
+        @Override
+        public PredefinedIcon icon() {
+            return null;
+        }
+    },
 
-    indeterminate(Status.info, modifier(Classes.indeterminate), IconSets.rhUi::minus),
+    indeterminate(Status.info, modifier(Classes.indeterminate)) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.minus();
+        }
+    },
 
-    success(Status.success, Status.success.modifier(), IconSets.rhUi::checkCircleFill),
+    success(Status.success, Status.success.modifier()) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.checkCircleFill();
+        }
+    },
 
-    warning(Status.warning, Status.warning.modifier(), IconSets.rhUi::warningFill),
+    warning(Status.warning, Status.warning.modifier()) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.warningFill();
+        }
+    },
 
-    error(Status.danger, modifier(Classes.error), IconSets.rhUi::errorFill);
+    error(Status.danger, modifier(Classes.error)) {
+        @Override
+        public PredefinedIcon icon() {
+            return IconSets.rhUi.errorFill();
+        }
+    };
 
     public final Status status;
     public final String modifier;
-    public final Supplier<PredefinedIcon> icon;
 
-    ValidationStatus(Status status, String modifier, Supplier<PredefinedIcon> icon) {
+    ValidationStatus(Status status, String modifier) {
         this.status = status;
         this.modifier = modifier;
-        this.icon = icon;
     }
+
+    public abstract PredefinedIcon icon();
 }
