@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.progressstepper;
 
-import java.util.function.Supplier;
-
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -32,18 +30,48 @@ import static org.patternfly.style.Classes.modifier;
  * Each variant can have a specific icon and style associated with it.
  */
 public enum ProgressStepVariant {
-    default_(null, null),
-    success(() -> checkCircleFill().element(), modifier(Classes.success)),
-    info(() -> resourcesFull().element(), modifier(Classes.info)),
-    pending(null, modifier(Classes.pending)),
-    warning(() -> warningFill().element(), modifier(Classes.warning)),
-    danger(() -> errorFill().element(), modifier(Classes.danger));
+    default_(null) {
+        @Override
+        public Element icon() {
+            return null;
+        }
+    },
+    success(modifier(Classes.success)) {
+        @Override
+        public Element icon() {
+            return checkCircleFill().element();
+        }
+    },
+    info(modifier(Classes.info)) {
+        @Override
+        public Element icon() {
+            return resourcesFull().element();
+        }
+    },
+    pending(modifier(Classes.pending)) {
+        @Override
+        public Element icon() {
+            return null;
+        }
+    },
+    warning(modifier(Classes.warning)) {
+        @Override
+        public Element icon() {
+            return warningFill().element();
+        }
+    },
+    danger(modifier(Classes.danger)) {
+        @Override
+        public Element icon() {
+            return errorFill().element();
+        }
+    };
 
-    public final Supplier<Element> iconSupplier;
     public final String style;
 
-    ProgressStepVariant(Supplier<Element> iconSupplier, String style) {
-        this.iconSupplier = iconSupplier;
+    ProgressStepVariant(String style) {
         this.style = style;
     }
+
+    public abstract Element icon();
 }

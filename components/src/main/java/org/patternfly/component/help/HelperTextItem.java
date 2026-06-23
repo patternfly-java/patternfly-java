@@ -128,7 +128,7 @@ public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTe
     }
 
     public HelperTextItem status(ValidationStatus status) {
-        return status(status, status.icon != null ? status.icon.get().element() : null);
+        return status(status, status.icon() != null ? status.icon().element() : null);
     }
 
     public HelperTextItem status(ValidationStatus status, PredefinedIcon icon) {

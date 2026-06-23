@@ -141,7 +141,7 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
                 if (this.status.modifier != null) {
                     classList().remove(this.status.modifier);
                 }
-                if (this.status.icon != null) {
+                if (this.status.icon() != null) {
                     failSafeRemoveFromParent(statusContainer);
                     statusContainer = null;
                 }
@@ -154,8 +154,8 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
             if (status.modifier != null) {
                 css(status.modifier);
             }
-            if (status != default_ && status.icon != null) {
-                failSafeStatusContainer().appendChild(status.icon.get().element());
+            if (status != default_ && status.icon() != null) {
+                failSafeStatusContainer().appendChild(status.icon().element());
             }
         }
         return that();

@@ -90,7 +90,7 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
         add(screenReaderElement = span().css(screenReader).text("unread").element());
         add(headerElement = div().css(component(notificationDrawer, list, item, header))
                 .add(span().css(component(notificationDrawer, list, item, header, Classes.icon))
-                        .add(severity.icon.get().element()))
+                        .add(severity.icon().element()))
                 .add(h(2).css(component(notificationDrawer, list, item, header, Classes.title))
                         .add(span().css(screenReader).text(severity.name() + " notification:"))
                         .add(title))

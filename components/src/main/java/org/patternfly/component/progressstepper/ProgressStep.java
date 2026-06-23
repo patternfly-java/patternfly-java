@@ -168,8 +168,8 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         css(progressStepVariant.style);
 
         // Add new variant icon if there's no custom icon
-        if (!isCustomIcon && progressStepVariant.iconSupplier != null) {
-            this.icon = progressStepVariant.iconSupplier.get();
+        if (!isCustomIcon && progressStepVariant.icon() != null) {
+            this.icon = progressStepVariant.icon();
             stepIcon.appendChild(this.icon);
         }
         return this;
@@ -199,8 +199,8 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
 
         removeChildrenFrom(stepIcon);
         // restore the variant icon if set
-        if (progressStepVariant.iconSupplier != null) {
-            stepIcon.appendChild(progressStepVariant.iconSupplier.get());
+        if (progressStepVariant.icon() != null) {
+            stepIcon.appendChild(progressStepVariant.icon());
         }
         return this;
     }

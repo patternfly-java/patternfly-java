@@ -144,7 +144,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
         storeComponent();
 
         add(iconContainer = div().css(component(alert, icon))
-                .add(severity.icon.get().element())
+                .add(severity.icon().element())
                 .element());
         add(titleElement = p().css(component(alert, Classes.title))
                 .add(span().css(screenReader).text(severity.name() + " alert:"))

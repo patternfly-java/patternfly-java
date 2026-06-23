@@ -164,7 +164,7 @@ public class EmptyState extends BaseComponent<HTMLElement, EmptyState> implement
     }
 
     public EmptyState status(Severity severity) {
-        icon(severity.icon.get());
+        icon(severity.icon());
         return swap(this, element(), severity.status, Status.values());
     }
 

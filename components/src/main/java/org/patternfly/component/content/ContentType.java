@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.content;
 
-import java.util.function.Supplier;
-
 import org.jboss.elemento.Elements;
 
 import elemental2.dom.HTMLElement;
@@ -40,40 +38,159 @@ import static org.patternfly.style.Classes.content;
 /** Defines the HTML element types available for a {@link Content} component. */
 public enum ContentType {
 
-    _default(() -> div().element(), null),
-    h1(() -> h(1).element(), "h1"),
-    h2(() -> h(2).element(), "h2"),
-    h3(() -> h(3).element(), "h3"),
-    h4(() -> h(4).element(), "h4"),
-    h5(() -> h(5).element(), "h5"),
-    h6(() -> h(6).element(), "h6"),
-    p(() -> p().element(), "p"),
-    a(() -> a().element(), "a"),
-    small(() -> small().element(), "small"),
-    blockquote(() -> blockquote().element(), "blockquote"),
-    pre(() -> pre().element(), "pre"),
-    hr(() -> Elements.hr().element(), "hr"),
-    ul(() -> ul().element(), "ul"),
-    ol(() -> ol().element(), "ol"),
-    dl(() -> dl().element(), "dl"),
-    li(() -> li().element(), "li"),
-    dt(() -> dt().element(), "dt"),
-    dd(() -> dd().element(), "dd"),
+    _default {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = div().element();
+            element.classList.add(component(content));
+            return element;
+        }
+    },
+    h1 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(1).element();
+            element.classList.add(component(content) + "--h1");
+            return element;
+        }
+    },
+    h2 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(2).element();
+            element.classList.add(component(content) + "--h2");
+            return element;
+        }
+    },
+    h3 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(3).element();
+            element.classList.add(component(content) + "--h3");
+            return element;
+        }
+    },
+    h4 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(4).element();
+            element.classList.add(component(content) + "--h4");
+            return element;
+        }
+    },
+    h5 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(5).element();
+            element.classList.add(component(content) + "--h5");
+            return element;
+        }
+    },
+    h6 {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = h(6).element();
+            element.classList.add(component(content) + "--h6");
+            return element;
+        }
+    },
+    p {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = p().element();
+            element.classList.add(component(content) + "--p");
+            return element;
+        }
+    },
+    a {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = a().element();
+            element.classList.add(component(content) + "--a");
+            return element;
+        }
+    },
+    small {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = small().element();
+            element.classList.add(component(content) + "--small");
+            return element;
+        }
+    },
+    blockquote {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = blockquote().element();
+            element.classList.add(component(content) + "--blockquote");
+            return element;
+        }
+    },
+    pre {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = pre().element();
+            element.classList.add(component(content) + "--pre");
+            return element;
+        }
+    },
+    hr {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = Elements.hr().element();
+            element.classList.add(component(content) + "--hr");
+            return element;
+        }
+    },
+    ul {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = ul().element();
+            element.classList.add(component(content) + "--ul");
+            return element;
+        }
+    },
+    ol {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = ol().element();
+            element.classList.add(component(content) + "--ol");
+            return element;
+        }
+    },
+    dl {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = dl().element();
+            element.classList.add(component(content) + "--dl");
+            return element;
+        }
+    },
+    li {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = li().element();
+            element.classList.add(component(content) + "--li");
+            return element;
+        }
+    },
+    dt {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = dt().element();
+            element.classList.add(component(content) + "--dt");
+            return element;
+        }
+    },
+    dd {
+        @Override
+        public HTMLElement element() {
+            HTMLElement element = dd().element();
+            element.classList.add(component(content) + "--dd");
+            return element;
+        }
+    },
     ;
 
-    private final Supplier<HTMLElement> supplier;
-    private final String type;
-
-    ContentType(Supplier<HTMLElement> supplier, String type) {
-        this.supplier = supplier;
-        this.type = type;
-    }
-
-    HTMLElement element() {
-        // CSS class does not confirm to standard component() pattern!
-        String css = type != null ? component(content) + "--" + type : component(content);
-        HTMLElement element = supplier.get();
-        element.classList.add(css);
-        return element;
-    }
+    public abstract HTMLElement element();
 }

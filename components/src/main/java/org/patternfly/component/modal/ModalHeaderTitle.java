@@ -73,7 +73,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
         }
         swap(this, element(), severity.status, this.severity != null ? this.severity.status : null,
                 () -> this.severity = severity);
-        icon(severity.icon.get());
+        icon(severity.icon());
         return this;
     }
 
