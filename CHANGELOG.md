@@ -6,10 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `audit:fix` script to automate suppression of security advisories from `@patternfly/documentation-framework` transitive dependencies (updates `pnpm-workspace.yaml` ignore list and dismisses Dependabot alerts)
+
 ### Changed
 
 - Change `PredefinedIcon.predefinedIcon(String)` to return a circle-question fallback icon with `pf-m-unknown` styling instead of throwing `IllegalArgumentException` for unknown icon names
 - Migrate renamed FontAwesome 6 icon references in showcase data (`archive` → `boxArchive`, `hdd` → `hardDrive`, `edit` → `penToSquare`)
+
+### Security
+
+- Add pnpm overrides for vulnerable transitive dependencies (`dompurify`, `js-yaml`, `@babel/core`, `webpack-dev-server`) pulled in by `@patternfly/documentation-framework`
 
 ### Upgrades
 

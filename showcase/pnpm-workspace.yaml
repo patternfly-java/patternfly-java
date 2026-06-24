@@ -26,29 +26,20 @@ minimumReleaseAgeExclude:
   - vite@8.0.16
   - got@11.8.5
   - trim@0.0.3
-  - axios@0.21.1
-  - ssri@5.2.2
-  - ssri@6.0.2
-  - axios@0.28.0
+  - axios@0.21.1 || 0.21.2 || 0.28.0 || 0.30.0 || 0.30.3 || 0.31.0 || 0.31.1 || 0.31.2
+  - ssri@5.2.2 || 6.0.2
   - ip@2.0.2
-  - axios@0.21.2
   - http-cache-semantics@4.1.1
   - parse-git-config@3.0.1
   - cross-spawn@6.0.6
-  - tmp@0.2.4
-  - axios@0.30.0
+  - tmp@0.2.4 || 0.2.6
   - handlebars@4.7.9
-  - dompurify@3.3.2
-  - dompurify@3.3.4
-  - axios@0.31.0
-  - dompurify@3.4.0
-  - axios@0.31.1
-  - axios@0.30.3
-  - webpack-dev-server@5.2.4
+  - dompurify@3.3.2 || 3.3.4 || 3.4.0 || 3.4.6 || 3.4.7 || 3.4.8 || 3.4.9 || 3.4.11
+  - webpack-dev-server@5.2.4 || 5.2.5
   - uuid@11.1.1
   - qs@6.15.2
-  - tmp@0.2.6
-  - axios@0.31.2
+  - js-yaml@4.1.2
+  - '@babel/core@7.29.1'
 
 # All audit vulnerabilities come from transitive dependencies of @patternfly/documentation-framework
 # (handlebars, axios, ssri, ip, trim, cross-spawn, dompurify, etc.).
@@ -108,11 +99,26 @@ auditConfig:
     - GHSA-xhpv-hc6g-r9c6
     - GHSA-xjpj-3mr7-gcpf
     - GHSA-xx6v-rp6x-q39c
+    - GHSA-4x5r-pxfx-6jf8
+    - GHSA-76mc-f452-cxcm
+    - GHSA-cmwh-pvxp-8882
+    - GHSA-gvmj-g25r-r7wr
+    - GHSA-h67p-54hq-rp68
+    - GHSA-hpcv-96wg-7vj8
+    - GHSA-mx8g-39q3-5c79
+    - GHSA-r47g-fvhr-h676
+    - GHSA-rp9w-3fw7-7cwq
+    - GHSA-vxr8-fq34-vvx9
+    - GHSA-x4vx-rjvf-j5p4
 
 overrides:
+  '@babel/core@<=7.29.0': '>=7.29.1'
   axios@>=1.0.0 <1.15.1: '>=1.15.1'
   axios@>=1.0.0 <1.15.2: '>=1.15.2'
   basic-ftp@<=5.2.2: '>=5.3.0'
   basic-ftp@<=5.3.0: '>=5.3.1'
+  dompurify@<3.4.11: '>=3.4.11'
   follow-redirects@<=1.15.11: '>=1.16.0'
   ip-address@<=10.1.0: '>=10.1.1'
+  js-yaml@<=4.1.1: '>=4.1.2'
+  webpack-dev-server@<5.2.5: '>=5.2.5'

@@ -28,6 +28,7 @@
     "images:clean": "rm -rf src/web/images/*",
     "images:download": "node images.mjs",
     "markdown": "node markdown.mjs",
+    "audit:fix": "node audit.mjs",
     "prod": "vite build",
     "watch": "vite"
   }
