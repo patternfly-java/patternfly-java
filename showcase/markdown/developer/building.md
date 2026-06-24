@@ -134,8 +134,28 @@ The showcase module uses Node for markdown processing, CSS bundling, and local d
 | `watch` | `vite` | Start Vite dev server for CSS/HTML hot reloading |
 | `prod` | `vite build` | Build optimized production bundle |
 | `http-server` | `http-server target/showcase --ssl` | Serve the built showcase locally with HTTPS |
+| `audit:fix` | `node audit.mjs` | Suppress security advisories from `@patternfly/documentation-framework` transitive dependencies and dismiss the corresponding Dependabot alerts (see [Security Advisories](#security-advisories) below) |
 | `images:clean` | `rm -rf src/web/images/*` | Remove all downloaded component images |
 | `images:download` | `node images.mjs` | Download component images from the PatternFly website |
+
+## Security Advisories
+
+The showcase depends on `@patternfly/documentation-framework` for its CSS styles (layout chrome, side navigation, table of contents, example blocks, etc.). This package pulls in a large transitive dependency tree including React, Monaco, Babel, webpack-dev-server, and others — all of which regularly trigger security advisories.
+
+**We only import CSS files from this package.** None of its JavaScript code paths (template compilation, code editor, HTTP clients, dev server) are executed at build time or runtime. The vulnerable code is never reached, so these advisories are safe to suppress.
+
+Suppression is handled in two places:
+
+- **`pnpm-workspace.yaml`** — `auditConfig.ignoreGhsas` silences `pnpm audit`, and `overrides` pins patched versions where possible
+- **GitHub Dependabot** — alerts are dismissed with reason "not_used"
+
+When new advisories appear (after dependency updates or new CVE disclosures), run:
+
+```bash
+cd showcase && pnpm run audit:fix
+```
+
+This adds new GHSA IDs to the ignore list and dismisses any open Dependabot alerts in a single step.
 
 ## Showcase Development
 
