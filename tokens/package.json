@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "@patternfly/react-tokens": "^6.5.1",
-    "@types/node": "^26.0.0",
+    "@types/node": "^26.0.1",
     "camelcase": "^9.0.0"
   },
   "name": "icons",
