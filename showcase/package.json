@@ -4,8 +4,8 @@
     "@patternfly/patternfly": "^6.5.2"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "^6.44.4",
-    "@shikijs/rehype": "^4.2.0",
+    "@patternfly/documentation-framework": "^6.45.0",
+    "@shikijs/rehype": "^4.3.0",
     "esbuild": "^0.28.1",
     "http-server": "^14.1.1",
     "puppeteer": "^25.2.1",
