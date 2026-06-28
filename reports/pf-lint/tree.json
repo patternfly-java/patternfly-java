@@ -1,36 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "tree",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 5,
   "errors": 0,
-  "warnings": 3,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "TreeViewItem.java",
-      "line": 133,
-      "severity": "WARN",
-      "rule": "field-logger-first",
-      "detail": "Logger field should be the first field in the instance section, but SUB_COMPONENT_ID and SUB_COMPONENT_NAME (static final String constants) precede it. Per convention, Logger should come first among static final fields.",
-      "fixed": false
-    },
-    {
-      "file": "TreeViewItem.java",
-      "line": 165,
-      "severity": "WARN",
-      "rule": "field-order",
-      "detail": "Field 'toggleHandler' (private final) appears after non-final private fields (text, domFinished, status, etc.) at lines 155-164. Private final fields should precede private non-final fields.",
-      "fixed": false
-    },
-    {
-      "file": "TreeViewItem.java",
-      "line": 167,
-      "severity": "WARN",
-      "rule": "field-order",
-      "detail": "Field 'aur' (private final) at line 167 appears after non-final private fields. Private final fields should precede private non-final fields.",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

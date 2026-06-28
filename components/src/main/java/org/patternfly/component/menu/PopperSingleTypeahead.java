@@ -42,8 +42,8 @@ public class PopperSingleTypeahead
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link PopperSingleTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
-     * {@link SearchInput}.
+     * Creates a new {@link PopperSingleTypeahead} component with a {@link MenuToggle} of type
+     * {@link MenuToggleType#typeahead} and a {@link SearchInput}.
      */
     public static PopperSingleTypeahead singleTypeahead(String id, String placeholder) {
         return new PopperSingleTypeahead(searchInput(id).plain().placeholder(placeholder));
@@ -104,7 +104,8 @@ public class PopperSingleTypeahead
     // ------------------------------------------------------ builder
 
     @Override
-    public PopperSingleTypeahead allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem) {
+    public PopperSingleTypeahead allowNewItems(Function<String, String> prompt,
+            Function<String, Promise<MenuItem>> createItem) {
         TypeaheadSupport.allowNewItems(this, this, prompt, createItem);
         return this;
     }

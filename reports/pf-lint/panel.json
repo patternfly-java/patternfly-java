@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "panel",
-  "date": "2026-06-02",
-  "files": 5,
-  "errors": 1,
+  "date": "2026-06-28",
+  "files": 6,
+  "errors": 0,
   "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Panel.java",
-      "line": 21,
-      "severity": "ERROR",
-      "rule": "decl-modifiers-import",
-      "detail": "Modifier interface imported as 'org.patternfly.style.Modifiers' (outer class) and referenced as 'Modifiers.Bordered' in implements clause; should import 'org.patternfly.style.Modifiers.Bordered' directly",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

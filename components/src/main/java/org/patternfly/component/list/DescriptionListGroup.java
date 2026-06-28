@@ -61,6 +61,16 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
         this.data = new HashMap<>();
     }
 
+    // ------------------------------------------------------ add
+
+    public DescriptionListGroup addTerm(DescriptionListTerm term) {
+        return add(term);
+    }
+
+    public DescriptionListGroup addDescription(DescriptionListDescription description) {
+        return add(description);
+    }
+
     // ------------------------------------------------------ builder
 
     @Override
@@ -72,16 +82,6 @@ public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivEle
     @Override
     public DescriptionListGroup that() {
         return this;
-    }
-
-    // ------------------------------------------------------ add
-
-    public DescriptionListGroup addTerm(DescriptionListTerm term) {
-        return add(term);
-    }
-
-    public DescriptionListGroup addDescription(DescriptionListDescription description) {
-        return add(description);
     }
 
     // ------------------------------------------------------ api

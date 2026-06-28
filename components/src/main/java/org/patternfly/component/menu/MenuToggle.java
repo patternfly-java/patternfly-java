@@ -68,7 +68,9 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  * implementations. Using a menu toggle with a menu enables you to create custom component configurations not supported by the
  * standard dropdown or select components.
  *
- * @see <a href="https://www.patternfly.org/components/menus/menu-toggle">https://www.patternfly.org/components/menus/menu-toggle</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/menus/menu-toggle">
+ *      https://www.patternfly.org/components/menus/menu-toggle</a>
  */
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
         ComponentIcon<HTMLElement, MenuToggle>,

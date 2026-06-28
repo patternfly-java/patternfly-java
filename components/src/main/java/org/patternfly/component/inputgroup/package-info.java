@@ -24,7 +24,8 @@
  *
  * <ul>
  *     <li>{@link org.patternfly.component.inputgroup.InputGroup} - Container that groups input controls together</li>
- *     <li>{@link org.patternfly.component.inputgroup.InputGroupItem} - Wraps an individual item (control, button, or dropdown)</li>
+ *     <li>{@link org.patternfly.component.inputgroup.InputGroupItem} - Wraps an individual item (control,
+ *     button, or dropdown)</li>
  *     <li>{@link org.patternfly.component.inputgroup.InputGroupText} - Displays static text or an icon alongside the input</li>
  * </ul>
  *

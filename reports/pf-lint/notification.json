@@ -1,52 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "notification",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 9,
-  "errors": 3,
-  "warnings": 2,
+  "errors": 0,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "NotificationDrawer.java",
-      "line": 57,
-      "severity": "ERROR",
-      "rule": "ctor-visibility",
-      "detail": "Constructor is private ('private NotificationDrawer()') instead of package-private",
-      "fixed": false
-    },
-    {
-      "file": "NotificationBadge.java",
-      "line": 97,
-      "severity": "ERROR",
-      "rule": "ctor-visibility",
-      "detail": "Constructor is private ('private NotificationBadge(...)') instead of package-private",
-      "fixed": false
-    },
-    {
-      "file": "NotificationDrawer.java",
-      "line": 89,
-      "severity": "ERROR",
-      "rule": "name-builder-return",
-      "detail": "that() method returns null instead of this",
-      "fixed": false
-    },
-    {
-      "file": "NotificationBadge.java",
-      "line": 301,
-      "severity": "WARN",
-      "rule": "fmt-final-newline",
-      "detail": "File ends with an extra blank line before the final newline",
-      "fixed": false
-    },
-    {
-      "file": "NotificationDrawerItem.java",
-      "line": 81,
-      "severity": "WARN",
-      "rule": "fmt-line-length",
-      "detail": "Constructor first line exceeds 128 characters",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

@@ -181,6 +181,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     public Date dateTime() {
         return dateTime;
     }
+
     // ------------------------------------------------------ internal
 
 

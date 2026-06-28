@@ -64,9 +64,11 @@
  *                                 .timestamp("20 minutes ago"))));
  * }
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/notification-badge">https://www.patternfly.org/components/notification-badge</a>
- * @see <a href=
- *      "https://www.patternfly.org/components/notification-drawer">https://www.patternfly.org/components/notification-drawer</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/notification-badge">
+ *      https://www.patternfly.org/components/notification-badge</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/notification-drawer">
+ *      https://www.patternfly.org/components/notification-drawer</a>
  */
 package org.patternfly.component.notification;

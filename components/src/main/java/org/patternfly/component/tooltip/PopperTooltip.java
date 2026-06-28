@@ -70,6 +70,8 @@ import static org.patternfly.style.Classes.tooltip;
  * A tooltip is in-app messaging used to identify elements on a page with short, clarifying text.
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link Tooltip} instead.
+ *
+ * @see <a href="https://www.patternfly.org/components/tooltip">https://www.patternfly.org/components/tooltip</a>
  */
 @Deprecated
 public class PopperTooltip extends BaseComponent<HTMLDivElement, PopperTooltip> implements

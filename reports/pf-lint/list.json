@@ -1,60 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "list",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 24,
-  "errors": 1,
-  "warnings": 5,
+  "errors": 0,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "ActionListItem.java",
-      "line": 36,
-      "severity": "WARN",
-      "rule": "decl-implements-order",
-      "detail": "Interfaces not in alphabetical order: HasIdentifier listed before ComponentContext",
-      "fixed": false
-    },
-    {
-      "file": "DescriptionListGroup.java",
-      "line": 65,
-      "severity": "ERROR",
-      "rule": "section-order",
-      "detail": "Section 'builder' (line 65) appears before 'add' (line 77); expected order: add -> builder",
-      "fixed": false
-    },
-    {
-      "file": "ListItem.java",
-      "line": 101,
-      "severity": "WARN",
-      "rule": "section-blank-after",
-      "detail": "Two blank lines after 'api' section separator instead of one",
-      "fixed": false
-    },
-    {
-      "file": "DataListItem.java",
-      "line": 179,
-      "severity": "WARN",
-      "rule": "section-blank-after",
-      "detail": "Two blank lines after 'api' section comment (extra blank line at 180)",
-      "fixed": false
-    },
-    {
-      "file": "ActionListGroup.java",
-      "line": 125,
-      "severity": "WARN",
-      "rule": "section-blank-after",
-      "detail": "Extra blank line at line 127 within api section between identifier() and has()",
-      "fixed": false
-    },
-    {
-      "file": "SimpleList.java",
-      "line": 83,
-      "severity": "WARN",
-      "rule": "section-blank-before",
-      "detail": "Two blank lines before constructor at line 84 instead of one",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

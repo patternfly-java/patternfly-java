@@ -310,6 +310,7 @@ public class Progress extends BaseComponent<HTMLElement, Progress> implements Ha
         this.changeHandler.add(changeHandler);
         return this;
     }
+
     // ------------------------------------------------------ api
 
     /**

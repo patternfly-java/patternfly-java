@@ -38,7 +38,11 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
-/** The control area within a {@link FormGroup}, containing the actual input element. */
+/**
+ * The control area within a {@link FormGroup}, containing the actual input element.
+ *
+ * @see <a href="https://www.patternfly.org/components/form">https://www.patternfly.org/components/form</a>
+ */
 public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl> implements
         Inline<HTMLElement, FormGroupControl>,
         Attachable {
@@ -60,7 +64,8 @@ public class FormGroupControl extends SubComponent<HTMLElement, FormGroupControl
     private final List<Radio> radios;
 
     FormGroupControl() {
-        super(ComponentType.Form, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(Classes.form, group, Classes.control)).element());
+        super(ComponentType.Form, SUB_COMPONENT_ID, SUB_COMPONENT_NAME,
+                div().css(component(Classes.form, group, Classes.control)).element());
         this.checkboxes = new ArrayList<>();
         this.radios = new ArrayList<>();
         Attachable.register(this, this);

@@ -1,60 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "page",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 22,
-  "errors": 4,
-  "warnings": 2,
+  "errors": 0,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Page.java",
-      "line": 66,
-      "severity": "ERROR",
-      "rule": "section-instance-content",
-      "detail": "Static field 'instance' is placed in the factory section; fields belong in the instance section",
-      "fixed": false
-    },
-    {
-      "file": "Page.java",
-      "line": 98,
-      "severity": "ERROR",
-      "rule": "ctor-visibility",
-      "detail": "Constructor is 'protected' but should be package-private (no access modifier)",
-      "fixed": false
-    },
-    {
-      "file": "PageGroup.java",
-      "line": 44,
-      "severity": "ERROR",
-      "rule": "inherit-sub",
-      "detail": "PageGroup extends SubComponent directly instead of PageSubComponent base class",
-      "fixed": false
-    },
-    {
-      "file": "PageMain.java",
-      "line": 23,
-      "severity": "ERROR",
-      "rule": "decl-modifiers-import",
-      "detail": "Modifier interface imported as outer class 'org.patternfly.style.Modifiers' and referenced as 'Modifiers.Fill'; should import 'org.patternfly.style.Modifiers.Fill' directly",
-      "fixed": false
-    },
-    {
-      "file": "PageSection.java",
-      "line": 39,
-      "severity": "WARN",
-      "rule": "decl-implements-order",
-      "detail": "Interfaces not in alphabetical order: ElementContainerDelegate should come before Fill",
-      "fixed": false
-    },
-    {
-      "file": "PageSidebar.java",
-      "line": 55,
-      "severity": "WARN",
-      "rule": "field-order",
-      "detail": "Private non-final field 'keepExpanded' appears before private final field 'toggleHandler'; final fields should precede non-final fields within the same visibility group",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

@@ -16,9 +16,9 @@
 package org.patternfly.component.timestamp;
 
 /**
- * Enum representing various timestamp formats–for {@code dateStyle} and
- * {@code timeStyle}–based on the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">Intl.DateTimeFormat</a>
- * API.
+ * Enum representing various timestamp formats–for {@code dateStyle} and {@code timeStyle}–based on the
+ * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">
+ * Intl.DateTimeFormat</a> API.
  * <p>
  * The formats correspond to the standard JavaScript Intl.DateTimeFormat
  * options:

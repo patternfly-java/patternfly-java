@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "brand",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 2,
   "errors": 0,
-  "warnings": 1,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Brand.java",
-      "line": 114,
-      "severity": "WARN",
-      "rule": "doc-builder-linkplain",
-      "detail": "No-arg overload widths(String) delegates to widths(Breakpoints<String>) but Javadoc says 'Same as {@code widths(...)}' instead of using {@linkplain}. Same pattern for heights(String) at line 125.",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

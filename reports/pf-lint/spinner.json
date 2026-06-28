@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "spinner",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 2,
-  "errors": 1,
+  "errors": 0,
   "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Spinner.java",
-      "line": 64,
-      "severity": "ERROR",
-      "rule": "ctor-visibility",
-      "detail": "Constructor is 'protected' but should be package-private (no access modifier)",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

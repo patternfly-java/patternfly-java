@@ -82,6 +82,8 @@ import static org.patternfly.style.Classes.widthAuto;
  * window that overlays the current page. Unlike modals, popovers don't block the current page.
  *
  * @deprecated This implementation uses the Popper.js API, which is due to be removed soon. Use {@link Popover} instead.
+ *
+ * @see <a href="https://www.patternfly.org/components/popover">https://www.patternfly.org/components/popover</a>
  */
 @Deprecated
 public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> implements

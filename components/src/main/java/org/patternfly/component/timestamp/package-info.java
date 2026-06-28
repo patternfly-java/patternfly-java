@@ -24,7 +24,8 @@
  *
  * <ul>
  *     <li>{@link org.patternfly.component.timestamp.Timestamp} - Main timestamp component</li>
- *     <li>{@link org.patternfly.component.timestamp.TimestampFormat} - Predefined format options (short, medium, long, full)</li>
+ *     <li>{@link org.patternfly.component.timestamp.TimestampFormat} - Predefined format options (short, medium,
+ *     long, full)</li>
  *     <li>{@link org.patternfly.component.timestamp.CustomFormat} - Custom date/time format configuration</li>
  *     <li>{@link org.patternfly.component.timestamp.DateTimeFormatOptions} - Options for individual date/time fields</li>
  * </ul>

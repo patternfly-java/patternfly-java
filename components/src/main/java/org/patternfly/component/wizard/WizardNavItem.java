@@ -58,6 +58,7 @@ public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem
         ElementTextDelegate<HTMLElement, WizardNavItem> {
 
     // ------------------------------------------------------ factory
+
     // No factory methods here! New nav items are only allowed to be created from internal methods in Wizard
 
     // ------------------------------------------------------ instance

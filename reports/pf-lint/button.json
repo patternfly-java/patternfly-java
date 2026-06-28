@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "button",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 2,
   "errors": 0,
-  "warnings": 1,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Button.java",
-      "line": 287,
-      "severity": "WARN",
-      "rule": "name-aria-prefix",
-      "detail": "ariaDisabled() and ariaLabel() methods (lines 287-298) are in the 'builder' section. Convention is to place aria*() methods in a dedicated 'aria' section between 'builder' and 'events'.",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

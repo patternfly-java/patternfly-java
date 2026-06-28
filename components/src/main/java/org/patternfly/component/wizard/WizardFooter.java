@@ -36,6 +36,7 @@ import static org.patternfly.style.Classes.wizard;
 public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> {
 
     // ------------------------------------------------------ factory
+
     // No factory methods here! The footer is created implicitly in Wizard
 
     // ------------------------------------------------------ instance

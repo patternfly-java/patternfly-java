@@ -27,8 +27,9 @@ import org.patternfly.handler.ComponentHandler;
  * Use {@link #noAddOnEnter()} to disable the default enter behavior. You can add additional enter handlers using
  * {@link #onEnter(ComponentHandler)}. To control the utilities visibility use {@link #showUtilitiesIf(BiFunction)}.
  *
- * @see <a href=
- * "https://www.patternfly.org/components/text-input-group#with-filters">https://www.patternfly.org/components/text-input-group#with-filters</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/text-input-group#with-filters">
+ *      https://www.patternfly.org/components/text-input-group#with-filters</a>
  */
 public class FilterInput extends BaseFilterInput<FilterInput> {
 

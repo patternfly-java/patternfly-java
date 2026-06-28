@@ -99,8 +99,9 @@ import static org.patternfly.style.Variable.componentVar;
 /**
  * A slider provides a quick and effective way for users to set and adjust a numeric value from a defined range of values.
  *
- * @see <a href=
- * "https://www.patternfly.org/components/slider#sliderstepobject">https://www.patternfly.org/components/slider#sliderstepobject</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/slider#sliderstepobject">
+ *      https://www.patternfly.org/components/slider#sliderstepobject</a>
  */
 public class Slider extends BaseComponent<HTMLElement, Slider> implements
         Disabled<HTMLElement, Slider>,

@@ -42,7 +42,8 @@
  *     <li>{@link org.patternfly.component.menu.SingleTypeahead} - Single-select typeahead with search input</li>
  *     <li>{@link org.patternfly.component.menu.MultiTypeahead} - Multi-select typeahead with filter input</li>
  *     <li>{@link org.patternfly.component.menu.MenuType} - Enumeration of menu types (menu, select, checkbox)</li>
- *     <li>{@link org.patternfly.component.menu.MenuToggleType} - Enumeration of menu toggle variants (default, plain, split button)</li>
+ *     <li>{@link org.patternfly.component.menu.MenuToggleType} - Enumeration of menu toggle variants (default,
+ *     plain, split button)</li>
  *     <li>{@link org.patternfly.component.menu.MenuActionHandler} - Handler interface for menu item action events</li>
  * </ul>
  *

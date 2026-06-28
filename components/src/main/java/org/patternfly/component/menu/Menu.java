@@ -557,7 +557,8 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
                             HTMLElement nextSibling = (HTMLElement) document.activeElement;
                             while (nextSibling != null) {
                                 boolean isDirectChildOfNavigableElement = nextSibling.parentElement == element;
-                                HTMLElement nextSiblingMainElement = isDirectChildOfNavigableElement ? nextSibling : ((HTMLElement) nextSibling.parentElement);
+                                HTMLElement nextSiblingMainElement = isDirectChildOfNavigableElement ? nextSibling :
+                                        ((HTMLElement) nextSibling.parentElement);
                                 nextSibling = (HTMLElement) (arrowLeft
                                         ? nextSiblingMainElement.previousElementSibling
                                         : nextSiblingMainElement.nextElementSibling);

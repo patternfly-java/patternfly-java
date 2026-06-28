@@ -47,6 +47,7 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
         HasItems<HTMLElement, WizardNav, WizardNavItem> {
 
     // ------------------------------------------------------ factory
+
     // No factory methods here! The navigation is created implicitly in Wizard
 
     // ------------------------------------------------------ instance

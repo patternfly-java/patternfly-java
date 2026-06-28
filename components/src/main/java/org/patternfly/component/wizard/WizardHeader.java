@@ -52,13 +52,6 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
                 .element());
     }
 
-    // ------------------------------------------------------ builder
-
-    @Override
-    public WizardHeader that() {
-        return this;
-    }
-
     // ------------------------------------------------------ add
 
     public WizardHeader addTitle(WizardHeaderTitle title) {
@@ -76,5 +69,12 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
 
     public WizardHeader add(WizardHeaderDescription description) {
         return add(description.element());
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public WizardHeader that() {
+        return this;
     }
 }

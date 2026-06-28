@@ -36,8 +36,9 @@ import static org.patternfly.style.Classes.notificationDrawer;
 /**
  * A notification drawer is a sliding panel that displays event notifications.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/notification-drawer">https://www.patternfly.org/components/notification-drawer</a>
+ * @see <a
+ *      href="https://www.patternfly.org/components/notification-drawer">
+ *      https://www.patternfly.org/components/notification-drawer</a>
  */
 public class NotificationDrawer extends BaseComponent<HTMLElement, NotificationDrawer> implements
         Closeable<HTMLElement, NotificationDrawer> {

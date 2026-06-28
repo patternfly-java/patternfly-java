@@ -65,7 +65,8 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
     private final AurHandler<ToolbarToggleGroup, ToolbarItem> aur;
 
     ToolbarToggleGroup() {
-        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(toolbar, group), modifier(toggleGroup), modifier(show)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME,
+                div().css(component(toolbar, group), modifier(toggleGroup), modifier(show)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         add(div().css(component(toolbar, toggle))

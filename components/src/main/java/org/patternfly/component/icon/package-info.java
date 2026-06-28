@@ -25,7 +25,8 @@
  *
  * <ul>
  *     <li>{@link org.patternfly.component.icon.Icon} - Renders an icon with configurable size and status</li>
- *     <li>{@link org.patternfly.component.icon.IconSize} - Defines available icon sizes (standalone, body, and heading sizes)</li>
+ *     <li>{@link org.patternfly.component.icon.IconSize} - Defines available icon sizes (standalone, body, and
+ *     heading sizes)</li>
  * </ul>
  *
  * <h2>Usage</h2>

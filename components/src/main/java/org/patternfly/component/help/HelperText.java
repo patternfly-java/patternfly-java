@@ -84,7 +84,7 @@ public class HelperText extends BaseComponent<HTMLElement, HelperText> {
         return this;
     }
 
-    // ------------------------------------------------------ aria
+    // ------------------------------------------------------ builder
 
     /**
      * Flag for indicating whether the helper text container is a live region. Use this prop when you expect or intend for any
@@ -93,8 +93,6 @@ public class HelperText extends BaseComponent<HTMLElement, HelperText> {
     public HelperText liveRegion() {
         return aria(live, "polite");
     }
-
-    // ------------------------------------------------------ builder
 
     @Override
     public HelperText that() {

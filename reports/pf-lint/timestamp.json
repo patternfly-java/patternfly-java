@@ -1,44 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "timestamp",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 7,
-  "errors": 2,
-  "warnings": 2,
+  "errors": 0,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Timestamp.java",
-      "line": 51,
-      "severity": "ERROR",
-      "rule": "section-instance-content",
-      "detail": "Static final fields (logger, DATETIME_ATTR, COORDINATED_UNIVERSAL_TIME, UTC) at lines 51-54 are declared before the 'factory' section separator. Fields must be inside the 'instance' section.",
-      "fixed": false
-    },
-    {
-      "file": "Timestamp.java",
-      "line": 179,
-      "severity": "ERROR",
-      "rule": "section-order",
-      "detail": "Section named 'accessors' at line 179 is not a valid section name. The valid section names are: factory, instance, add, builder, aria, events, api, internal. Use 'api' instead.",
-      "fixed": false
-    },
-    {
-      "file": "Timestamp.java",
-      "line": 184,
-      "severity": "WARN",
-      "rule": "section-blank-before",
-      "detail": "No blank line before the 'internal' section separator at line 184. The closing brace of dateTime() at line 183 is immediately followed by the separator.",
-      "fixed": false
-    },
-    {
-      "file": "Timestamp.java",
-      "line": 184,
-      "severity": "WARN",
-      "rule": "section-blank-after",
-      "detail": "Two blank lines after the 'internal' section separator at line 184. Should be exactly one blank line.",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

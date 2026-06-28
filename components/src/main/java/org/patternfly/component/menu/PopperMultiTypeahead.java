@@ -45,18 +45,19 @@ public class PopperMultiTypeahead
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
-     * {@link FilterInput}.
+     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type
+     * {@link MenuToggleType#typeahead} and a {@link FilterInput}.
      */
     public static PopperMultiTypeahead multiTypeahead(String id, String placeholder) {
         return new PopperMultiTypeahead(filterInput(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and the
-     * specified {@link BaseFilterInput}.
+     * Creates a new {@link PopperMultiTypeahead} component with a {@link MenuToggle} of type
+     * {@link MenuToggleType#typeahead} and the specified {@link BaseFilterInput}.
      *
-     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component with filtering and
+     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component with filtering
+     *                    and
      *                    search capabilities
      * @return a new {@link PopperMultiTypeahead} instance configured with the given filter input
      */

@@ -25,7 +25,8 @@
  *
  * <ul>
  *     <li>{@link org.patternfly.component.help.HelperText} - Container for one or more helper text items</li>
- *     <li>{@link org.patternfly.component.help.HelperTextItem} - Individual helper text message with optional status and icon</li>
+ *     <li>{@link org.patternfly.component.help.HelperTextItem} - Individual helper text message with optional
+ *     status and icon</li>
  * </ul>
  *
  * <h2>Usage</h2>

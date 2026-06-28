@@ -55,6 +55,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         ComponentIcon<HTMLLIElement, ProgressStep> {
 
     // ------------------------------------------------------ factory
+
     public static ProgressStep progressStep(String identifier) {
         return new ProgressStep(identifier);
     }

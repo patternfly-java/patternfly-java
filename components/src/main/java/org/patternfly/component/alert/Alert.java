@@ -251,9 +251,11 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
      * </ul>
      *
      * @see <a href=
-     * "https://www.patternfly.org/components/alert/accessibility#accessibility">https://www.patternfly.org/components/alert/accessibility#accessibility</a>
+     *      "https://www.patternfly.org/components/alert/accessibility#accessibility">
+     *      https://www.patternfly.org/components/alert/accessibility#accessibility</a>
      * @see <a href=
-     * "https://www.patternfly.org/components/alert/accessibility#aria-live">https://www.patternfly.org/components/alert/accessibility#aria-live</a>
+     *      "https://www.patternfly.org/components/alert/accessibility#aria-live">
+     *      https://www.patternfly.org/components/alert/accessibility#aria-live</a>
      */
     public Alert liveRegion() {
         aria(live, "polite");

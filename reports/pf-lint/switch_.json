@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "switch_",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 2,
   "errors": 0,
-  "warnings": 1,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "Switch.java",
-      "line": 63,
-      "severity": "WARN",
-      "rule": "decl-implements-order",
-      "detail": "Interfaces in implements clause are not alphabetical: 'HasValue' should come after 'Disabled' but before 'Readonly'. Current order: HasValue, Disabled, Readonly, Attachable. Expected: Attachable, Disabled, HasValue, Readonly",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

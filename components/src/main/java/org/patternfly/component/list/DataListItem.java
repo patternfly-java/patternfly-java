@@ -59,8 +59,8 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new data list item. The identifier is not used directly as an element ID but used to wire ARIA-related attributes. It
-     * is expected that you add a {@link DataListCell} with an element ID matching the identifier.
+     * Creates a new data list item. The identifier is not used directly as an element ID but used to wire ARIA-related
+     * attributes. It is expected that you add a {@link DataListCell} with an element ID matching the identifier.
      */
     public static DataListItem dataListItem(String identifier) {
         return new DataListItem(identifier);

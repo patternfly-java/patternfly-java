@@ -1,20 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "alert",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 7,
-  "errors": 1,
+  "errors": 0,
   "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "AlertGroup.java",
-      "line": 58,
-      "severity": "ERROR",
-      "rule": "doc-class-see",
-      "detail": "Class Javadoc @see links to 'https://www.patternfly.org/components/alert#alert-group-examples' but should link to 'https://www.patternfly.org/components/alert' (base component page without fragment).",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

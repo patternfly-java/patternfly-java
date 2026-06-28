@@ -19,7 +19,8 @@ package org.patternfly.component.wizard;
  * Wizard step types.
  *
  * @see <a
- * href="https://www.patternfly.org/components/wizard/design-guidelines/#review-and-completion">https://www.patternfly.org/components/wizard/design-guidelines/#review-and-completion</a>
+ *      href="https://www.patternfly.org/components/wizard/design-guidelines/#review-and-completion">
+ *      https://www.patternfly.org/components/wizard/design-guidelines/#review-and-completion</a>
  */
 public enum WizardStepType {
 

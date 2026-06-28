@@ -83,18 +83,18 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
         }
     }
 
-    // ------------------------------------------------------ builder
-
-    @Override
-    public MenuSearch that() {
-        return this;
-    }
-
     // ------------------------------------------------------ add
 
     public MenuSearch addSearchInput(SearchInput searchInput) {
         this.searchInput = searchInput;
         return add(searchInput);
+    }
+
+    // ------------------------------------------------------ builder
+
+    @Override
+    public MenuSearch that() {
+        return this;
     }
 
     // ------------------------------------------------------ events

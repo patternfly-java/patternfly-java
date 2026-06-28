@@ -1,36 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "popover",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 11,
-  "errors": 1,
-  "warnings": 2,
+  "errors": 0,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "PopperPopover.java",
-      "line": 87,
-      "severity": "ERROR",
-      "rule": "decl-implements-order",
-      "detail": "Interfaces not in alphabetical order: declared as Closeable, NoPadding, ComponentIcon, Attachable; should be Attachable, Closeable, ComponentIcon, NoPadding",
-      "fixed": false
-    },
-    {
-      "file": "PopperPopover.java",
-      "line": 113,
-      "severity": "WARN",
-      "rule": "field-order",
-      "detail": "Static Logger field appears after public static final constants (ANIMATION_DURATION, DISTANCE, Z_INDEX); Logger should be the first static final field",
-      "fixed": false
-    },
-    {
-      "file": "PopperPopover.java",
-      "line": 80,
-      "severity": "WARN",
-      "rule": "doc-class-see",
-      "detail": "Deprecated PopperPopover class Javadoc has no @see link to PatternFly docs (acceptable since deprecated, but noted)",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

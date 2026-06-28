@@ -83,7 +83,8 @@ public class TitleCell extends Cell<TitleCell> implements
     private Element expandedIcon;
 
     TitleCell(String identifier) {
-        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, identifier, Elements.th().css(component(table, treeView, titleCell), component(table, th))
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, identifier,
+                Elements.th().css(component(table, treeView, titleCell), component(table, th))
                 .element());
         element().appendChild(mainContainer = div().css(component(table, treeView, Classes.main))
                 .add(textContainer = span().css(component(table, treeView, text))

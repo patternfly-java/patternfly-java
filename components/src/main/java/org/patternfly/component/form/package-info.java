@@ -32,7 +32,8 @@
  *     <li>{@link org.patternfly.component.form.FormControl} - Base class for form controls with validation support</li>
  *     <li>{@link org.patternfly.component.form.FormFieldGroup} - Nestable field group with header and body</li>
  *     <li>{@link org.patternfly.component.form.FormFieldGroupBody} - Body area of a form field group</li>
- *     <li>{@link org.patternfly.component.form.FormFieldGroupHeader} - Header area of a form field group with title and actions</li>
+ *     <li>{@link org.patternfly.component.form.FormFieldGroupHeader} - Header area of a form field group with
+ *     title and actions</li>
  *     <li>{@link org.patternfly.component.form.FormGroup} - Groups a label with a control and helper text</li>
  *     <li>{@link org.patternfly.component.form.FormGroupControl} - Control area within a form group</li>
  *     <li>{@link org.patternfly.component.form.FormGroupLabel} - Label for a form group</li>
@@ -47,7 +48,8 @@
  *     <li>{@link org.patternfly.component.form.TextArea} - Multi-line text input</li>
  *     <li>{@link org.patternfly.component.form.TextAreaResize} - Enumeration of text area resize options</li>
  *     <li>{@link org.patternfly.component.form.TextInput} - Single-line text input</li>
- *     <li>{@link org.patternfly.component.form.TextInputType} - Enumeration of text input types (text, email, password, etc.)</li>
+ *     <li>{@link org.patternfly.component.form.TextInputType} - Enumeration of text input types (text, email,
+ *     password, etc.)</li>
  * </ul>
  *
  * <h2>Usage</h2>

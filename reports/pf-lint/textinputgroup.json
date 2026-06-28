@@ -1,36 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "textinputgroup",
-  "date": "2026-06-02",
+  "date": "2026-06-28",
   "files": 9,
   "errors": 0,
-  "warnings": 3,
+  "warnings": 0,
   "fixed": "\u2014",
-  "status": "issues",
-  "violations": [
-    {
-      "file": "BaseTextInputGroup.java",
-      "line": 55,
-      "severity": "WARN",
-      "rule": "section-factory",
-      "detail": "No 'factory' section exists. Acceptable for abstract base classes.",
-      "fixed": false
-    },
-    {
-      "file": "BaseSearchInput.java",
-      "line": 31,
-      "severity": "WARN",
-      "rule": "section-factory",
-      "detail": "No 'factory' section exists. Acceptable for abstract base classes.",
-      "fixed": false
-    },
-    {
-      "file": "BaseFilterInput.java",
-      "line": 36,
-      "severity": "WARN",
-      "rule": "section-factory",
-      "detail": "No 'factory' section exists. Acceptable for abstract base classes.",
-      "fixed": false
-    }
-  ]
+  "status": "clean",
+  "violations": []
 }

@@ -159,8 +159,8 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     @Override
     public void collapse(boolean fireEvent) {
         if (!expandable) {
-            logger.warn(
-                    "Form field group %o is not expandable. Please use FormFieldGroup.expandable() to make this an expandable field group.",
+            logger.warn("Form field group %o is not expandable. " +
+                            "Please use FormFieldGroup.expandable() to make this an expandable field group.",
                     element());
             return;
         }
@@ -176,8 +176,8 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
     @Override
     public void expand(boolean fireEvent) {
         if (!expandable) {
-            logger.warn(
-                    "Form field group %o is not expandable. Please use FormFieldGroup.expandable() to make this an expandable field group.",
+            logger.warn("Form field group %o is not expandable. " +
+                            "Please use FormFieldGroup.expandable() to make this an expandable field group.",
                     element());
             return;
         }
