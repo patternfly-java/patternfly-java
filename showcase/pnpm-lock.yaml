@@ -28,8 +28,8 @@ importers:
         version: 6.5.2
     devDependencies:
       '@patternfly/documentation-framework':
-        specifier: ^6.46.0
-        version: 6.46.0(@patternfly/patternfly@6.5.2)(@patternfly/react-code-editor@6.5.1(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(webpack@5.107.2(esbuild@0.28.1)(postcss@8.5.15))
+        specifier: ^6.46.1
+        version: 6.46.1(@patternfly/patternfly@6.5.2)(@patternfly/react-code-editor@6.5.1(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(webpack@5.107.2(esbuild@0.28.1)(postcss@8.5.15))
       '@shikijs/rehype':
         specifier: ^4.3.0
         version: 4.3.0
@@ -1149,8 +1149,8 @@ packages:
   '@patternfly/ast-helpers@1.26.2':
     resolution: {integrity: sha512-oN8pYX2Ekep0m6uFbTe4j+YjQhubWqDR0Yoj4jJSKp3gnbi+SknOEzvzMMqjCi1bWODjfmaerKBxN2WaW7c7dA==}
 
-  '@patternfly/documentation-framework@6.46.0':
-    resolution: {integrity: sha512-AbAre4Dz3bvrN0vdRofFhtaDfmRtsWfSsgKFCd0MsadzPq7iKYMDacv4KqREJ6edqunECJNCC1GSUPyhDhzMFA==}
+  '@patternfly/documentation-framework@6.46.1':
+    resolution: {integrity: sha512-tnPIE9W6o48YXkbj8lkNblPfVVsczBU+arCHz3A0UpRJXinI6fIjOdMtKyYi5CHkEHz7hBl+ZSHJCvnNgUGCEg==}
     hasBin: true
     peerDependencies:
       '@patternfly/patternfly': ^6.6.0-prerelease.16
@@ -6449,7 +6449,7 @@ snapshots:
       acorn-static-class-features: 1.0.0(acorn@8.17.0)
       astring: 1.9.0
 
-  '@patternfly/documentation-framework@6.46.0(@patternfly/patternfly@6.5.2)(@patternfly/react-code-editor@6.5.1(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(webpack@5.107.2(esbuild@0.28.1)(postcss@8.5.15))':
+  '@patternfly/documentation-framework@6.46.1(@patternfly/patternfly@6.5.2)(@patternfly/react-code-editor@6.5.1(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tslib@2.8.1)(webpack@5.107.2(esbuild@0.28.1)(postcss@8.5.15))':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/preset-env': 7.29.0(@babel/core@7.29.7)
