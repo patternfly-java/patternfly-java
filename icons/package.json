@@ -3,9 +3,9 @@
     "@fortawesome/free-brands-svg-icons": "^7.3.0",
     "@fortawesome/free-regular-svg-icons": "^7.3.0",
     "@fortawesome/free-solid-svg-icons": "^7.3.0",
-    "@patternfly/patternfly": "^6.5.2",
-    "@patternfly/react-icons": "^6.5.1",
-    "@types/node": "^26.0.1",
+    "@patternfly/patternfly": "^6.6.0",
+    "@patternfly/react-icons": "^6.6.0",
+    "@types/node": "^26.1.0",
     "camelcase": "^9.0.0"
   },
   "name": "icons",
