@@ -8,12 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `audit:fix` script to automate suppression of security advisories from `@patternfly/documentation-framework` transitive dependencies (updates `pnpm-workspace.yaml` ignore list and dismisses Dependabot alerts)
+- Add `audit:fix` script to automate suppression of security advisories from `@patternfly/documentation-framework` transitive dependencies
 
 ### Changed
 
+- Replace supplier fields with abstract methods in `Severity`, `ValidationStatus`, `ContentType`, and `ProgressStepVariant` enums
 - Change `PredefinedIcon.predefinedIcon(String)` to return a circle-question fallback icon with `pf-m-unknown` styling instead of throwing `IllegalArgumentException` for unknown icon names
 - Migrate renamed FontAwesome 6 icon references in showcase data (`archive` → `boxArchive`, `hdd` → `hardDrive`, `edit` → `penToSquare`)
+- Update FontAwesome icon SVG paths to latest upstream versions
+
+### Fixed
+
+- Resolve pf-lint violations across 51 components (Javadoc, section order, naming conventions)
 
 ### Security
 
@@ -23,6 +29,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Upgrade Elemento from 2.5.2 to 2.5.3
 - Upgrade J2CL tools BOM from 0.5 to 0.6
+- Upgrade GWT from 2.13.0 to 2.13.1
+- Upgrade J2CL Maven plugin from 0.23.7 to 0.23.8
 
 ## [0.9.2] - 2026-06-10
 
