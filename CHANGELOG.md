@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Upgrades
 
+- Upgrade Elemento from 2.5.2 to 2.5.4
 - Upgrade J2CL tools BOM from 0.5 to 0.6
 - Upgrade GWT from 2.13.0 to 2.13.1
 - Upgrade J2CL Maven plugin from 0.23.7 to 0.23.8
