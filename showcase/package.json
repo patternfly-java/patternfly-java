@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "@github/relative-time-element": "^5.2.0",
-    "@patternfly/patternfly": "^6.5.2"
+    "@patternfly/patternfly": "^6.6.0"
   },
   "devDependencies": {
     "@patternfly/documentation-framework": "^6.49.0",
-    "@shikijs/rehype": "^4.3.0",
+    "@shikijs/rehype": "^4.3.1",
     "esbuild": "^0.28.1",
     "http-server": "^14.1.1",
     "puppeteer": "^25.3.0",
