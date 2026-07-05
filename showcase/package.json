@@ -4,7 +4,7 @@
     "@patternfly/patternfly": "^6.5.2"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "^6.47.0",
+    "@patternfly/documentation-framework": "^6.49.0",
     "@shikijs/rehype": "^4.3.0",
     "esbuild": "^0.28.1",
     "http-server": "^14.1.1",
@@ -16,7 +16,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
-    "vite": "^8.1.2",
+    "vite": "^8.1.3",
     "yaml": "^2.9.0"
   },
   "name": "patternfly-java-showcase",
