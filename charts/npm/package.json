@@ -34,7 +34,7 @@
   "description": "Web Components wrapper around PatternFly React Charts",
   "devDependencies": {
     "rimraf": "^6.1.3",
-    "vite": "^8.1.0"
+    "vite": "^8.1.3"
   },
   "homepage": "https://patternfly-java.github.io/",
   "keywords": [
@@ -46,7 +46,7 @@
   ],
   "license": "Apache-2.0",
   "name": "@patternfly-java/charts",
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.10.0",
   "private": false,
   "repository": {
     "type": "git",
