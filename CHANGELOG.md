@@ -14,8 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Replace supplier fields with abstract methods in `Severity`, `ValidationStatus`, `ContentType`, and `ProgressStepVariant` enums
 - Change `PredefinedIcon.predefinedIcon(String)` to return a circle-question fallback icon with `pf-m-unknown` styling instead of throwing `IllegalArgumentException` for unknown icon names
-- Migrate renamed FontAwesome 6 icon references in showcase data (`archive` → `boxArchive`, `hdd` → `hardDrive`, `edit` → `penToSquare`)
-- Update FontAwesome icon SVG paths to latest upstream versions
+- Migrate renamed FontAwesome 6 icons and update SVG paths to latest upstream versions
 
 ### Fixed
 
@@ -27,7 +26,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Upgrades
 
-- Upgrade Elemento from 2.5.2 to 2.5.3
 - Upgrade J2CL tools BOM from 0.5 to 0.6
 - Upgrade GWT from 2.13.0 to 2.13.1
 - Upgrade J2CL Maven plugin from 0.23.7 to 0.23.8
