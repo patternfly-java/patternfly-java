@@ -4,9 +4,9 @@
     "url": "https://github.com/patternfly-java/patternfly-java/issues"
   },
   "dependencies": {
-    "@patternfly/react-charts": "^8.5.1",
-    "@patternfly/react-styles": "^6.5.1",
-    "@patternfly/react-tokens": "^6.5.1",
+    "@patternfly/react-charts": "^8.6.0",
+    "@patternfly/react-styles": "^6.6.0",
+    "@patternfly/react-tokens": "^6.6.0",
     "hoist-non-react-statics": "^3.3.2",
     "lit": "^3.3.3",
     "lodash": "^4.18.1",
