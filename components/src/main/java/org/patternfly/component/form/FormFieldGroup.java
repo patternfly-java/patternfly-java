@@ -82,7 +82,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
                 .attr(role, group)
                 .element());
         this.titleId = Id.unique(ComponentType.Form.id, SUB_COMPONENT_ID, "title");
-        this.expandable = false;
+        this.expandable = expandable;
         storeSubComponent();
         Attachable.register(this, this);
     }

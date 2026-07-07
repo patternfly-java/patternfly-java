@@ -16,6 +16,7 @@
 package org.patternfly.component.expandable;
 
 import org.jboss.elemento.ElementContainerDelegate;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.button.Button;
 
 import elemental2.dom.Element;
@@ -44,15 +45,29 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
     // ------------------------------------------------------ factory
 
     public static ExpandableSectionToggle expandableSectionToggle() {
-        return new ExpandableSectionToggle(null, null);
+        return new ExpandableSectionToggle(div(), null, null);
     }
 
     public static ExpandableSectionToggle expandableSectionToggle(String moreText) {
-        return new ExpandableSectionToggle(moreText, null);
+        return new ExpandableSectionToggle(div(), moreText, null);
     }
 
     public static ExpandableSectionToggle expandableSectionToggle(String moreText, String lessText) {
-        return new ExpandableSectionToggle(moreText, lessText);
+        return new ExpandableSectionToggle(div(), moreText, lessText);
+    }
+
+    public static <E extends HTMLElement> ExpandableSectionToggle expandableSectionToggle(HTMLContainerBuilder<E> builder) {
+        return new ExpandableSectionToggle(builder, null, null);
+    }
+
+    public static <E extends HTMLElement> ExpandableSectionToggle expandableSectionToggle(HTMLContainerBuilder<E> builder,
+            String moreText) {
+        return new ExpandableSectionToggle(builder, moreText, null);
+    }
+
+    public static <E extends HTMLElement> ExpandableSectionToggle expandableSectionToggle(HTMLContainerBuilder<E> builder,
+            String moreText, String lessText) {
+        return new ExpandableSectionToggle(builder, moreText, lessText);
     }
 
     // ------------------------------------------------------ instance
@@ -65,14 +80,14 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
     private String moreText;
     private String lessText;
 
-    ExpandableSectionToggle(String moreText, String lessText) {
-        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(expandableSection, toggle)).element());
+    <E extends HTMLElement> ExpandableSectionToggle(HTMLContainerBuilder<E> builder, String moreText, String lessText) {
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, builder.css(component(expandableSection, toggle)).element());
         this.moreText = moreText;
         this.lessText = lessText;
         this.iconContainer = span().css(component(expandableSection, toggle, icon))
                 .add(caretRight())
                 .element();
-        this.button = button().css(component(expandableSection, toggle))
+        this.button = button()
                 .link()
                 .aria(expanded, false)
                 .iconAndText(iconContainer, moreText, start)

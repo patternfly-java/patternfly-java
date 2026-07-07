@@ -111,6 +111,15 @@ auditConfig:
     - GHSA-vxr8-fq34-vvx9
     - GHSA-x4vx-rjvf-j5p4
 
+# @patternfly/documentation-framework declares peer dependencies on React packages
+# that we don't use — we only import CSS files from it.
+peerDependencyRules:
+  allowAny:
+    - '@patternfly/react-code-editor'
+    - '@patternfly/react-core'
+    - '@patternfly/react-icons'
+    - '@patternfly/react-table'
+
 overrides:
   '@babel/core@<=7.29.0': '>=7.29.1'
   axios@>=1.0.0 <1.15.1: '>=1.15.1'

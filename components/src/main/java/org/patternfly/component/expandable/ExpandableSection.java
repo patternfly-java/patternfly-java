@@ -358,7 +358,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             // content after toggle => direction = down
             directionUp = false;
         }
-        if (directionUp) {
+        if (directionUp && truncate == 0) {
             contentEsElement.classList.add(modifier(expandTop));
         }
         if (truncate > 0) {

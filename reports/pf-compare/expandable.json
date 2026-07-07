@@ -1,0 +1,152 @@
+{
+  "skillVersion": "0.2.0",
+  "component": "expandable-section",
+  "date": "2026-07-07",
+  "pfVersion": "Release 6.6.0",
+  "pfUrl": "https://www.patternfly.org/components/expandable-section",
+  "pfjUrl": "http://localhost:1234/components/expandable-section",
+  "sections": {
+    "pfCount": 10,
+    "pfjCount": 8,
+    "matched": 7,
+    "missingInPfj": [
+      "Uncontrolled",
+      "Uncontrolled with dynamic toggle content (function)",
+      "With heading semantics"
+    ],
+    "extraInPfj": [
+      "Detached (after)"
+    ]
+  },
+  "variations": [
+    {
+      "slug": "basic",
+      "title": "Basic",
+      "html": "<div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r38:\" id=\"expandable-section-toggle-:r39:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r3a:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more basic example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r38:\" aria-labelledby=\"expandable-section-toggle-:r39:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "uncontrolled",
+      "title": "Uncontrolled",
+      "html": "<div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-controls=\"expandable-section-content-:r3l:\" id=\"expandable-section-toggle-:r3m:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r3n:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more uncontrolled example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r3l:\" aria-labelledby=\"expandable-section-toggle-:r3m:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "uncontrolled-with-dynamic-toggle-text",
+      "title": "Uncontrolled with dynamic toggle text",
+      "html": "<div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-controls=\"expandable-section-content-:r42:\" id=\"expandable-section-toggle-:r43:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r44:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more uncontrolled dynamic toggle example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r42:\" aria-labelledby=\"expandable-section-toggle-:r43:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "uncontrolled-with-dynamic-toggle-content-function",
+      "title": "Uncontrolled with dynamic toggle content (function)",
+      "html": "<div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-controls=\"expandable-section-content-:r4f:\" id=\"expandable-section-toggle-:r4g:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r4h:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more uncontrolled dynamic toggle example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r4f:\" aria-labelledby=\"expandable-section-toggle-:r4g:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "detached",
+      "title": "Detached",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\"><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section pf-m-expand-top pf-m-detached\"><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"detached-expandable-section-content\" aria-labelledby=\"detached-expandable-section-toggle\" role=\"region\"> This content is visible only when the component is expanded. </div></div></div><div class=\"pf-v6-l-stack__item\"><div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"detached-expandable-section-content\" id=\"detached-expandable-section-toggle\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r4u:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more detached example content</span></button></div></div></div></div>"
+    },
+    {
+      "slug": "disclosure-variation",
+      "title": "Disclosure variation",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-display-lg pf-m-limit-width\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r59:\" id=\"expandable-section-toggle-:r5a:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r5b:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show more disclosure variation example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r59:\" aria-labelledby=\"expandable-section-toggle-:r5a:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "indented-expandable-content",
+      "title": "Indented expandable content",
+      "html": "<div class=\"pf-v6-c-check\"><input id=\"displaySize-checkbox\" class=\"pf-v6-c-check__input\" type=\"checkbox\" aria-invalid=\"false\" data-ouia-component-type=\"PF6/Checkbox\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Checkbox-:r5n:\"><label class=\"pf-v6-c-check__label\" for=\"displaySize-checkbox\">displaySize=\"lg\"</label></div><br><div class=\"pf-v6-c-expandable-section pf-m-expanded pf-m-indented\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"true\" aria-controls=\"expandable-section-content-:r5o:\" id=\"expandable-section-toggle-:r5p:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r5q:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Show less indented example content</span></button></div><div class=\"pf-v6-c-expandable-section__content\" id=\"expandable-section-content-:r5o:\" aria-labelledby=\"expandable-section-toggle-:r5p:\" role=\"region\"> This content is visible only when the component is expanded. </div></div>"
+    },
+    {
+      "slug": "with-custom-toggle-content",
+      "title": "With custom toggle content",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\"><div class=\"pf-v6-l-stack__item\"><h3>Custom Toggle Content</h3><p>You can use custom content such as icons and badges in the toggle:</p><div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r65:\" id=\"expandable-section-toggle-:r66:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r67:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\"><div><span>You can also use icons </span><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path></svg><span> or badges </span><span class=\"pf-v6-c-badge pf-m-read\">4</span><span> !</span></div></span></button></div><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r65:\" aria-labelledby=\"expandable-section-toggle-:r66:\" role=\"region\"> This content is visible only when the component is expanded. </div></div></div><div class=\"pf-v6-l-stack__item\"><h3>Accessibility Note</h3><p><strong>Important:</strong> If you need the toggle text to function as a heading in the document structure, do NOT put heading elements (h1-h6) inside the <code>toggleContent</code> prop, as this creates invalid HTML structure. Instead, use the <code>toggleWrapper</code> prop. </p></div></div>"
+    },
+    {
+      "slug": "with-heading-semantics",
+      "title": "With heading semantics",
+      "html": "<div class=\"pf-v6-l-stack pf-m-gutter\"><div class=\"pf-v6-l-stack__item\"><h4>Document with Expandable Sections</h4><p>This demonstrates how to use expandable sections with proper heading semantics.</p><div class=\"pf-v6-c-expandable-section\"><h5 class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r6i:\" id=\"expandable-section-toggle-:r6j:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r6k:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\">Toggle as a heading</span></button></h5><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r6i:\" aria-labelledby=\"expandable-section-toggle-:r6j:\" role=\"region\"><p> This content is visible only when the component is expanded. The toggle text above functions as a proper heading in the document structure, which is important for screen readers and other assistive technologies. </p><p> When using the <code>toggleWrapper</code> prop with heading elements (h1-h6), the button is rendered inside the heading element, maintaining proper semantic structure. </p></div></div></div><div class=\"pf-v6-l-stack__item\"><h4>Detached Variant with Heading</h4><p>You can also use the detached variant with heading semantics:</p><div class=\"pf-v6-c-expandable-section\"><h5 class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"detached-heading-content\" id=\"detached-heading-toggle\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r6l:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\"> Detached Toggle with Heading </span></button></h5></div><div class=\"pf-v6-c-expandable-section\"><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"detached-heading-content\" aria-labelledby=\"detached-heading-toggle\" role=\"region\"><p>This is detached content that can be positioned anywhere in the DOM.</p></div></div></div><div class=\"pf-v6-l-stack__item\"><h4>Custom Content with Heading</h4><p>You can also use custom content within heading wrappers:</p><div class=\"pf-v6-c-expandable-section\"><h5 class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r6o:\" id=\"expandable-section-toggle-:r6p:\" class=\"pf-v6-c-button pf-m-link\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r6q:\"><span class=\"pf-v6-c-button__icon pf-m-start\"><span class=\"pf-v6-c-expandable-section__toggle-icon\"><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M18.71 5.29a.996.996 0 0 0-1.41 0l-7.29 7.29-7.3-7.29a.987.987 0 0 0-1.41-.02.987.987 0 0 0-.02 1.41l.02.02 7.65 7.65c.29.29.68.44 1.06.44s.77-.15 1.06-.44l7.65-7.65a.996.996 0 0 0 0-1.41Z\"></path></svg></span></span><span class=\"pf-v6-c-button__text\"><span><svg class=\"pf-v6-svg\" fill=\"currentColor\" viewBox=\"0 0 32 32\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\"><path d=\"M16 1C7.729 1 1 7.729 1 16s6.729 15 15 15 15-6.729 15-15S24.271 1 16 1Zm7.795 11.795-8.646 8.646c-.317.317-.733.475-1.149.475s-.832-.158-1.149-.475l-4.646-4.646a1.126 1.126 0 0 1 1.591-1.591l4.205 4.205 8.205-8.205a1.126 1.126 0 0 1 1.591 1.591Z\"></path></svg> Custom Heading Content with Icon </span></span></button></h5><div class=\"pf-v6-c-expandable-section__content\" hidden=\"\" id=\"expandable-section-content-:r6o:\" aria-labelledby=\"expandable-section-toggle-:r6p:\" role=\"region\"><p>This expandable section uses custom content with an icon inside a heading wrapper.</p></div></div></div></div>"
+    },
+    {
+      "slug": "truncate-expansion",
+      "title": "Truncate expansion",
+      "html": "<div class=\"pf-v6-c-expandable-section pf-m-truncate\"><div class=\"pf-v6-c-expandable-section__content\" id=\"expandable-section-content-:r75:\" aria-labelledby=\"expandable-section-toggle-:r76:\" role=\"region\"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec dignissim turpis, et tristique purus. Phasellus efficitur ante quis dolor viverra imperdiet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque laoreet, sem ac elementum semper, lectus mauris vestibulum nulla, eget volutpat massa neque vel turpis. Donec finibus enim eu leo accumsan consectetur. Praesent massa diam, tincidunt eu dui ac, ullamcorper elementum est. Phasellus metus felis, venenatis vitae semper nec, porta a metus. Vestibulum justo nisi, imperdiet id eleifend at, varius nec lorem. Fusce porttitor mollis nibh, ut elementum ante commodo tincidunt. Integer tincidunt at ipsum non aliquet. </div><div class=\"pf-v6-c-expandable-section__toggle\"><button aria-expanded=\"false\" aria-controls=\"expandable-section-content-:r75:\" id=\"expandable-section-toggle-:r76:\" class=\"pf-v6-c-button pf-m-link pf-m-inline\" type=\"button\" data-ouia-component-type=\"PF6/Button\" data-ouia-safe=\"true\" data-ouia-component-id=\"OUIA-Generated-Button-link-:r77:\"><span class=\"pf-v6-c-button__text\">Show more truncated content</span></button></div></div>"
+    }
+  ],
+  "actionItems": [
+    {
+      "number": 1,
+      "type": "add_variation",
+      "priority": "P1",
+      "title": "Add Uncontrolled section",
+      "description": "PF has an Uncontrolled demo showing controlled state management. Add equivalent PFJ demo or document why it is not applicable.",
+      "category": "missing_sections",
+      "variations": [
+        "Uncontrolled"
+      ]
+    },
+    {
+      "number": 2,
+      "type": "implement_feature",
+      "priority": "P1",
+      "title": "Add dynamic toggle content (function) section",
+      "description": "PF shows a toggleContent function that receives expanded state and returns dynamic content. Evaluate whether PFJ needs an equivalent callback-based API for dynamic toggle content.",
+      "category": "missing_sections",
+      "variations": [
+        "Uncontrolled with dynamic toggle content (function)"
+      ]
+    },
+    {
+      "number": 3,
+      "type": "implement_feature",
+      "priority": "P1",
+      "title": "Add heading semantics support",
+      "description": "PF uses toggleWrapper prop to wrap the toggle button in a heading element (h1-h6) for document structure. PFJ should support this for accessibility. The toggle wrapper renders as <h5 class=\"pf-v6-c-expandable-section__toggle\"> instead of <div>.",
+      "category": "missing_sections",
+      "variations": [
+        "With heading semantics"
+      ]
+    },
+    {
+      "number": 4,
+      "type": "fix_structure",
+      "priority": "P2",
+      "title": "Remove extra toggle class from button",
+      "description": "PFJ button has extra pf-v6-c-expandable-section__toggle class alongside pf-v6-c-button. PF only applies this class to the wrapper <div>, not the <button> itself. Remove the extra class from the button element.",
+      "category": "dom_differences",
+      "variations": [
+        "Basic",
+        "Basic with dynamic toggle text",
+        "Detached",
+        "Disclosure variation",
+        "Indented",
+        "With custom toggle content",
+        "Truncate"
+      ]
+    },
+    {
+      "number": 5,
+      "type": "fix_css",
+      "priority": "P2",
+      "title": "Remove extra pf-m-expand-top from truncate",
+      "description": "PFJ truncate adds pf-m-expand-top on the root element. PF truncate does not use this modifier — it achieves content-first order through DOM ordering alone. Remove pf-m-expand-top if not required by CSS.",
+      "category": "dom_differences",
+      "variations": [
+        "Truncate"
+      ]
+    },
+    {
+      "number": 6,
+      "type": "fix_icon",
+      "priority": "P4",
+      "title": "Toggle icon viewBox difference",
+      "description": "PFJ uses caret-right (viewBox 0 0 32 32) while PF uses chevron-down (viewBox 0 0 20 20). This reflects a Red Hat vs FontAwesome icon set difference. Consistent across all sections with toggle icons.",
+      "category": "dom_differences",
+      "variations": [
+        "Basic",
+        "Basic with dynamic toggle text",
+        "Detached",
+        "Disclosure variation",
+        "Indented",
+        "With custom toggle content"
+      ]
+    }
+  ]
+}
