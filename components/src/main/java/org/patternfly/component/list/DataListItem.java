@@ -40,7 +40,7 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.controls;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.control;
@@ -150,7 +150,7 @@ public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListIt
                         .aria(expanded, false)
                         .on(click, e -> toggle())
                         .add(div().css(component(dataList, toggle, icon))
-                                .add(caretRight().element())))
+                                .add(caretDown().element())))
                 .element());
         wireExpandable();
         return this;

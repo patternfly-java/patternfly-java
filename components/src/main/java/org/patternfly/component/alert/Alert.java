@@ -69,7 +69,7 @@ import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.live;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.icon;
@@ -233,7 +233,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
                         .aria(expanded, false)
                         .aria(label, severity.name() + " alert: " + title + " details")
                         .add(span().css(component(alert, toggle, icon))
-                                .add(caretRight().element())))
+                                .add(caretDown().element())))
                 .element());
         this.expandable = true;
         this.toggleHandler = toggleHandler;

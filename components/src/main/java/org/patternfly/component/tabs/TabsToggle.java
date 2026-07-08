@@ -30,7 +30,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabs;
 import static org.patternfly.style.Classes.toggle;
@@ -58,7 +58,7 @@ class TabsToggle extends TabSubComponent<HTMLElement, TabsToggle> implements
         String toggleTextId = Id.unique(ComponentType.Tabs.id, "toggle", "text");
         add(div().css(component(tabs, toggle, Classes.button))
                 .add(button = button().plain()
-                        .iconAndText(caretRight(), "")
+                        .iconAndText(caretDown(), "")
                         .id(toggleButtonId)
                         .aria(expanded, false)
                         .aria(labelledBy, toggleButtonId + " " + toggleTextId)

@@ -35,7 +35,7 @@ import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.span;
 import static org.jboss.elemento.EventType.click;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretRight;
 import static org.patternfly.style.Classes.breadcrumb;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.divider;

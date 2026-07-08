@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix toggle icons across expandable components to use `rhMicrons.caretDown` instead of `rhUi.caretRight`, matching PatternFly's `RhMicronsCaretDownIcon` (alert, card, data list, expandable section, form field group, jump links, overflow tab, tabs toggle)
+- Fix breadcrumb divider icon to use `rhMicrons.caretRight` instead of `rhUi.caretRight`
+
 ## [0.9.3] - 2026-07-05
 
 ### Added

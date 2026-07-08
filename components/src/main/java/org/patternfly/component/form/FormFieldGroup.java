@@ -40,7 +40,7 @@ import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Roles.group;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fieldGroup;
 import static org.patternfly.style.Classes.form;
@@ -141,7 +141,7 @@ public class FormFieldGroup extends FormSubComponent<HTMLElement, FormFieldGroup
                                     .aria(label, "Details")
                                     .aria(labelledBy, titleId + " " + toggleId)
                                     .add(span().css(component(form, fieldGroup, toggle, icon))
-                                            .add(caretRight()))))
+                                            .add(caretDown()))))
                     .element());
         }
         this.expandable = true;

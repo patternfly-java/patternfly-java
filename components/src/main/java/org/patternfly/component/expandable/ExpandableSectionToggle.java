@@ -29,7 +29,7 @@ import static org.jboss.elemento.EventType.click;
 import static org.patternfly.component.IconPosition.start;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.core.Aria.expanded;
-import static org.patternfly.icon.IconSets.rhUi.caretRight;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandTop;
 import static org.patternfly.style.Classes.expandableSection;
@@ -85,7 +85,7 @@ public class ExpandableSectionToggle extends ExpandableSectionSubComponent<HTMLE
         this.moreText = moreText;
         this.lessText = lessText;
         this.iconContainer = span().css(component(expandableSection, toggle, icon))
-                .add(caretRight())
+                .add(caretDown())
                 .element();
         this.button = button()
                 .link()
