@@ -195,7 +195,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                             .aria(Aria.label, "Close " + text())
                             .on(click, e -> close(e, true))
                             .add(span().css(component(tabs, item, action, icon))
-                                    .add(IconSets.rhUi.close()))));
+                                    .add(IconSets.rhMicrons.close()))));
         }
         return onClose(closeHandler);
     }

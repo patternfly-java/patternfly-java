@@ -201,7 +201,7 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
 
     public Alert closable(CloseHandler<Alert> closeHandler) {
         insertAfter(div().css(component(alert, Classes.action))
-                .add(closeButton = button().icon(IconSets.rhUi.close().element()).plain()
+                .add(closeButton = button().icon(IconSets.rhMicrons.close().element()).plain()
                         .aria(label, "Close " + severity.name() + " alert: " + title)
                         .on(click, event -> close(event, true)))
                 .element(), titleElement);

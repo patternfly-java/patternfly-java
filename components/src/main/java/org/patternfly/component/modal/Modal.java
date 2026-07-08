@@ -118,7 +118,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
                                 .add(closeContainer = div().css(component(modalBox, close))
                                         .add(button()
                                                 .plain()
-                                                .icon(IconSets.rhUi.close())
+                                                .icon(IconSets.rhMicrons.close())
                                                 .aria(label, "Close")
                                                 .on(click, e -> close(e, true)))
                                         .element())

@@ -45,7 +45,7 @@ public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> 
     WizardHeader() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(wizard, header)).element());
         add(closeContainer = div().css(component(wizard, close))
-                .add(button().plain().icon(IconSets.rhUi.close()).onClick((e, c) -> {
+                .add(button().plain().icon(IconSets.rhMicrons.close()).onClick((e, c) -> {
                     Wizard wizard = lookupComponent();
                     wizard.cancel();
                 }))

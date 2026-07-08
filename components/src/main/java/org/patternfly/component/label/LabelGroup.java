@@ -35,6 +35,7 @@ import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
+import org.patternfly.icon.IconSets;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.handler.CloseHandler;
@@ -66,7 +67,6 @@ import static org.patternfly.core.Aria.labelledBy;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.handler.CloseHandler.fireEvent;
 import static org.patternfly.handler.CloseHandler.shouldClose;
-import static org.patternfly.icon.IconSets.rhUi.closeCircle;
 import static org.patternfly.style.Classes.chipGroup;
 import static org.patternfly.style.Classes.close;
 import static org.patternfly.style.Classes.component;
@@ -215,7 +215,7 @@ public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implem
         add(div().css(component(labelGroup, close))
                 .add(closeButton = button()
                         .plain()
-                        .icon(closeCircle())
+                        .icon(IconSets.rhMicrons.close())
                         .id(closeId)
                         .aria(Aria.label, "Close label group")
                         .aria(Aria.labelledBy, labelledBy)

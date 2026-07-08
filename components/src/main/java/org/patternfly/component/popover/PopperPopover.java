@@ -280,7 +280,7 @@ public class PopperPopover extends BaseComponent<HTMLDivElement, PopperPopover> 
             insertFirst(contentElement, div().css(component(popover, close))
                     .add(closeButton = button()
                             .plain()
-                            .icon(IconSets.rhUi.close())
+                            .icon(IconSets.rhMicrons.close())
                             .aria(label, "Close")
                             .on(click, event -> close(event, true)))
                     .element());

@@ -60,7 +60,7 @@ public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTM
         add(statusElement = span().css(component(notificationDrawer, header, status)).element());
         add(div().css(component(notificationDrawer, header, action))
                 .add(closeElement = div().css(component(notificationDrawer, header, action, close))
-                        .add(button(IconSets.rhUi.close()).plain()
+                        .add(button(IconSets.rhMicrons.close()).plain()
                                 .aria(label, "Close")
                                 .onClick((event, component) -> {
                                     NotificationDrawer drawer = lookupComponent();

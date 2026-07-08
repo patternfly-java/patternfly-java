@@ -246,7 +246,7 @@ public class Label extends BaseComponent<HTMLElement, Label> implements
         onClose(closeHandler);
         insertAfter(actionsElement = span().css(component(Classes.label, actions))
                 .add(closeButton = Button.button()
-                        .icon(IconSets.rhUi.close())
+                        .icon(IconSets.rhMicrons.close())
                         .plain()
                         .noPadding()
                         .aria(Aria.label, "Close " + textElement.textContent)

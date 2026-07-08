@@ -114,7 +114,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         if (utilitiesVisibility.apply(that(), value)) {
             if (utilities == null) {
                 addUtilities(textInputGroupUtilities()
-                        .add(button().icon(IconSets.rhUi.close()).plain().onClick((e, b) -> {
+                        .add(button().icon(IconSets.rhMicrons.close()).plain().onClick((e, b) -> {
                             if (defaultOnClear != null) {
                                 defaultOnClear.handle(e, that());
                             }
