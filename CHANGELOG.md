@@ -6,11 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `HTMLContainerBuilder` factory methods to `ExpandableSectionToggle` for custom wrapper elements
+
 ### Fixed
 
+- Fix `ExpandableSection` to only apply `expandTop` modifier when not truncating
+- Fix `FormFieldGroup` to use expandable parameter instead of hardcoded `false`
+- Fix duplicate CSS class on `ExpandableSectionToggle` button
 - Fix toggle icons across expandable components to use `rhMicrons.caretDown` instead of `rhUi.caretRight`, matching PatternFly's `RhMicronsCaretDownIcon` (alert, card, data list, expandable section, form field group, jump links, overflow tab, tabs toggle)
-- Fix breadcrumb divider icon to use `rhMicrons.caretRight` instead of `rhUi.caretRight`
 - Fix close icons across all components to use `rhMicrons.close` instead of `rhUi.close`, matching PatternFly's `RhMicronsCloseIcon` (alert, drawer, label, label group, modal, notification drawer, popover, search input, tab, wizard)
+- Fix breadcrumb divider icon to use `rhMicrons.caretRight` instead of `rhUi.caretRight`
+
+### Upgrades
+
+- Upgrade PatternFly from 6.5.2 to 6.6.0
 
 ## [0.9.3] - 2026-07-05
 
