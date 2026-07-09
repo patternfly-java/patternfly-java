@@ -231,7 +231,10 @@ public class Popover extends BaseComponent<HTMLDivElement, Popover> implements
                             .plain()
                             .icon(IconSets.rhMicrons.close())
                             .aria(label, "Close")
-                            .on(click, event -> close(event, true)))
+                            .on(click, event -> {
+                                event.stopPropagation();
+                                close(event, true);
+                            }))
                     .element());
         }
         return onClose(closeHandler);

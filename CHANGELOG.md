@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix popover close button propagating click events, which could trigger unintended parent handlers
+
 ## [0.9.4] - 2026-07-08
 
 ### Added
