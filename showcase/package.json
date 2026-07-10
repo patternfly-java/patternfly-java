@@ -1,17 +1,4 @@
 {
-  "name": "patternfly-java-showcase",
-  "packageManager": "pnpm@11.10.0",
-  "private": true,
-  "scripts": {
-    "audit:fix": "node audit.mjs",
-    "code": "node code.mjs",
-    "http-server": "http-server target/showcase --ssl --cert cert.pem",
-    "images:clean": "rm -rf src/web/images/*",
-    "images:download": "node images.mjs",
-    "markdown": "node markdown.mjs",
-    "prod": "vite build",
-    "watch": "vite"
-  },
   "dependencies": {
     "@github/relative-time-element": "^5.2.0",
     "@patternfly/patternfly": "^6.6.0"
@@ -31,5 +18,18 @@
     "unified": "^11.0.5",
     "vite": "^8.1.3",
     "yaml": "^2.9.0"
+  },
+  "name": "patternfly-java-showcase",
+  "packageManager": "pnpm@11.11.0",
+  "private": true,
+  "scripts": {
+    "audit:fix": "node audit.mjs",
+    "code": "node code.mjs",
+    "http-server": "http-server target/showcase --ssl --cert cert.pem",
+    "images:clean": "rm -rf src/web/images/*",
+    "images:download": "node images.mjs",
+    "markdown": "node markdown.mjs",
+    "prod": "vite build",
+    "watch": "vite"
   }
 }
