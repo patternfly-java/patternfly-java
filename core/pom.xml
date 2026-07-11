@@ -33,7 +33,7 @@
     <description>PatternFly Java core components and layouts</description>
 
     <properties>
-        <version.jackson>3.2.0</version.jackson>
+        <version.jackson>3.2.1</version.jackson>
     </properties>
 
     <dependencies>
