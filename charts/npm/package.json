@@ -46,7 +46,7 @@
   ],
   "license": "Apache-2.0",
   "name": "@patternfly-java/charts",
-  "packageManager": "pnpm@11.11.0",
+  "packageManager": "pnpm@11.12.0",
   "private": false,
   "repository": {
     "type": "git",
