@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@github/relative-time-element": "^5.2.0",
+    "@github/relative-time-element": "^5.3.0",
     "@patternfly/patternfly": "^6.6.0"
   },
   "devDependencies": {
