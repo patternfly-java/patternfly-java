@@ -21,8 +21,8 @@ importers:
   .:
     dependencies:
       '@github/relative-time-element':
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.3.0
+        version: 5.3.0
       '@patternfly/patternfly':
         specifier: ^6.6.0
         version: 6.6.0
@@ -845,8 +845,8 @@ packages:
       react: 15.x || 16.x || 17.x || 18.x
       react-dom: 15.x || 16.x || 17.x || 18.x
 
-  '@github/relative-time-element@5.2.0':
-    resolution: {integrity: sha512-yPXdxA44fJAHp0NaJ0cykLqDq7i1PYOZ1wsh+m3SKvmZDoXk5jQdt4xIaHQEfRWBvK/xOQYpMPgjh2OGSqTqWg==}
+  '@github/relative-time-element@5.3.0':
+    resolution: {integrity: sha512-Kz50+pULwLLaVuVkWmROvoYATF5LEA8WNaNOEedisEpORGOodXcxyFDPW0ji5b4b+f3D17rl1nrtksnSiVCbcw==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -6394,7 +6394,7 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-lifecycles-compat: 3.0.4
 
-  '@github/relative-time-element@5.2.0': {}
+  '@github/relative-time-element@5.3.0': {}
 
   '@img/colour@1.1.0': {}
 
