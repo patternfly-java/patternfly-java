@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "main": "core.css",
   "name": "@patternfly-java/core",
-  "packageManager": "pnpm@11.14.0",
+  "packageManager": "pnpm@11.15.0",
   "peerDependencies": {
     "@patternfly/patternfly": "^6.5.2"
   },
