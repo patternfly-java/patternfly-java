@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@patternfly/react-charts':
         specifier: ^8.6.0
-        version: 8.6.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(victory-area@37.3.6(react@19.2.7))(victory-axis@37.3.6(react@19.2.7))(victory-bar@37.3.6(react@19.2.7))(victory-box-plot@37.3.6(react@19.2.7))(victory-chart@37.3.6(react@19.2.7))(victory-core@37.3.6(react@19.2.7))(victory-create-container@37.3.6(react@19.2.7))(victory-cursor-container@37.3.6(react@19.2.7))(victory-group@37.3.6(react@19.2.7))(victory-legend@37.3.6(react@19.2.7))(victory-line@37.3.6(react@19.2.7))(victory-pie@37.3.6(react@19.2.7))(victory-scatter@37.3.6(react@19.2.7))(victory-stack@37.3.6(react@19.2.7))(victory-tooltip@37.3.6(react@19.2.7))(victory-voronoi-container@37.3.6(react@19.2.7))(victory-zoom-container@37.3.6(react@19.2.7))
+        version: 8.6.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(victory-area@37.3.6(react@19.2.8))(victory-axis@37.3.6(react@19.2.8))(victory-bar@37.3.6(react@19.2.8))(victory-box-plot@37.3.6(react@19.2.8))(victory-chart@37.3.6(react@19.2.8))(victory-core@37.3.6(react@19.2.8))(victory-create-container@37.3.6(react@19.2.8))(victory-cursor-container@37.3.6(react@19.2.8))(victory-group@37.3.6(react@19.2.8))(victory-legend@37.3.6(react@19.2.8))(victory-line@37.3.6(react@19.2.8))(victory-pie@37.3.6(react@19.2.8))(victory-scatter@37.3.6(react@19.2.8))(victory-stack@37.3.6(react@19.2.8))(victory-tooltip@37.3.6(react@19.2.8))(victory-voronoi-container@37.3.6(react@19.2.8))(victory-zoom-container@37.3.6(react@19.2.8))
       '@patternfly/react-styles':
         specifier: ^6.6.0
         version: 6.6.0
@@ -27,65 +27,65 @@ importers:
         specifier: ^4.18.1
         version: 4.18.1
       react:
-        specifier: ^19.2.7
-        version: 19.2.7
+        specifier: ^19.2.8
+        version: 19.2.8
       react-dom:
-        specifier: ^19.2.7
-        version: 19.2.7(react@19.2.7)
+        specifier: ^19.2.8
+        version: 19.2.8(react@19.2.8)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
       victory-area:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-axis:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-bar:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-box-plot:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-chart:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-core:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-create-container:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-cursor-container:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-group:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-legend:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-line:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-pie:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-scatter:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-stack:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-tooltip:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-voronoi-container:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
       victory-zoom-container:
         specifier: ^37.3.6
-        version: 37.3.6(react@19.2.7)
+        version: 37.3.6(react@19.2.8)
     devDependencies:
       rimraf:
         specifier: ^6.1.3
@@ -529,10 +529,10 @@ packages:
     resolution: {integrity: sha512-Mz8SaolMd8nB+G13WkORcxQKHZ/NE4xXevtkJHVuG+guo9/wYKlIMTKAqGdEmYOXR2ijPjTYNHssizdaVSUNdQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  react-dom@19.2.7:
-    resolution: {integrity: sha512-t0BRVXvbiE/o20Hfw669rLbMCDWtYZLvmJigy2f0MxsXF+71pxhR3xOkspmsO8h3ZlNzyibAmtCa3l4lYKk6gQ==}
+  react-dom@19.2.8:
+    resolution: {integrity: sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==}
     peerDependencies:
-      react: ^19.2.7
+      react: ^19.2.8
 
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
@@ -540,8 +540,8 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react@19.2.7:
-    resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
+  react@19.2.8:
+    resolution: {integrity: sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==}
     engines: {node: '>=0.10.0'}
 
   rimraf@6.1.3:
@@ -773,33 +773,33 @@ snapshots:
 
   '@oxc-project/types@0.139.0': {}
 
-  '@patternfly/react-charts@8.6.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(victory-area@37.3.6(react@19.2.7))(victory-axis@37.3.6(react@19.2.7))(victory-bar@37.3.6(react@19.2.7))(victory-box-plot@37.3.6(react@19.2.7))(victory-chart@37.3.6(react@19.2.7))(victory-core@37.3.6(react@19.2.7))(victory-create-container@37.3.6(react@19.2.7))(victory-cursor-container@37.3.6(react@19.2.7))(victory-group@37.3.6(react@19.2.7))(victory-legend@37.3.6(react@19.2.7))(victory-line@37.3.6(react@19.2.7))(victory-pie@37.3.6(react@19.2.7))(victory-scatter@37.3.6(react@19.2.7))(victory-stack@37.3.6(react@19.2.7))(victory-tooltip@37.3.6(react@19.2.7))(victory-voronoi-container@37.3.6(react@19.2.7))(victory-zoom-container@37.3.6(react@19.2.7))':
+  '@patternfly/react-charts@8.6.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(victory-area@37.3.6(react@19.2.8))(victory-axis@37.3.6(react@19.2.8))(victory-bar@37.3.6(react@19.2.8))(victory-box-plot@37.3.6(react@19.2.8))(victory-chart@37.3.6(react@19.2.8))(victory-core@37.3.6(react@19.2.8))(victory-create-container@37.3.6(react@19.2.8))(victory-cursor-container@37.3.6(react@19.2.8))(victory-group@37.3.6(react@19.2.8))(victory-legend@37.3.6(react@19.2.8))(victory-line@37.3.6(react@19.2.8))(victory-pie@37.3.6(react@19.2.8))(victory-scatter@37.3.6(react@19.2.8))(victory-stack@37.3.6(react@19.2.8))(victory-tooltip@37.3.6(react@19.2.8))(victory-voronoi-container@37.3.6(react@19.2.8))(victory-zoom-container@37.3.6(react@19.2.8))':
     dependencies:
       '@patternfly/react-styles': 6.6.0
       '@patternfly/react-tokens': 6.6.0
       hoist-non-react-statics: 3.3.2
       lodash: 4.18.1
-      react: 19.2.7
-      react-dom: 19.2.7(react@19.2.7)
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
       tslib: 2.8.1
     optionalDependencies:
-      victory-area: 37.3.6(react@19.2.7)
-      victory-axis: 37.3.6(react@19.2.7)
-      victory-bar: 37.3.6(react@19.2.7)
-      victory-box-plot: 37.3.6(react@19.2.7)
-      victory-chart: 37.3.6(react@19.2.7)
-      victory-core: 37.3.6(react@19.2.7)
-      victory-create-container: 37.3.6(react@19.2.7)
-      victory-cursor-container: 37.3.6(react@19.2.7)
-      victory-group: 37.3.6(react@19.2.7)
-      victory-legend: 37.3.6(react@19.2.7)
-      victory-line: 37.3.6(react@19.2.7)
-      victory-pie: 37.3.6(react@19.2.7)
-      victory-scatter: 37.3.6(react@19.2.7)
-      victory-stack: 37.3.6(react@19.2.7)
-      victory-tooltip: 37.3.6(react@19.2.7)
-      victory-voronoi-container: 37.3.6(react@19.2.7)
-      victory-zoom-container: 37.3.6(react@19.2.7)
+      victory-area: 37.3.6(react@19.2.8)
+      victory-axis: 37.3.6(react@19.2.8)
+      victory-bar: 37.3.6(react@19.2.8)
+      victory-box-plot: 37.3.6(react@19.2.8)
+      victory-chart: 37.3.6(react@19.2.8)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-create-container: 37.3.6(react@19.2.8)
+      victory-cursor-container: 37.3.6(react@19.2.8)
+      victory-group: 37.3.6(react@19.2.8)
+      victory-legend: 37.3.6(react@19.2.8)
+      victory-line: 37.3.6(react@19.2.8)
+      victory-pie: 37.3.6(react@19.2.8)
+      victory-scatter: 37.3.6(react@19.2.8)
+      victory-stack: 37.3.6(react@19.2.8)
+      victory-tooltip: 37.3.6(react@19.2.8)
+      victory-voronoi-container: 37.3.6(react@19.2.8)
+      victory-zoom-container: 37.3.6(react@19.2.8)
 
   '@patternfly/react-styles@6.6.0': {}
 
@@ -1054,16 +1054,16 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  react-dom@19.2.7(react@19.2.7):
+  react-dom@19.2.8(react@19.2.8):
     dependencies:
-      react: 19.2.7
+      react: 19.2.8
       scheduler: 0.27.0
 
   react-fast-compare@3.2.2: {}
 
   react-is@16.13.1: {}
 
-  react@19.2.7: {}
+  react@19.2.8: {}
 
   rimraf@6.1.3:
     dependencies:
@@ -1102,141 +1102,141 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  victory-area@37.3.6(react@19.2.7):
+  victory-area@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
       victory-vendor: 37.3.6
 
-  victory-axis@37.3.6(react@19.2.7):
+  victory-axis@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-bar@37.3.6(react@19.2.7):
+  victory-bar@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
       victory-vendor: 37.3.6
 
-  victory-box-plot@37.3.6(react@19.2.7):
+  victory-box-plot@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
       victory-vendor: 37.3.6
 
-  victory-brush-container@37.3.6(react@19.2.7):
+  victory-brush-container@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-core: 37.3.6(react@19.2.7)
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-chart@37.3.6(react@19.2.7):
+  victory-chart@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-axis: 37.3.6(react@19.2.7)
-      victory-core: 37.3.6(react@19.2.7)
-      victory-polar-axis: 37.3.6(react@19.2.7)
-      victory-shared-events: 37.3.6(react@19.2.7)
+      victory-axis: 37.3.6(react@19.2.8)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-polar-axis: 37.3.6(react@19.2.8)
+      victory-shared-events: 37.3.6(react@19.2.8)
 
-  victory-core@37.3.6(react@19.2.7):
+  victory-core@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
       victory-vendor: 37.3.6
 
-  victory-create-container@37.3.6(react@19.2.7):
+  victory-create-container@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-brush-container: 37.3.6(react@19.2.7)
-      victory-core: 37.3.6(react@19.2.7)
-      victory-cursor-container: 37.3.6(react@19.2.7)
-      victory-selection-container: 37.3.6(react@19.2.7)
-      victory-voronoi-container: 37.3.6(react@19.2.7)
-      victory-zoom-container: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-brush-container: 37.3.6(react@19.2.8)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-cursor-container: 37.3.6(react@19.2.8)
+      victory-selection-container: 37.3.6(react@19.2.8)
+      victory-voronoi-container: 37.3.6(react@19.2.8)
+      victory-zoom-container: 37.3.6(react@19.2.8)
 
-  victory-cursor-container@37.3.6(react@19.2.7):
+  victory-cursor-container@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-group@37.3.6(react@19.2.7):
+  victory-group@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-core: 37.3.6(react@19.2.7)
-      victory-shared-events: 37.3.6(react@19.2.7)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-shared-events: 37.3.6(react@19.2.8)
 
-  victory-legend@37.3.6(react@19.2.7):
+  victory-legend@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-line@37.3.6(react@19.2.7):
+  victory-line@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
       victory-vendor: 37.3.6
 
-  victory-pie@37.3.6(react@19.2.7):
+  victory-pie@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
       victory-vendor: 37.3.6
 
-  victory-polar-axis@37.3.6(react@19.2.7):
+  victory-polar-axis@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-scatter@37.3.6(react@19.2.7):
+  victory-scatter@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-selection-container@37.3.6(react@19.2.7):
+  victory-selection-container@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-shared-events@37.3.6(react@19.2.7):
+  victory-shared-events@37.3.6(react@19.2.8):
     dependencies:
       json-stringify-safe: 5.0.1
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-core: 37.3.6(react@19.2.7)
+      victory-core: 37.3.6(react@19.2.8)
 
-  victory-stack@37.3.6(react@19.2.7):
+  victory-stack@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-core: 37.3.6(react@19.2.7)
-      victory-shared-events: 37.3.6(react@19.2.7)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-shared-events: 37.3.6(react@19.2.8)
 
-  victory-tooltip@37.3.6(react@19.2.7):
+  victory-tooltip@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
   victory-vendor@37.3.6:
     dependencies:
@@ -1255,20 +1255,20 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  victory-voronoi-container@37.3.6(react@19.2.7):
+  victory-voronoi-container@37.3.6(react@19.2.8):
     dependencies:
       delaunay-find: 0.0.6
       lodash: 4.18.1
-      react: 19.2.7
+      react: 19.2.8
       react-fast-compare: 3.2.2
-      victory-core: 37.3.6(react@19.2.7)
-      victory-tooltip: 37.3.6(react@19.2.7)
+      victory-core: 37.3.6(react@19.2.8)
+      victory-tooltip: 37.3.6(react@19.2.8)
 
-  victory-zoom-container@37.3.6(react@19.2.7):
+  victory-zoom-container@37.3.6(react@19.2.8):
     dependencies:
       lodash: 4.18.1
-      react: 19.2.7
-      victory-core: 37.3.6(react@19.2.7)
+      react: 19.2.8
+      victory-core: 37.3.6(react@19.2.8)
 
   vite@8.1.5:
     dependencies:
