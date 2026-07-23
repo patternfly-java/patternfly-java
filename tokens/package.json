@@ -5,7 +5,7 @@
     "camelcase": "^9.0.0"
   },
   "name": "icons",
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@11.16.0",
   "private": true,
   "scripts": {
     "generate": "node src/scripts/generate.mjs"
