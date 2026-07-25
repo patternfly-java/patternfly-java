@@ -40,6 +40,10 @@
         </dependency>
         <dependency>
             <groupId>org.jboss.elemento</groupId>
+            <artifactId>elemento-flow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-svg</artifactId>
         </dependency>
     </dependencies>
