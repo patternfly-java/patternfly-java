@@ -30,12 +30,14 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.component.alert.Alert;
 import org.patternfly.style.Modifiers.Horizontal;
 
 import elemental2.dom.HTMLFormElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertFirst;
+import static org.patternfly.component.form.FormAlert.formAlert;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
 import static org.patternfly.style.Classes.limitWidth;
@@ -97,10 +99,46 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         return aur.added(item);
     }
 
+    /**
+     * Adds an alert to the form. The alert will be displayed in the context of the form, allowing the user to see
+     * context-specific notifications or warnings.
+     *
+     * @param alert the alert to be added to the form
+     * @return the updated form instance with the added alert
+     */
+    public Form addAlert(Alert alert) {
+        return add(alert);
+    }
+
+    /**
+     * Adds an alert to the form. This method integrates the specified alert into the form's structure, allowing it to be
+     * displayed within the form for user visibility and context-specific notifications or warnings.
+     *
+     * @param alert the alert to be added to the form
+     * @return the updated instance of the form after adding the alert
+     */
+    public Form add(Alert alert) {
+        return add(formAlert().addAlert(alert));
+    }
+
+    /**
+     * Adds a {@link FormAlert} to the form. The alert will be displayed within the form, allowing for context-specific
+     * notifications or warnings to be presented to the user.
+     *
+     * @param alert the {@link FormAlert} to be added to the form
+     * @return the updated {@link Form} instance with the added alert
+     */
     public Form addAlert(FormAlert alert) {
         return add(alert);
     }
 
+    /**
+     * Adds a {@link FormAlert} to this form. The alert will be displayed within the form, providing context-specific
+     * notifications or warnings to the user.
+     *
+     * @param alert the {@link FormAlert} to be added to the form
+     * @return the updated {@link Form} instance with the added alert
+     */
     public Form add(FormAlert alert) {
         alerts.add(alert);
         insertFirst(element(), alert.element());
