@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add convenience methods to accept `Alert` directly in `Form`, wrapping it in a `FormAlert` automatically
+
+### Fixed
+
+- Add missing elemento-flow dependency to apidoc module
+
 ## [0.9.5] - 2026-07-11
 
 ### Fixed
