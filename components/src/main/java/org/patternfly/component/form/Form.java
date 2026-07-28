@@ -56,6 +56,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     // ------------------------------------------------------ factory
 
+    /** Creates a new form component with browser validation disabled. */
     public static Form form() {
         return new Form();
     }
@@ -76,6 +77,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     // ------------------------------------------------------ add
 
+    /** Adds multiple form groups created by the given display function. */
     public <T> Form addItems(Iterable<T> items, Function<T, FormGroup> display) {
         for (T item : items) {
             FormGroup group = display.apply(item);
@@ -84,10 +86,12 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         return this;
     }
 
+    /** Same as {@link #add(FormGroup)} */
     public Form addItem(FormGroup item) {
         return add(item);
     }
 
+    /** Same as {@link #add(FormGroup)} */
     public Form addGroup(FormGroup group) {
         return add(group);
     }
@@ -99,66 +103,46 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         return aur.added(item);
     }
 
-    /**
-     * Adds an alert to the form. The alert will be displayed in the context of the form, allowing the user to see
-     * context-specific notifications or warnings.
-     *
-     * @param alert the alert to be added to the form
-     * @return the updated form instance with the added alert
-     */
+    /** Same as {@link #add(Alert)}. Convenience shortcut that wraps the alert in a {@link FormAlert}. */
     public Form addAlert(Alert alert) {
         return add(alert);
     }
 
-    /**
-     * Adds an alert to the form. This method integrates the specified alert into the form's structure, allowing it to be
-     * displayed within the form for user visibility and context-specific notifications or warnings.
-     *
-     * @param alert the alert to be added to the form
-     * @return the updated instance of the form after adding the alert
-     */
+    /** Wraps the alert in a new {@link FormAlert} and inserts it at the top of the form. */
     public Form add(Alert alert) {
         return add(formAlert().addAlert(alert));
     }
 
-    /**
-     * Adds a {@link FormAlert} to the form. The alert will be displayed within the form, allowing for context-specific
-     * notifications or warnings to be presented to the user.
-     *
-     * @param alert the {@link FormAlert} to be added to the form
-     * @return the updated {@link Form} instance with the added alert
-     */
+    /** Same as {@link #add(FormAlert)} */
     public Form addAlert(FormAlert alert) {
         return add(alert);
     }
 
-    /**
-     * Adds a {@link FormAlert} to this form. The alert will be displayed within the form, providing context-specific
-     * notifications or warnings to the user.
-     *
-     * @param alert the {@link FormAlert} to be added to the form
-     * @return the updated {@link Form} instance with the added alert
-     */
+    /** Adds a {@link FormAlert} and inserts it at the top of the form. */
     public Form add(FormAlert alert) {
         alerts.add(alert);
         insertFirst(element(), alert.element());
         return this;
     }
 
+    /** Adds a {@link FormSection} to the form. */
     public Form addSection(FormSection section) {
         return add(section);
     }
 
+    /** Adds a {@link FormFieldGroup} to the form. */
     public Form addFieldGroup(FormFieldGroup fieldGroup) {
         return add(fieldGroup);
     }
 
+    /** Adds a {@link FormActionGroup} to the form. */
     public Form addActionGroup(FormActionGroup actionGroup) {
         return add(actionGroup);
     }
 
     // ------------------------------------------------------ builder
 
+    /** Limits the form width to a maximum width. Adds {@linkplain Classes#modifier(String) modifier(limitWidth)}. */
     public Form limitWidth() {
         return css(modifier(limitWidth));
     }
@@ -238,6 +222,7 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
         }
     }
 
+    /** Removes all alerts from this form. */
     public void clearAlerts() {
         for (FormAlert alert : alerts) {
             failSafeRemoveFromParent(alert);
