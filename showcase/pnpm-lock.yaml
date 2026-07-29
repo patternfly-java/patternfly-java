@@ -28,8 +28,8 @@ importers:
         version: 6.6.0
     devDependencies:
       '@patternfly/documentation-framework':
-        specifier: ^6.49.2
-        version: 6.49.2(@patternfly/patternfly@6.6.0)(@patternfly/react-code-editor@6.6.0(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.107.2(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.21)(uglify-js@3.19.3))
+        specifier: ^6.49.4
+        version: 6.49.4(@patternfly/patternfly@6.6.0)(@patternfly/react-code-editor@6.6.0(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.107.2(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.21)(uglify-js@3.19.3))
       '@shikijs/rehype':
         specifier: ^4.3.1
         version: 4.3.1
@@ -40,8 +40,8 @@ importers:
         specifier: ^14.1.1
         version: 14.1.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       puppeteer:
-        specifier: ^25.3.0
-        version: 25.3.0(yauzl@2.10.0)
+        specifier: ^25.4.0
+        version: 25.4.0(yauzl@2.10.0)
       rehype-slug:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1198,8 +1198,8 @@ packages:
   '@patternfly/ast-helpers@1.26.2':
     resolution: {integrity: sha512-oN8pYX2Ekep0m6uFbTe4j+YjQhubWqDR0Yoj4jJSKp3gnbi+SknOEzvzMMqjCi1bWODjfmaerKBxN2WaW7c7dA==}
 
-  '@patternfly/documentation-framework@6.49.2':
-    resolution: {integrity: sha512-yNHZ16gzKeDx4nL0s0n5KjsSHiCYVKl8qqEVEB8mO28EOm1vtdlea5iivh5Ez0RLazIefKMnQ7c0ieZrnGvgXA==}
+  '@patternfly/documentation-framework@6.49.4':
+    resolution: {integrity: sha512-r8exvd4cR/NDqFf/XekTLLmbBCl1lMt4bKO7fM+rDTnuFvWR2msecJHB/T2/G/k3vLoWGbfDxRHd0gDRNnfltQ==}
     hasBin: true
     peerDependencies:
       '@patternfly/patternfly': ^6.6.0
@@ -2167,8 +2167,8 @@ packages:
     peerDependencies:
       devtools-protocol: '*'
 
-  chromium-bidi@16.0.1:
-    resolution: {integrity: sha512-J63PGu/9PpeCwLIcKYyzWP6yaVL5pxuBc0shlYCYM8BaAkmlwiQboXO1iNbOgSDbVklEyYFfNEcHD8oOAWacUA==}
+  chromium-bidi@17.0.2:
+    resolution: {integrity: sha512-5v9GQFhTktFvotn/OFNJBmKLKRAb6n9r0bVCwf7sHgWc3/JryK0bj1nn93L3pHFrfgcsu6Be6EWsDi+1XHTGDg==}
     engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0'}
     peerDependencies:
       devtools-protocol: '*'
@@ -2491,8 +2491,8 @@ packages:
   devtools-protocol@0.0.1608973:
     resolution: {integrity: sha512-Tpm17fxYzt+J7VrGdc1k8YdRqS3YV7se/M6KeemEqvUbq/n7At1rWVuXMxQgpWkdwSdIEKYbU//Bve+Shm4YNQ==}
 
-  devtools-protocol@0.0.1638949:
-    resolution: {integrity: sha512-mXwg4Fqnv0WR4iuAT/gYUmctNkjILwXFHyZ+m7Ty1dfr0ezZt2U3gnrrJTfRobJTHoXf+IbuFvFITzLrLFjwJA==}
+  devtools-protocol@0.0.1653615:
+    resolution: {integrity: sha512-pGVkY3T/qXxAp2nFPodwYqOevk6ncNMSmvL8QfRCx5ZWGd6Vor7AFNmyaA8Zs6uJyP1QAfjuLandCgvSix1BNA==}
 
   dns-packet@5.6.1:
     resolution: {integrity: sha512-l4gcSouhcgIKRvyy99RNVOgxXiicE+2jZoNmaNmZ6JXiGajBOJAesk1OBlJuM5k2c+eudGdLxDqXuPCKIj6kpw==}
@@ -4300,8 +4300,8 @@ packages:
     resolution: {integrity: sha512-T5ScUMAsmhdNbgDR41AGESYeS6V9MSgetkSnVhhW+gXvzC42VesKCn5ld87gAZDJ6vLHL9GkRvY9WtQWSnwFbw==}
     engines: {node: '>=18'}
 
-  puppeteer-core@25.3.0:
-    resolution: {integrity: sha512-fm+wpUr2oigH1PXZvwgATrM2tYWHMDG8ASzTEe9uukCye4X5Ldx1K5BTHPFKITrIWvQQAQ256d1NpbEveBcKjA==}
+  puppeteer-core@25.4.0:
+    resolution: {integrity: sha512-K1plkLOdeoUnGeT1OvdqF3qxl33v+Ra/uH5VyPEhXdMcpvGiEskHzxxEU3fgpccJpJLIipB/rPUsvkZRWeKqOA==}
     engines: {node: '>=22.12.0'}
 
   puppeteer@24.43.1:
@@ -4309,8 +4309,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  puppeteer@25.3.0:
-    resolution: {integrity: sha512-O1tx8S315aw8eI99HZ5ZNcVEzJ9+jKF//eO5UvfZ3cXJ6okZ5sX3Y50u7DJaM+ewEK4LqXP068tBhfRaWikj+g==}
+  puppeteer@25.4.0:
+    resolution: {integrity: sha512-xfQp8dFBcGaLc1hEMaVr7s+oW4ZkAurr8Y9H81ilKhu6QoLfSTkZjU7IavnyJ/VWpB9ni3KNJUQHUatslLWyGw==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -6709,7 +6709,7 @@ snapshots:
       acorn-static-class-features: 1.0.0(acorn@8.17.0)
       astring: 1.9.0
 
-  '@patternfly/documentation-framework@6.49.2(@patternfly/patternfly@6.6.0)(@patternfly/react-code-editor@6.6.0(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.107.2(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.21)(uglify-js@3.19.3))':
+  '@patternfly/documentation-framework@6.49.4(@patternfly/patternfly@6.6.0)(@patternfly/react-code-editor@6.6.0(monaco-editor@0.55.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.6.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.107.2(clean-css@5.3.3)(esbuild@0.28.1)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.21)(uglify-js@3.19.3))':
     dependencies:
       '@babel/core': 8.0.1
       '@babel/preset-env': 7.29.0(@babel/core@8.0.1)(supports-color@8.1.1)
@@ -7874,9 +7874,9 @@ snapshots:
       mitt: 3.0.1
       zod: 3.25.76
 
-  chromium-bidi@16.0.1(devtools-protocol@0.0.1638949):
+  chromium-bidi@17.0.2(devtools-protocol@0.0.1653615):
     dependencies:
-      devtools-protocol: 0.0.1638949
+      devtools-protocol: 0.0.1653615
       mitt: 3.0.1
       zod: 3.25.76
 
@@ -8198,7 +8198,7 @@ snapshots:
 
   devtools-protocol@0.0.1608973: {}
 
-  devtools-protocol@0.0.1638949: {}
+  devtools-protocol@0.0.1653615: {}
 
   dns-packet@5.6.1:
     dependencies:
@@ -10378,11 +10378,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer-core@25.3.0(yauzl@2.10.0):
+  puppeteer-core@25.4.0(yauzl@2.10.0):
     dependencies:
       '@puppeteer/browsers': 3.0.6(yauzl@2.10.0)
-      chromium-bidi: 16.0.1(devtools-protocol@0.0.1638949)
-      devtools-protocol: 0.0.1638949
+      chromium-bidi: 17.0.2(devtools-protocol@0.0.1653615)
+      devtools-protocol: 0.0.1653615
       typed-query-selector: 2.12.2
       webdriver-bidi-protocol: 0.4.2
       ws: 8.21.1
@@ -10409,13 +10409,13 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  puppeteer@25.3.0(yauzl@2.10.0):
+  puppeteer@25.4.0(yauzl@2.10.0):
     dependencies:
       '@puppeteer/browsers': 3.0.6(yauzl@2.10.0)
-      chromium-bidi: 16.0.1(devtools-protocol@0.0.1638949)
-      devtools-protocol: 0.0.1638949
+      chromium-bidi: 17.0.2(devtools-protocol@0.0.1653615)
+      devtools-protocol: 0.0.1653615
       lilconfig: 3.1.3
-      puppeteer-core: 25.3.0(yauzl@2.10.0)
+      puppeteer-core: 25.4.0(yauzl@2.10.0)
       typed-query-selector: 2.12.2
     transitivePeerDependencies:
       - bufferutil
