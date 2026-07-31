@@ -18,8 +18,8 @@ importers:
         specifier: ^7.3.1
         version: 7.3.1
       '@patternfly/patternfly':
-        specifier: ^6.6.0
-        version: 6.6.0
+        specifier: ^6.6.1
+        version: 6.6.1
       '@patternfly/react-icons':
         specifier: ^6.6.0
         version: 6.6.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -48,8 +48,8 @@ packages:
     resolution: {integrity: sha512-v0BLa0eqg7ubvVWeNSHVBs8fWH/GJicERZoJaxJ3FE/lj67VSqzoMg9pzfZVOfLMX10y0pGwQAuxoRVVH2patg==}
     engines: {node: '>=6'}
 
-  '@patternfly/patternfly@6.6.0':
-    resolution: {integrity: sha512-drZ4wYFQdhYY+VxLIl8PqbYnJoEa0UrNhiUkMCKkgMVNPxmCfNa1d2eEA97tnp2aYew15jQp+MaZcQIQIG8wVg==}
+  '@patternfly/patternfly@6.6.1':
+    resolution: {integrity: sha512-8P9C1TmFk5y5s2/1XVjmP9JmSyDXDiNBwPZewhPizULtqlaRu+Evljx/X1HTSFrCNY0qgI1uDKy+NXiorIniyA==}
 
   '@patternfly/react-icons@6.6.0':
     resolution: {integrity: sha512-cDDUm4PFxqeBo4PS08xO1eFd6CMTOppn5RS4fs2hAgu/vRFkPXuL0zZCkxgRg5asd/W4olEN7WrIAbvjKbHKiQ==}
@@ -98,7 +98,7 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 7.3.1
 
-  '@patternfly/patternfly@6.6.0': {}
+  '@patternfly/patternfly@6.6.1': {}
 
   '@patternfly/react-icons@6.6.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
