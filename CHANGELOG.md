@@ -14,6 +14,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Add missing elemento-flow dependency to apidoc module
 
+### Security
+
+- Fix Dependabot security alerts by adding pnpm overrides for `fast-uri`, `ip-address`, and `js-yaml` transitive dependencies
+- Clean up stale pnpm overrides, GHSA ignores, and release age excludes
+
+### Upgrades
+
+- Upgrade PatternFly from 6.6.0 to 6.6.1
+
 ## [0.9.5] - 2026-07-11
 
 ### Fixed
