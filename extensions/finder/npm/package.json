@@ -25,7 +25,7 @@
   "name": "@patternfly-java/finder",
   "packageManager": "pnpm@11.20.0",
   "peerDependencies": {
-    "@patternfly/patternfly": "^6.5.2"
+    "@patternfly/patternfly": "^6.6.1"
   },
   "private": false,
   "repository": {
