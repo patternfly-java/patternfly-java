@@ -110,6 +110,11 @@ auditConfig:
     - GHSA-rp9w-3fw7-7cwq
     - GHSA-vxr8-fq34-vvx9
     - GHSA-x4vx-rjvf-j5p4
+    - GHSA-22jq-vg5j-6vgg
+    - GHSA-4xrf-jv44-h6hh
+    - GHSA-7p8r-x3mc-p8w7
+    - GHSA-mwp4-54f8-5fhr
+    - GHSA-pm4m-ph32-ghv5
 
 # @patternfly/documentation-framework declares peer dependencies on React packages
 # that we don't use — we only import CSS files from it.
@@ -128,6 +133,9 @@ overrides:
   basic-ftp@<=5.3.0: '>=5.3.1'
   dompurify@<3.4.11: '>=3.4.11'
   follow-redirects@<=1.15.11: '>=1.16.0'
+  fast-uri@>=3.0.0 <3.1.5: '>=3.1.5'
   ip-address@<=10.1.0: '>=10.1.1'
+  ip-address@>=10.1.1 <=10.3.0: '>=10.3.1'
   js-yaml@<=4.1.1: '>=4.1.2'
+  js-yaml@>=5.0.0 <=5.2.1: '>=5.2.2'
   webpack-dev-server@<5.2.5: '>=5.2.5'
