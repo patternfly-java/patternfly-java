@@ -22,25 +22,6 @@ allowBuilds:
 ignoredBuiltDependencies:
   - puppeteer
 
-minimumReleaseAgeExclude:
-  - vite@8.0.16
-  - got@11.8.5
-  - trim@0.0.3
-  - axios@0.21.1 || 0.21.2 || 0.28.0 || 0.30.0 || 0.30.3 || 0.31.0 || 0.31.1 || 0.31.2
-  - ssri@5.2.2 || 6.0.2
-  - ip@2.0.2
-  - http-cache-semantics@4.1.1
-  - parse-git-config@3.0.1
-  - cross-spawn@6.0.6
-  - tmp@0.2.4 || 0.2.6
-  - handlebars@4.7.9
-  - dompurify@3.3.2 || 3.3.4 || 3.4.0 || 3.4.6 || 3.4.7 || 3.4.8 || 3.4.9 || 3.4.11
-  - webpack-dev-server@5.2.4 || 5.2.5
-  - uuid@11.1.1
-  - qs@6.15.2
-  - js-yaml@4.1.2
-  - '@babel/core@7.29.1'
-
 # All audit vulnerabilities come from transitive dependencies of @patternfly/documentation-framework
 # (handlebars, axios, ssri, ip, trim, cross-spawn, dompurify, etc.).
 # We only import CSS files from this package — none of its JS code paths (template compilation,
@@ -52,7 +33,6 @@ auditConfig:
     - GHSA-2qvq-rjwj-gvw9
     - GHSA-2w6w-674q-4c4q
     - GHSA-325j-24f4-qv5x
-    - GHSA-39q2-94rc-95cp
     - GHSA-3mfm-83xf-c92r
     - GHSA-3p68-rc4w-qgx5
     - GHSA-3xgq-45jj-v275
@@ -63,22 +43,19 @@ auditConfig:
     - GHSA-5c9x-8gcm-mpgx
     - GHSA-62hf-57xw-28j9
     - GHSA-6chq-wfr3-2hj9
-    - GHSA-79cf-xcqc-c78w
+    - GHSA-7q8q-rj6j-mhjq
     - GHSA-7rx3-28cr-v5wh
     - GHSA-898c-q2cr-xwhg
     - GHSA-8g77-54rh-46hx
     - GHSA-9cx6-37pm-9jff
-    - GHSA-cj63-jhhr-wcxv
-    - GHSA-cjmm-f4jc-qw8r
     - GHSA-cph5-m8f7-6c5x
-    - GHSA-crv5-9vww-q3g8
+    - GHSA-f88m-g3jw-g9cj
     - GHSA-fvcv-3m26-pcqx
-    - GHSA-h7mw-gpvr-xq4m
-    - GHSA-h8r8-wccr-v5f2
     - GHSA-hfxv-24rg-xrqf
     - GHSA-j5f8-grm9-p9fc
     - GHSA-jr5f-v2jv-69x6
     - GHSA-m7pr-hjqh-92cm
+    - GHSA-mmx7-hfxf-jppx
     - GHSA-p92q-9vqr-4j8v
     - GHSA-pf86-5x62-jrwf
     - GHSA-pfrx-2q88-qq97
@@ -87,8 +64,6 @@ auditConfig:
     - GHSA-pmwg-cvhr-8vh7
     - GHSA-q8mj-m7cp-5q26
     - GHSA-rc47-6667-2j5j
-    - GHSA-v2wj-7wpq-c8vv
-    - GHSA-v9jr-rg53-9pgp
     - GHSA-vf2m-468p-8v99
     - GHSA-vx3p-948g-6vhq
     - GHSA-w5hq-g745-h8pq
@@ -99,22 +74,6 @@ auditConfig:
     - GHSA-xhpv-hc6g-r9c6
     - GHSA-xjpj-3mr7-gcpf
     - GHSA-xx6v-rp6x-q39c
-    - GHSA-4x5r-pxfx-6jf8
-    - GHSA-76mc-f452-cxcm
-    - GHSA-cmwh-pvxp-8882
-    - GHSA-gvmj-g25r-r7wr
-    - GHSA-h67p-54hq-rp68
-    - GHSA-hpcv-96wg-7vj8
-    - GHSA-mx8g-39q3-5c79
-    - GHSA-r47g-fvhr-h676
-    - GHSA-rp9w-3fw7-7cwq
-    - GHSA-vxr8-fq34-vvx9
-    - GHSA-x4vx-rjvf-j5p4
-    - GHSA-22jq-vg5j-6vgg
-    - GHSA-4xrf-jv44-h6hh
-    - GHSA-7p8r-x3mc-p8w7
-    - GHSA-mwp4-54f8-5fhr
-    - GHSA-pm4m-ph32-ghv5
 
 # @patternfly/documentation-framework declares peer dependencies on React packages
 # that we don't use — we only import CSS files from it.
@@ -127,15 +86,7 @@ peerDependencyRules:
 
 overrides:
   '@babel/core@<=7.29.0': '>=7.29.1'
-  axios@>=1.0.0 <1.15.1: '>=1.15.1'
-  axios@>=1.0.0 <1.15.2: '>=1.15.2'
-  basic-ftp@<=5.2.2: '>=5.3.0'
-  basic-ftp@<=5.3.0: '>=5.3.1'
   dompurify@<3.4.11: '>=3.4.11'
   follow-redirects@<=1.15.11: '>=1.16.0'
-  fast-uri@>=3.0.0 <3.1.5: '>=3.1.5'
-  ip-address@<=10.1.0: '>=10.1.1'
-  ip-address@>=10.1.1 <=10.3.0: '>=10.3.1'
   js-yaml@<=4.1.1: '>=4.1.2'
-  js-yaml@>=5.0.0 <=5.2.1: '>=5.2.2'
   webpack-dev-server@<5.2.5: '>=5.2.5'

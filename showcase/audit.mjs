@@ -35,8 +35,8 @@ function auditGhsas() {
   let output;
   try {
     output = execSync("pnpm audit 2>&1", { encoding: "utf8" });
-  } catch {
-    output = "";
+  } catch (e) {
+    output = e.stdout || "";
   }
   const matches = output.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
   return [...new Set(matches || [])].sort();
