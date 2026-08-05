@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@patternfly/react-tokens": "^6.6.0",
+    "@patternfly/react-tokens": "^6.6.1",
     "@types/node": "^26.1.2",
     "camelcase": "^9.0.0"
   },
