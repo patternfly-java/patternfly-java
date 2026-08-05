@@ -21,8 +21,8 @@ importers:
         specifier: ^6.6.1
         version: 6.6.1
       '@patternfly/react-icons':
-        specifier: ^6.6.0
-        version: 6.6.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^6.6.1
+        version: 6.6.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@types/node':
         specifier: ^26.1.2
         version: 26.1.2
@@ -51,8 +51,8 @@ packages:
   '@patternfly/patternfly@6.6.1':
     resolution: {integrity: sha512-8P9C1TmFk5y5s2/1XVjmP9JmSyDXDiNBwPZewhPizULtqlaRu+Evljx/X1HTSFrCNY0qgI1uDKy+NXiorIniyA==}
 
-  '@patternfly/react-icons@6.6.0':
-    resolution: {integrity: sha512-cDDUm4PFxqeBo4PS08xO1eFd6CMTOppn5RS4fs2hAgu/vRFkPXuL0zZCkxgRg5asd/W4olEN7WrIAbvjKbHKiQ==}
+  '@patternfly/react-icons@6.6.1':
+    resolution: {integrity: sha512-EUHnTliMlUMNfaueyGTaNcdCDGN4CjLtQpNdSg6iWcl5oloHtUDEAIltP0nbCWnepMJDoM2YgjMlyjwWlkNzXg==}
     peerDependencies:
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
@@ -100,7 +100,7 @@ snapshots:
 
   '@patternfly/patternfly@6.6.1': {}
 
-  '@patternfly/react-icons@6.6.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@patternfly/react-icons@6.6.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
