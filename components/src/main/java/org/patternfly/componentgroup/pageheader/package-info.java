@@ -20,17 +20,14 @@
  * page-level header section. It supports an optional icon, title, subtitle, breadcrumb navigation, and label badge.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * PageHeader header = pageHeader()
- *     .icon(img("icon.svg"))
- *     .title("My Page")
- *     .subTitle("A brief description")
- *     .addBreadcrumb(breadcrumb()
- *         .addItem(breadcrumbItem("Home", "#"))
- *         .addItem(breadcrumbItem("Current")))
+ *     .icon(database())
+ *     .addHeader("My Page")
+ *     .addDescription("A brief description")
  *     .addLabel(label("Administrator"));
- * }
+ *}
  *
  * @see org.patternfly.componentgroup.pageheader.PageHeader
  */
