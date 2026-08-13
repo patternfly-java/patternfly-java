@@ -15,70 +15,41 @@
  */
 package org.patternfly.componentgroup.pageheader;
 
+import org.jboss.elemento.ElementContainerDelegate;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.breadcrumb.Breadcrumb;
+import org.patternfly.component.content.Content;
+import org.patternfly.component.divider.Divider;
+import org.patternfly.component.icon.Icon;
 import org.patternfly.component.label.Label;
-
+import org.patternfly.layout.flex.FlexItem;
+import org.patternfly.layout.split.Split;
+import org.patternfly.layout.split.SplitItem;
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
+import static org.patternfly.component.content.Content.content;
+import static org.patternfly.component.content.ContentType.h1;
+import static org.patternfly.component.content.ContentType.p;
+import static org.patternfly.component.divider.Divider.divider;
+import static org.patternfly.component.divider.DividerType.hr;
+import static org.patternfly.component.icon.IconSize._2xl;
+import static org.patternfly.layout.flex.AlignSelf.center;
+import static org.patternfly.layout.flex.Flex.flex;
+import static org.patternfly.layout.flex.FlexItem.flexItem;
+import static org.patternfly.layout.flex.FlexShorthand._1;
+import static org.patternfly.layout.split.Split.split;
+import static org.patternfly.layout.split.SplitItem.splitItem;
+import static org.patternfly.style.Classes.util;
+import static org.patternfly.style.Orientation.vertical;
 
 /** A composite component that combines a page title, breadcrumb, and actions into a standard page header layout. */
 public class PageHeader extends BaseComponent<HTMLElement, PageHeader> implements
-        ComponentIcon<HTMLElement, PageHeader> {
-
-    //language=HTML
-    private static final String HTML_JUST_FOR_REFERENCE = """
-            <section class="pf-v6-c-page__main-section">
-                <div class="pf-v6-l-flex">
-                    <div class="pf-m-align-self-center iconMinWidth-0-2-1">
-                        <img src="/images/f4fb6361.svg" alt="page-header-icon">
-                    </div>
-                    <hr class="pf-v6-c-divider pf-m-vertical">
-                    <div class="pf-m-flex-1">
-                        <div class="pf-v6-l-split pf-m-gutter">
-                            <div class="pf-v6-l-split__item">
-                                <h1 class="pf-v6-c-content--h1 pf-v6-u-mb-sm">My Title</h1>
-                            </div>
-                            <div class="pf-v6-l-split__item">
-                                <span class="pf-v6-c-label pf-m-filled pf-v5-u-align-content-center">
-                                    <span class="pf-v6-c-label__content">
-                                        <span class="pf-v6-c-label__text">Org. Administrator</span>
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="pf-v6-l-split__item pf-m-fill"></div>
-                            <div class="pf-v6-l-split__item">
-                                <div class="pf-v6-c-action-list">
-                                    <div class="pf-v6-c-action-list__item">
-                                        <button class="pf-v6-c-menu-toggle pf-m-plain" type="button"
-                                                aria-label="Action list single group kebab" aria-expanded="false">
-                                            <span class="pf-v6-c-menu-toggle__icon">
-                                                <svg class="pf-v6-svg" viewBox="0 0 192 512">
-                                                    <path d="M96..."></path>
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="pf-v6-c-content--p">This is a subtitle for your page header</p>
-                        <a label="Go to this link" aria-disabled="false" class="pf-v6-c-button pf-m-link pf-m-inline">
-                            <span class="pf-v6-c-button__text">Go to this link</span>
-                            <span class="pf-v6-c-button__icon pf-m-end">
-                                <svg class="pf-v6-svg pf-v6-u-ml-sm" viewBox="0 0 512 512" width="1em" height="1em">
-                                    <path d="M432..."></path>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-            """;
+        ComponentIcon<HTMLElement, PageHeader>,
+        ElementContainerDelegate<HTMLElement, PageHeader> {
 
     // ------------------------------------------------------ factory
 
@@ -88,25 +59,60 @@ public class PageHeader extends BaseComponent<HTMLElement, PageHeader> implement
 
     // ------------------------------------------------------ instance
 
+    private final FlexItem body;
+    private final Split split;
+    private final Content header;
+    private FlexItem iconContainer;
+    private Divider divider;
+    private SplitItem labelsContainer;
+
     PageHeader() {
-        super(ComponentType.PageHeader, div().element());
+        super(ComponentType.PageHeader, flex().element());
+        this.body = flexItem().flex(_1)
+                .add(split = split().gutter()
+                        .addItem(splitItem().add(header = content(h1).css(util("mb-sm")))));
+        element().appendChild(body.element());
+    }
+
+    @Override
+    public Element containerDelegate() {
+        return body.element();
     }
 
     // ------------------------------------------------------ add
 
-    public PageHeader addBreadcrumb(Breadcrumb breadcrumb) {
-        return add(breadcrumb);
-    }
-
-    public PageHeader add(Breadcrumb breadcrumb) {
+    public PageHeader addHeader(String header) {
+        this.header.text(header);
         return this;
     }
 
+    public PageHeader addHeader(HTMLElement header) {
+        this.header.add(header);
+        return this;
+    }
+
+    public PageHeader addDescription(String description) {
+        return addDescription(content(p).text(description).element());
+    }
+
+    public PageHeader addDescription(HTMLElement description) {
+        return add(description);
+    }
+
     public PageHeader addLabel(Label label) {
-        return add(label);
+        return addLabel(label.element());
     }
 
     public PageHeader add(Label label) {
+        return addLabel(label.element());
+    }
+
+    public PageHeader addLabel(HTMLElement label) {
+        if (labelsContainer == null) {
+            labelsContainer = splitItem();
+            split.addItem(labelsContainer);
+        }
+        labelsContainer.add(label);
         return this;
     }
 
@@ -114,19 +120,21 @@ public class PageHeader extends BaseComponent<HTMLElement, PageHeader> implement
 
     @Override
     public PageHeader icon(Element icon) {
+        removeIcon();
+        divider = divider(hr).orientation(vertical);
+        iconContainer = flexItem().alignSelf(center)
+                .add(Icon.icon(icon).size(_2xl));
+        insertFirst(element(), divider);
+        insertFirst(element(), iconContainer);
         return this;
     }
 
     @Override
     public PageHeader removeIcon() {
-        return this;
-    }
-
-    public PageHeader title(String title) {
-        return this;
-    }
-
-    public PageHeader subTitle(String subTitle) {
+        failSafeRemoveFromParent(iconContainer);
+        failSafeRemoveFromParent(divider);
+        iconContainer = null;
+        divider = null;
         return this;
     }
 
