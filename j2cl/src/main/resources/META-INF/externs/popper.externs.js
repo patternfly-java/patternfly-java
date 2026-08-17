@@ -39,6 +39,12 @@ Popper.prototype.setOptions = function (updateOptionsFn) {
 Popper.prototype.update = function () {
 };
 
+/**
+ * @param {...*} var_args
+ * @return {boolean}
+ */
+function areValidElements(var_args) {}
+
 // ------------------------------------------------------ options
 
 /** @constructor */
@@ -99,22 +105,22 @@ ModifierArguments.prototype.state;
 function ModifiersData() {
 }
 
-/** @type {{}} */
+/** @type {!Object} */
 ModifiersData.prototype.applyStyles;
 
-/** @type {{ x?: number, y?: number, centerOffset: number }} */
+/** @type {!Object} */
 ModifiersData.prototype.arrow;
 
-/** @type {{}} */
+/** @type {!Object} */
 ModifiersData.prototype.flip;
 
-/** @type {{ isReferenceHidden: boolean, hasPopperEscaped: boolean, referenceClippingOffsets: SideObject, popperEscapeOffsets: SideObject }} */
+/** @type {!Object} */
 ModifiersData.prototype.hide;
 
-/** @type {{}} */
+/** @type {!Object} */
 ModifiersData.prototype.offset;
 
-/** @type {{}} */
+/** @type {!Object} */
 ModifiersData.prototype.placements;
 
 /** @type {Offsets} */

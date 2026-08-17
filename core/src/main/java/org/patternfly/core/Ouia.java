@@ -22,6 +22,8 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import elemental2.webstorage.Storage;
 import elemental2.webstorage.WebStorageWindow;
+import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
@@ -58,8 +60,8 @@ public final class Ouia {
     /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given SVG element. */
     public static void ouia(SVGElement element, String componentType) {
         if (element != null && componentType != null && isSupported()) {
-            element.dataset.set("ouiaComponentType", componentType);
-            element.dataset.set("ouiaSafe", "true");
+            svgDataset(element).set("ouiaComponentType", componentType);
+            svgDataset(element).set("ouiaSafe", "true");
         }
     }
 
@@ -67,10 +69,10 @@ public final class Ouia {
     public static void ouia(SVGElement element, String componentId, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             if (componentId != null) {
-                element.dataset.set("ouiaComponentId", componentId);
+                svgDataset(element).set("ouiaComponentId", componentId);
             }
-            element.dataset.set("ouiaComponentType", componentType);
-            element.dataset.set("ouiaSafe", "true");
+            svgDataset(element).set("ouiaComponentType", componentType);
+            svgDataset(element).set("ouiaSafe", "true");
         }
     }
 
@@ -84,7 +86,7 @@ public final class Ouia {
     /** Sets {@code data-ouia-safe} to the given value on the given SVG element. */
     public static void ouiaSafe(SVGElement element, boolean safe) {
         if (element != null && isSupported()) {
-            element.dataset.set("ouiaSafe", String.valueOf(safe));
+            svgDataset(element).set("ouiaSafe", String.valueOf(safe));
         }
     }
 
@@ -114,6 +116,12 @@ public final class Ouia {
             return Boolean.parseBoolean(localStorage.getItem("ouia"));
         }
         return false;
+    }
+
+    // Elemental2 only declares 'dataset' on HTMLElement, but the DOM spec defines it on Element.
+    // Access it via JsPropertyMap to avoid casting SVGElement to an unrelated type.
+    private static JsPropertyMap<String> svgDataset(SVGElement element) {
+        return Js.cast(Js.<JsPropertyMap<Object>>cast(element).get("dataset"));
     }
 
     private Ouia() {
