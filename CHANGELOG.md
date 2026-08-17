@@ -8,7 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+- Add `PageHeader` component with icon, header, description, and label support
 - Add convenience methods to accept `Alert` directly in `Form`, wrapping it in a `FormAlert` automatically
+
+### Changed
+
+- Migrate J2CL annotation processors from `org.kie.j2cl.tools` to `org.treblereel.j2cl.processors`
+- Reduce J2CL Closure Compiler warnings from 284 to 38 by fixing Popper externs and using `JsPropertyMap` for `SVGElement.dataset` access
 
 ### Fixed
 
@@ -16,12 +22,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Security
 
-- Fix Dependabot security alerts by adding pnpm overrides for `fast-uri`, `ip-address`, and `js-yaml` transitive dependencies
+- Fix Dependabot security alerts by adding pnpm overrides for vulnerable transitive dependencies
 - Clean up stale pnpm overrides, GHSA ignores, and release age excludes
 
 ### Upgrades
 
+- Upgrade Elemento from 2.5.4 to 2.5.6
 - Upgrade PatternFly from 6.6.0 to 6.6.1
+- Upgrade JUnit from 6.1.1 to 6.1.3
 
 ## [0.9.5] - 2026-07-11
 
