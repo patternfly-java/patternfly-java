@@ -19,7 +19,7 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
 import org.jboss.elemento.router.AnnotatedPlaces;
 import org.jboss.elemento.router.PlaceManager;
-import org.kie.j2cl.tools.processors.annotations.GWT3EntryPoint;
+import org.treblereel.j2cl.processors.annotations.GWT3EntryPoint;
 import org.patternfly.component.navigation.Navigation;
 import org.patternfly.component.navigation.NavigationItem;
 import org.patternfly.core.Version;

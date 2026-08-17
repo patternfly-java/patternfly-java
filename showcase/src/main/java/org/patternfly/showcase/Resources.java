@@ -15,9 +15,9 @@
  */
 package org.patternfly.showcase;
 
-import org.kie.j2cl.tools.processors.annotations.GWT3Resource;
-import org.kie.j2cl.tools.processors.common.resources.ClientBundle;
-import org.kie.j2cl.tools.processors.common.resources.TextResource;
+import org.treblereel.j2cl.processors.annotations.GWT3Resource;
+import org.treblereel.j2cl.processors.common.resources.ClientBundle;
+import org.treblereel.j2cl.processors.common.resources.TextResource;
 
 import static elemental2.dom.DomGlobal.btoa;
 

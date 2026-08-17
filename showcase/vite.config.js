@@ -18,8 +18,8 @@ import {resolve} from 'path';
 import {existsSync, createReadStream} from 'fs';
 import {execSync} from 'child_process';
 
-const j2clDir = resolve(__dirname, 'target/showcase');
-const markdownDir = resolve(__dirname, 'markdown');
+const j2clDir = resolve(import.meta.dirname, 'target/showcase');
+const markdownDir = resolve(import.meta.dirname, 'markdown');
 
 function serveJ2cl() {
     return {
@@ -82,21 +82,21 @@ export default defineConfig({
         port: 1234,
         open: '/',
         fs: {
-            allow: [resolve(__dirname, '..')]
+            allow: [resolve(import.meta.dirname, '..')]
         },
         watch: {
             ignored: ['!**/target/showcase/**']
         }
     },
     build: {
-        outDir: resolve(__dirname, 'target/showcase'),
+        outDir: resolve(import.meta.dirname, 'target/showcase'),
         emptyOutDir: false,
         cssMinify: 'esbuild',
         chunkSizeWarningLimit: 2200,
         rollupOptions: {
             input: {
-                index: resolve(__dirname, 'src/web/index.html'),
-                '404': resolve(__dirname, 'src/web/404.html')
+                index: resolve(import.meta.dirname, 'src/web/index.html'),
+                '404': resolve(import.meta.dirname, 'src/web/404.html')
             }
         }
     }

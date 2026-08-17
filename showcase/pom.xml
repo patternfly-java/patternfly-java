@@ -33,7 +33,7 @@
 
     <properties>
         <!-- Dependency versions -->
-        <version.kie.j2cl.bom>0.6</version.kie.j2cl.bom>
+        <version.j2cl.processors>0.11</version.j2cl.processors>
 
         <!-- Build related -->
         <j2cl.compilationLevel>BUNDLE_JAR</j2cl.compilationLevel>
@@ -41,18 +41,6 @@
         <j2cl.phase>prepare-package</j2cl.phase>
         <j2cl.sourcemaps>true</j2cl.sourcemaps>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.kie.j2cl.tools</groupId>
-                <artifactId>bom</artifactId>
-                <version>${version.kie.j2cl.bom}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -93,16 +81,19 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <groupId>org.treblereel.j2cl.processors</groupId>
             <artifactId>annotations</artifactId>
+            <version>${version.j2cl.processors}</version>
         </dependency>
         <dependency>
-            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <groupId>org.treblereel.j2cl.processors</groupId>
             <artifactId>common</artifactId>
+            <version>${version.j2cl.processors}</version>
         </dependency>
         <dependency>
-            <groupId>org.kie.j2cl.tools.processors</groupId>
+            <groupId>org.treblereel.j2cl.processors</groupId>
             <artifactId>processors</artifactId>
+            <version>${version.j2cl.processors}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
