@@ -64,7 +64,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         return new ProgressStep(identifier).text(text);
     }
 
-    // ------------------------------------------------------- instance
+    // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_ID = "pss"; // progress stepper step
     public static final String SUB_COMPONENT_NAME = "ProgressStep";
@@ -121,13 +121,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         return identifier;
     }
 
-    // ------------------------------------------------------- aria
-
-    public ProgressStep ariaLabel(String ariaLabel) {
-        return aria(Aria.label, ariaLabel);
-    }
-
-    // ------------------------------------------------------- builder
+    // ------------------------------------------------------ builder
 
     public ProgressStep description(String description) {
         if (Objects.equals(this.description, description)) {
@@ -259,6 +253,12 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         return this;
     }
 
+    // ------------------------------------------------------ aria
+
+    public ProgressStep ariaLabel(String ariaLabel) {
+        return aria(Aria.label, ariaLabel);
+    }
+
     // ------------------------------------------ package-private
 
     ProgressStep current(boolean isCurrent) {
@@ -281,7 +281,7 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         return isCurrent;
     }
 
-    // ------------------------------------------------------- internal
+    // ------------------------------------------------------ internal
 
     private HTMLContainerBuilder<HTMLDivElement> failSafeStepDescription() {
         if (stepDescription == null) {

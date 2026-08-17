@@ -61,7 +61,7 @@ public class Spinner extends BaseComponentSVG<SVGElement, Spinner> implements In
 
     // ------------------------------------------------------ instance
 
-    protected Spinner(Size size, String label) {
+    Spinner(Size size, String label) {
         super(ComponentType.Spinner, svg().css(component(spinner))
                 .attr(role, progressbar)
                 .attr("viewBox", "0 0 100 100")

@@ -28,6 +28,7 @@ import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.wizard;
 
 /** The header area of a {@link Wizard} component. */
+/** A wizard header within a {@link Wizard} component. */
 public class WizardHeader extends WizardSubComponent<HTMLElement, WizardHeader> {
 
     // ------------------------------------------------------ factory

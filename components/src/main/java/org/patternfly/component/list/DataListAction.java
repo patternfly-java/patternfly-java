@@ -29,6 +29,7 @@ import static org.patternfly.style.Classes.dataList;
 import static org.patternfly.style.Classes.item;
 
 /** An action area within a {@link DataListItem}. */
+/** A data list action within a {@link DataList} component. */
 public class DataListAction extends DataListSubComponent<HTMLElement, DataListAction>
         implements ElementContainerDelegate<HTMLElement, DataListAction> {
 

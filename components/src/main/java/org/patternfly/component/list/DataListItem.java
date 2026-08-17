@@ -51,6 +51,7 @@ import static org.patternfly.style.Classes.row;
 import static org.patternfly.style.Classes.toggle;
 
 /** An individual item within a {@link DataList} component. */
+/** A data list item within a {@link DataList} component. */
 public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
         ComponentContext<HTMLLIElement, DataListItem>,
         Expandable<HTMLLIElement, DataListItem>,

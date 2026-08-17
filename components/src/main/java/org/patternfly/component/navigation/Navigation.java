@@ -88,7 +88,6 @@ import static org.patternfly.style.Classes.subnav;
  *
  * @see <a href= "https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
-// TODO Horizontal navigation doesn't shrink!
 public class Navigation extends BaseComponent<HTMLElement, Navigation> implements
         HasItems<HTMLElement, Navigation, NavigationItem>,
         Attachable {

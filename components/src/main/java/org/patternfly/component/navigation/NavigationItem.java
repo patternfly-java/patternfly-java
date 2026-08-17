@@ -49,6 +49,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.text;
 
 /** An individual navigation link within a {@link Navigation} component. */
+/** A navigation item within a {@link Navigation} component. */
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         ComponentContext<HTMLLIElement, NavigationItem>,
         ComponentIcon<HTMLLIElement, NavigationItem>,
@@ -176,8 +177,6 @@ public class NavigationItem extends NavigationSubComponent<HTMLLIElement, Naviga
         options.setInline("nearest");
         anchorElement.scrollIntoView(options);
     }
-
-    // ------------------------------------------------------ internal
 
     private HTMLElement failSafeTextElement() {
         if (textElement == null) {

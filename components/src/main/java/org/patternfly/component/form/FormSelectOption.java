@@ -25,6 +25,7 @@ import elemental2.dom.HTMLOptionElement;
 import static org.jboss.elemento.Elements.option;
 
 /** An individual option within a {@link FormSelect} dropdown. */
+/** A form select option within a {@link FormSelect} component. */
 public class FormSelectOption extends FormSelectSubComponent<HTMLOptionElement, FormSelectOption>
         implements Disabled<HTMLOptionElement, FormSelectOption>, HasValue<String> {
 

@@ -36,6 +36,7 @@ import static org.patternfly.style.Classes.title;
 import static org.patternfly.style.TypedModifier.swap;
 
 /** The title within the header of a {@link Modal} component. */
+/** A modal header title within a {@link ModalHeader} component. */
 public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeaderTitle> implements
         ComponentIcon<HTMLElement, ModalHeaderTitle>,
         ElementTextDelegate<HTMLElement, ModalHeaderTitle> {

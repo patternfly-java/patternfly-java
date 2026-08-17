@@ -33,6 +33,7 @@ import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.wizard;
 
 /** The footer area of a {@link Wizard} component, typically containing navigation buttons. */
+/** A wizard footer within a {@link Wizard} component. */
 public class WizardFooter extends WizardSubComponent<HTMLElement, WizardFooter> {
 
     // ------------------------------------------------------ factory

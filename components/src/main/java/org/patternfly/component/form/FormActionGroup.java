@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.group;
 import static org.patternfly.style.Classes.modifier;
 
 /** A group of action buttons at the bottom of a {@link Form} component. */
+/** A form action group within a {@link Form} component. */
 public class FormActionGroup extends FormSubComponent<HTMLElement, FormActionGroup> {
 
     // ------------------------------------------------------ factory

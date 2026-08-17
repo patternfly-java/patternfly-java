@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.hint;
 
 /** A container for action buttons in a {@link Hint} component. */
+/** A hint actions container within a {@link Hint} component. */
 public class HintActions extends HintSubComponent<HTMLDivElement, HintActions>
         implements NoOffset<HTMLDivElement, HintActions> {
 

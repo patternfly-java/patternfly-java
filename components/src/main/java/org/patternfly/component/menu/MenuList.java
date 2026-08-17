@@ -62,6 +62,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
 
 /** A list of items within a {@link Menu} or {@link MenuGroup}. */
+/** A menu list within a {@link Menu} component. */
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
         HasAsyncItems<HTMLUListElement, MenuList, MenuItem>,
         Ordered<HTMLUListElement, MenuList, MenuItem>,

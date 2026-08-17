@@ -37,6 +37,7 @@ import static org.patternfly.style.Classes.status;
 import static org.patternfly.style.Classes.title;
 
 /** The header area of a {@link NotificationDrawer} component. */
+/** A notification drawer header within a {@link NotificationDrawer} component. */
 public class NotificationDrawerHeader extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerHeader>
         implements ElementTextDelegate<HTMLElement, NotificationDrawerHeader> {
 

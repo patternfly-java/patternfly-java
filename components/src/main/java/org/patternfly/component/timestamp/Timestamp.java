@@ -93,11 +93,6 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     // ------------------------------------------------------ builder
 
     @Override
-    public Timestamp that() {
-        return this;
-    }
-
-    @Override
     public Element textDelegate() {
         return timeElement.element();
     }
@@ -173,6 +168,11 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     public Timestamp utc(boolean shouldDisplayUTC) {
         this.shouldDisplayUTC = shouldDisplayUTC;
         updateDisplayAndDatetime();
+        return this;
+    }
+
+    @Override
+    public Timestamp that() {
         return this;
     }
 

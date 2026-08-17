@@ -31,6 +31,7 @@ import static org.patternfly.style.Classes.input;
 import static org.patternfly.style.Classes.search;
 
 /** A search input area within a {@link Menu} component. */
+/** A menu search input within a {@link Menu} component. */
 public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implements
         Attachable, ElementContainerDelegate<HTMLElement, MenuSearch> {
 

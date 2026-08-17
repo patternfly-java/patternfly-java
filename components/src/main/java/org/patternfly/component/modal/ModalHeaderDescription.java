@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.modalBox;
 
 /** A description within the header of a {@link Modal} component. */
+/** A modal header description within a {@link ModalHeader} component. */
 public class ModalHeaderDescription extends ModalSubComponent<HTMLDivElement, ModalHeaderDescription> implements
         ElementTextMethods<HTMLDivElement, ModalHeaderDescription> {
 

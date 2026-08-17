@@ -1,56 +1,60 @@
-# PatternFly Java Lint Summary
+# PF Lint Summary
 
-| Component | Date | Files | Errors | Warnings | Fixed | Status |
-|-----------|------|-------|--------|----------|-------|--------|
-| accordion | 2026-06-28 | 6 | 0 | 0 | — | clean |
-| alert | 2026-06-28 | 7 | 0 | 0 | — | clean |
-| avatar | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| backdrop | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| backtotop | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| badge | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| banner | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| brand | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| breadcrumb | 2026-06-28 | 4 | 0 | 0 | — | clean |
-| button | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| card | 2026-06-28 | 11 | 0 | 0 | — | clean |
-| codeblock | 2026-06-28 | 6 | 0 | 0 | — | clean |
-| content | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| divider | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| drawer | 2026-06-28 | 11 | 0 | 0 | — | clean |
-| emptystate | 2026-06-28 | 6 | 0 | 0 | — | clean |
-| expandable | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| form | 2026-07-28 | 30 | 0 | 0 | — | clean |
-| help | 2026-06-28 | 4 | 0 | 0 | — | clean |
-| hint | 2026-06-28 | 7 | 0 | 0 | — | clean |
-| icon | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| inputgroup | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| jumplinks | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| label | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| list | 2026-06-28 | 24 | 0 | 0 | — | clean |
-| menu | 2026-06-28 | 43 | 0 | 0 | — | clean |
-| modal | 2026-06-28 | 8 | 0 | 0 | — | clean |
-| navigation | 2026-06-28 | 8 | 0 | 0 | — | clean |
-| notification | 2026-06-28 | 9 | 0 | 0 | — | clean |
-| numberinput | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| page | 2026-06-28 | 22 | 0 | 0 | — | clean |
-| panel | 2026-06-28 | 6 | 0 | 0 | — | clean |
-| popover | 2026-06-28 | 11 | 0 | 0 | — | clean |
-| progress | 2026-06-28 | 4 | 0 | 0 | — | clean |
-| progressstepper | 2026-06-28 | 4 | 0 | 0 | — | clean |
-| skeleton | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| skiptocontent | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| slider | 2026-06-28 | 7 | 0 | 0 | — | clean |
-| spinner | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| switch_ | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| table | 2026-06-28 | 15 | 0 | 0 | — | clean |
-| tabs | 2026-06-28 | 8 | 0 | 0 | — | clean |
-| textinputgroup | 2026-06-28 | 9 | 0 | 0 | — | clean |
-| timestamp | 2026-06-28 | 7 | 0 | 0 | — | clean |
-| title | 2026-06-28 | 2 | 0 | 0 | — | clean |
-| togglegroup | 2026-06-28 | 4 | 0 | 0 | — | clean |
-| toolbar | 2026-06-28 | 14 | 0 | 0 | — | clean |
-| tooltip | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| tree | 2026-06-28 | 5 | 0 | 0 | — | clean |
-| truncate | 2026-06-28 | 3 | 0 | 0 | — | clean |
-| wizard | 2026-06-28 | 20 | 0 | 0 | — | clean |
-| **TOTAL** | | **385** | **0** | **0** | | **51 clean / 0 issues** |
+**Date:** 2026-08-17
+**Components:** 51
+**Total errors:** 0
+**Total warnings:** 0
+
+| Component | Files | Status |
+|-----------|-------|--------|
+| accordion | 6 | clean |
+| alert | 7 | clean |
+| avatar | 2 | clean |
+| backdrop | 2 | clean |
+| backtotop | 2 | clean |
+| badge | 2 | clean |
+| banner | 2 | clean |
+| brand | 2 | clean |
+| breadcrumb | 4 | clean |
+| button | 2 | clean |
+| card | 11 | clean |
+| codeblock | 6 | clean |
+| content | 3 | clean |
+| divider | 3 | clean |
+| drawer | 11 | clean |
+| emptystate | 6 | clean |
+| expandable | 5 | clean |
+| form | 30 | clean |
+| help | 4 | clean |
+| hint | 7 | clean |
+| icon | 3 | clean |
+| inputgroup | 5 | clean |
+| jumplinks | 5 | clean |
+| label | 5 | clean |
+| list | 24 | clean |
+| menu | 43 | clean |
+| modal | 8 | clean |
+| navigation | 8 | clean |
+| notification | 9 | clean |
+| numberinput | 3 | clean |
+| page | 22 | clean |
+| panel | 6 | clean |
+| popover | 11 | clean |
+| progress | 4 | clean |
+| progressstepper | 4 | clean |
+| skeleton | 3 | clean |
+| skiptocontent | 2 | clean |
+| slider | 7 | clean |
+| spinner | 2 | clean |
+| switch_ | 2 | clean |
+| table | 15 | clean |
+| tabs | 8 | clean |
+| textinputgroup | 9 | clean |
+| timestamp | 7 | clean |
+| title | 2 | clean |
+| togglegroup | 4 | clean |
+| toolbar | 14 | clean |
+| tooltip | 5 | clean |
+| tree | 5 | clean |
+| truncate | 3 | clean |
+| wizard | 20 | clean |

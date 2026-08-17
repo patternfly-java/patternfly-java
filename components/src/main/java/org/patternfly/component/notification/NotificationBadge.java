@@ -298,4 +298,3 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
         }
     }
 }
-

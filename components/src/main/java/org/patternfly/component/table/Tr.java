@@ -83,6 +83,7 @@ import static org.patternfly.style.Size.md;
 
 // TODO Add Aria.setsize and Aria.posinset for child rows
 /** A table row within a {@link Table} component. */
+/** A table row within a {@link Table} component. */
 public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         ComponentContext<HTMLTableRowElement, Tr>,
         Expandable<HTMLTableRowElement, Tr>,

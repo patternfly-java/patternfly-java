@@ -39,6 +39,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.term;
 
 /** The term element within a {@link DescriptionListGroup}. */
+/** A description list term within a {@link DescriptionList} component. */
 public class DescriptionListTerm extends DescriptionListSubComponent<HTMLElement, DescriptionListTerm> implements
         ComponentIcon<HTMLElement, DescriptionListTerm>,
         ElementContainerDelegate<HTMLElement, DescriptionListTerm>,

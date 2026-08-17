@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.modalBox;
 
 /** The body content area of a {@link Modal} component. */
+/** A modal body within a {@link Modal} component. */
 public class ModalBody extends ModalSubComponent<HTMLElement, ModalBody> implements
         ElementTextMethods<HTMLElement, ModalBody> {
 

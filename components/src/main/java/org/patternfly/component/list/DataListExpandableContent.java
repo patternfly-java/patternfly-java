@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.expandable;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 /** The expandable content area of a {@link DataListItem}. */
+/** A expandable content within a data list item within a {@link DataListItem} component. */
 public class DataListExpandableContent extends DataListSubComponent<HTMLElement, DataListExpandableContent> implements
         ElementContainerDelegate<HTMLElement, DataListExpandableContent>,
         ElementTextDelegate<HTMLElement, DataListExpandableContent>,

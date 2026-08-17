@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.wizard;
 
 /** A description within the header of a {@link Wizard} component. */
+/** A description within a wizard header within a {@link WizardHeader} component. */
 public class WizardHeaderDescription extends WizardSubComponent<HTMLElement, WizardHeaderDescription> implements
         ElementTextMethods<HTMLElement, WizardHeaderDescription> {
 

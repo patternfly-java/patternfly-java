@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
 
 /** The body content of a {@link Checkbox} component. */
+/** A body content of a checkbox within a {@link Checkbox} component. */
 public class CheckboxBody extends CheckboxSubComponent<HTMLElement, CheckboxBody>
         implements ElementTextMethods<HTMLElement, CheckboxBody> {
 

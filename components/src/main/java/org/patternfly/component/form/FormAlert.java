@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.alert;
 import static org.patternfly.style.Classes.component;
 
 /** An alert message displayed within a {@link Form} component. */
+/** A form alert within a {@link Form} component. */
 public class FormAlert extends FormSubComponent<HTMLElement, FormAlert> {
 
     // ------------------------------------------------------ factory

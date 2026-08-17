@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.simpleList;
 
 /** An individual item within a {@link SimpleList} component. */
+/** A simple list item within a {@link SimpleList} component. */
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
         ComponentContext<HTMLLIElement, SimpleListItem>,
         ElementContainerDelegate<HTMLLIElement, SimpleListItem>,

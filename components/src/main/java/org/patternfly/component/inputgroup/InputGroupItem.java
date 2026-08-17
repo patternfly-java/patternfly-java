@@ -29,6 +29,7 @@ import static org.patternfly.style.Classes.inputGroup;
 import static org.patternfly.style.Classes.item;
 
 /** An individual item within an {@link InputGroup} component. */
+/** A input group item within a {@link InputGroup} component. */
 public class InputGroupItem extends InputGroupSubComponent<HTMLDivElement, InputGroupItem> implements
         Disabled<HTMLDivElement, InputGroupItem>,
         Fill<HTMLDivElement, InputGroupItem> {

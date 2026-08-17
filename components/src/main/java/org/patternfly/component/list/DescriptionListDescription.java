@@ -29,6 +29,7 @@ import static org.patternfly.style.Classes.description;
 import static org.patternfly.style.Classes.descriptionList;
 
 /** The description content within a {@link DescriptionListGroup}. */
+/** A description list description within a {@link DescriptionList} component. */
 public class DescriptionListDescription extends DescriptionListSubComponent<HTMLElement, DescriptionListDescription> implements
         ElementContainerDelegate<HTMLElement, DescriptionListDescription>,
         ElementTextDelegate<HTMLElement, DescriptionListDescription> {

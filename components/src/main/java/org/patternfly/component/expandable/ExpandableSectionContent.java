@@ -26,6 +26,7 @@ import static org.patternfly.style.Classes.content;
 import static org.patternfly.style.Classes.expandableSection;
 
 /** The collapsible content area of an {@link ExpandableSection} component. */
+/** A expandable section content area within a {@link ExpandableSection} component. */
 public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTMLDivElement, ExpandableSectionContent> implements
         ElementTextMethods<HTMLDivElement, ExpandableSectionContent> {
 

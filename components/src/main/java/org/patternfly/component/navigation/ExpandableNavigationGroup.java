@@ -79,6 +79,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggle;
 
 /** An expandable group of navigation items within a {@link Navigation} component. */
+/** A expandable group of navigation items within a {@link Navigation} component. */
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
         ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup>,
         ElementTextDelegate<HTMLLIElement, ExpandableNavigationGroup>,

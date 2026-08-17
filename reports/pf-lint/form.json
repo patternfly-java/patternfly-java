@@ -1,11 +1,11 @@
 {
   "skillVersion": "0.1.0",
   "component": "form",
-  "date": "2026-07-28",
+  "date": "2026-08-17",
   "files": 30,
   "errors": 0,
   "warnings": 0,
-  "fixed": "—",
+  "fixed": "\u2014",
   "status": "clean",
   "violations": []
 }

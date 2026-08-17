@@ -27,6 +27,7 @@ import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.panel;
 
 /** The header area of a {@link Panel} component. */
+/** A panel header within a {@link Panel} component. */
 public class PanelHeader extends PanelSubComponent<HTMLDivElement, PanelHeader> implements
         ElementTextMethods<HTMLDivElement, PanelHeader> {
 

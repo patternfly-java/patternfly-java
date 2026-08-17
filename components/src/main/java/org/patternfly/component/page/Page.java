@@ -95,7 +95,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
     private Function<Integer, Breakpoint> breakpointFn;
     private Function<Integer, Breakpoint> verticalBreakpointFn;
 
-    protected Page() {
+    Page() {
         super(ComponentType.Page, div().css(component(page)).element());
         this.rect = ov(new Rect()).subscribe(this::onChangedRect);
         this.resizeHandler = new ArrayList<>();

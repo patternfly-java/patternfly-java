@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.descriptionList;
 import static org.patternfly.style.Classes.group;
 
 /** A term-description pair within a {@link DescriptionList} component. */
+/** A description list group within a {@link DescriptionList} component. */
 public class DescriptionListGroup extends DescriptionListSubComponent<HTMLDivElement, DescriptionListGroup> implements
         ComponentContext<HTMLDivElement, DescriptionListGroup>,
         HasIdentifier<HTMLDivElement, DescriptionListGroup> {

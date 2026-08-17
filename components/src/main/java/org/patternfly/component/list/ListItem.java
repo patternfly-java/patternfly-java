@@ -40,6 +40,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
 
 /** An individual item within a {@link List} component. */
+/** A list item within a {@link List} component. */
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
         ComponentContext<HTMLLIElement, ListItem>,
         ComponentIcon<HTMLLIElement, ListItem>,

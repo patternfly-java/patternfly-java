@@ -25,6 +25,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.table;
 
 /** A caption element for a {@link Table} component. */
+/** A table caption within a {@link Table} component. */
 public class TableCaption extends TableSubComponent<HTMLElement, TableCaption> implements
         ElementTextMethods<HTMLElement, TableCaption> {
 

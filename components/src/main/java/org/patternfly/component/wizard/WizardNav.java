@@ -43,6 +43,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.wizard;
 
 /** The navigation sidebar of a {@link Wizard} component. */
+/** A wizard navigation within a {@link Wizard} component. */
 public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implements
         HasItems<HTMLElement, WizardNav, WizardNavItem> {
 

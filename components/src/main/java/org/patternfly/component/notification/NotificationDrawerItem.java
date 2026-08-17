@@ -51,6 +51,7 @@ import static org.patternfly.style.Classes.timestamp;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 /** An individual notification entry within a {@link NotificationDrawer}. */
+/** A notification drawer item within a {@link NotificationDrawer} component. */
 public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerItem> implements
         ComponentContext<HTMLElement, NotificationDrawerItem>,
         HasIdentifier<HTMLElement, NotificationDrawerItem> {

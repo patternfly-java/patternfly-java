@@ -40,6 +40,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.TypedModifier.swap;
 
 /** A content cell within a {@link DataListItem}. */
+/** A data list cell within a {@link DataList} component. */
 public class DataListCell extends DataListSubComponent<HTMLElement, DataListCell> implements
         ComponentIcon<HTMLElement, DataListCell>,
         ElementTextMethods<HTMLElement, DataListCell>,

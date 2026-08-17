@@ -34,6 +34,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.modifier;
 
 /** A text element within an {@link InputGroup}, typically used for prefixes or suffixes. */
+/** A input group text within a {@link InputGroup} component. */
 public class InputGroupText extends InputGroupSubComponent<HTMLElement, InputGroupText> implements
         ComponentIcon<HTMLElement, InputGroupText>,
         ElementContainerDelegate<HTMLElement, InputGroupText>,

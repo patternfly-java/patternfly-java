@@ -36,6 +36,7 @@ import static org.patternfly.style.Classes.modalBox;
 import static org.patternfly.style.Classes.modifier;
 
 /** The header area of a {@link Modal} component. */
+/** A modal header within a {@link Modal} component. */
 public class ModalHeader extends ModalSubComponent<HTMLElement, ModalHeader> {
 
     // ------------------------------------------------------ factory
