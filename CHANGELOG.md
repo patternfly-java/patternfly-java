@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix tree view toggle icon to use `rhMicrons.caretRight` instead of `rhMicrons.caretDown`, matching PatternFly's right-pointing chevron that rotates on expand
+
 ## [0.9.6] - 2026-08-17
 
 ### Added

@@ -89,7 +89,7 @@ import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.group;
 import static org.patternfly.core.Roles.treeItem;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
-import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
+import static org.patternfly.icon.IconSets.rhMicrons.caretRight;
 import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
@@ -515,7 +515,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         })
                         .element();
                 toggleElement = span().css(component(treeView, node, toggle))
-                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretDown()))
+                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretRight()))
                         .element();
                 textElement = span().css(component(treeView, node, Classes.text)).element();
                 tabElement = nodeElement;
@@ -535,7 +535,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                             tv.toggle(this);
                             e.stopPropagation();
                         })
-                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretDown()))
+                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretRight()))
                         .element();
                 textElement = button().css(component(treeView, node, Classes.text))
                         .attr(tabindex, -1)
@@ -559,7 +559,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                             tv.toggle(this);
                             e.stopPropagation();
                         })
-                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretDown()))
+                        .add(span().css(component(treeView, node, toggle, Classes.icon)).add(caretRight()))
                         .element();
                 textElement = span().css(component(treeView, node, Classes.text)).element();
                 containerElement.appendChild(span().css(component(treeView, node, check))
