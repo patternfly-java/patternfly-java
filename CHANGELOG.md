@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Changed
 
+- Add class-level Javadoc to all sub-component classes and fix section structure, constructor visibility, and formatting across all 51 components
 - Migrate J2CL annotation processors from `org.kie.j2cl.tools` to `org.treblereel.j2cl.processors`
 - Reduce J2CL Closure Compiler warnings from 284 to 38 by fixing Popper externs and using `JsPropertyMap` for `SVGElement.dataset` access
 
