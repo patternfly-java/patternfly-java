@@ -8,7 +8,7 @@
     "@shikijs/rehype": "^4.4.3",
     "esbuild": "^0.28.2",
     "http-server": "^14.1.1",
-    "puppeteer": "^25.7.0",
+    "puppeteer": "^25.8.0",
     "rehype-slug": "^6.0.0",
     "rehype-stringify": "^10.0.1",
     "remark-frontmatter": "^5.0.0",
