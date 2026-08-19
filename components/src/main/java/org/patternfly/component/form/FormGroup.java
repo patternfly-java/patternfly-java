@@ -33,7 +33,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.group;
 
 /** A container that groups a label, control, and helper text within a {@link Form}. */
-/** A form group within a {@link Form} component. */
 public class FormGroup extends FormSubComponent<HTMLElement, FormGroup> implements
         HasIdentifier<HTMLElement, FormGroup>,
         ComponentContext<HTMLElement, FormGroup> {

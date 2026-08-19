@@ -25,7 +25,6 @@ import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLabelElement;
@@ -39,7 +38,7 @@ import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Attributes.type;
-import static org.patternfly.icon.IconSets.rhUi.questionMarkCircleFill;
+import static org.patternfly.icon.IconSets.rhUi.questionMarkCircle;
 import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.form;
@@ -54,7 +53,6 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.util;
 
 /** The label area within a {@link FormGroup}, containing the field label and optional help. */
-/** A label within a form group within a {@link FormGroup} component. */
 public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel> implements Attachable,
         ElementTextDelegate<HTMLElement, FormGroupLabel> {
 
@@ -132,7 +130,7 @@ public class FormGroupLabel extends FormSubComponent<HTMLElement, FormGroupLabel
                         .attr(tabindex, 0)
                         .aria(Aria.label, ariaLabel)
                         .add(span().css(component(button, icon))
-                                .add(questionMarkCircleFill())))
+                                .add(questionMarkCircle())))
                 .add(popover)
                 .element();
         popover.trigger(helpContainer);
