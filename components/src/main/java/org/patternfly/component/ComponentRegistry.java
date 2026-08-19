@@ -23,8 +23,8 @@ import org.jboss.elemento.TypedBuilder;
 import elemental2.dom.HTMLElement;
 
 /**
- * Public, type-keyed singleton registry for PatternFly components that exist at most once per page. Use this class
- * to register and look up global components such as {@link org.patternfly.component.page.Page},
+ * Public, type-keyed singleton registry for PatternFly components that exist at most once per page. Use this class to register
+ * and look up global components such as {@link org.patternfly.component.page.Page},
  * {@link org.patternfly.component.page.Masthead}, or {@link org.patternfly.component.notification.NotificationDrawerList}.
  * <p>
  * This is distinct from {@link ComponentStore}, which is an internal, package-private store for wiring parent-child
@@ -32,8 +32,8 @@ import elemental2.dom.HTMLElement;
  * <p>
  * Registration is done by calling {@link #registerComponent(ComponentType, BaseComponent)} or
  * {@link #registerSubComponent(ComponentType, String, SubComponent)}. Lookup is done by calling
- * {@link #lookupComponent(ComponentType)} and {@link #lookupSubComponent(ComponentType, String)}.
- * When a registered component is removed from the DOM, call {@link #unregisterComponent(ComponentType)} or
+ * {@link #lookupComponent(ComponentType)} and {@link #lookupSubComponent(ComponentType, String)}. When a registered component
+ * is removed from the DOM, call {@link #unregisterComponent(ComponentType)} or
  * {@link #unregisterSubComponent(ComponentType, String)} to prevent stale references.
  */
 public class ComponentRegistry {
@@ -65,16 +65,8 @@ public class ComponentRegistry {
         components.put(type, component);
     }
 
-    public void registerSubComponent(ComponentType type, String name, SubComponent<?, ?> subComponent) {
-        subComponents.put(subComponentKey(type, name), subComponent);
-    }
-
-    public void unregisterComponent(ComponentType type) {
-        components.remove(type);
-    }
-
-    public void unregisterSubComponent(ComponentType type, String name) {
-        subComponents.remove(subComponentKey(type, name));
+    public void registerSubComponent(SubComponent<?, ?> subComponent) {
+        subComponents.put(subComponentKey(subComponent.componentType, subComponent.subComponentId), subComponent);
     }
 
     @SuppressWarnings("unchecked")
@@ -85,13 +77,13 @@ public class ComponentRegistry {
 
     @SuppressWarnings("unchecked")
     public <C extends SubComponent<E, B>, E extends HTMLElement, B extends TypedBuilder<E, B>> C lookupSubComponent(
-            ComponentType type, String name) {
-        return (C) subComponents.get(subComponentKey(type, name));
+            ComponentType type, String id) {
+        return (C) subComponents.get(subComponentKey(type, id));
     }
 
     // ------------------------------------------------------ internal
 
-    private String subComponentKey(ComponentType componentType, String name) {
-        return componentType.id + name;
+    private String subComponentKey(ComponentType componentType, String id) {
+        return componentType.id + id;
     }
 }

@@ -78,7 +78,7 @@ public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder
     }
 
     public B registerSubComponent() {
-        componentRegistry().registerSubComponent(componentType, subComponentId, this);
+        componentRegistry().registerSubComponent(this);
         return that();
     }
 
