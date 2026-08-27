@@ -17,14 +17,14 @@ jobs:
       MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with:
           java-version: 25
           distribution: temurin
           cache: maven
       - run: $MVN package
         working-directory: bom
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with: # running setup-java again overwrites the settings.xml
           java-version: 25
           distribution: temurin
@@ -48,13 +48,13 @@ jobs:
       MVN: ./mvnw --show-version --batch-mode --no-transfer-progress
     steps:
       - uses: actions/checkout@v7
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with:
           java-version: 25
           distribution: temurin
           cache: maven
       - run: $MVN package
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with: # running setup-java again overwrites the settings.xml
           java-version: 25
           distribution: temurin
@@ -109,7 +109,7 @@ jobs:
       - run: corepack enable
       - run: pnpm install
         working-directory: charts/npm
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with:
           java-version: 25
           distribution: temurin
@@ -135,7 +135,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with:
           java-version: 25
           distribution: temurin
