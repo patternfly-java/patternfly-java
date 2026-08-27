@@ -22,7 +22,7 @@ jobs:
       - run: corepack enable
       - run: pnpm install
         working-directory: charts/npm
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@v6
         with:
           java-version: 25
           distribution: temurin
