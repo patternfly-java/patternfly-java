@@ -74,11 +74,15 @@ auditConfig:
     - GHSA-xhpv-hc6g-r9c6
     - GHSA-xjpj-3mr7-gcpf
     - GHSA-xx6v-rp6x-q39c
-    - GHSA-2v37-7h3g-55p8
-    - GHSA-55q2-fjhq-7xh7
+    - GHSA-2jg2-4ch7-h545
+    - GHSA-4mjr-xmp4-gh2g
     - GHSA-5p2g-fcmc-qvqq
+    - GHSA-7pqw-9j4j-h8q3
+    - GHSA-g89c-p67h-r497
     - GHSA-jmr9-qjv8-65gv
+    - GHSA-rgj7-g3m4-5g8c
     - GHSA-w3rx-r6r6-pgpr
+    - GHSA-x5fp-wj9c-mxmx
 
 # @patternfly/documentation-framework declares peer dependencies on React packages
 # that we don't use — we only import CSS files from it.
@@ -88,10 +92,3 @@ peerDependencyRules:
     - '@patternfly/react-core'
     - '@patternfly/react-icons'
     - '@patternfly/react-table'
-
-overrides:
-  '@babel/core@<=7.29.0': '>=7.29.1'
-  dompurify@<3.4.11: '>=3.4.11'
-  follow-redirects@<=1.15.11: '>=1.16.0'
-  js-yaml@<=4.1.1: '>=4.1.2'
-  webpack-dev-server@<5.2.5: '>=5.2.5'
