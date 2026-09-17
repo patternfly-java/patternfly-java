@@ -10,7 +10,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Add `Menu.reset()` to clear filtered state across all menu groups and lists
 - Add typeahead and overlay support to `BaseSearchInput`, enabling search inputs to host menus with keyboard navigation, filtering, and CSS anchor positioning
-- Add search input showcase demo with word search typeahead example
 
 ### Changed
 
