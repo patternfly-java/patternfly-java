@@ -8,9 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `Menu.cursorNavigation(Event)` for arrow key entry into the menu from external inputs (e.g., search fields)
 - Add `Menu.reset()` to clear filtered state across all menu groups and lists
-- Add `StayOpenPredicate` to control whether a search input overlay stays open after selection
 - Add typeahead and overlay support to `BaseSearchInput`, enabling search inputs to host menus with keyboard navigation, filtering, and CSS anchor positioning
 - Add search input showcase demo with word search typeahead example
 
@@ -18,7 +16,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Change `Menu.search()` from package-private to public and return the count of visible items (or `-1` when async items are pending)
 - Change menu item filtering to use a `filtered` CSS modifier class instead of toggling element visibility
-- Evolve `BaseSearchInput` to support typeahead menus with overlay, keyboard navigation, and filtering
 
 ### Removed
 
