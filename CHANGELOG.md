@@ -19,7 +19,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Removed
 
 - Remove legacy Popper-based menu classes: `PopperDropdown`, `PopperMenuToggleMenu`, `PopperMultiMenuToggleMenu`, `PopperMultiSelect`, `PopperMultiTypeahead`, `PopperSingleMenuToggleMenu`, `PopperSingleSelect`, `PopperSingleTypeahead`, `PopperTypeahead`
-- Remove `TypeaheadSupport.filter()` and `TypeaheadSupport.reset()` methods (logic moved to `BaseSearchInput` and `Menu`)
 
 ### Upgrades
 
