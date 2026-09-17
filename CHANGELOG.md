@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Change `Menu.search()` from package-private to public and return the count of visible items (or `-1` when async items are pending)
 - Change menu item filtering to use a `filtered` CSS modifier class instead of toggling element visibility
-- Move typeahead and overlay management from `PopperTypeahead` / `PopperMenuToggleMenu` hierarchy into `BaseSearchInput`
+- Evolve `BaseSearchInput` to support typeahead menus with overlay, keyboard navigation, and filtering
 
 ### Removed
 
