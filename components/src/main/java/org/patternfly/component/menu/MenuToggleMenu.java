@@ -36,8 +36,6 @@ import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Placement;
-
-import elemental2.core.JsArray;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.KeyboardEvent;
@@ -48,12 +46,9 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
-import static org.jboss.elemento.Elements.isVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
-import static org.jboss.elemento.Key.ArrowDown;
-import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Escape;
 import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
@@ -245,7 +240,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             }
             if (menu.hasAsyncItems()) {
                 menu.load().then(__ -> {
-                    loadedHandler.forEach(th -> th.handle(new Event(""), that()));
+                    loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                     return null;
                 });
             }
@@ -287,33 +282,17 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
                 collapse();
                 return;
             }
-            if ((menuToggle.element().contains((Node) event.target) ||
-                    menu.element().contains((Node) event.target)) && Tab.match(event)) {
+            if ((menuToggle.element().contains((Node) event.target) || menu.element().contains((Node) event.target)) &&
+                    Tab.match(event)) {
                 collapse();
             }
         }
 
+        // When the focus is on the menu toggle, delegate arrow keys to Menu.cursorNavigation()
+        // to jump into the menu. Once focus is inside the menu, Menu.keyHandler() takes over
+        // and cycles through items via handleArrows().
         if (expanded() && menuToggle.element().contains((Node) event.target)) {
-            boolean arrowUp = ArrowUp.match(event);
-            boolean arrowDown = ArrowDown.match(event);
-            if (arrowUp || arrowDown) {
-                event.preventDefault();
-                HTMLElement focusableElement;
-                JsArray<HTMLElement> listItems = JsArray.from(menu.element().querySelectorAll("li").values());
-                JsArray<HTMLElement> focusableElements = listItems
-                        .filter((li, __) -> isVisible(li))
-                        .map((li, __) -> ((HTMLElement) li.querySelector(
-                                "button:not(:disabled),input:not(:disabled),a:not([aria-disabled=\"true\"])")))
-                        .filter((li, __) -> li != null);
-                if (arrowDown) {
-                    focusableElement = focusableElements.at(0);
-                } else {
-                    focusableElement = focusableElements.at(focusableElements.length - 1);
-                }
-                if (focusableElement != null) {
-                    focusableElement.focus();
-                }
-            }
+            menu.cursorNavigation(event);
         }
     }
 

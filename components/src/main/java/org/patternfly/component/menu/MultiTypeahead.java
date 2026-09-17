@@ -53,16 +53,16 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
-     * and a {@link FilterInput}.
+     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
+     * {@link FilterInput}.
      */
     public static MultiTypeahead multiTypeahead(String id, String placeholder) {
         return new MultiTypeahead(filterInput(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
-     * and the specified {@link BaseFilterInput}.
+     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and the
+     * specified {@link BaseFilterInput}.
      *
      * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component
      * @return a new {@link MultiTypeahead} instance configured with the given filter input
@@ -82,6 +82,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
         this.filterInput = filterInput;
         this.searchFilter = SearchFilter.contains();
         this.noResults = NoResults.noResults();
+        onLoaded((e, c) -> menu.search(searchFilter, noResults, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         filterInput

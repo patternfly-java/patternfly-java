@@ -30,7 +30,6 @@ import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -54,9 +53,8 @@ import static org.patternfly.style.Classes.textInputGroup;
 /**
  * Base class for text input group components.
  *
- * @see <a
- *      href="https://www.patternfly.org/components/text-input-group">
- *      https://www.patternfly.org/components/text-input-group</a>
+ * @see <a href="https://www.patternfly.org/components/text-input-group">
+ * https://www.patternfly.org/components/text-input-group</a>
  */
 public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extends BaseComponent<HTMLElement, T> implements
         ComponentIcon<HTMLElement, T>,
@@ -252,3 +250,4 @@ public abstract class BaseTextInputGroup<T extends BaseTextInputGroup<T>> extend
         return statusContainer;
     }
 }
+

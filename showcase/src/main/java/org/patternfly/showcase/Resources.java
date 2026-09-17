@@ -57,4 +57,7 @@ public interface Resources extends ClientBundle {
 
     @Source("users.json")
     TextResource users();
+
+    @Source("words.json")
+    TextResource words();
 }

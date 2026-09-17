@@ -31,7 +31,6 @@ import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Plain;
-
 import elemental2.core.JsArray;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
@@ -48,8 +47,6 @@ import static elemental2.dom.DomGlobal.window;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
-import static org.jboss.elemento.Elements.isVisible;
-import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.keydown;
 import static org.jboss.elemento.Key.ArrowDown;
@@ -70,6 +67,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.divider;
 import static org.patternfly.style.Classes.favorited;
+import static org.patternfly.style.Classes.filtered;
 import static org.patternfly.style.Classes.flyout;
 import static org.patternfly.style.Classes.menu;
 import static org.patternfly.style.Classes.modifier;
@@ -239,6 +237,33 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
+    /**
+     * Handles arrow up/down events when focus is <em>outside</em> the menu (e.g., in a {@link MenuToggle} search input or a
+     * {@link org.patternfly.component.textinputgroup.BaseSearchInput} text field). Moves focus to the first (ArrowDown) or last
+     * (ArrowUp) navigable menu item.
+     * <p>
+     * This method is the entry point into menu keyboard navigation. Once focus has moved inside the menu,
+     * {@link #handleArrows(KeyboardEvent, HTMLElement, JsArray)} takes over and cycles through items relative to the current
+     * position.
+     *
+     * @param event the keyboard event triggered when an arrow key is pressed
+     */
+    public void cursorNavigation(Event event) {
+        boolean arrowUp = ArrowUp.match(event);
+        boolean arrowDown = ArrowDown.match(event);
+        if (arrowUp || arrowDown) {
+            event.preventDefault();
+            JsArray<HTMLElement> navigableElements = navigableElement(element());
+            if (navigableElements.length > 0) {
+                HTMLElement target = getFocusableElement(
+                        navigableElements.at(arrowDown ? 0 : navigableElements.length - 1));
+                if (target != null) {
+                    target.focus();
+                }
+            }
+        }
+    }
+
     public MenuItem findItem(String identifier) {
         MenuItem menuItem = null;
         if (content != null) {
@@ -327,6 +352,19 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return Promise.resolve((Void) null);
     }
 
+    public void reset() {
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    group.list.reset();
+                }
+            }
+            if (content.list != null) {
+                content.list.reset();
+            }
+        }
+    }
+
     public void select(String identifier) {
         select(findItem(identifier), true, true);
     }
@@ -383,18 +421,29 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return selectedItems;
     }
 
-    // ------------------------------------------------------ internal
-
-    void search(SearchFilter searchFilter, NoResults noResults, String value) {
+    /**
+     * Filters the menu items based on the given search value. Each menu item is tested against the search filter; items that
+     * don't match are hidden using the {@code filtered} modifier CSS class. If no items match and a {@code noResults} handler
+     * is provided, a "no results" item is added to the menu list. If the menu contains asynchronous (pending) items, the search
+     * is skipped and {@code -1} is returned.
+     *
+     * @param searchFilter the filter used to determine whether a menu item matches the search value
+     * @param noResults    the handler that creates a "no results" menu item when no items match; can be {@code null} to skip
+     *                     showing a no-results indicator
+     * @param value        the search text to filter menu items against
+     * @return the number of visible (matching) items after filtering, or {@code -1} if the search was skipped because the menu
+     * contains pending asynchronous items
+     */
+    public int search(SearchFilter searchFilter, NoResults noResults, String value) {
         // no search if one of the menu lists is pending
         if (hasAsyncItems()) {
-            return;
+            return -1;
         }
 
         int visibleItems = 0;
         for (MenuItem menuItem : items()) {
             boolean visible = searchFilter.test(menuItem, value);
-            setVisible(menuItem, visible);
+            menuItem.classList().toggle(modifier(filtered), !visible);
             if (visible) {
                 visibleItems++;
             }
@@ -402,23 +451,35 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         failSafeRemoveFromParent(noResultsItem);
         if (visibleItems == 0) {
             if (content != null && content.list != null) {
-                noResultsItem = noResults.noResults(content.list, value);
-                // Don't use content.list.addItem(noResultsItem) here
-                // The no-result item should not be part of the item map
-                content.list.add(noResultsItem.element());
+                if (noResults != null) {
+                    noResultsItem = noResults.noResults(content.list, value);
+                    // Don't use content.list.addItem(noResultsItem) here
+                    // The no-result item should not be part of the item map
+                    content.list.add(noResultsItem.element());
+                }
             }
         } else {
             allowTabFirstItem();
         }
+        return visibleItems;
     }
 
-    void clearSearch() {
+    /**
+     * Clears the current search filtering state within the menu.
+     * <p>
+     * This method performs the following actions: - Removes the "no results" item from the parent container, if it exists. -
+     * Iterates through all menu items and removes the `filtered` CSS modifier class, ensuring that all items are visible again.
+     * - Resets keyboard navigation accessibility by enabling the first focusable item to have a `tabIndex` of `0`.
+     */
+    public void clearSearch() {
         failSafeRemoveFromParent(noResultsItem);
         for (MenuItem menuItem : items()) {
-            setVisible(menuItem, true);
+            menuItem.classList().remove(modifier(filtered));
         }
         allowTabFirstItem();
     }
+
+    // ------------------------------------------------------ internal
 
     // called by regular menu items
     void toggleFavorite(MenuItem item) {
@@ -490,6 +551,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     // ------------------------------------------------------ keyboard navigation
 
+    // Navigation is split into two phases:
+    // 1. cursorNavigation() — called by key handlers in MenuToggleMenu or BaseSearchInput when focus is outside the menu
+    //    (e.g., in a search input). Jumps the focus to the first or last navigable item.
+    // 2. keyHandler() / handleArrows() — active when focus is inside the menu. Cycles through items
+    //    relative to the current position, wrapping at boundaries.
     private void keyHandler(KeyboardEvent event) {
         HTMLElement activeElement = (HTMLElement) document.activeElement;
         if (element().contains(((Node) event.target))) {
@@ -591,7 +657,9 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     private JsArray<HTMLElement> navigableElement(HTMLElement element) {
         JsArray<HTMLElement> elements = JsArray.from(element.querySelectorAll("li").values());
         return elements.filter((e, i) ->
-                isVisible(e) && !(e.classList.contains(modifier(disabled)) || e.classList.contains(component(divider))));
+                !e.classList.contains(modifier(filtered)) &&
+                        !e.classList.contains(modifier(disabled)) &&
+                        !e.classList.contains(component(divider)));
     }
 
     private HTMLElement getFocusableElement(HTMLElement navigableElement) {

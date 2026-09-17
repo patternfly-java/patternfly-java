@@ -70,6 +70,7 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
         super(ComponentType.SingleTypeahead, MenuToggle.menuToggle(searchInput));
         this.searchFilter = SearchFilter.contains();
         this.noResults = NoResults.noResults();
+        onLoaded((e, c) -> menu.search(searchFilter, noResults, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         menuToggle.searchInput()

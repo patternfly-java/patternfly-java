@@ -24,7 +24,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.utilities;
 
 /** A container for utility elements in a {@link TextInputGroup} component. */
-/** A text input group utilities container within a {@link TextInputGroup} component. */
 public class TextInputGroupUtilities extends TextInputGroupSubComponent<HTMLDivElement, TextInputGroupUtilities> {
 
     // ------------------------------------------------------ factory

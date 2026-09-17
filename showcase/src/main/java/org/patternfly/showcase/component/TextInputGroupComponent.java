@@ -15,22 +15,39 @@
  */
 package org.patternfly.showcase.component;
 
+import java.util.Random;
+
+import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
+import org.patternfly.component.AsyncItems;
+import org.patternfly.component.menu.MenuItem;
+import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
+import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.showcase.model.Words;
+import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.console;
+import static elemental2.dom.DomGlobal.setTimeout;
+import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
 import static org.patternfly.component.label.Label.label;
+import static org.patternfly.component.menu.Menu.menu;
+import static org.patternfly.component.menu.MenuContent.menuContent;
+import static org.patternfly.component.menu.MenuItem.menuItem;
+import static org.patternfly.component.menu.MenuList.menuList;
+import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TEXT_TO_IDENTIFIER;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
@@ -122,6 +139,41 @@ public class TextInputGroupComponent extends SnippetPage {
                             .outline().closable());
             return div().add(filterInput).element();
             // @code-end:tig-filter-input
+        }));
+
+        addSnippet(new Snippet("tig-autocomplete", "Search with autocomplete",
+                code("tig-autocomplete"), () ->
+                // @code-start:tig-autocomplete
+                div().add(searchInput("tig-autocomplete-0").icon(search())
+                                .addMenu(menu(menu, click).scrollable()
+                                        .addContent(menuContent()
+                                                .addList(menuList()
+                                                        .addItems(Words.data.asList(),
+                                                                word -> menuItem(word, word))))))
+                        .element()
+                // @code-end:tig-autocomplete
+        ));
+
+        addSnippet(new Snippet("tig-autocomplete-async", "Search with autocomplete (async)",
+                code("tig-autocomplete-async"), () -> {
+            // @code-start:tig-autocomplete-async
+            AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
+                    setTimeout(__ -> res.onInvoke(stream(LoremIpsum.words(100).split(" "))
+                                    .distinct()
+                                    .sorted()
+                                    .map(word -> menuItem(Id.build("item-", word), word))
+                                    .collect(toList())),
+                            1234 + new Random().nextInt(3456)));
+
+
+            return div()
+                    .add(searchInput("tig-autocomplete-async-0").icon(search())
+                            .addMenu(menu(menu, click).scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(asyncItems)))))
+                    .element();
+            // @code-end:tig-autocomplete-async
         }));
 
         startApiDocs(TextInputGroup.class);

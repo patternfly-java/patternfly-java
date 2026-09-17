@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `Menu.cursorNavigation(Event)` for arrow key entry into the menu from external inputs (e.g., search fields)
+- Add `Menu.reset()` to clear filtered state across all menu groups and lists
+- Add `StayOpenPredicate` to control whether a search input overlay stays open after selection
+- Add typeahead and overlay support to `BaseSearchInput`, enabling search inputs to host menus with keyboard navigation, filtering, and CSS anchor positioning
+- Add search input showcase demo with word search typeahead example
+
+### Changed
+
+- Change `Menu.search()` from package-private to public and return the count of visible items (or `-1` when async items are pending)
+- Change menu item filtering to use a `filtered` CSS modifier class instead of toggling element visibility
+- Move typeahead and overlay management from `PopperTypeahead` / `PopperMenuToggleMenu` hierarchy into `BaseSearchInput`
+
+### Removed
+
+- Remove legacy Popper-based menu classes: `PopperDropdown`, `PopperMenuToggleMenu`, `PopperMultiMenuToggleMenu`, `PopperMultiSelect`, `PopperMultiTypeahead`, `PopperSingleMenuToggleMenu`, `PopperSingleSelect`, `PopperSingleTypeahead`, `PopperTypeahead`
+- Remove `TypeaheadSupport.filter()` and `TypeaheadSupport.reset()` methods (logic moved to `BaseSearchInput` and `Menu`)
+
+### Upgrades
+
+- Upgrade Elemento from 2.5.6 to 2.5.7
+
 ## [0.9.7] - 2026-08-17
 
 ### Fixed
