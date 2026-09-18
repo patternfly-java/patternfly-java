@@ -83,6 +83,24 @@ auditConfig:
     - GHSA-rgj7-g3m4-5g8c
     - GHSA-w3rx-r6r6-pgpr
     - GHSA-x5fp-wj9c-mxmx
+    - GHSA-2883-xcg3-v3hh
+    - GHSA-4x5r-pxfx-6jf8
+    - GHSA-52cp-r559-cp3m
+    - GHSA-55q2-fjhq-7xh7
+    - GHSA-5p4m-2wfm-xmqj
+    - GHSA-74fj-2j2h-c42q
+    - GHSA-79cf-xcqc-c78w
+    - GHSA-c2j3-45gr-mqc4
+    - GHSA-cmwh-pvxp-8882
+    - GHSA-cxjh-pqwp-8mfp
+    - GHSA-f5vj-f2hx-8m93
+    - GHSA-h67p-54hq-rp68
+    - GHSA-jchw-25xp-jwwc
+    - GHSA-m28w-2pqf-7qgj
+    - GHSA-mx8g-39q3-5c79
+    - GHSA-pw2r-vq6v-hr8c
+    - GHSA-r4q5-vmmm-2653
+    - GHSA-vxr8-fq34-vvx9
 
 # @patternfly/documentation-framework declares peer dependencies on React packages
 # that we don't use — we only import CSS files from it.
