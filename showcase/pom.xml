@@ -64,10 +64,6 @@
             <artifactId>patternfly-java-finder</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>patternfly-java-j2cl</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.elemento</groupId>
             <artifactId>elemento-intl</artifactId>
         </dependency>

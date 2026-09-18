@@ -22,6 +22,5 @@
     <source path="filter"/>
     <source path="handler"/>
     <source path="popover"/>
-    <source path="popper"/>
     <source path="style"/>
 </module>

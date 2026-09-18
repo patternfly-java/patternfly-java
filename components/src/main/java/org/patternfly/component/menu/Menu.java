@@ -117,8 +117,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         this.actionHandler = new ArrayList<>();
         this.selectHandler = new ArrayList<>();
         this.multiSelectHandler = new ArrayList<>();
-        // TODO Without this workaround the menu "flickers" when showing.
-        //  This could be solved by replacing the show/hide alg with an add/remove alg in the Popper class
         componentVar(component(menu), "TransitionDuration").applyTo(this).set(0);
         storeComponent();
         Attachable.register(this, this);

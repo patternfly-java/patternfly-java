@@ -36,7 +36,6 @@ Uses Maven Wrapper (`mvnw`). Requires Java 21+ and Maven 3.9.9+.
 - **tokens** - PatternFly design tokens as enum constants
 - **charts** - Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle
 - **extensions/codeeditor**, **extensions/finder** - Extensions
-- **gwt**, **j2cl** - Compilation target support
 - **snippet-tests** - Build-time validation of inline JavaDoc code snippets (activated via `-P check` profile, not deployed)
 - **showcase** - Interactive demo website (activated via `-P showcase` profile)
 

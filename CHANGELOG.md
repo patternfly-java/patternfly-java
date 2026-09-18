@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+> [!IMPORTANT]
+> This release contains breaking changes. It removes the dependency to the Popper JS library. All overlays are now implemented using [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). This also removes the need for the GWT and J2CL modules `patternfly-java-gwt` and `patternfly-java-j2cl`, which were convenience aggregator artifacts whose only non-transitive content was the bundled Popper.js runtime, which is no longer needed. Downstream projects should depend on `patternfly-java-components` and `patternfly-java-layouts` directly.
+
+### Removed
+
+- Remove `patternfly-java-gwt` and `patternfly-java-j2cl` modules. These were convenience aggregator artifacts whose only non-transitive content was the bundled Popper.js runtime, which is no longer needed. Downstream projects should depend on `patternfly-java-components` and `patternfly-java-layouts` directly.
+- Remove all legacy Popper.js code: the `org.patternfly.popper` package (core), `PopperTooltip`, `PopperPopover` and related sub-components (components), the bundled `@popperjs/core` JavaScript (j2cl/gwt), and the corresponding `ComponentType` enum entries.
+
 ## [0.9.9] - 2026-09-18
 
 ### Added

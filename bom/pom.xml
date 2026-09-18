@@ -150,17 +150,6 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-gwt</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-gwt</artifactId>
-                <version>${project.version}</version>
-                <classifier>sources</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>patternfly-java-icons</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -169,11 +158,6 @@
                 <artifactId>patternfly-java-icons</artifactId>
                 <version>${project.version}</version>
                 <classifier>sources</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>patternfly-java-j2cl</artifactId>
-                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
