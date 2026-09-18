@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add customizable loading, error, and "no items" indicator suppliers to `MenuList` and `Menu` with `loading()`, `error()`, and `noItems()` methods; pass `null` to disable any indicator
+
+### Changed
+
+- Refactor `Menu.reset()` to use a shared `doForAllMenuLists()` helper, reducing duplication across menu-list operations
+- Improve `BaseSearchInput` hint clearing: clear hint on clear button click and when no items match; disable "no items" indicator for typeahead menus
+
 ## [0.10.0] - 2026-09-18
 
 > [!IMPORTANT]

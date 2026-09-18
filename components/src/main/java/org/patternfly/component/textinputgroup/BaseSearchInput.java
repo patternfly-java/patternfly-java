@@ -32,7 +32,6 @@ import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.SearchFilter;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
-import org.patternfly.icon.IconSets;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import elemental2.dom.Event;
@@ -58,6 +57,7 @@ import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
 import static org.patternfly.core.Aria.hidden;
+import static org.patternfly.icon.IconSets.rhMicrons.close;
 import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
@@ -110,9 +110,10 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         this.defaultOnClear = (e, si) -> si.value("");
         this.utilitiesVisibility = (si, value) -> !value.isEmpty();
         this.searchFilter = SearchFilter.contains();
-        this.loadedHandler.add((e, c) -> search(value()));
 
         toggleUtilities(value());
+        onClear((e, si) -> clearHint());
+        onLoaded((e, c) -> search(value()));
         onKeyup((e, si, value) -> toggleUtilities(value));
         onInput((e, si, value) -> toggleUtilities(value));
         onChange((e, si, value) -> toggleUtilities(value));
@@ -196,6 +197,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
         this.typeahead = true;
         this.menu = menu;
+        menu.noItems(null);
         HTMLElement menuPopover = div().css(component(Classes.overlay))
                 .add(menu)
                 .element();
@@ -368,12 +370,11 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         if (utilitiesVisibility.apply(that(), value)) {
             if (utilities == null) {
                 addUtilities(textInputGroupUtilities()
-                        .add(button().icon(IconSets.rhMicrons.close()).plain().onClick((e, b) -> {
+                        .add(button().icon(close()).plain().onClick((e, b) -> {
                             if (defaultOnClear != null) {
                                 defaultOnClear.handle(e, that());
                             }
-                            onClear.forEach(handler ->
-                                    handler.handle(e, that()));
+                            onClear.forEach(handler -> handler.handle(e, that()));
                         })));
             }
         } else {
@@ -386,6 +387,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         List<MenuItem> matching = menu.search(searchFilter, null, value);
         if (matching.isEmpty()) {
             collapse(false);
+            clearHint();
         } else {
             expand(false);
             if (matching.size() == 1) {
@@ -412,9 +414,11 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     }
 
     private void clearHint() {
-        failSafeRemoveFromParent(hintInput);
-        hint = null;
-        hintInput = null;
+        if (typeahead) {
+            failSafeRemoveFromParent(hintInput);
+            hint = null;
+            hintInput = null;
+        }
     }
 
     // ------------------------------------------------------ internal event handlers
