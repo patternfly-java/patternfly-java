@@ -6,8 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.9.8] - 2026-09-18
-
 ### Added
 
 - Add `Menu.reset()` to clear filtered state across all menu groups and lists
@@ -30,6 +28,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Upgrades
 
 - Upgrade Elemento from 2.5.6 to 2.5.7
+
+## [0.9.8] - 2026-09-18
+
+> [!WARNING]
+> Not an official release. Please don't use!
 
 ## [0.9.7] - 2026-08-17
 
