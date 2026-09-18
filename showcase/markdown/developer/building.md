@@ -49,8 +49,6 @@ The project is organized into these modules:
 | **charts** | Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle |
 | **extensions/codeeditor** | Code editor extension |
 | **extensions/finder** | Finder extension |
-| **gwt** | GWT compilation target support |
-| **j2cl** | J2CL compilation target support |
 | **showcase** | Interactive demo website (activated via `-P showcase`) |
 | **snippet-tests** | Build-time validation of inline JavaDoc code snippets (activated via `-P check`, not deployed) |
 | **apidoc** | API documentation aggregation (activated via `-P apidoc`) |

@@ -25,36 +25,22 @@ Import the BOM in your `pom.xml`. Replace `${patternfly-java.version}` with the 
 </dependencyManagement>
 ```
 
-Then add a dependency to either
+Then add a dependency on the components you need:
 
 ```xml
 <dependency>
     <groupId>org.patternfly</groupId>
-    <artifactId>patternfly-java-gwt</artifactId>
-    <type>gwt-lib</type>
+    <artifactId>patternfly-java-components</artifactId>
 </dependency>
-```
-
-or
-
-```xml
 <dependency>
     <groupId>org.patternfly</groupId>
-    <artifactId>patternfly-java-j2cl</artifactId>
+    <artifactId>patternfly-java-layouts</artifactId>
 </dependency>
-```
-
-depending on your stack. If you're using GWT, inherit from `org.patternfly.PatternFly`:
-
-```xml
-<module>
-    <inherits name="org.patternfly.PatternFly"/>
-</module>
 ```
 
 ## JavaScript Dependencies
 
-PatternFly Java has **no JavaScript** dependencies. Everything necessary is included in the code base for both GWT and J2CL. The only exception is the charts package, which wraps PatternFly React Chart components as web components so they can be used from Java.
+PatternFly Java has **no JavaScript** dependencies. The only exception is the charts package, which wraps PatternFly React Chart components as web components so they can be used from Java.
 
 ```
 npm install @patternfly-java/charts
@@ -108,9 +94,7 @@ PatternFly Java consists of these Maven modules (a-z):
 | patternfly-java-components | Components            |
 | patternfly-java-core       | Core classes          |
 | patternfly-java-finder     | Finder extension      |
-| patternfly-java-gwt        | GWT support           |
 | patternfly-java-icons      | Icons                 |
-| patternfly-java-j2cl       | J2CL support          |
 | patternfly-java-layouts    | Layouts               |
 | patternfly-java-tokens     | Tokens                |
 

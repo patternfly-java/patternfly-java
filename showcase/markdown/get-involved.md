@@ -14,7 +14,7 @@ Found something that doesn't work as expected? Open an issue on [GitHub Issues](
 - A clear description of the problem
 - Steps to reproduce the issue
 - The expected vs. actual behavior
-- Your environment (Java version, GWT or J2CL, browser)
+- Your environment (Java version, browser)
 
 ## Request Features
 
