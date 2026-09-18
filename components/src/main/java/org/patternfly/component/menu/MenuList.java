@@ -82,19 +82,21 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     public static final String SUB_COMPONENT_ID = "ml";
     public static final String SUB_COMPONENT_NAME = "MenuList";
     private static final Logger logger = Logger.getLogger(MenuList.class.getName());
-    // TODO Customize loading, no items and error handling
-    private static final Supplier<MenuItem> loading = () -> skeletonMenuItem(
+    private static final Supplier<MenuItem> defaultLoading = () -> skeletonMenuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "loading"), "Loading items...");
-    private static final Supplier<MenuItem> noItems = () -> menuItem(
+    private static final Supplier<MenuItem> defaultNoItems = () -> menuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "no-items"), "No items found")
             .disabled();
-    private static final Supplier<MenuItem> error = () -> menuItem(
+    private static final Supplier<MenuItem> defaultError = () -> menuItem(
             Id.unique(ComponentType.Menu.id, SUB_COMPONENT_ID, "error"), "Error")
             .icon(errorFill());
 
     final Map<String, MenuItem> items;
     private final AurHandler<MenuList, MenuItem> aur;
     private AsyncStatus status;
+    private Supplier<MenuItem> loading;
+    private Supplier<MenuItem> noItems;
+    private Supplier<MenuItem> error;
     private MenuItem loadingItem;
     private MenuItem noItemsItem;
     private MenuItem errorItem;
@@ -106,6 +108,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
         this.status = static_;
+        this.loading = defaultLoading;
+        this.noItems = defaultNoItems;
+        this.error = defaultError;
         storeSubComponent();
         Attachable.register(this, this);
     }
@@ -151,6 +156,33 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     // ------------------------------------------------------ builder
 
+    /**
+     * Sets a custom supplier for the loading indicator shown while async items are being loaded. Pass {@code null} to disable
+     * the loading indicator.
+     */
+    public MenuList loading(Supplier<MenuItem> loading) {
+        this.loading = loading;
+        return this;
+    }
+
+    /**
+     * Sets a custom supplier for the "no items" indicator shown when async items return an empty result. Pass {@code null} to
+     * disable the indicator and leave the menu empty (which typically causes it to collapse).
+     */
+    public MenuList noItems(Supplier<MenuItem> noItems) {
+        this.noItems = noItems;
+        return this;
+    }
+
+    /**
+     * Sets a custom supplier for the error indicator shown when async items fail to load. Pass {@code null} to disable the
+     * error indicator.
+     */
+    public MenuList error(Supplier<MenuItem> error) {
+        this.error = error;
+        return this;
+    }
+
     @Override
     public MenuList ordered(Comparator<MenuItem> comparator) {
         this.comparator = comparator;
@@ -189,11 +221,10 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     @Override
     public Promise<Iterable<MenuItem>> load() {
         if (status == pending && asyncItems != null) {
-            // Show the loading indicator immediately, not like in the tree view component after Timeouts.LOADING_TIMEOUT
-            // The reason is that the menu is empty at first, then the loading indicator appears, and finally the items
-            // are added, leading to a visual glitch. To prevent this, we show the loading indicator immediately.
-            loadingItem = loading.get();
-            addItem(loadingItem);
+            if (loading != null) {
+                loadingItem = loading.get();
+                addItem(loadingItem);
+            }
 
             // load items
             return asyncItems.apply(this)
@@ -205,19 +236,21 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                             addItem(item);
                             count++;
                         }
-                        if (count == 0) {
+                        if (count == 0 && noItems != null) {
                             noItemsItem = noItems.get();
                             addItem(noItemsItem);
                         }
                         return Promise.resolve(items);
                     })
-                    .catch_(error -> {
+                    .catch_(err -> {
                         status = rejected;
                         failSafeRemoveFromParent(loadingItem);
-                        logger.error("Unable to load items for %o: %s", element(), error);
-                        errorItem = MenuList.error.get();
-                        addItem(errorItem);
-                        return Promise.reject(error);
+                        logger.error("Unable to load items for %o: %s", element(), err);
+                        if (error != null) {
+                            errorItem = error.get();
+                            addItem(errorItem);
+                        }
+                        return Promise.reject(err);
                     });
         } else {
             return Promise.resolve(emptyList());

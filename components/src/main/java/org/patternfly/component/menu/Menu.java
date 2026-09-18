@@ -18,6 +18,8 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -195,6 +197,31 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return componentVar(component(menu, Classes.content), MaxHeight).applyTo(this).set(height);
     }
 
+    /**
+     * Sets the error indicator supplier for all menu lists. Pass {@code null} to disable the indicator.
+     */
+    public Menu error(Supplier<MenuItem> error) {
+        doForAllMenuLists(list -> list.error(error));
+        return this;
+    }
+
+    /**
+     * Sets the loading indicator supplier for all menu lists. Pass {@code null} to disable the indicator.
+     */
+    public Menu loading(Supplier<MenuItem> loading) {
+        doForAllMenuLists(list -> list.loading(loading));
+        return this;
+    }
+
+    /**
+     * Sets the "no items" indicator supplier for all menu lists. Pass {@code null} to disable the indicator. When disabled, the
+     * menu will simply remain empty (and typically collapse) when async items return an empty result.
+     */
+    public Menu noItems(Supplier<MenuItem> noItems) {
+        doForAllMenuLists(list -> list.noItems(noItems));
+        return this;
+    }
+
     public Menu scrollable() {
         return css(modifier(scrollable));
     }
@@ -352,16 +379,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     }
 
     public void reset() {
-        if (content != null) {
-            for (MenuGroup group : content.groups) {
-                if (group.list != null) {
-                    group.list.reset();
-                }
-            }
-            if (content.list != null) {
-                content.list.reset();
-            }
-        }
+        doForAllMenuLists(MenuList::reset);
     }
 
     public void select(String identifier) {
@@ -544,6 +562,19 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         if (groupOfItem != null) {
             for (MenuItem menuItem : groupOfItem.list.items.values()) {
                 menuItem.markSelected(false);
+            }
+        }
+    }
+
+    private void doForAllMenuLists(Consumer<MenuList> consumer) {
+        if (content != null) {
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    consumer.accept(group.list);
+                }
+            }
+            if (content.list != null) {
+                consumer.accept(content.list);
             }
         }
     }
