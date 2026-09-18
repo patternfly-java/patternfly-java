@@ -9,6 +9,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 > [!IMPORTANT]
 > This release contains breaking changes. It removes the dependency to the Popper JS library. All overlays are now implemented using [CSS anchor positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning). This also removes the need for the GWT and J2CL modules `patternfly-java-gwt` and `patternfly-java-j2cl`, which were convenience aggregator artifacts whose only non-transitive content was the bundled Popper.js runtime, which is no longer needed. Downstream projects should depend on `patternfly-java-components` and `patternfly-java-layouts` directly.
 
+### Added
+
+- Add typeahead hint input to `BaseSearchInput`: when a single menu item matches, a disabled hint input shows the completion text; pressing ArrowRight accepts the hint
+
+### Changed
+
+- Change `Menu.search()` return type from `int` to `List<MenuItem>` to expose matched items for hint support
+
 ### Removed
 
 - Remove `patternfly-java-gwt` and `patternfly-java-j2cl` modules. These were convenience aggregator artifacts whose only non-transitive content was the bundled Popper.js runtime, which is no longer needed. Downstream projects should depend on `patternfly-java-components` and `patternfly-java-layouts` directly.

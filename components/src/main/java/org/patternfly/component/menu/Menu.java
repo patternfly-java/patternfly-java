@@ -44,6 +44,7 @@ import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -432,22 +433,22 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
      * @return the number of visible (matching) items after filtering, or {@code -1} if the search was skipped because the menu
      * contains pending asynchronous items
      */
-    public int search(SearchFilter searchFilter, NoResults noResults, String value) {
+    public List<MenuItem> search(SearchFilter searchFilter, NoResults noResults, String value) {
         // no search if one of the menu lists is pending
         if (hasAsyncItems()) {
-            return -1;
+            return emptyList();
         }
 
-        int visibleItems = 0;
+        List<MenuItem> visibleItems = new ArrayList<>();
         for (MenuItem menuItem : items()) {
             boolean visible = searchFilter.test(menuItem, value);
             menuItem.classList().toggle(modifier(filtered), !visible);
             if (visible) {
-                visibleItems++;
+                visibleItems.add(menuItem);
             }
         }
         failSafeRemoveFromParent(noResultsItem);
-        if (visibleItems == 0) {
+        if (visibleItems.isEmpty()) {
             if (content != null && content.list != null) {
                 if (noResults != null) {
                     noResultsItem = noResults.noResults(content.list, value);

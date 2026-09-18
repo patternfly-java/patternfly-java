@@ -20,8 +20,10 @@ import java.util.Random;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.AsyncItems;
+import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
+import org.patternfly.component.menu.MenuType;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.component.textinputgroup.TextInputGroup;
@@ -32,7 +34,6 @@ import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Words;
 import elemental2.promise.Promise;
 
-import static elemental2.dom.DomGlobal.console;
 import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
@@ -124,15 +125,11 @@ public class TextInputGroupComponent extends SnippetPage {
             // @code-start:tig-filter-input
             FilterInput filterInput = filterInput("tig-filter-input-0").icon(search())
                     .allowDuplicates(false)
-                    .onAdd((fi, filter) -> {
-                        fi.removeIcon();
-                        console.log("Filter added: %s", filter.text());
-                    })
+                    .onAdd((fi, filter) -> fi.removeIcon())
                     .onRemove((fi, filter) -> {
                         if (fi.labelGroup().isEmpty()) {
                             fi.icon(search());
                         }
-                        console.log("Filter removed: %s", filter.text());
                     });
             filterInput.labelGroup().addItems(range(1, 12).boxed().collect(toList()), index ->
                     label(DEFAULT_TEXT_TO_IDENTIFIER.apply("Label " + index), "Label " + index)
@@ -154,7 +151,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 // @code-end:tig-autocomplete
         ));
 
-        addSnippet(new Snippet("tig-autocomplete-async", "Search with autocomplete (async)",
+        addSnippet(new Snippet("tig-autocomplete-async", "Filter with autocomplete (async)",
                 code("tig-autocomplete-async"), () -> {
             // @code-start:tig-autocomplete-async
             AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
@@ -165,13 +162,27 @@ public class TextInputGroupComponent extends SnippetPage {
                                     .collect(toList())),
                             1234 + new Random().nextInt(3456)));
 
+            Menu menu = menu(MenuType.menu, click).scrollable()
+                    .addContent(menuContent()
+                            .addList(menuList()
+                                    .addItems(asyncItems)));
+
+            FilterInput filterInput = filterInput("tig-autocomplete-async-0").icon(search())
+                    .allowDuplicates(false)
+                    .onAdd((fi, filter) -> {
+                        fi.removeIcon();
+                        menu.reset();
+                    })
+                    .onRemove((fi, filter) -> {
+                        if (fi.labelGroup().isEmpty()) {
+                            fi.icon(search());
+                        }
+                        menu.reset();
+                    })
+                    .add(menu);
 
             return div()
-                    .add(searchInput("tig-autocomplete-async-0").icon(search())
-                            .addMenu(menu(menu, click).scrollable()
-                                    .addContent(menuContent()
-                                            .addList(menuList()
-                                                    .addItems(asyncItems)))))
+                    .add(filterInput)
                     .element();
             // @code-end:tig-autocomplete-async
         }));

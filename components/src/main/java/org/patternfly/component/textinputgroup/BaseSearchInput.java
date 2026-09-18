@@ -22,10 +22,13 @@ import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
 import org.patternfly.component.menu.Menu;
+import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.SearchFilter;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
@@ -34,6 +37,7 @@ import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.KeyboardEvent;
 import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
@@ -42,20 +46,35 @@ import static elemental2.dom.DomGlobal.document;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
+import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.InputType.text;
+import static org.jboss.elemento.Key.ArrowRight;
 import static org.jboss.elemento.Key.Escape;
 import static org.jboss.elemento.Key.Tab;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.textinputgroup.TextInputGroupUtilities.textInputGroupUtilities;
+import static org.patternfly.core.Aria.hidden;
 import static org.patternfly.overlay.CssPositioning.anchorNameSupported;
 import static org.patternfly.overlay.Overlay.overlay;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.modifier;
+import static org.patternfly.style.Classes.textInput;
+import static org.patternfly.style.Classes.textInputGroup;
 import static org.patternfly.style.Placement.bottomStart;
 
-/** Base class for search input components within a {@link TextInputGroup}. */
+/**
+ * Base class for search input components within a {@link TextInputGroup}.
+ *
+ * <p>
+ * Provides core search input functionality including a clear button, customizable utility visibility, and optional typeahead
+ * support via an attached {@link Menu}. When a menu is added, the search input acts as an autocomplete: typing filters menu
+ * items, and selecting an item populates the input field.
+ * </p>
+ */
 public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends BaseTextInputGroup<T> implements
         Attachable,
         Expandable<HTMLElement, T> {
@@ -67,26 +86,30 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     protected final List<ComponentHandler<T>> onClear;
     protected ComponentHandler<T> defaultOnClear;
     protected BiFunction<T, String, Boolean> utilitiesVisibility;
+
     private final List<ToggleHandler<T>> toggleHandler;
     private final List<ComponentHandler<T>> loadedHandler;
+    private String hint;
     private boolean typeahead;
     private Menu menu;
     private Overlay overlay;
     private SearchFilter searchFilter;
     private StayOpenPredicate stayOpen;
+    private HTMLInputElement hintInput;
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
     private HandlerRegistration outsideClickHandler;
 
     protected BaseSearchInput(ComponentType componentType, String id) {
         super(componentType, id);
-        this.onClear = new ArrayList<>();
-        this.defaultOnClear = (e, si) -> si.value("");
-        this.utilitiesVisibility = (si, value) -> !value.isEmpty();
+        this.hint = null;
         this.typeahead = false;
-        this.searchFilter = SearchFilter.contains();
+        this.onClear = new ArrayList<>();
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
+        this.defaultOnClear = (e, si) -> si.value("");
+        this.utilitiesVisibility = (si, value) -> !value.isEmpty();
+        this.searchFilter = SearchFilter.contains();
         this.loadedHandler.add((e, c) -> search(value()));
 
         toggleUtilities(value());
@@ -210,7 +233,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     }
 
     /**
-     * Specifies a condition that determines whether the menu should remain open when the menu is clicked.
+     * Specifies a condition that determines whether the menu should remain open when a menu item is clicked.
      *
      * @param stayOpen a {@link Predicate} that evaluates an {@link Event} to determine if the menu remains open.
      * @return the current instance with the condition applied, enabling method chaining.
@@ -232,16 +255,32 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         return that();
     }
 
+    /**
+     * Adds a handler called when the menu has finished loading its items. This is relevant for menus with asynchronous item
+     * loading. By default, a loaded handler that triggers a search with the current value is already registered.
+     *
+     * @param loadedHandler a {@link ComponentHandler} to execute after the menu items have loaded.
+     */
     public T onLoaded(ComponentHandler<T> loadedHandler) {
         this.loadedHandler.add(loadedHandler);
         return that();
     }
 
+    /**
+     * Sets the search filter used to match menu items against the input value. Defaults to {@link SearchFilter#contains()}.
+     *
+     * @param searchFilter a {@link SearchFilter} that determines how menu items are matched during typeahead.
+     */
     public T onSearch(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
         return that();
     }
 
+    /**
+     * Adds a handler called when the typeahead menu is expanded or collapsed.
+     *
+     * @param toggleHandler a {@link ToggleHandler} that receives the toggle event and the current expanded state.
+     */
     public T onToggle(ToggleHandler<T> toggleHandler) {
         this.toggleHandler.add(toggleHandler);
         return that();
@@ -344,17 +383,38 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     }
 
     private void search(String value) {
-        int matching = menu.search(searchFilter, null, value);
-        if (matching > 0) {
-            expand(false);
-            if (matching == 1) {
-
-            } else {
-
-            }
-        } else {
+        List<MenuItem> matching = menu.search(searchFilter, null, value);
+        if (matching.isEmpty()) {
             collapse(false);
+        } else {
+            expand(false);
+            if (matching.size() == 1) {
+                hint = matching.get(0).text();
+                failSafeHintInput().value = hint;
+            } else {
+                clearHint();
+            }
         }
+    }
+
+    private HTMLInputElement failSafeHintInput() {
+        if (hintInput == null) {
+            String id = Id.build(inputElement.id, "hint");
+            hintInput = Elements.input(text).css(component(textInputGroup, textInput), modifier(Classes.hint))
+                    .id(id)
+                    .name(id)
+                    .disabled(true)
+                    .aria(hidden, true)
+                    .element();
+            insertFirst(textContainer, hintInput);
+        }
+        return hintInput;
+    }
+
+    private void clearHint() {
+        failSafeRemoveFromParent(hintInput);
+        hint = null;
+        hintInput = null;
     }
 
     // ------------------------------------------------------ internal event handlers
@@ -364,6 +424,12 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             if (Escape.match(event)) {
                 collapse();
                 return;
+            }
+            if (hint != null && ArrowRight.match(event)) {
+                event.preventDefault();
+                collapse();
+                value(hint);
+                clearHint();
             }
             if ((textContainer.contains((Node) event.target) || menu.element().contains((Node) event.target)) &&
                     Tab.match(event)) {
