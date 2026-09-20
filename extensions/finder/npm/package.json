@@ -23,7 +23,7 @@
   "license": "Apache-2.0",
   "main": "finder.css",
   "name": "@patternfly-java/finder",
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.5.1",
   "peerDependencies": {
     "@patternfly/patternfly": "^6.6.1"
   },
