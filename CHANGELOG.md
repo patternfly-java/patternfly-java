@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.10.1] - 2026-09-21
+
 ### Added
 
 - Add customizable loading, error, and "no items" indicator suppliers to `MenuList` and `Menu` with `loading()`, `error()`, and `noItems()` methods; pass `null` to disable any indicator
