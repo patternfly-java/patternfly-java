@@ -8,8 +8,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.10.1] - 2026-09-21
 
-## [0.10.1] - 2026-09-21
-
 ### Added
 
 - Add customizable loading, error, and "no items" indicator suppliers to `MenuList` and `Menu` with `loading()`, `error()`, and `noItems()` methods; pass `null` to disable any indicator
@@ -1258,7 +1256,6 @@ Stay tuned for more to come...
 -->
 
 [Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.1...HEAD
-[0.10.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.1...v0.10.1
 [0.10.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.9...v0.10.0
 [0.9.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.8...v0.9.9
