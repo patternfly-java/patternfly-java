@@ -5,11 +5,11 @@
     "@fortawesome/free-solid-svg-icons": "^7.3.1",
     "@patternfly/patternfly": "^6.6.1",
     "@patternfly/react-icons": "^6.6.1",
-    "@types/node": "^26.6.1",
+    "@types/node": "^26.6.2",
     "camelcase": "^9.0.0"
   },
   "name": "icons",
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.5.1",
   "private": true,
   "scripts": {
     "generate": "node src/scripts/generate.mjs"

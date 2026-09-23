@@ -1,6 +1,6 @@
 {
   "name": "patternfly-java-core",
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.5.1",
   "private": true,
   "scripts": {
     "generate-version": "node version.mjs"
