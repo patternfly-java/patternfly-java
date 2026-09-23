@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.patternfly</groupId>
         <artifactId>patternfly-java-code-parent</artifactId>
-        <version>0.10.1-SNAPSHOT</version>
+        <version>0.10.2-SNAPSHOT</version>
         <relativePath>../code-parent/pom.xml</relativePath>
     </parent>
 
@@ -33,7 +33,7 @@
     <description>PatternFly Java core components and layouts</description>
 
     <properties>
-        <version.jackson>3.2.2</version.jackson>
+        <version.jackson>3.2.3</version.jackson>
     </properties>
 
     <dependencies>
