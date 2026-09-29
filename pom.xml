@@ -26,7 +26,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>53</version>
+        <version>54</version>
     </parent>
 
     <groupId>org.patternfly</groupId>
@@ -92,7 +92,7 @@
 
         <!-- Plugin versions -->
         <version.central.publishing.plugin>0.11.0</version.central.publishing.plugin>
-        <version.degraph.plugin>4.0.3</version.degraph.plugin>
+        <version.degraph.plugin>4.0.5</version.degraph.plugin>
         <version.editorconfig.plugin>0.2.0</version.editorconfig.plugin>
         <version.frontend.plugin>2.0.2</version.frontend.plugin>
         <version.gwt.plugin>1.3.0</version.gwt.plugin>
