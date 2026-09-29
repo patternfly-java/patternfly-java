@@ -87,7 +87,7 @@ public class NotificationDrawer extends BaseComponent<HTMLElement, NotificationD
 
     @Override
     public NotificationDrawer that() {
-        return null;
+        return this;
     }
 
     // ------------------------------------------------------ events

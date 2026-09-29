@@ -287,7 +287,7 @@ public class Modal extends ComponentDelegate<HTMLElement, Modal> implements Atta
         if (closeHandler != null) {
             this.closeHandler.add(closeHandler);
         }
-        return null;
+        return this;
     }
 
     // ------------------------------------------------------ api

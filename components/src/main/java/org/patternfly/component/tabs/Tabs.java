@@ -534,7 +534,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
 
     public Tabs onClose(CloseHandler<Tab> closeHandler) {
         this.closeHandler.add(closeHandler);
-        return null;
+        return this;
     }
 
     @Override
