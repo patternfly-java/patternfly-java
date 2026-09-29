@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix builder methods in `Modal`, `ModalHeaderTitle`, `NotificationDrawer`, `Tab`, and `Tabs` that returned `null` instead of `this`
+
 ## [0.10.1] - 2026-09-21
 
 ### Added
