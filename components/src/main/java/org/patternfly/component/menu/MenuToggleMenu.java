@@ -36,6 +36,7 @@ import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Placement;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.KeyboardEvent;
@@ -77,6 +78,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     final MenuToggle menuToggle;
     final Overlay overlay;
     Menu menu;
+    boolean loadOnExpand;
     private final HTMLElement menuPopover;
     private final List<ToggleHandler<B>> toggleHandler;
     private final List<ComponentHandler<B>> loadedHandler;
@@ -90,6 +92,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
         super(componentType);
         this.menuToggle = menuToggle;
+        this.loadOnExpand = true;
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
 
@@ -238,7 +241,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
-            if (menu.hasAsyncItems()) {
+            if (loadOnExpand && menu.hasAsyncItems()) {
                 menu.load().then(__ -> {
                     loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                     return null;

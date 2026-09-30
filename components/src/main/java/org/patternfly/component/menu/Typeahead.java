@@ -15,6 +15,7 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 import elemental2.promise.Promise;
@@ -72,4 +73,20 @@ public interface Typeahead<M extends MenuToggleMenu<M>> {
      * @return the instance of the current type enabling method chaining.
      */
     M onNoResults(NoResults noResults);
+
+    /**
+     * Enables re-query-on-input mode: each input change triggers a debounced server request that replaces all menu items. The
+     * server is responsible for filtering.
+     *
+     * @param debounceMs the debounce timeout in milliseconds
+     */
+    M reQueryOnInput(int debounceMs);
+
+    /**
+     * Enables structural-reload mode: items are reloaded when the predicate returns {@code true}, and filtered locally between
+     * reloads.
+     *
+     * @param predicate receives (previousValue, currentValue), returns {@code true} to trigger reload
+     */
+    M reloadWhen(BiPredicate<String, String> predicate);
 }
