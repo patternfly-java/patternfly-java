@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.10.3] - 2026-09-30
+
 ### Changed
 
 - Rename `popover` GWT module source path to `overlay` to match the package rename from 0.10.0
@@ -1269,7 +1271,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.2...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.3...HEAD
+[0.10.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.2...v0.10.3
 [0.10.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.9...v0.10.0

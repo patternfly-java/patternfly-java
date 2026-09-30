@@ -19,7 +19,7 @@ card().flat().rounded().large()
         <dependency>
             <groupId>org.patternfly</groupId>
             <artifactId>patternfly-java-bom</artifactId>
-            <version>0.10.2</version>
+            <version>0.10.3</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
