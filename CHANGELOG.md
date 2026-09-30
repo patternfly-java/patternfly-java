@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `AsyncItemsController` delegate for safe async item loading with a generation counter that discards stale responses from concurrent loads and supports reset-during-pending
+- Add `reQueryOnInput(int debounceMs)` builder method to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead` for debounced server-side search-as-you-type
+- Add `reloadWhen(BiPredicate)` builder method to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead` for consumer-controlled reload with local filtering between reloads
+
+### Changed
+
+- Migrate `MenuList` and `TreeViewItem` async loading to `AsyncItemsController`, fixing concurrent-load bugs and reset-during-pending
+- Decouple overlay display from data loading in `BaseSearchInput.expand()` and `MenuToggleMenu.expand()` when in re-query mode
+
+### Fixed
+
+- Fix `MenuList.reset()` and `TreeViewItem.reset()` being no-ops when a load is in flight (status is `pending`)
+- Fix stale async load responses accumulating duplicate items when `reset()` + `load()` is called while a previous load is still in flight
+
 ## [0.10.3] - 2026-09-30
 
 ### Changed
