@@ -18,7 +18,7 @@ package org.patternfly.component.textinputgroup;
 import java.util.Objects;
 
 import org.patternfly.component.menu.Menu;
-import org.patternfly.component.menu.MenuToggle;
+
 import elemental2.dom.Event;
 
 /** Predicate that determines whether a menu should stay open after an interaction. */

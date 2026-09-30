@@ -18,12 +18,15 @@ package org.patternfly.component.textinputgroup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Callback;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.Scheduler;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
@@ -34,6 +37,7 @@ import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -96,6 +100,10 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     private SearchFilter searchFilter;
     private StayOpenPredicate stayOpen;
     private HTMLInputElement hintInput;
+    private int reQueryDebounce;
+    private BiPredicate<String, String> reloadPredicate;
+    private Callback debouncedReload;
+    private String previousValue = "";
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
     private HandlerRegistration outsideClickHandler;
@@ -113,7 +121,6 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
         toggleUtilities(value());
         onClear((e, si) -> clearHint());
-        onLoaded((e, c) -> search(value()));
         onKeyup((e, si, value) -> toggleUtilities(value));
         onInput((e, si, value) -> toggleUtilities(value));
         onChange((e, si, value) -> toggleUtilities(value));
@@ -132,10 +139,46 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             });
             onInput((e, c, value) -> {
                 if (value != null && !value.isEmpty()) {
-                    if (menu.hasAsyncItems()) {
-                        expand(false);
+                    if (reQueryDebounce > 0) {
+                        // UC2: re-query on each input (debounced)
+                        if (!expanded()) {
+                            overlay.show();
+                            Expandable.expand(element(), element(), null);
+                            outsideClickHandler = bind(document, click, this::onOutsideClick);
+                        }
+                        if (debouncedReload == null) {
+                            debouncedReload = Scheduler.debounce(reQueryDebounce, () -> {
+                                menu.reset();
+                                menu.load().then(__ -> {
+                                    menu.allowTabFirstItem();
+                                    loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                    return null;
+                                });
+                            });
+                        }
+                        debouncedReload.call();
+                    } else if (reloadPredicate != null) {
+                        // UC3: reload on structural change, filter locally between
+                        if (!expanded()) {
+                            expand(false);
+                        } else if (reloadPredicate.test(previousValue, value)) {
+                            menu.reset();
+                            menu.load().then(__ -> {
+                                search(value);
+                                loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                return null;
+                            });
+                        } else {
+                            search(value);
+                        }
+                        previousValue = value;
                     } else {
-                        search(value);
+                        // UC1: load once, filter locally (default)
+                        if (menu.hasAsyncItems()) {
+                            expand(false);
+                        } else {
+                            search(value);
+                        }
                     }
                 } else {
                     collapse(false);
@@ -245,6 +288,35 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         return that();
     }
 
+    /**
+     * Enables re-query-on-input mode: each input change triggers a debounced server request that replaces all menu items. The
+     * server is responsible for filtering — no client-side search is performed.
+     * <p>
+     * This mode decouples the overlay display from data loading: the overlay opens immediately on first input, but the actual
+     * data fetch is debounced by the specified timeout.
+     *
+     * @param debounceMs the debounce timeout in milliseconds; must be &gt; 0
+     */
+    public T reQueryOnInput(int debounceMs) {
+        this.reQueryDebounce = debounceMs;
+        return that();
+    }
+
+    /**
+     * Enables structural-reload mode: items are reloaded when the predicate returns {@code true} for the old and new input
+     * values, and filtered locally (via {@link Menu#search}) between reloads.
+     * <p>
+     * This is a hybrid of load-once and re-query: the initial load happens on first expand, but subsequent structural changes
+     * trigger a full reload. Between reloads, typing filters items client-side.
+     *
+     * @param predicate a predicate that receives (previousValue, currentValue) and returns {@code true} when a reload should be
+     *                  triggered
+     */
+    public T reloadWhen(BiPredicate<String, String> predicate) {
+        this.reloadPredicate = predicate;
+        return that();
+    }
+
     // ------------------------------------------------------ events
 
     /**
@@ -315,8 +387,9 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
-            if (menu.hasAsyncItems()) {
+            if (menu.hasAsyncItems() && reQueryDebounce == 0) {
                 menu.load().then(__ -> {
+                    search(value());
                     loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                     return null;
                 });
@@ -352,6 +425,9 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     public T value(String value, boolean fireEvent) {
         super.value(value, fireEvent);
         toggleUtilities(value);
+        if (reloadPredicate != null) {
+            previousValue = value;
+        }
         return that();
     }
 

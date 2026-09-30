@@ -15,8 +15,11 @@
  */
 package org.patternfly.component.menu;
 
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 
+import org.jboss.elemento.Callback;
+import org.jboss.elemento.Scheduler;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
@@ -65,12 +68,22 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
 
     private SearchFilter searchFilter;
     private NoResults noResults;
+    private int reQueryDebounce;
+    private BiPredicate<String, String> reloadPredicate;
+    private Callback debouncedReload;
+    private String previousValue = "";
 
     SingleTypeahead(BaseSearchInput<?> searchInput) {
         super(ComponentType.SingleTypeahead, MenuToggle.menuToggle(searchInput));
         this.searchFilter = SearchFilter.contains();
         this.noResults = NoResults.noResults();
-        onLoaded((e, c) -> menu.search(searchFilter, noResults, c.menuToggle.text()));
+        onLoaded((e, c) -> {
+            if (reQueryDebounce == 0) {
+                menu.search(searchFilter, noResults, c.menuToggle.text());
+            } else {
+                menu.allowTabFirstItem();
+            }
+        });
 
         typeaheadDefaults(this);
         menuToggle.searchInput()
@@ -78,11 +91,44 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    menu.search(searchFilter, noResults, value);
+                    if (reQueryDebounce == 0) {
+                        menu.search(searchFilter, noResults, value);
+                    }
                 })
                 .onInput((e, c, value) -> {
-                    expand(false);
-                    menu.search(searchFilter, noResults, value);
+                    if (value != null && !value.isEmpty()) {
+                        if (reQueryDebounce > 0) {
+                            expand(false);
+                            if (debouncedReload == null) {
+                                debouncedReload = Scheduler.debounce(reQueryDebounce, () -> {
+                                    menu.reset();
+                                    menu.load().then(__ -> {
+                                        menu.allowTabFirstItem();
+                                        return null;
+                                    });
+                                });
+                            }
+                            debouncedReload.call();
+                        } else if (reloadPredicate != null) {
+                            expand(false);
+                            if (reloadPredicate.test(previousValue, value)) {
+                                menu.reset();
+                                menu.load().then(__ -> {
+                                    menu.search(searchFilter, noResults, value);
+                                    menu.allowTabFirstItem();
+                                    return null;
+                                });
+                            } else {
+                                menu.search(searchFilter, noResults, value);
+                            }
+                            previousValue = value;
+                        } else {
+                            expand(false);
+                            menu.search(searchFilter, noResults, value);
+                        }
+                    } else {
+                        collapse(false);
+                    }
                 });
         stayOpen((e, mt, m) -> utilitiesClick(e));
     }
@@ -126,6 +172,19 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     @Override
     public SingleTypeahead onNoResults(NoResults noResults) {
         this.noResults = noResults;
+        return this;
+    }
+
+    @Override
+    public SingleTypeahead reQueryOnInput(int debounceMs) {
+        this.reQueryDebounce = debounceMs;
+        this.loadOnExpand = false;
+        return this;
+    }
+
+    @Override
+    public SingleTypeahead reloadWhen(BiPredicate<String, String> predicate) {
+        this.reloadPredicate = predicate;
         return this;
     }
 }
