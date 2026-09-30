@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Rename `popover` GWT module source path to `overlay` to match the package rename from 0.10.0
+
+### Upgrades
+
+- Upgrade Elemento from 2.5.7 to 2.5.9
+
 ## [0.10.2] - 2026-09-29
 
 ### Fixed
