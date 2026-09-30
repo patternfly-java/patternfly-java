@@ -82,7 +82,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     private int reQueryDebounce;
     private BiPredicate<String, String> reloadPredicate;
     private Callback debouncedReload;
-    private String previousValue;
+    private String previousValue = "";
 
     MultiTypeahead(BaseFilterInput<?> filterInput) {
         super(ComponentType.MultiTypeahead, MenuToggle.menuToggle(filterInput));
@@ -123,8 +123,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                             debouncedReload.call();
                         } else if (reloadPredicate != null) {
                             expand(false);
-                            if (previousValue != null
-                                    && reloadPredicate.test(previousValue, value)) {
+                            if (reloadPredicate.test(previousValue, value)) {
                                 menu.reset();
                                 menu.load().then(__ -> {
                                     menu.search(searchFilter, noResults, value);

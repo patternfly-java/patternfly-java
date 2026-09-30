@@ -111,7 +111,7 @@ public class AsyncItemsController<C, S> {
                     })
                     .catch_(err -> {
                         if (currentGeneration != generation) {
-                            return Promise.reject(err);
+                            return Promise.resolve((Iterable<S>) emptyList());
                         }
                         status = rejected;
                         if (onAfter != null) {

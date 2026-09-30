@@ -71,7 +71,7 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     private int reQueryDebounce;
     private BiPredicate<String, String> reloadPredicate;
     private Callback debouncedReload;
-    private String previousValue;
+    private String previousValue = "";
 
     SingleTypeahead(BaseSearchInput<?> searchInput) {
         super(ComponentType.SingleTypeahead, MenuToggle.menuToggle(searchInput));
@@ -111,8 +111,7 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
                             debouncedReload.call();
                         } else if (reloadPredicate != null) {
                             expand(false);
-                            if (previousValue != null
-                                    && reloadPredicate.test(previousValue, value)) {
+                            if (reloadPredicate.test(previousValue, value)) {
                                 menu.reset();
                                 menu.load().then(__ -> {
                                     menu.search(searchFilter, noResults, value);

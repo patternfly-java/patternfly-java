@@ -103,7 +103,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     private int reQueryDebounce;
     private BiPredicate<String, String> reloadPredicate;
     private Callback debouncedReload;
-    private String previousValue;
+    private String previousValue = "";
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
     private HandlerRegistration outsideClickHandler;
@@ -161,8 +161,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                         // UC3: reload on structural change, filter locally between
                         if (!expanded()) {
                             expand(false);
-                        } else if (previousValue != null
-                                && reloadPredicate.test(previousValue, value)) {
+                        } else if (reloadPredicate.test(previousValue, value)) {
                             menu.reset();
                             menu.load().then(__ -> {
                                 search(value);
