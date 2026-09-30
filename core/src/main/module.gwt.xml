@@ -21,6 +21,6 @@
     <source path="dataprovider"/>
     <source path="filter"/>
     <source path="handler"/>
-    <source path="popover"/>
+    <source path="overlay"/>
     <source path="style"/>
 </module>
