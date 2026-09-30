@@ -32,6 +32,7 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Words;
+
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;

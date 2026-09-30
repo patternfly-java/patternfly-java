@@ -24,7 +24,6 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 
-import elemental2.dom.Event;
 import elemental2.promise.Promise;
 
 import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
