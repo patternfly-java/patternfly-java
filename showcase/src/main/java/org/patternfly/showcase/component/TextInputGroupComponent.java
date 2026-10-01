@@ -15,31 +15,22 @@
  */
 package org.patternfly.showcase.component;
 
-import java.util.Random;
-
-import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
-import org.patternfly.async.AsyncItems;
-import org.patternfly.component.menu.Menu;
-import org.patternfly.component.menu.MenuItem;
-import org.patternfly.component.menu.MenuList;
-import org.patternfly.component.menu.MenuType;
 import org.patternfly.component.textinputgroup.FilterInput;
 import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
-import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.showcase.model.DummyJson;
+import org.patternfly.showcase.model.OpenLibrary;
 import org.patternfly.showcase.model.Words;
 
-import elemental2.promise.Promise;
-
-import static elemental2.dom.DomGlobal.setTimeout;
-import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 import static org.jboss.elemento.Elements.div;
+import static org.patternfly.async.ReloadStrategy.everyInput;
+import static org.patternfly.async.ReloadStrategy.structuralChange;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
@@ -71,7 +62,11 @@ public class TextInputGroupComponent extends SnippetPage {
         super(components.get("text-input-group"));
 
         startExamples();
+
+        // ------------------------------------------------------ basic
+
         addSnippet(new Snippet("tig-basic", "Basic",
+                "A basic text input group with a single text field.",
                 code("tig-basic"), () ->
                 // @code-start:tig-basic
                 div()
@@ -81,6 +76,7 @@ public class TextInputGroupComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("tig-disabled", "Disabled",
+                "A disabled text input group prevents user interaction.",
                 code("tig-disabled"), () ->
                 // @code-start:tig-disabled
                 div()
@@ -91,6 +87,7 @@ public class TextInputGroupComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("tig-search-input", "Utilities and icon",
+                "A search input adds a search icon and a clear button that appears when text is entered.",
                 code("tig-search-input"), () ->
                 // @code-start:tig-search-input
                 div()
@@ -100,6 +97,7 @@ public class TextInputGroupComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("tig-validation", "With validation",
+                "Text input groups support success, warning, and error validation states.",
                 code("tig-validation"), () ->
                 // @code-start:tig-validation
                 div()
@@ -121,7 +119,10 @@ public class TextInputGroupComponent extends SnippetPage {
                 // @code-end:tig-validation
         ));
 
+        // ------------------------------------------------------ filter input
+
         addSnippet(new Snippet("tig-filter-input", "Filters (no duplicates)",
+                "A filter input manages a group of labels. Duplicates can be prevented with allowDuplicates(false).",
                 code("tig-filter-input"), () -> {
             // @code-start:tig-filter-input
             FilterInput filterInput = filterInput("tig-filter-input-0").icon(search())
@@ -139,7 +140,10 @@ public class TextInputGroupComponent extends SnippetPage {
             // @code-end:tig-filter-input
         }));
 
+        // ------------------------------------------------------ autocomplete
+
         addSnippet(new Snippet("tig-autocomplete", "Search with autocomplete",
+                "A search input with an attached menu providing autocomplete suggestions. Items are loaded once and filtered locally as you type.",
                 code("tig-autocomplete"), () ->
                 // @code-start:tig-autocomplete
                 div().add(searchInput("tig-autocomplete-0").icon(search())
@@ -152,40 +156,43 @@ public class TextInputGroupComponent extends SnippetPage {
                 // @code-end:tig-autocomplete
         ));
 
-        addSnippet(new Snippet("tig-autocomplete-async", "Filter with autocomplete (async)",
-                code("tig-autocomplete-async"), () -> {
-            // @code-start:tig-autocomplete-async
-            AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
-                    setTimeout(__ -> res.onInvoke(stream(LoremIpsum.words(100).split(" "))
-                                    .distinct()
-                                    .sorted()
-                                    .map(word -> menuItem(Id.build("item-", word), word))
-                                    .collect(toList())),
-                            1234 + new Random().nextInt(3456)));
+        addSnippet(new Snippet("tig-autocomplete-debounce", "Search with autocomplete (debounce)",
+                "Using everyInput(300), products are fetched from dummyjson.com on each keystroke (debounced at 300ms). The server handles all filtering.",
+                code("tig-autocomplete-debounce"), () -> {
+            // @code-start:tig-autocomplete-debounce
+            SearchInput si = searchInput("tig-autocomplete-debounce-0").icon(search());
+            si.reloadOn(everyInput(300))
+                    .add(menu(menu, click).scrollable()
+                            .addContent(menuContent()
+                                    .addList(menuList()
+                                            .addItems(list -> DummyJson.searchProducts(si.value())))));
+            return div().add(si).element();
+            // @code-end:tig-autocomplete-debounce
+        }));
 
-            Menu menu = menu(MenuType.menu, click).scrollable()
-                    .addContent(menuContent()
-                            .addList(menuList()
-                                    .addItems(asyncItems)));
-
-            FilterInput filterInput = filterInput("tig-autocomplete-async-0").icon(search())
-                    .allowDuplicates(false)
-                    .onAdd((fi, filter) -> {
-                        fi.removeIcon();
-                        menu.reset();
-                    })
-                    .onRemove((fi, filter) -> {
-                        if (fi.labelGroup().isEmpty()) {
-                            fi.icon(search());
+        addSnippet(new Snippet("tig-autocomplete-structural", "Search with autocomplete (structural change)",
+                "Using structuralChange(), books reload from openlibrary.org when the query first reaches 5 characters and again whenever a '/' is added or removed. Between reloads, results are filtered locally. Try typing 'tolkien/rings'.",
+                code("tig-autocomplete-structural"), () -> {
+            // @code-start:tig-autocomplete-structural
+            SearchInput si = searchInput("tig-autocomplete-structural-0").icon(search());
+            si.onFilter((item, query) -> {
+                        String text = item.text().toLowerCase();
+                        for (String term : query.replace("/", " ").trim().toLowerCase().split("\\s+")) {
+                            if (!term.isEmpty() && !text.contains(term)) {
+                                return false;
+                            }
                         }
-                        menu.reset();
+                        return true;
                     })
-                    .add(menu);
-
-            return div()
-                    .add(filterInput)
-                    .element();
-            // @code-end:tig-autocomplete-async
+                    .reloadOn(structuralChange((prev, curr) ->
+                            (prev.length() < 5 && curr.length() >= 5) ||
+                                    countChar(prev, '/') != countChar(curr, '/')))
+                    .add(menu(menu, click).scrollable()
+                            .addContent(menuContent()
+                                    .addList(menuList()
+                                            .addItems(list -> OpenLibrary.searchBooks(si.value())))));
+            return div().add(si).element();
+            // @code-end:tig-autocomplete-structural
         }));
 
         startApiDocs(TextInputGroup.class);
@@ -193,5 +200,15 @@ public class TextInputGroupComponent extends SnippetPage {
         addApiDoc(SearchInput.class, component);
         addApiDoc(FilterInput.class, component);
         addApiDoc(TextInputGroupUtilities.class, subcomponent);
+    }
+
+    private static int countChar(String s, char c) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            }
+        }
+        return count;
     }
 }

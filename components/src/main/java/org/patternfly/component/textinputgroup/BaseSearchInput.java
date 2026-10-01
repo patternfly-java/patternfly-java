@@ -167,7 +167,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                         } else if (reloadStrategy.predicate().test(previousValue, value)) {
                             menu.reset();
                             menu.load().then(__ -> {
-                                search(value);
+                                search(value());
                                 loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                                 return null;
                             });

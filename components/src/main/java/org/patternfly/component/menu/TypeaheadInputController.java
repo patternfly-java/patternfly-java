@@ -16,6 +16,7 @@
 package org.patternfly.component.menu;
 
 import java.util.function.BiPredicate;
+import java.util.function.Supplier;
 
 import org.jboss.elemento.Callback;
 import org.jboss.elemento.Scheduler;
@@ -57,7 +58,7 @@ class TypeaheadInputController {
         }
     }
 
-    void handleInput(String value, Menu menu, Runnable expand, Runnable collapse) {
+    void handleInput(String value, Supplier<String> liveValue, Menu menu, Runnable expand, Runnable collapse) {
         if (value != null && !value.isEmpty()) {
             if (isDebounceMode()) {
                 expand.run();
@@ -76,7 +77,7 @@ class TypeaheadInputController {
                 if (reloadStrategy.predicate().test(previousValue, value)) {
                     menu.reset();
                     menu.load().then(__ -> {
-                        menu.search(searchFilter, noResults, value);
+                        menu.search(searchFilter, noResults, liveValue.get());
                         menu.allowTabFirstItem();
                         return null;
                     });

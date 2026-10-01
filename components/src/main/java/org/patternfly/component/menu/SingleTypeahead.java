@@ -79,7 +79,7 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
                     }
                     inputController.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> inputController.handleInput(value, menu,
+                .onInput((e, c, value) -> inputController.handleInput(value, c::value, menu,
                         () -> expand(false),
                         () -> collapse(false)));
         stayOpen((e, mt, m) -> utilitiesClick(e));

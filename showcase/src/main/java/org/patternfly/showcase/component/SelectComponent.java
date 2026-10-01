@@ -29,9 +29,13 @@ import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
+import org.patternfly.component.textinputgroup.FilterInput;
+import org.patternfly.component.textinputgroup.SearchInput;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
+import org.patternfly.showcase.model.DummyJson;
+import org.patternfly.showcase.model.OpenLibrary;
 import org.patternfly.style.Modifiers.FullWidth;
 
 import elemental2.promise.Promise;
@@ -42,6 +46,8 @@ import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
+import static org.patternfly.async.ReloadStrategy.everyInput;
+import static org.patternfly.async.ReloadStrategy.structuralChange;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
@@ -63,6 +69,8 @@ import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
+import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
+import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -80,7 +88,10 @@ public class SelectComponent extends SnippetPage {
                 .add(link(placeManager(), "/components/menus/menu").text("menu documentation"))
                 .add(" for a full list of properties that may be used to further customize a select menu."));
 
+        // ------------------------------------------------------ single select
+
         addSnippet(new Snippet("single-select", "Single select",
+                "A single select menu lets users choose one option from a dropdown list.",
                 code("single-select"), () ->
                 // @code-start:single-select
                 div()
@@ -95,6 +106,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("select-option-variants", "Select option variants",
+                "Select options support descriptions, icons, external links, and disabled states.",
                 code("select-option-variants"), () ->
                 // @code-start:select-option-variants
                 div()
@@ -118,6 +130,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("select-groups", "With grouped items",
+                "Items can be organized into named groups separated by dividers.",
                 code("select-groups"), () ->
                 // @code-start:select-groups
                 div()
@@ -141,6 +154,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("select-validation", "With validation",
+                "A validated select shows success, warning, or error states with helper text.",
                 code("select-validation"), () -> {
             // @code-start:select-validation
             MenuToggle menuToggle = menuToggle("Select a value");
@@ -171,7 +185,10 @@ public class SelectComponent extends SnippetPage {
             // @code-end:select-validation
         }));
 
+        // ------------------------------------------------------ checkbox select
+
         addSnippet(new Snippet("multi-select", "Checkbox select",
+                "A checkbox select allows multiple options to be selected via checkboxes.",
                 code("multi-select"), () ->
                 // @code-start:multi-select
                 div()
@@ -188,7 +205,10 @@ public class SelectComponent extends SnippetPage {
                 // @code-end:multi-select
         ));
 
+        // ------------------------------------------------------ single typeahead
+
         addSnippet(new Snippet("single-typeahead", "Typeahead",
+                "A typeahead filters options locally as you type. Items are loaded once and filtered in the browser.",
                 code("single-typeahead"), () ->
                 // @code-start:single-typeahead
                 div()
@@ -206,6 +226,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("single-typeahead-create", "Typeahead with create option",
+                "A typeahead with a create option lets users add new items not in the original list.",
                 code("single-typeahead-create"), () ->
                 // @code-start:single-typeahead-create
                 div()
@@ -225,6 +246,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("single-typeahead-async", "Typeahead (async)",
+                "Asynchronous typeahead loads items once after a delay and then filters them locally.",
                 code("single-typeahead-async"), () -> {
             // @code-start:single-typeahead-async
             AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
@@ -234,7 +256,6 @@ public class SelectComponent extends SnippetPage {
                                     .map(word -> menuItem(Id.build("item-", word), word))
                                     .collect(toList())),
                             1234 + new Random().nextInt(3456)));
-
 
             return div()
                     .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
@@ -247,7 +268,57 @@ public class SelectComponent extends SnippetPage {
             // @code-end:single-typeahead-async
         }));
 
+        addSnippet(new Snippet("single-typeahead-debounce", "Typeahead with debounce (every input)",
+                "Using everyInput(300), the server is queried on each keystroke (debounced at 300ms). Products are fetched from dummyjson.com.",
+                code("single-typeahead-debounce"), () -> {
+            // @code-start:single-typeahead-debounce
+            SearchInput si = searchInput("single-typeahead-debounce-0").plain()
+                    .placeholder("Search products...");
+            return div()
+                    .add(singleTypeahead(si)
+                            .applyToMenuToggle(FullWidth::fullWidth)
+                            .reloadOn(everyInput(300))
+                            .addMenu(singleSelectMenu().scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(list -> DummyJson.searchProducts(si.value()))))))
+                    .element();
+            // @code-end:single-typeahead-debounce
+        }));
+
+        addSnippet(new Snippet("single-typeahead-structural", "Typeahead with structural change reload",
+                "Using structuralChange(), items reload from the server when the query first reaches 5 characters and again whenever a '/' is added or removed. Between reloads, results are filtered locally. Books are fetched from openlibrary.org. Try typing 'tolkien/rings'.",
+                code("single-typeahead-structural"), () -> {
+            // @code-start:single-typeahead-structural
+            SearchInput si = searchInput("single-typeahead-structural-0").plain()
+                    .placeholder("Search books...");
+            return div()
+                    .add(singleTypeahead(si)
+                            .applyToMenuToggle(FullWidth::fullWidth)
+                            .onFilter((item, query) -> {
+                                String text = item.text().toLowerCase();
+                                for (String term : query.replace("/", " ").trim().toLowerCase().split("\\s+")) {
+                                    if (!term.isEmpty() && !text.contains(term)) {
+                                        return false;
+                                    }
+                                }
+                                return true;
+                            })
+                            .reloadOn(structuralChange((prev, curr) ->
+                                    (prev.length() < 5 && curr.length() >= 5) ||
+                                            countChar(prev, '/') != countChar(curr, '/')))
+                            .addMenu(singleSelectMenu().scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(list -> OpenLibrary.searchBooks(si.value()))))))
+                    .element();
+            // @code-end:single-typeahead-structural
+        }));
+
+        // ------------------------------------------------------ multi typeahead
+
         addSnippet(new Snippet("multi-typeahead", "Multiple typeahead with labels",
+                "A multi-select typeahead shows selected items as labels above the input.",
                 code("multi-typeahead"), () ->
                 // @code-start:multi-typeahead
                 div()
@@ -265,6 +336,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("multi-typeahead-create", "Multiple typeahead with create option",
+                "A multi-select typeahead with a create option for adding custom items.",
                 code("multi-typeahead-create"), () ->
                 // @code-start:multi-typeahead-create
                 div()
@@ -284,6 +356,7 @@ public class SelectComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("multi-typeahead-async", "Multiple typeahead (async)",
+                "Asynchronous multi-select typeahead loads items once after a delay and then filters them locally.",
                 code("multi-typeahead-async"), () -> {
             // @code-start:multi-typeahead-async
             AsyncItems<MenuList, MenuItem> asyncItems = c -> new Promise<>((res, rej) ->
@@ -293,7 +366,6 @@ public class SelectComponent extends SnippetPage {
                                     .map(word -> menuItem(Id.build("item-", word), word))
                                     .collect(toList())),
                             1234 + new Random().nextInt(3456)));
-
 
             return div()
                     .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
@@ -306,10 +378,38 @@ public class SelectComponent extends SnippetPage {
             // @code-end:multi-typeahead-async
         }));
 
+        addSnippet(new Snippet("multi-typeahead-debounce", "Multiple typeahead with debounce (every input)",
+                "Using everyInput(300), users are fetched from dummyjson.com on each keystroke (debounced at 300ms). Multiple selections are shown as labels.",
+                code("multi-typeahead-debounce"), () -> {
+            // @code-start:multi-typeahead-debounce
+            FilterInput fi = filterInput("multi-typeahead-debounce-0").plain()
+                    .placeholder("Search users...");
+            return div()
+                    .add(multiTypeahead(fi)
+                            .applyToMenuToggle(FullWidth::fullWidth)
+                            .reloadOn(everyInput(300))
+                            .addMenu(multiSelectMenu().scrollable()
+                                    .addContent(menuContent()
+                                            .addList(menuList()
+                                                    .addItems(list -> DummyJson.searchUsers(fi.value()))))))
+                    .element();
+            // @code-end:multi-typeahead-debounce
+        }));
+
         startApiDocs(MultiSelect.class);
         addApiDoc(MultiSelect.class, component);
         addApiDoc(MultiSelectMenu.class, component);
         addApiDoc(SingleSelect.class, component);
         addApiDoc(SingleSelectMenu.class, component);
+    }
+
+    private static int countChar(String s, char c) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            }
+        }
+        return count;
     }
 }
