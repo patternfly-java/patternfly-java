@@ -26,35 +26,32 @@ import java.util.function.Supplier;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncItemsController;
+import org.patternfly.async.AsyncStatus;
+import org.patternfly.async.HasAsyncItems;
 import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AsyncItems;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.Roles;
 
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
 import elemental2.promise.Promise;
 
-import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItem.skeletonMenuItem;
-import static org.patternfly.core.AsyncStatus.pending;
-import static org.patternfly.core.AsyncStatus.rejected;
-import static org.patternfly.core.AsyncStatus.resolved;
-import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.component;
@@ -64,7 +61,7 @@ import static org.patternfly.style.Classes.menu;
 /** A list of items within a {@link Menu} or {@link MenuGroup}. */
 /** A menu list within a {@link Menu} component. */
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
-        HasAsyncItems<HTMLUListElement, MenuList, MenuItem>,
+        HasAsyncItems<MenuList, MenuItem>,
         Ordered<HTMLUListElement, MenuList, MenuItem>,
         Attachable {
 
@@ -93,21 +90,20 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     final Map<String, MenuItem> items;
     private final AurHandler<MenuList, MenuItem> aur;
-    private AsyncStatus status;
+    private final AsyncItemsController<MenuList, MenuItem> async;
     private Supplier<MenuItem> loading;
     private Supplier<MenuItem> noItems;
     private Supplier<MenuItem> error;
     private MenuItem loadingItem;
     private MenuItem noItemsItem;
     private MenuItem errorItem;
-    private AsyncItems<MenuList, MenuItem> asyncItems;
     private Comparator<MenuItem> comparator;
 
     MenuList() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
-        this.status = static_;
+        this.async = new AsyncItemsController<>();
         this.loading = defaultLoading;
         this.noItems = defaultNoItems;
         this.error = defaultError;
@@ -145,8 +141,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public MenuList add(AsyncItems<MenuList, MenuItem> items) {
-        status = pending;
-        asyncItems = items;
+        async.set(items);
         return this;
     }
 
@@ -220,78 +215,80 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public Promise<Iterable<MenuItem>> load() {
-        if (status == pending && asyncItems != null) {
-            if (loading != null) {
-                loadingItem = loading.get();
-                addItem(loadingItem);
-            }
-
-            // load items
-            return asyncItems.apply(this)
-                    .then(items -> {
-                        status = resolved;
-                        failSafeRemoveFromParent(loadingItem);
-                        int count = 0;
-                        for (MenuItem item : items) {
-                            addItem(item);
-                            count++;
-                        }
-                        if (count == 0 && noItems != null) {
-                            noItemsItem = noItems.get();
-                            addItem(noItemsItem);
-                        }
-                        return Promise.resolve(items);
-                    })
-                    .catch_(err -> {
-                        status = rejected;
-                        failSafeRemoveFromParent(loadingItem);
-                        logger.error("Unable to load items for %o: %s", element(), err);
-                        if (error != null) {
-                            errorItem = error.get();
-                            addItem(errorItem);
-                        }
-                        return Promise.reject(err);
-                    });
-        } else {
-            return Promise.resolve(emptyList());
-        }
+        return async.load(this,
+                this::addItem,
+                () -> {
+                    if (noItems != null) {
+                        noItemsItem = noItems.get();
+                        addItem(noItemsItem);
+                    }
+                },
+                err -> {
+                    logger.error("Unable to load items for %o: %s", element(), err);
+                    if (error != null) {
+                        errorItem = error.get();
+                        addItem(errorItem);
+                    }
+                },
+                () -> {
+                    if (loading != null) {
+                        loadingItem = loading.get();
+                        addItem(loadingItem);
+                    }
+                },
+                () -> failSafeRemoveFromParent(loadingItem));
     }
 
     @Override
     public Promise<Iterable<MenuItem>> reload() {
-        if (status != pending) {
-            List<String> selected = new ArrayList<>();
-            for (MenuItem menuItem : this) {
-                if (menuItem.isSelected()) {
-                    selected.add(menuItem.identifier());
-                }
+        List<String> selected = new ArrayList<>();
+        for (MenuItem menuItem : this) {
+            if (menuItem.isSelected()) {
+                selected.add(menuItem.identifier());
             }
-            reset();
-            return load().then(value -> {
-                Menu menu = lookupComponent(true);
-                if (menu != null) {
-                    for (String identifier : selected) {
-                        menu.select(identifier, true, false);
-                    }
-                }
-                return Promise.resolve(value);
-            });
-        } else {
-            return Promise.resolve(emptyList());
         }
+        return async.reload(this,
+                this::addItem,
+                () -> {
+                    if (noItems != null) {
+                        noItemsItem = noItems.get();
+                        addItem(noItemsItem);
+                    }
+                },
+                err -> {
+                    logger.error("Unable to load items for %o: %s", element(), err);
+                    if (error != null) {
+                        errorItem = error.get();
+                        addItem(errorItem);
+                    }
+                },
+                () -> {
+                    if (loading != null) {
+                        loadingItem = loading.get();
+                        addItem(loadingItem);
+                    }
+                },
+                () -> failSafeRemoveFromParent(loadingItem),
+                this::internalClear)
+                .then(value -> {
+                    Menu menu = lookupComponent(true);
+                    if (menu != null) {
+                        for (String identifier : selected) {
+                            menu.select(identifier, true, false);
+                        }
+                    }
+                    return Promise.resolve(value);
+                });
     }
 
     @Override
     public void reset() {
-        if (status == resolved || status == rejected) {
-            status = pending;
-            internalClear();
-        }
+        async.reset(this::internalClear);
     }
 
     @Override
     public AsyncStatus status() {
-        return status;
+        return async.status();
     }
 
     @Override
@@ -336,9 +333,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public void clear() {
-        if (status == static_) {
+        if (async.status() == static_) {
             internalClear();
-        } else if (status == resolved || status == rejected || status == pending) {
+        } else {
             reset();
         }
     }

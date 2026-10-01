@@ -27,18 +27,19 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncItemsController;
+import org.patternfly.async.AsyncStatus;
+import org.patternfly.async.HasAsyncItems;
 import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AsyncItems;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
@@ -58,7 +59,6 @@ import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static java.util.Collections.emptyList;
 import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -74,16 +74,15 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.async.AsyncStatus.pending;
+import static org.patternfly.async.AsyncStatus.resolved;
+import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.core.AsyncStatus.pending;
-import static org.patternfly.core.AsyncStatus.rejected;
-import static org.patternfly.core.AsyncStatus.resolved;
-import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.group;
@@ -113,7 +112,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         Disabled<HTMLLIElement, TreeViewItem>,
         ElementTextMethods<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
-        HasAsyncItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
+        HasAsyncItems<TreeViewItem, TreeViewItem>,
         HasIdentifier<HTMLLIElement, TreeViewItem>,
         HasItems<HTMLLIElement, TreeViewItem, TreeViewItem> {
 
@@ -155,7 +154,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     HTMLElement tabElement;
     private String text;
     private boolean domFinished;
-    private AsyncStatus status;
+    private final AsyncItemsController<TreeViewItem, TreeViewItem> async;
     private Element icon;
     private Element expandedIcon;
     private HTMLElement nodeElement;
@@ -164,7 +163,6 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     private HTMLElement iconContainer;
     private HTMLInputElement checkboxElement;
     private final List<ToggleHandler<TreeViewItem>> toggleHandler;
-    private AsyncItems<TreeViewItem, TreeViewItem> asyncItems;
     private final AurHandler<TreeViewItem, TreeViewItem> aur;
 
     TreeViewItem(String identifier) {
@@ -176,7 +174,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 .element());
         this.identifier = identifier;
         this.domFinished = false;
-        this.status = static_;
+        this.async = new AsyncItemsController<>();
         this.items = new LinkedHashMap<>();
         this.data = new HashMap<>();
         this.buttonElements = new ArrayList<>();
@@ -202,8 +200,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public TreeViewItem add(AsyncItems<TreeViewItem, TreeViewItem> items) {
-        status = pending;
-        asyncItems = items;
+        async.set(items);
         return this;
     }
 
@@ -347,76 +344,86 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public Promise<Iterable<TreeViewItem>> load() {
-        if (status == pending && asyncItems != null) {
-            // show a loading indicator after a given timeout
-            TreeViewItem[] loadingItem = new TreeViewItem[1];
-            double handle = setTimeout(__ -> {
-                loadingItem[0] = loading.get();
-                loadingItem[0].finishDOM(tv);
-                childrenElement.appendChild(loadingItem[0].element());
-            }, LOADING_TIMEOUT);
-
-            // load items
-            return asyncItems.apply(this)
-                    .then(items -> {
-                        status = resolved;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        for (TreeViewItem child : items) {
-                            addItem(child);
-                        }
-                        if (this.items.isEmpty()) {
-                            failSafeRemoveFromParent(toggleElement);
-                            collapse(false);
-                        }
-                        return Promise.resolve(items);
-                    })
-                    .catch_(error -> {
-                        status = rejected;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
-                        TreeViewItem errorItem = TreeViewItem.error.get();
-                        errorItem.finishDOM(tv);
-                        childrenElement.appendChild(errorItem.element());
-                        return Promise.reject(error);
-                    });
-        } else {
-            return Promise.resolve(emptyList());
-        }
+        final double[] handle = {0};
+        final TreeViewItem[] loadingItem = new TreeViewItem[1];
+        return async.load(this,
+                this::addItem,
+                () -> {
+                    failSafeRemoveFromParent(toggleElement);
+                    collapse(false);
+                },
+                err -> {
+                    logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
+                    TreeViewItem errorItem = TreeViewItem.error.get();
+                    errorItem.finishDOM(tv);
+                    childrenElement.appendChild(errorItem.element());
+                },
+                () -> handle[0] = setTimeout(__ -> {
+                    loadingItem[0] = loading.get();
+                    loadingItem[0].finishDOM(tv);
+                    childrenElement.appendChild(loadingItem[0].element());
+                }, LOADING_TIMEOUT),
+                () -> {
+                    clearTimeout(handle[0]);
+                    failSafeRemoveFromParent(loadingItem[0]);
+                });
     }
 
     @Override
     public Promise<Iterable<TreeViewItem>> reload() {
-        if (status != pending) {
-            boolean expanded = expanded();
-            reset();
-            return load().then(items -> {
-                if (expanded) {
-                    expand(false);
-                }
-                return Promise.resolve(items);
-            });
-        } else {
-            return Promise.resolve(emptyList());
-        }
+        boolean wasExpanded = expanded();
+        final double[] handle = {0};
+        final TreeViewItem[] loadingItem = new TreeViewItem[1];
+        return async.reload(this,
+                this::addItem,
+                () -> {
+                    failSafeRemoveFromParent(toggleElement);
+                    collapse(false);
+                },
+                err -> {
+                    logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
+                    TreeViewItem errorItem = TreeViewItem.error.get();
+                    errorItem.finishDOM(tv);
+                    childrenElement.appendChild(errorItem.element());
+                },
+                () -> handle[0] = setTimeout(__ -> {
+                    loadingItem[0] = loading.get();
+                    loadingItem[0].finishDOM(tv);
+                    childrenElement.appendChild(loadingItem[0].element());
+                }, LOADING_TIMEOUT),
+                () -> {
+                    clearTimeout(handle[0]);
+                    failSafeRemoveFromParent(loadingItem[0]);
+                },
+                () -> {
+                    internalClear();
+                    collapse(false);
+                    if (domFinished && !containerElement.contains(toggleElement)) {
+                        insertFirst(containerElement, toggleElement);
+                    }
+                })
+                .then(items -> {
+                    if (wasExpanded) {
+                        expand(false);
+                    }
+                    return Promise.resolve(items);
+                });
     }
 
     @Override
     public void reset() {
-        if (status == resolved || status == rejected) {
-            status = pending;
+        async.reset(() -> {
             internalClear();
             collapse(false);
             if (domFinished && !containerElement.contains(toggleElement)) {
                 insertFirst(containerElement, toggleElement);
             }
-        }
+        });
     }
 
     @Override
     public AsyncStatus status() {
-        return status;
+        return async.status();
     }
 
     @Override
@@ -474,9 +481,9 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public void clear() {
-        if (status == static_) {
+        if (async.status() == static_) {
             internalClear();
-        } else if (status == resolved || status == rejected || status == pending) {
+        } else {
             reset();
         }
     }
@@ -508,7 +515,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                         .attr(tabindex, -1)
                         .on(click, e -> {
                             load();
-                            if (status == pending || !items.isEmpty()) {
+                            if (async.status() == pending || !items.isEmpty()) {
                                 tv.toggle(this);
                             }
                             tv.select(this);
@@ -584,7 +591,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         contentElement.appendChild(nodeElement);
         nodeElement.appendChild(containerElement);
         containerElement.appendChild(textElement);
-        if (status == pending || !items.isEmpty()) {
+        if (async.status() == pending || !items.isEmpty()) {
             insertFirst(containerElement, toggleElement);
         }
         domFinished = true;
@@ -615,7 +622,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     void markSelected(TreeViewType type, boolean selected) {
         if (domFinished) {
             tabElement.tabIndex = selected ? 0 : -1;
-            if ((type == default_ && status == resolved && items.isEmpty()) || type == selectableItems) {
+            if ((type == default_ && async.status() == resolved && items.isEmpty()) || type == selectableItems) {
                 nodeElement.classList.toggle(modifier(current), selected);
             } else if (checkboxElement != null && type == checkboxes) {
                 // ↓ (un)check child items

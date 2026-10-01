@@ -17,6 +17,7 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
+import org.patternfly.async.ReloadStrategy;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
@@ -63,14 +64,12 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
 
     // ------------------------------------------------------ instance
 
-    private SearchFilter searchFilter;
-    private NoResults noResults;
+    private final TypeaheadInputController inputController;
 
     SingleTypeahead(BaseSearchInput<?> searchInput) {
         super(ComponentType.SingleTypeahead, MenuToggle.menuToggle(searchInput));
-        this.searchFilter = SearchFilter.contains();
-        this.noResults = NoResults.noResults();
-        onLoaded((e, c) -> menu.search(searchFilter, noResults, c.menuToggle.text()));
+        this.inputController = new TypeaheadInputController();
+        onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         menuToggle.searchInput()
@@ -78,12 +77,11 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    menu.search(searchFilter, noResults, value);
+                    inputController.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> {
-                    expand(false);
-                    menu.search(searchFilter, noResults, value);
-                });
+                .onInput((e, c, value) -> inputController.handleInput(value, menu,
+                        () -> expand(false),
+                        () -> collapse(false)));
         stayOpen((e, mt, m) -> utilitiesClick(e));
     }
 
@@ -118,14 +116,21 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     // ------------------------------------------------------ events
 
     @Override
-    public SingleTypeahead onSearch(SearchFilter searchFilter) {
-        this.searchFilter = searchFilter;
+    public SingleTypeahead onFilter(SearchFilter searchFilter) {
+        inputController.searchFilter(searchFilter);
         return this;
     }
 
     @Override
     public SingleTypeahead onNoResults(NoResults noResults) {
-        this.noResults = noResults;
+        inputController.noResults(noResults);
+        return this;
+    }
+
+    @Override
+    public SingleTypeahead reloadOn(ReloadStrategy strategy) {
+        inputController.reloadOn(strategy);
+        this.loadOnExpand = false;
         return this;
     }
 }

@@ -13,27 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component.textinputgroup;
+package org.patternfly.component;
 
 import java.util.Objects;
 
 import org.patternfly.component.menu.Menu;
-import org.patternfly.component.menu.MenuToggle;
+
 import elemental2.dom.Event;
 
 /** Predicate that determines whether a menu should stay open after an interaction. */
 @FunctionalInterface
-public interface StayOpenPredicate {
+public interface StayOpenPredicate<C> {
 
-    boolean test(Event event, BaseSearchInput<?> searchInput, Menu menu);
+    boolean test(Event event, C component, Menu menu);
 
-    default StayOpenPredicate and(StayOpenPredicate other) {
+    default StayOpenPredicate<C> and(StayOpenPredicate<C> other) {
         Objects.requireNonNull(other);
-        return (event, searchInput, menu) -> test(event, searchInput, menu) && other.test(event, searchInput, menu);
+        return (event, component, menu) -> test(event, component, menu) && other.test(event, component, menu);
     }
 
-    default StayOpenPredicate or(StayOpenPredicate other) {
+    default StayOpenPredicate<C> or(StayOpenPredicate<C> other) {
         Objects.requireNonNull(other);
-        return (event, searchInput, menu) -> test(event, searchInput, menu) || other.test(event, searchInput, menu);
+        return (event, component, menu) -> test(event, component, menu) || other.test(event, component, menu);
     }
 }

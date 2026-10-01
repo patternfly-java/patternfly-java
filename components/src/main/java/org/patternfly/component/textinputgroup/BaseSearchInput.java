@@ -18,22 +18,28 @@ package org.patternfly.component.textinputgroup;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
+import org.jboss.elemento.Callback;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.jboss.elemento.Scheduler;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.ReloadStrategy;
+import org.patternfly.async.Reloadable;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.StayOpenPredicate;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
+import org.patternfly.component.menu.NoResults;
 import org.patternfly.component.menu.SearchFilter;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
@@ -77,7 +83,8 @@ import static org.patternfly.style.Placement.bottomStart;
  */
 public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends BaseTextInputGroup<T> implements
         Attachable,
-        Expandable<HTMLElement, T> {
+        Expandable<HTMLElement, T>,
+        Reloadable<T> {
 
     // ------------------------------------------------------ instance
 
@@ -89,13 +96,17 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
     private final List<ToggleHandler<T>> toggleHandler;
     private final List<ComponentHandler<T>> loadedHandler;
-    private String hint;
     private boolean typeahead;
+    private String hint;
+    private String previousValue;
     private Menu menu;
     private Overlay overlay;
     private SearchFilter searchFilter;
-    private StayOpenPredicate stayOpen;
+    private NoResults noResults;
+    private StayOpenPredicate<BaseSearchInput<T>> stayOpen;
     private HTMLInputElement hintInput;
+    private ReloadStrategy reloadStrategy;
+    private Callback debouncedReload;
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
     private HandlerRegistration outsideClickHandler;
@@ -104,6 +115,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         super(componentType, id);
         this.hint = null;
         this.typeahead = false;
+        this.previousValue = "";
         this.onClear = new ArrayList<>();
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
@@ -113,7 +125,6 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
         toggleUtilities(value());
         onClear((e, si) -> clearHint());
-        onLoaded((e, c) -> search(value()));
         onKeyup((e, si, value) -> toggleUtilities(value));
         onInput((e, si, value) -> toggleUtilities(value));
         onChange((e, si, value) -> toggleUtilities(value));
@@ -132,10 +143,43 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             });
             onInput((e, c, value) -> {
                 if (value != null && !value.isEmpty()) {
-                    if (menu.hasAsyncItems()) {
-                        expand(false);
+                    if (isDebounceMode()) {
+                        if (!expanded()) {
+                            overlay.show();
+                            Expandable.expand(element(), element(), null);
+                            outsideClickHandler = bind(document, click, this::onOutsideClick);
+                        }
+                        if (debouncedReload == null) {
+                            debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () -> {
+                                menu.reset();
+                                menu.load().then(__ -> {
+                                    menu.allowTabFirstItem();
+                                    loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                    return null;
+                                });
+                            });
+                        }
+                        debouncedReload.call();
+                    } else if (isStructuralChangeMode()) {
+                        if (!expanded()) {
+                            expand(false);
+                        } else if (reloadStrategy.predicate().test(previousValue, value)) {
+                            menu.reset();
+                            menu.load().then(__ -> {
+                                search(value);
+                                loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                return null;
+                            });
+                        } else {
+                            search(value);
+                        }
+                        previousValue = value;
                     } else {
-                        search(value);
+                        if (menu.hasAsyncItems()) {
+                            expand(false);
+                        } else {
+                            search(value);
+                        }
                     }
                 } else {
                     collapse(false);
@@ -237,11 +281,19 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     /**
      * Specifies a condition that determines whether the menu should remain open when a menu item is clicked.
      *
-     * @param stayOpen a {@link Predicate} that evaluates an {@link Event} to determine if the menu remains open.
+     * @param stayOpen a {@link StayOpenPredicate} that evaluates an {@link Event} to determine if the menu remains open.
      * @return the current instance with the condition applied, enabling method chaining.
      */
-    public T stayOpen(StayOpenPredicate stayOpen) {
+    public T stayOpen(StayOpenPredicate<BaseSearchInput<T>> stayOpen) {
         this.stayOpen = stayOpen;
+        return that();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public T reloadOn(ReloadStrategy strategy) {
+        this.reloadStrategy = strategy;
+        this.debouncedReload = null;
         return that();
     }
 
@@ -259,7 +311,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
 
     /**
      * Adds a handler called when the menu has finished loading its items. This is relevant for menus with asynchronous item
-     * loading. By default, a loaded handler that triggers a search with the current value is already registered.
+     * loading.
      *
      * @param loadedHandler a {@link ComponentHandler} to execute after the menu items have loaded.
      */
@@ -269,12 +321,26 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     }
 
     /**
-     * Sets the search filter used to match menu items against the input value. Defaults to {@link SearchFilter#contains()}.
+     * Sets the filter used to match existing menu items against the current input value. Defaults to
+     * {@link SearchFilter#contains()}. This filter is used for local filtering in the default strategy and in the
+     * {@link ReloadStrategy#structuralChange(java.util.function.BiPredicate) structuralChange} strategy between reloads.
      *
-     * @param searchFilter a {@link SearchFilter} that determines how menu items are matched during typeahead.
+     * @param searchFilter a {@link SearchFilter} that receives a menu item and the search query, returning {@code true} for
+     *                     items that match.
      */
-    public T onSearch(SearchFilter searchFilter) {
+    public T onFilter(SearchFilter searchFilter) {
         this.searchFilter = searchFilter;
+        return that();
+    }
+
+    /**
+     * Configures the behavior for generating a "no results" menu item when no matching items are found for the given input
+     * text.
+     *
+     * @param noResults a {@link NoResults} implementation responsible for creating the "no results" menu item.
+     */
+    public T onNoResults(NoResults noResults) {
+        this.noResults = noResults;
         return that();
     }
 
@@ -315,8 +381,9 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
-            if (menu.hasAsyncItems()) {
+            if (menu.hasAsyncItems() && !isDebounceMode()) {
                 menu.load().then(__ -> {
+                    search(value());
                     loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                     return null;
                 });
@@ -352,6 +419,9 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     public T value(String value, boolean fireEvent) {
         super.value(value, fireEvent);
         toggleUtilities(value);
+        if (isStructuralChangeMode()) {
+            previousValue = value;
+        }
         return that();
     }
 
@@ -384,7 +454,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
     }
 
     private void search(String value) {
-        List<MenuItem> matching = menu.search(searchFilter, null, value);
+        List<MenuItem> matching = menu.search(searchFilter, noResults, value);
         if (matching.isEmpty()) {
             collapse(false);
             clearHint();
@@ -419,6 +489,14 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             hint = null;
             hintInput = null;
         }
+    }
+
+    private boolean isDebounceMode() {
+        return reloadStrategy != null && reloadStrategy.debounceMs() > 0;
+    }
+
+    private boolean isStructuralChangeMode() {
+        return reloadStrategy != null && reloadStrategy.predicate() != null;
     }
 
     // ------------------------------------------------------ internal event handlers

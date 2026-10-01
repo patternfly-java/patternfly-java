@@ -6,6 +6,67 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-10-01
+
+### Added
+
+- Add `org.patternfly.async` package in the core module with `AsyncStatus`, `AsyncItems`, `AsyncItemsController`, `HasAsyncItems`, `Reloadable`, and `ReloadStrategy`
+- Add `ReloadStrategy` value class with `everyInput(int)` and `structuralChange(BiPredicate)` factory methods to make the three typeahead reload modes explicit and mutually exclusive
+- Add `Reloadable` interface with a single `reloadOn(ReloadStrategy)` method, implemented by `Typeahead` and `BaseSearchInput`
+- Add `TypeaheadInputController` delegate to share typeahead input handling between `SingleTypeahead` and `MultiTypeahead`
+- Add `onNoResults(NoResults)` to `BaseSearchInput` for feature parity with typeahead components
+
+### Changed
+
+- Move `AsyncStatus` from `org.patternfly.core` to `org.patternfly.async`
+- Move `AsyncItems`, `AsyncItemsController`, and `HasAsyncItems` from `org.patternfly.component` to `org.patternfly.async`
+- Consolidate two package-private `StayOpenPredicate` interfaces into a single typed `org.patternfly.component.StayOpenPredicate<C>`
+- Rename `onSearch(SearchFilter)` to `onFilter(SearchFilter)` in `Typeahead` and `BaseSearchInput` to clarify it filters existing menu items
+- Replace `reQueryOnInput(int)` and `reloadWhen(BiPredicate)` with `reloadOn(ReloadStrategy)` in `Typeahead` and `BaseSearchInput`
+
+### Removed
+
+- Remove unused `SearchFilter.noResults()` static method (superseded by the `NoResults` interface)
+
+### Fixed
+
+- Fix stale debounce callback surviving strategy changes in `TypeaheadInputController` and `BaseSearchInput`
+- Fix `Menu.search()` Javadoc claiming `int` return type when method returns `List<MenuItem>`
+
+## [0.11.0] - 2026-09-30
+
+### Added
+
+- Add `AsyncItemsController` delegate for concurrent-load-safe async item loading with a generation counter that discards stale responses
+- Add debounced server-side search-as-you-type to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
+- Add consumer-controlled reload with local filtering between reloads to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
+
+### Changed
+
+- Migrate `MenuList` and `TreeViewItem` async loading to `AsyncItemsController`
+- Decouple overlay display from data loading in `BaseSearchInput` and `MenuToggleMenu` when in re-query mode
+
+### Fixed
+
+- Fix `MenuList.reset()` and `TreeViewItem.reset()` silently ignoring calls when a load is in flight
+- Fix stale async load responses accumulating duplicate items on concurrent `reset()` + `load()` calls
+
+## [0.10.3] - 2026-09-30
+
+### Changed
+
+- Rename `popover` GWT module source path to `overlay` to match the package rename from 0.10.0
+
+### Upgrades
+
+- Upgrade Elemento from 2.5.7 to 2.5.9
+
+## [0.10.2] - 2026-09-29
+
+### Fixed
+
+- Fix builder methods in `Modal`, `ModalHeaderTitle`, `NotificationDrawer`, `Tab`, and `Tabs` that returned `null` instead of `this`
+
 ## [0.10.1] - 2026-09-21
 
 ### Added
@@ -1255,7 +1316,11 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.1...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.0...HEAD
+[0.12.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.11.0...v0.12.0
+[0.11.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.3...v0.11.0
+[0.10.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.2...v0.10.3
+[0.10.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.9...v0.10.0
 [0.9.9]: https://github.com/patternfly-java/patternfly-java/compare/v0.9.8...v0.9.9

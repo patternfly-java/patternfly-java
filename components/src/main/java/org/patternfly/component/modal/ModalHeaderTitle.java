@@ -90,7 +90,7 @@ public class ModalHeaderTitle extends ModalSubComponent<HTMLElement, ModalHeader
         classList().remove(modifier(icon));
         failSafeRemoveFromParent(failSafeIconElement);
         failSafeIconElement = null;
-        return null;
+        return this;
     }
 
     @Override

@@ -18,7 +18,7 @@ package org.patternfly.showcase.component;
 import java.util.Random;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.AsyncItems;
+import org.patternfly.async.AsyncItems;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuActionHandler;
 import org.patternfly.component.menu.MenuContent;

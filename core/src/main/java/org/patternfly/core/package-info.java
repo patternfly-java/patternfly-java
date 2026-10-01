@@ -35,7 +35,6 @@
  * <ul>
  *     <li>{@link org.patternfly.core.ComponentContext} - Interface for storing and retrieving arbitrary values within a component</li>
  *     <li>{@link org.patternfly.core.ObservableValue} - A value wrapper that notifies subscribers when changed, enabling reactive patterns</li>
- *     <li>{@link org.patternfly.core.AsyncStatus} - Enumeration representing asynchronous operation states</li>
  * </ul>
  *
  * <h3>Utilities</h3>

@@ -19,7 +19,7 @@ import java.util.Random;
 
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.AsyncItems;
+import org.patternfly.async.AsyncItems;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;
@@ -32,6 +32,7 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Words;
+
 import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.setTimeout;

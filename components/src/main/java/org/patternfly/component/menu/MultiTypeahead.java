@@ -20,6 +20,7 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
+import org.patternfly.async.ReloadStrategy;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
@@ -74,15 +75,13 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ instance
 
     private final BaseFilterInput<?> filterInput;
-    private SearchFilter searchFilter;
-    private NoResults noResults;
+    private final TypeaheadInputController inputController;
 
     MultiTypeahead(BaseFilterInput<?> filterInput) {
         super(ComponentType.MultiTypeahead, MenuToggle.menuToggle(filterInput));
         this.filterInput = filterInput;
-        this.searchFilter = SearchFilter.contains();
-        this.noResults = NoResults.noResults();
-        onLoaded((e, c) -> menu.search(searchFilter, noResults, c.menuToggle.text()));
+        this.inputController = new TypeaheadInputController();
+        onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         filterInput
@@ -90,12 +89,11 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    menu.search(searchFilter, noResults, value);
+                    inputController.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> {
-                    expand(false);
-                    menu.search(searchFilter, noResults, value);
-                })
+                .onInput((e, c, value) -> inputController.handleInput(value, menu,
+                        () -> expand(false),
+                        () -> collapse(false)))
                 .noAddOnEnter()
                 .onEnter((e, fi) -> {
                     String identifier = filterInput.textToIdentifier().apply(fi.value());
@@ -154,14 +152,21 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ events
 
     @Override
-    public MultiTypeahead onSearch(SearchFilter searchFilter) {
-        this.searchFilter = searchFilter;
+    public MultiTypeahead onFilter(SearchFilter searchFilter) {
+        inputController.searchFilter(searchFilter);
         return this;
     }
 
     @Override
     public MultiTypeahead onNoResults(NoResults noResults) {
-        this.noResults = noResults;
+        inputController.noResults(noResults);
+        return this;
+    }
+
+    @Override
+    public MultiTypeahead reloadOn(ReloadStrategy strategy) {
+        inputController.reloadOn(strategy);
+        this.loadOnExpand = false;
         return this;
     }
 }

@@ -212,7 +212,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
     public Tab removeIcon() {
         failSafeRemoveFromParent(failSafeIconContainer());
         iconContainer = null;
-        return null;
+        return this;
     }
 
     @Override

@@ -18,7 +18,6 @@ package org.patternfly.component.menu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.Attachable;
@@ -29,6 +28,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentDelegate;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
+import org.patternfly.component.StayOpenPredicate;
 import org.patternfly.core.Aria;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.handler.ToggleHandler;
@@ -36,6 +36,7 @@ import org.patternfly.overlay.Overlay;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 import org.patternfly.style.Placement;
+
 import elemental2.dom.Event;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.KeyboardEvent;
@@ -77,11 +78,12 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     final MenuToggle menuToggle;
     final Overlay overlay;
     Menu menu;
+    boolean loadOnExpand;
     private final HTMLElement menuPopover;
     private final List<ToggleHandler<B>> toggleHandler;
     private final List<ComponentHandler<B>> loadedHandler;
     private boolean disabled;
-    private StayOpenPredicate stayOpen;
+    private org.patternfly.component.StayOpenPredicate<MenuToggle> stayOpen;
     private HandlerRegistration menuToggleClickHandler;
     private HandlerRegistration menuClickHandler;
     private HandlerRegistration keyHandler;
@@ -90,6 +92,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     MenuToggleMenu(ComponentType componentType, MenuToggle menuToggle) {
         super(componentType);
         this.menuToggle = menuToggle;
+        this.loadOnExpand = true;
         this.toggleHandler = new ArrayList<>();
         this.loadedHandler = new ArrayList<>();
 
@@ -185,10 +188,10 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
     /**
      * Specifies a condition that determines whether the menu should remain open when the menu-toggle or the menu is clicked.
      *
-     * @param stayOpen a {@link Predicate} that evaluates an {@link Event} to determine if the menu remains open.
+     * @param stayOpen a {@link StayOpenPredicate} that evaluates an {@link Event} to determine if the menu remains open.
      * @return the current instance with the condition applied, enabling method chaining.
      */
-    public B stayOpen(StayOpenPredicate stayOpen) {
+    public B stayOpen(StayOpenPredicate<MenuToggle> stayOpen) {
         this.stayOpen = stayOpen;
         return that();
     }
@@ -238,7 +241,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), true));
             }
-            if (menu.hasAsyncItems()) {
+            if (loadOnExpand && menu.hasAsyncItems()) {
                 menu.load().then(__ -> {
                     loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                     return null;

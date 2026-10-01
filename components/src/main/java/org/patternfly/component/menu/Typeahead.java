@@ -17,6 +17,8 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
+import org.patternfly.async.Reloadable;
+
 import elemental2.promise.Promise;
 
 /**
@@ -26,7 +28,7 @@ import elemental2.promise.Promise;
  *
  * @param <M> the type of the implementing class, allowing method chaining for configuration
  */
-public interface Typeahead<M extends MenuToggleMenu<M>> {
+public interface Typeahead<M extends MenuToggleMenu<M>> extends Reloadable<M> {
 
     /**
      * Allows the creation of new menu items based on user input. This method enables the typeahead component to dynamically add
@@ -54,14 +56,16 @@ public interface Typeahead<M extends MenuToggleMenu<M>> {
     M allowNewItems(Function<String, String> prompt, Function<String, Promise<MenuItem>> createItem);
 
     /**
-     * Configures the search behavior for this typeahead.
+     * Sets the filter used to match existing menu items against the current input value. Defaults to
+     * {@link SearchFilter#contains()}. This filter is used for local filtering in the default strategy and in the
+     * {@link org.patternfly.async.ReloadStrategy#structuralChange(java.util.function.BiPredicate) structuralChange} strategy
+     * between reloads.
      *
-     * @param searchFilter a {@link SearchFilter} that defines the search logic. The first parameter is a {@link MenuItem}
-     *                     representing a menu item, and the second parameter is a {@link String} representing the search query.
-     *                     The predicate should return {@code true} for items matching the search.
+     * @param searchFilter a {@link SearchFilter} that receives a {@link MenuItem} and the search query, returning {@code true}
+     *                     for items that match.
      * @return the instance for method chaining.
      */
-    M onSearch(SearchFilter searchFilter);
+    M onFilter(SearchFilter searchFilter);
 
     /**
      * Configures the behavior for generating a "no results" menu item when no matching items are found in the menu list for the

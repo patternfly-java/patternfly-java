@@ -27,7 +27,7 @@ import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.AsyncItems;
+import org.patternfly.async.AsyncItems;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
 import org.patternfly.component.HasIdentifier;
