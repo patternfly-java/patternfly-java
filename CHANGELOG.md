@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix typeahead and search input clearing and collapsing in debounce mode to reset the menu instead of just clearing the local search filter
+
 ## [0.12.0] - 2026-10-01
 
 ### Added

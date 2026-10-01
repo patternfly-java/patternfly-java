@@ -90,6 +90,9 @@ class TypeaheadInputController {
             }
         } else {
             collapse.run();
+            if (isDebounceMode()) {
+                menu.reset();
+            }
         }
     }
 

@@ -39,7 +39,7 @@ import static org.patternfly.style.Classes.utilities;
 /** Internal helper that wires typeahead keyboard and click behavior for {@link MenuToggleMenu} implementations. */
 class TypeaheadSupport {
 
-    static void typeaheadDefaults(MenuToggleMenu<?> mtm) {
+    static void typeaheadDefaults(MenuToggleMenu<?> mtm, TypeaheadInputController inputController) {
         mtm.menuToggle.searchInput().input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
@@ -54,13 +54,21 @@ class TypeaheadSupport {
         });
         mtm.menuToggle.searchInput()
                 .onClear((e, si) -> {
-                    mtm.menu.clearSearch();
+                    if (inputController.isDebounceMode()) {
+                        mtm.menu.reset();
+                    } else {
+                        mtm.menu.clearSearch();
+                    }
                     mtm.menu.unselectAllItems();
                     si.input().element().focus();
                 })
                 .onChange((e, c, value) -> {
                     if (value.isEmpty()) {
-                        mtm.menu.clearSearch();
+                        if (inputController.isDebounceMode()) {
+                            mtm.menu.reset();
+                        } else {
+                            mtm.menu.clearSearch();
+                        }
                     }
                 });
     }

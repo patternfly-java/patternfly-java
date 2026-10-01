@@ -71,7 +71,7 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
         this.inputController = new TypeaheadInputController();
         onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
-        typeaheadDefaults(this);
+        typeaheadDefaults(this, inputController);
         menuToggle.searchInput()
                 .onKeyup((e, c, value) -> {
                     if (shouldExpandOnKeyup(this, e)) {

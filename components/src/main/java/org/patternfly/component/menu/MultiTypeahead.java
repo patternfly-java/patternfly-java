@@ -83,7 +83,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
         this.inputController = new TypeaheadInputController();
         onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
-        typeaheadDefaults(this);
+        typeaheadDefaults(this, inputController);
         filterInput
                 .onKeyup((e, c, value) -> {
                     if (shouldExpandOnKeyup(this, e)) {

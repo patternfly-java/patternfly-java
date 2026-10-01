@@ -183,10 +183,17 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                     }
                 } else {
                     collapse(false);
+                    if (isDebounceMode()) {
+                        menu.reset();
+                    }
                 }
             });
             onClear((e, si) -> {
-                menu.clearSearch();
+                if (isDebounceMode()) {
+                    menu.reset();
+                } else {
+                    menu.clearSearch();
+                }
                 inputElement.focus();
             });
         }
