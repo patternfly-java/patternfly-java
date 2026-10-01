@@ -145,6 +145,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                 if (value != null && !value.isEmpty()) {
                     if (isDebounceMode()) {
                         if (!expanded()) {
+                            menu.reset();
                             overlay.show();
                             Expandable.expand(element(), element(), null);
                             outsideClickHandler = bind(document, click, this::onOutsideClick);

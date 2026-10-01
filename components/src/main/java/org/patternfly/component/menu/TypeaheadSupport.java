@@ -48,8 +48,11 @@ class TypeaheadSupport {
 
         mtm.onToggle((e, c, expanded) -> {
             if (expanded) {
-                // show all menu items when expanded
-                mtm.menu.clearSearch();
+                if (inputController.isDebounceMode()) {
+                    mtm.menu.reset();
+                } else {
+                    mtm.menu.clearSearch();
+                }
             }
         });
         mtm.menuToggle.searchInput()
