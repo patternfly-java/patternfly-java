@@ -6,13 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `org.patternfly.async` package in the core module with `AsyncStatus`, `AsyncItems`, `AsyncItemsController`, `HasAsyncItems`, `Reloadable`, and `ReloadStrategy`
+- Add `ReloadStrategy` value class with `everyInput(int)` and `structuralChange(BiPredicate)` factory methods to make the three typeahead reload modes explicit and mutually exclusive
+- Add `Reloadable` interface with a single `reloadOn(ReloadStrategy)` method, implemented by `Typeahead` and `BaseSearchInput`
+- Add `TypeaheadInputController` delegate to share typeahead input handling between `SingleTypeahead` and `MultiTypeahead`
+- Add `onNoResults(NoResults)` to `BaseSearchInput` for feature parity with typeahead components
+
+### Changed
+
+- Move `AsyncStatus` from `org.patternfly.core` to `org.patternfly.async`
+- Move `AsyncItems`, `AsyncItemsController`, and `HasAsyncItems` from `org.patternfly.component` to `org.patternfly.async`
+- Consolidate two package-private `StayOpenPredicate` interfaces into a single typed `org.patternfly.component.StayOpenPredicate<C>`
+- Rename `onSearch(SearchFilter)` to `onFilter(SearchFilter)` in `Typeahead` and `BaseSearchInput` to clarify it filters existing menu items
+- Replace `reQueryOnInput(int)` and `reloadWhen(BiPredicate)` with `reloadOn(ReloadStrategy)` in `Typeahead` and `BaseSearchInput`
+
+### Removed
+
+- Remove unused `SearchFilter.noResults()` static method (superseded by the `NoResults` interface)
+
+### Fixed
+
+- Fix stale debounce callback surviving strategy changes in `TypeaheadInputController` and `BaseSearchInput`
+- Fix `Menu.search()` Javadoc claiming `int` return type when method returns `List<MenuItem>`
+
 ## [0.11.0] - 2026-09-30
 
 ### Added
 
 - Add `AsyncItemsController` delegate for concurrent-load-safe async item loading with a generation counter that discards stale responses
-- Add `reQueryOnInput(int)` to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead` for debounced server-side search-as-you-type
-- Add `reloadWhen(BiPredicate)` to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead` for consumer-controlled reload with local filtering between reloads
+- Add debounced server-side search-as-you-type to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
+- Add consumer-controlled reload with local filtering between reloads to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
 
 ### Changed
 

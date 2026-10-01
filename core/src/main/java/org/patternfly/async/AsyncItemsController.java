@@ -13,27 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.async;
 
 import java.util.function.Consumer;
-
-import org.patternfly.core.AsyncStatus;
 
 import elemental2.promise.Promise;
 
 import static java.util.Collections.emptyList;
-import static org.patternfly.core.AsyncStatus.pending;
-import static org.patternfly.core.AsyncStatus.rejected;
-import static org.patternfly.core.AsyncStatus.resolved;
-import static org.patternfly.core.AsyncStatus.static_;
+import static org.patternfly.async.AsyncStatus.pending;
+import static org.patternfly.async.AsyncStatus.rejected;
+import static org.patternfly.async.AsyncStatus.resolved;
+import static org.patternfly.async.AsyncStatus.static_;
 
 /**
  * A delegate that manages the async loading state machine for components implementing {@link HasAsyncItems}.
  * <p>
  * Handles status transitions, a generation counter to discard stale responses from concurrent loads, and reset-during-pending.
  * Components provide callbacks for DOM-specific operations (adding items, clearing, showing errors).
- * <p>
- * This class follows the same composition pattern as {@link AurHandler}.
  *
  * @param <C> the component type that owns the async items
  * @param <S> the type of items being loaded
@@ -127,9 +123,8 @@ public class AsyncItemsController<C, S> {
     }
 
     /**
-     * Resets the controller to {@link AsyncStatus#pending}, allowing a subsequent {@link #load} call. Unlike the previous
-     * implementation, this works even when status is already {@code pending} — it increments the generation counter to invalidate
-     * any in-flight load.
+     * Resets the controller to {@link AsyncStatus#pending}, allowing a subsequent {@link #load} call. This works even when status
+     * is already {@code pending} — it increments the generation counter to invalidate any in-flight load.
      *
      * @param onClear called to clear existing items from the DOM (may be {@code null})
      */

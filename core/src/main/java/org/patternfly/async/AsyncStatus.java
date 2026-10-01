@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.core;
+package org.patternfly.async;
 
 /** Defines the status of an asynchronous operation. */
 public enum AsyncStatus {

@@ -15,11 +15,9 @@
  */
 package org.patternfly.component.menu;
 
-import java.util.function.BiPredicate;
 import java.util.function.Function;
 
-import org.jboss.elemento.Callback;
-import org.jboss.elemento.Scheduler;
+import org.patternfly.async.ReloadStrategy;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.textinputgroup.BaseSearchInput;
 import org.patternfly.component.textinputgroup.SearchInput;
@@ -66,24 +64,12 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
 
     // ------------------------------------------------------ instance
 
-    private SearchFilter searchFilter;
-    private NoResults noResults;
-    private int reQueryDebounce;
-    private BiPredicate<String, String> reloadPredicate;
-    private Callback debouncedReload;
-    private String previousValue = "";
+    private final TypeaheadInputController inputController;
 
     SingleTypeahead(BaseSearchInput<?> searchInput) {
         super(ComponentType.SingleTypeahead, MenuToggle.menuToggle(searchInput));
-        this.searchFilter = SearchFilter.contains();
-        this.noResults = NoResults.noResults();
-        onLoaded((e, c) -> {
-            if (reQueryDebounce == 0) {
-                menu.search(searchFilter, noResults, c.menuToggle.text());
-            } else {
-                menu.allowTabFirstItem();
-            }
-        });
+        this.inputController = new TypeaheadInputController();
+        onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         menuToggle.searchInput()
@@ -91,45 +77,11 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    if (reQueryDebounce == 0) {
-                        menu.search(searchFilter, noResults, value);
-                    }
+                    inputController.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> {
-                    if (value != null && !value.isEmpty()) {
-                        if (reQueryDebounce > 0) {
-                            expand(false);
-                            if (debouncedReload == null) {
-                                debouncedReload = Scheduler.debounce(reQueryDebounce, () -> {
-                                    menu.reset();
-                                    menu.load().then(__ -> {
-                                        menu.allowTabFirstItem();
-                                        return null;
-                                    });
-                                });
-                            }
-                            debouncedReload.call();
-                        } else if (reloadPredicate != null) {
-                            expand(false);
-                            if (reloadPredicate.test(previousValue, value)) {
-                                menu.reset();
-                                menu.load().then(__ -> {
-                                    menu.search(searchFilter, noResults, value);
-                                    menu.allowTabFirstItem();
-                                    return null;
-                                });
-                            } else {
-                                menu.search(searchFilter, noResults, value);
-                            }
-                            previousValue = value;
-                        } else {
-                            expand(false);
-                            menu.search(searchFilter, noResults, value);
-                        }
-                    } else {
-                        collapse(false);
-                    }
-                });
+                .onInput((e, c, value) -> inputController.handleInput(value, menu,
+                        () -> expand(false),
+                        () -> collapse(false)));
         stayOpen((e, mt, m) -> utilitiesClick(e));
     }
 
@@ -164,27 +116,21 @@ public class SingleTypeahead extends SingleMenuToggleMenu<SingleTypeahead> imple
     // ------------------------------------------------------ events
 
     @Override
-    public SingleTypeahead onSearch(SearchFilter searchFilter) {
-        this.searchFilter = searchFilter;
+    public SingleTypeahead onFilter(SearchFilter searchFilter) {
+        inputController.searchFilter(searchFilter);
         return this;
     }
 
     @Override
     public SingleTypeahead onNoResults(NoResults noResults) {
-        this.noResults = noResults;
+        inputController.noResults(noResults);
         return this;
     }
 
     @Override
-    public SingleTypeahead reQueryOnInput(int debounceMs) {
-        this.reQueryDebounce = debounceMs;
+    public SingleTypeahead reloadOn(ReloadStrategy strategy) {
+        inputController.reloadOn(strategy);
         this.loadOnExpand = false;
-        return this;
-    }
-
-    @Override
-    public SingleTypeahead reloadWhen(BiPredicate<String, String> predicate) {
-        this.reloadPredicate = predicate;
         return this;
     }
 }

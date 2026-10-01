@@ -16,13 +16,11 @@
 package org.patternfly.component.menu;
 
 import java.util.List;
-import java.util.function.BiPredicate;
 import java.util.function.Function;
 
 import org.jboss.elemento.By;
-import org.jboss.elemento.Callback;
 import org.jboss.elemento.Elements;
-import org.jboss.elemento.Scheduler;
+import org.patternfly.async.ReloadStrategy;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
@@ -77,25 +75,13 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ instance
 
     private final BaseFilterInput<?> filterInput;
-    private SearchFilter searchFilter;
-    private NoResults noResults;
-    private int reQueryDebounce;
-    private BiPredicate<String, String> reloadPredicate;
-    private Callback debouncedReload;
-    private String previousValue = "";
+    private final TypeaheadInputController inputController;
 
     MultiTypeahead(BaseFilterInput<?> filterInput) {
         super(ComponentType.MultiTypeahead, MenuToggle.menuToggle(filterInput));
         this.filterInput = filterInput;
-        this.searchFilter = SearchFilter.contains();
-        this.noResults = NoResults.noResults();
-        onLoaded((e, c) -> {
-            if (reQueryDebounce == 0) {
-                menu.search(searchFilter, noResults, c.menuToggle.text());
-            } else {
-                menu.allowTabFirstItem();
-            }
-        });
+        this.inputController = new TypeaheadInputController();
+        onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
 
         typeaheadDefaults(this);
         filterInput
@@ -103,45 +89,11 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    if (reQueryDebounce == 0) {
-                        menu.search(searchFilter, noResults, value);
-                    }
+                    inputController.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> {
-                    if (value != null && !value.isEmpty()) {
-                        if (reQueryDebounce > 0) {
-                            expand(false);
-                            if (debouncedReload == null) {
-                                debouncedReload = Scheduler.debounce(reQueryDebounce, () -> {
-                                    menu.reset();
-                                    menu.load().then(__ -> {
-                                        menu.allowTabFirstItem();
-                                        return null;
-                                    });
-                                });
-                            }
-                            debouncedReload.call();
-                        } else if (reloadPredicate != null) {
-                            expand(false);
-                            if (reloadPredicate.test(previousValue, value)) {
-                                menu.reset();
-                                menu.load().then(__ -> {
-                                    menu.search(searchFilter, noResults, value);
-                                    menu.allowTabFirstItem();
-                                    return null;
-                                });
-                            } else {
-                                menu.search(searchFilter, noResults, value);
-                            }
-                            previousValue = value;
-                        } else {
-                            expand(false);
-                            menu.search(searchFilter, noResults, value);
-                        }
-                    } else {
-                        collapse(false);
-                    }
-                })
+                .onInput((e, c, value) -> inputController.handleInput(value, menu,
+                        () -> expand(false),
+                        () -> collapse(false)))
                 .noAddOnEnter()
                 .onEnter((e, fi) -> {
                     String identifier = filterInput.textToIdentifier().apply(fi.value());
@@ -200,27 +152,21 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ events
 
     @Override
-    public MultiTypeahead onSearch(SearchFilter searchFilter) {
-        this.searchFilter = searchFilter;
+    public MultiTypeahead onFilter(SearchFilter searchFilter) {
+        inputController.searchFilter(searchFilter);
         return this;
     }
 
     @Override
     public MultiTypeahead onNoResults(NoResults noResults) {
-        this.noResults = noResults;
+        inputController.noResults(noResults);
         return this;
     }
 
     @Override
-    public MultiTypeahead reQueryOnInput(int debounceMs) {
-        this.reQueryDebounce = debounceMs;
+    public MultiTypeahead reloadOn(ReloadStrategy strategy) {
+        inputController.reloadOn(strategy);
         this.loadOnExpand = false;
-        return this;
-    }
-
-    @Override
-    public MultiTypeahead reloadWhen(BiPredicate<String, String> predicate) {
-        this.reloadPredicate = predicate;
         return this;
     }
 }

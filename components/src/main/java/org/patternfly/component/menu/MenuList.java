@@ -26,17 +26,17 @@ import java.util.function.Supplier;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncItemsController;
+import org.patternfly.async.AsyncStatus;
+import org.patternfly.async.HasAsyncItems;
 import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AsyncItems;
-import org.patternfly.component.AsyncItemsController;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.core.Aria;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.Roles;
 
 import elemental2.dom.HTMLUListElement;
@@ -45,13 +45,13 @@ import elemental2.promise.Promise;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
+import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.li;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuItem.skeletonMenuItem;
-import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.component;
@@ -61,7 +61,7 @@ import static org.patternfly.style.Classes.menu;
 /** A list of items within a {@link Menu} or {@link MenuGroup}. */
 /** A menu list within a {@link Menu} component. */
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
-        HasAsyncItems<HTMLUListElement, MenuList, MenuItem>,
+        HasAsyncItems<MenuList, MenuItem>,
         Ordered<HTMLUListElement, MenuList, MenuItem>,
         Attachable {
 

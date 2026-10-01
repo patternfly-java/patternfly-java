@@ -19,7 +19,7 @@ import java.util.Random;
 
 import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.AsyncItems;
+import org.patternfly.async.AsyncItems;
 import org.patternfly.component.menu.Menu;
 import org.patternfly.component.menu.MenuItem;
 import org.patternfly.component.menu.MenuList;

@@ -27,15 +27,15 @@ import java.util.function.Predicate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncStatus;
+import org.patternfly.async.HasAsyncItems;
 import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AsyncItems;
 import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Ordered;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.SelectHandler;
@@ -58,11 +58,11 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.Role.tree;
+import static org.patternfly.async.AsyncStatus.pending;
+import static org.patternfly.async.AsyncStatus.rejected;
+import static org.patternfly.async.AsyncStatus.resolved;
+import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
-import static org.patternfly.core.AsyncStatus.pending;
-import static org.patternfly.core.AsyncStatus.rejected;
-import static org.patternfly.core.AsyncStatus.resolved;
-import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
@@ -78,7 +78,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 /** A column in the {@link Finder}, displaying a list of {@link FinderItem}s that can be selected, filtered, and sorted. */
 public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> implements
         ComponentContext<HTMLElement, FinderColumn>,
-        HasAsyncItems<HTMLElement, FinderColumn, FinderItem>,
+        HasAsyncItems<FinderColumn, FinderItem>,
         HasIdentifier<HTMLElement, FinderColumn>,
         Ordered<HTMLElement, FinderColumn, FinderItem> {
 

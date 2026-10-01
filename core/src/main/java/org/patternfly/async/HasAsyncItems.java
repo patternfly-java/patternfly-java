@@ -13,22 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.async;
 
-import org.patternfly.core.AsyncStatus;
-
-import elemental2.dom.Element;
-import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 
 /**
  * Represents a component or entity that can asynchronously manage items and their associated operations.
  *
- * @param <E> the type of the element associated with the items
- * @param <C> the type of the component extending {@code HasItems}, used for method chaining
- * @param <S> the type of the items, which must implement {@code HasIdentifier}
+ * @param <C> the type of the component used for method chaining
+ * @param <S> the type of the items
  */
-public interface HasAsyncItems<E extends Element, C extends HasItems<E, C, S>, S extends HasIdentifier<? extends HTMLElement, ?>> {
+public interface HasAsyncItems<C, S> {
 
     default C addItems(AsyncItems<C, S> items) {
         return add(items);

@@ -59,6 +59,7 @@ import static org.jboss.elemento.Key.ArrowRight;
 import static org.jboss.elemento.Key.ArrowUp;
 import static org.jboss.elemento.Key.Enter;
 import static org.jboss.elemento.Key.Spacebar;
+import static org.patternfly.async.AsyncStatus.pending;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.SelectionMode.group;
 import static org.patternfly.component.SelectionMode.single;
@@ -66,7 +67,6 @@ import static org.patternfly.component.divider.Divider.divider;
 import static org.patternfly.component.divider.DividerType.hr;
 import static org.patternfly.component.menu.MenuFooter.menuFooter;
 import static org.patternfly.component.menu.MenuHeader.menuHeader;
-import static org.patternfly.core.AsyncStatus.pending;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.disabled;
 import static org.patternfly.style.Classes.divider;
@@ -312,10 +312,10 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     /**
      * Checks if the menu contains any asynchronous items that are currently in a pending status. This method inspects the
      * {@linkplain MenuList menu lists} to determine if any {@linkplain MenuList#status() status} is
-     * {@linkplain org.patternfly.core.AsyncStatus#pending pending}.
+     * {@linkplain org.patternfly.async.AsyncStatus#pending pending}.
      *
      * @return {@code true} if any {@link MenuList} has a {@linkplain MenuList#status() status} of
-     * {@linkplain org.patternfly.core.AsyncStatus#pending pending}, otherwise {@code false}.
+     * {@linkplain org.patternfly.async.AsyncStatus#pending pending}, otherwise {@code false}.
      */
     public boolean hasAsyncItems() {
         if (content != null) {
@@ -443,13 +443,13 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
      * Filters the menu items based on the given search value. Each menu item is tested against the search filter; items that
      * don't match are hidden using the {@code filtered} modifier CSS class. If no items match and a {@code noResults} handler
      * is provided, a "no results" item is added to the menu list. If the menu contains asynchronous (pending) items, the search
-     * is skipped and {@code -1} is returned.
+     * is skipped and an empty list is returned.
      *
      * @param searchFilter the filter used to determine whether a menu item matches the search value
      * @param noResults    the handler that creates a "no results" menu item when no items match; can be {@code null} to skip
      *                     showing a no-results indicator
      * @param value        the search text to filter menu items against
-     * @return the number of visible (matching) items after filtering, or {@code -1} if the search was skipped because the menu
+     * @return the list of visible (matching) items after filtering, or an empty list if the search was skipped because the menu
      * contains pending asynchronous items
      */
     public List<MenuItem> search(SearchFilter searchFilter, NoResults noResults, String value) {

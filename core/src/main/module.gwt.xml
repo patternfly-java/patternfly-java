@@ -17,6 +17,7 @@
 
 -->
 <module>
+    <source path="async"/>
     <source path="core"/>
     <source path="dataprovider"/>
     <source path="filter"/>

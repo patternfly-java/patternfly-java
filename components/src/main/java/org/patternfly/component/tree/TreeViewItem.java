@@ -27,19 +27,19 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
+import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncItemsController;
+import org.patternfly.async.AsyncStatus;
+import org.patternfly.async.HasAsyncItems;
 import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AsyncItems;
-import org.patternfly.component.AsyncItemsController;
 import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasAsyncItems;
 import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.HasItems;
 import org.patternfly.component.RemoveItemHandler;
 import org.patternfly.component.UpdateItemHandler;
-import org.patternfly.core.AsyncStatus;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
 import org.patternfly.handler.ToggleHandler;
@@ -74,15 +74,15 @@ import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.EventType.change;
 import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
+import static org.patternfly.async.AsyncStatus.pending;
+import static org.patternfly.async.AsyncStatus.resolved;
+import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.default_;
 import static org.patternfly.component.tree.TreeViewType.selectableItems;
 import static org.patternfly.core.Aria.expanded;
 import static org.patternfly.core.Aria.labelledBy;
-import static org.patternfly.core.AsyncStatus.pending;
-import static org.patternfly.core.AsyncStatus.resolved;
-import static org.patternfly.core.AsyncStatus.static_;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.group;
@@ -112,7 +112,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
         Disabled<HTMLLIElement, TreeViewItem>,
         ElementTextMethods<HTMLLIElement, TreeViewItem>,
         Expandable<HTMLLIElement, TreeViewItem>,
-        HasAsyncItems<HTMLLIElement, TreeViewItem, TreeViewItem>,
+        HasAsyncItems<TreeViewItem, TreeViewItem>,
         HasIdentifier<HTMLLIElement, TreeViewItem>,
         HasItems<HTMLLIElement, TreeViewItem, TreeViewItem> {
 
