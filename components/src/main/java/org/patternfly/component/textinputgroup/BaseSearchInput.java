@@ -138,6 +138,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             menuClickHandler = bind(menu, click, this::onMenuClick);
             keyHandler = bind(window, keydown, this::keyHandler);
             menu.onSingleSelect((e, item, selected) -> {
+                clearHint();
                 if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
                     String current = value();
                     int pos = current.lastIndexOf(reloadStrategy.delimiter());
