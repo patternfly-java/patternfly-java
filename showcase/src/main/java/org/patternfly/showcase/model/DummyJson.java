@@ -58,7 +58,6 @@ public final class DummyJson {
 
         double id;
         String title;
-        String category;
         String description;
     }
 
@@ -84,8 +83,8 @@ public final class DummyJson {
                     Category[] categories = Js.uncheckedCast(json);
                     List<MenuItem> items = new ArrayList<>();
                     for (Category c : categories) {
-                        items.add(menuItem(Id.build("category", c.slug), c.name)
-                                .description(c.slug));
+                        items.add(menuItem(Id.build("category", c.slug), c.slug)
+                                .description(c.name));
                     }
                     return Promise.resolve(items);
                 });
@@ -94,7 +93,7 @@ public final class DummyJson {
     public static Promise<Iterable<MenuItem>> searchProductsByCategory(String category) {
         if (category == null || category.isEmpty()) {
             List<MenuItem> empty = new ArrayList<>();
-            return Promise.resolve((Iterable<MenuItem>) empty);
+            return Promise.resolve(empty);
         }
         return fetch("https://dummyjson.com/products/category/" + encodeURIComponent(category))
                 .then(Response::json)
@@ -104,7 +103,7 @@ public final class DummyJson {
                     if (response.products != null) {
                         for (Product p : response.products) {
                             items.add(menuItem(Id.build("product", String.valueOf((int) p.id)), p.title)
-                                    .description(p.category));
+                                    .description(p.description));
                         }
                     }
                     return Promise.resolve(items);
