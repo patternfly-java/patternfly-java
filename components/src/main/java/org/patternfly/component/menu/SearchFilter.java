@@ -35,4 +35,24 @@ public interface SearchFilter extends BiPredicate<MenuItem, String> {
     static SearchFilter contains() {
         return (item, text) -> item.text().toLowerCase().contains(text.toLowerCase());
     }
+
+    /**
+     * Creates a filter that splits the search query by the given delimiter, then checks that the menu item's text contains
+     * all non-empty terms (case-insensitive). For example, with delimiter {@code '/'}, the query {@code "tolkien/rings"}
+     * matches any item whose text contains both "tolkien" and "rings".
+     *
+     * @param delimiter the character used to split the query into terms
+     * @return a {@link SearchFilter} that matches items containing all query terms
+     */
+    static SearchFilter containsAll(char delimiter) {
+        return (item, query) -> {
+            String text = item.text().toLowerCase();
+            for (String term : query.replace(delimiter, ' ').trim().toLowerCase().split("\\s+")) {
+                if (!term.isEmpty() && !text.contains(term)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    }
 }
