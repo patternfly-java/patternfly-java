@@ -498,7 +498,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                 String itemText = matching.get(0).text();
                 if (itemText.toLowerCase().startsWith(value.toLowerCase())) {
                     hint = itemText;
-                    failSafeHintInput().value = hint;
+                    failSafeHintInput().value = value + itemText.substring(value.length());
                 } else if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
                     char delimiter = reloadStrategy.delimiter();
                     int pos = value.lastIndexOf(delimiter);
@@ -506,7 +506,7 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                         String segment = value.substring(pos + 1);
                         if (!segment.isEmpty() && itemText.toLowerCase().startsWith(segment.toLowerCase())) {
                             hint = value.substring(0, pos + 1) + itemText;
-                            failSafeHintInput().value = hint;
+                            failSafeHintInput().value = value + itemText.substring(segment.length());
                         } else {
                             clearHint();
                         }
