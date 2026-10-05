@@ -60,6 +60,30 @@ public class ReloadStrategy {
         return new ReloadStrategy(0, predicate);
     }
 
+    /**
+     * Convenience factory for a common structural-change pattern: reload when the input first reaches {@code minLength}
+     * characters, and again whenever the number of {@code delimiter} characters changes. Between reloads, items are filtered
+     * locally using the configured filter.
+     *
+     * @param minLength reload when input length crosses this threshold (previous &lt; minLength, current &gt;= minLength)
+     * @param delimiter reload when the count of this character changes between previous and current input
+     */
+    public static ReloadStrategy structuralChange(int minLength, char delimiter) {
+        return structuralChange((prev, curr) ->
+                (prev.length() < minLength && curr.length() >= minLength) ||
+                        countOccurrences(prev, delimiter) != countOccurrences(curr, delimiter));
+    }
+
+    private static int countOccurrences(String s, char c) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     /** Returns the debounce timeout in milliseconds, or 0 if this is not a debounce strategy. */
     public int debounceMs() {
         return debounceMs;
