@@ -103,14 +103,13 @@
         <version.license.plugin>5.1.2</version.license.plugin>
 
         <!-- Build related -->
-        <generated.file.excludes
-        >**/IconSets.java,**/IconSpec*.java,**/showcase/Code.java,**/showcase/Documentation.java,**/showcase/ResourceBundle.java</generated.file.excludes>
+        <generated.file.excludes>**/IconSets.java,**/IconSpec*.java,**/showcase/Code.java,**/showcase/Documentation.java,**/showcase/ResourceBundle.java</generated.file.excludes>
         <encoding>UTF-8</encoding>
         <github.org>patternfly-java</github.org>
         <github.name>patternfly-java</github.name>
-        <java.version>21</java.version>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
-        <maven.min.version>3.9.9</maven.min.version>
+        <jdk.min.version>21</jdk.min.version>
+        <maven.compiler.release>${jdk.min.version}</maven.compiler.release>
+        <maven.min.version>3.9.11</maven.min.version>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
     </properties>
@@ -185,7 +184,6 @@
                     <version>${version.j2cl.plugin}</version>
                     <configuration>
                         <webappDirectory>${project.build.directory}/showcase</webappDirectory>
-                        <workerThreadCount>4</workerThreadCount>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -431,10 +429,10 @@
                                     <version>${maven.min.version}</version>
                                 </requireMavenVersion>
                                 <requireJavaVersion>
-                                    <message>To build this project JDK ${maven.compiler.source} (or greater) is required.
+                                    <message>To build this project JDK ${maven.compiler.release} (or greater) is required.
                                         Please install it.
                                     </message>
-                                    <version>${maven.compiler.source}</version>
+                                    <version>${maven.compiler.release}</version>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
