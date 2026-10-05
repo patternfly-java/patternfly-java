@@ -163,10 +163,17 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                         if (debouncedReload == null) {
                             debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () ->
                                     menu.replace().then(__ -> {
-                                        if (menu.items().isEmpty()) {
+                                        List<MenuItem> items = menu.items();
+                                        if (items.isEmpty()) {
                                             collapse(false);
+                                            clearHint();
                                         } else {
                                             menu.allowTabFirstItem();
+                                            if (items.size() == 1) {
+                                                updateHint(value(), items.get(0).text());
+                                            } else {
+                                                clearHint();
+                                            }
                                         }
                                         loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                                         return null;
@@ -506,30 +513,33 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         } else {
             expand(false);
             if (matching.size() == 1) {
-                String itemText = matching.get(0).text();
-                if (itemText.toLowerCase().startsWith(value.toLowerCase())) {
-                    hint = itemText;
-                    failSafeHintInput().value = value + itemText.substring(value.length());
-                } else if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
-                    char delimiter = reloadStrategy.delimiter();
-                    int pos = value.lastIndexOf(delimiter);
-                    if (pos >= 0) {
-                        String segment = value.substring(pos + 1);
-                        if (!segment.isEmpty() && itemText.toLowerCase().startsWith(segment.toLowerCase())) {
-                            hint = value.substring(0, pos + 1) + itemText;
-                            failSafeHintInput().value = value + itemText.substring(segment.length());
-                        } else {
-                            clearHint();
-                        }
-                    } else {
-                        clearHint();
-                    }
+                updateHint(value, matching.get(0).text());
+            } else {
+                clearHint();
+            }
+        }
+    }
+
+    private void updateHint(String value, String itemText) {
+        if (itemText.toLowerCase().startsWith(value.toLowerCase())) {
+            hint = itemText;
+            failSafeHintInput().value = value + itemText.substring(value.length());
+        } else if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
+            char delimiter = reloadStrategy.delimiter();
+            int pos = value.lastIndexOf(delimiter);
+            if (pos >= 0) {
+                String segment = value.substring(pos + 1);
+                if (!segment.isEmpty() && itemText.toLowerCase().startsWith(segment.toLowerCase())) {
+                    hint = value.substring(0, pos + 1) + itemText;
+                    failSafeHintInput().value = value + itemText.substring(segment.length());
                 } else {
                     clearHint();
                 }
             } else {
                 clearHint();
             }
+        } else {
+            clearHint();
         }
     }
 

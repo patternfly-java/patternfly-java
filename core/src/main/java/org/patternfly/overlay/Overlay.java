@@ -328,7 +328,9 @@ public class Overlay {
 
     private void applyMinWidth() {
         if (matchTriggerWidth && trigger != null) {
-            overlayElement.style.setProperty("min-width", trigger.offsetWidth + "px");
+            String width = trigger.offsetWidth + "px";
+            overlayElement.style.setProperty("min-width", width);
+            overlayElement.style.setProperty("max-width", width);
         }
     }
 
