@@ -35,7 +35,6 @@ import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.DummyJson;
-import org.patternfly.showcase.model.OpenLibrary;
 import org.patternfly.style.Modifiers.FullWidth;
 
 import elemental2.promise.Promise;
@@ -66,7 +65,7 @@ import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
 import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
-import static org.patternfly.component.menu.SearchFilter.containsAll;
+import static org.patternfly.component.menu.SearchFilter.lastSegment;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
@@ -288,19 +287,28 @@ public class SelectComponent extends SnippetPage {
         }));
 
         addSnippet(new Snippet("single-typeahead-structural", "Typeahead with structural change reload",
-                "Using structuralChange(), items reload from the server when the query first reaches 5 characters and again whenever a '/' is added or removed. Between reloads, results are filtered locally. Books are fetched from openlibrary.org. Try typing 'tolkien/rings'.",
+                "Using structuralChange(), categories load from dummyjson.com when the query first reaches 3 characters and filter locally as you type. When you type '/', products for that category load from the server. Try typing 'laptops/' or 'smartphones/iphone'.",
                 code("single-typeahead-structural"), () -> {
             // @code-start:single-typeahead-structural
             SearchInput si = searchInput("single-typeahead-structural-0").plain()
-                    .placeholder("Search books...");
+                    .placeholder("Search categories...");
             return div()
                     .add(singleTypeahead(si)
                             .applyToMenuToggle(FullWidth::fullWidth)
-                            .reloadOn(structuralChange(5, '/'), containsAll('/'))
+                            .reloadOn(structuralChange(3, '/'), lastSegment('/'))
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
-                                                    .addItems(list -> OpenLibrary.searchBooks(si.value()))))))
+                                                    .addItems(list -> {
+                                                        String value = si.value();
+                                                        int slash = value.indexOf('/');
+                                                        if (slash >= 0) {
+                                                            return DummyJson.searchProductsByCategory(
+                                                                    value.substring(0, slash).trim());
+                                                        } else {
+                                                            return DummyJson.searchCategories();
+                                                        }
+                                                    })))))
                     .element();
             // @code-end:single-typeahead-structural
         }));

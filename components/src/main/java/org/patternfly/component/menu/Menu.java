@@ -379,6 +379,23 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return Promise.resolve((Void) null);
     }
 
+    @SuppressWarnings({"unchecked", "RedundantSuppression"})
+    public Promise<Void> replace() {
+        if (content != null) {
+            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
+            for (MenuGroup group : content.groups) {
+                if (group.list != null) {
+                    promises.add(group.list.replace());
+                }
+            }
+            if (content.list != null) {
+                promises.add(content.list.replace());
+            }
+            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
+        }
+        return Promise.resolve((Void) null);
+    }
+
     public void reset() {
         doForAllMenuLists(MenuList::reset);
     }

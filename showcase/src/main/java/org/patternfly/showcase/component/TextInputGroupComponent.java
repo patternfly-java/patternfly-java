@@ -23,7 +23,6 @@ import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.DummyJson;
-import org.patternfly.showcase.model.OpenLibrary;
 import org.patternfly.showcase.model.Words;
 
 import static java.util.stream.Collectors.toList;
@@ -41,7 +40,7 @@ import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuType.menu;
-import static org.patternfly.component.menu.SearchFilter.containsAll;
+import static org.patternfly.component.menu.SearchFilter.lastSegment;
 import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TEXT_TO_IDENTIFIER;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
@@ -172,15 +171,24 @@ public class TextInputGroupComponent extends SnippetPage {
         }));
 
         addSnippet(new Snippet("tig-autocomplete-structural", "Search with autocomplete (structural change)",
-                "Using structuralChange(), books reload from openlibrary.org when the query first reaches 5 characters and again whenever a '/' is added or removed. Between reloads, results are filtered locally. Try typing 'tolkien/rings'.",
+                "Using structuralChange(), categories load from dummyjson.com when the query first reaches 3 characters and filter locally as you type. When you type '/', products for that category load from the server. Try typing 'laptops/' or 'smartphones/iphone'.",
                 code("tig-autocomplete-structural"), () -> {
             // @code-start:tig-autocomplete-structural
             SearchInput si = searchInput("tig-autocomplete-structural-0").icon(search());
-            si.reloadOn(structuralChange(5, '/'), containsAll('/'))
+            si.reloadOn(structuralChange(3, '/'), lastSegment('/'))
                     .add(menu(menu, click).scrollable()
                             .addContent(menuContent()
                                     .addList(menuList()
-                                            .addItems(list -> OpenLibrary.searchBooks(si.value())))));
+                                            .addItems(list -> {
+                                                String value = si.value();
+                                                int slash = value.indexOf('/');
+                                                if (slash >= 0) {
+                                                    return DummyJson.searchProductsByCategory(
+                                                            value.substring(0, slash).trim());
+                                                } else {
+                                                    return DummyJson.searchCategories();
+                                                }
+                                            }))));
             return div().add(si).element();
             // @code-end:tig-autocomplete-structural
         }));

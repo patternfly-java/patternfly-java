@@ -145,28 +145,28 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                 if (value != null && !value.isEmpty()) {
                     if (isDebounceMode()) {
                         if (!expanded()) {
-                            menu.reset();
                             overlay.show();
                             Expandable.expand(element(), element(), null);
                             outsideClickHandler = bind(document, click, this::onOutsideClick);
                         }
                         if (debouncedReload == null) {
-                            debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () -> {
-                                menu.reset();
-                                menu.load().then(__ -> {
-                                    menu.allowTabFirstItem();
-                                    loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
-                                    return null;
-                                });
-                            });
+                            debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () ->
+                                    menu.replace().then(__ -> {
+                                        if (menu.items().isEmpty()) {
+                                            collapse(false);
+                                        } else {
+                                            menu.allowTabFirstItem();
+                                        }
+                                        loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                        return null;
+                                    }));
                         }
                         debouncedReload.call();
                     } else if (isStructuralChangeMode()) {
                         if (!expanded()) {
                             expand(false);
                         } else if (reloadStrategy.predicate().test(previousValue, value)) {
-                            menu.reset();
-                            menu.load().then(__ -> {
+                            menu.replace().then(__ -> {
                                 search(value());
                                 loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
                                 return null;

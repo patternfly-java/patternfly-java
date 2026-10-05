@@ -40,6 +40,14 @@ public final class DummyJson {
     private static native String encodeURIComponent(String s);
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
+    static class Category {
+
+        String slug;
+        String name;
+        String url;
+    }
+
+    @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
     static class ProductResponse {
 
         Product[] products;
@@ -51,6 +59,7 @@ public final class DummyJson {
         double id;
         String title;
         String category;
+        String description;
     }
 
     @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
@@ -68,6 +77,40 @@ public final class DummyJson {
         String email;
     }
 
+    public static Promise<Iterable<MenuItem>> searchCategories() {
+        return fetch("https://dummyjson.com/products/categories")
+                .then(Response::json)
+                .then(json -> {
+                    Category[] categories = Js.uncheckedCast(json);
+                    List<MenuItem> items = new ArrayList<>();
+                    for (Category c : categories) {
+                        items.add(menuItem(Id.build("category", c.slug), c.name)
+                                .description(c.slug));
+                    }
+                    return Promise.resolve(items);
+                });
+    }
+
+    public static Promise<Iterable<MenuItem>> searchProductsByCategory(String category) {
+        if (category == null || category.isEmpty()) {
+            List<MenuItem> empty = new ArrayList<>();
+            return Promise.resolve((Iterable<MenuItem>) empty);
+        }
+        return fetch("https://dummyjson.com/products/category/" + encodeURIComponent(category))
+                .then(Response::json)
+                .then(json -> {
+                    ProductResponse response = Js.cast(json);
+                    List<MenuItem> items = new ArrayList<>();
+                    if (response.products != null) {
+                        for (Product p : response.products) {
+                            items.add(menuItem(Id.build("product", String.valueOf((int) p.id)), p.title)
+                                    .description(p.category));
+                        }
+                    }
+                    return Promise.resolve(items);
+                });
+    }
+
     public static Promise<Iterable<MenuItem>> searchProducts(String query) {
         return fetch("https://dummyjson.com/products/search?q=" + encodeURIComponent(query) + "&limit=10")
                 .then(Response::json)
@@ -76,7 +119,7 @@ public final class DummyJson {
                     List<MenuItem> items = new ArrayList<>();
                     for (Product p : response.products) {
                         items.add(menuItem(Id.build("product", String.valueOf((int) p.id)), p.title)
-                                .description(p.category));
+                                .description(p.description));
                     }
                     return Promise.resolve(items);
                 });

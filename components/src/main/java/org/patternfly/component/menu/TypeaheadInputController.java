@@ -63,20 +63,21 @@ class TypeaheadInputController {
             if (isDebounceMode()) {
                 expand.run();
                 if (debouncedReload == null) {
-                    debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () -> {
-                        menu.reset();
-                        menu.load().then(__ -> {
-                            menu.allowTabFirstItem();
-                            return null;
-                        });
-                    });
+                    debouncedReload = Scheduler.debounce(reloadStrategy.debounceMs(), () ->
+                            menu.replace().then(__ -> {
+                                if (menu.items().isEmpty()) {
+                                    collapse.run();
+                                } else {
+                                    menu.allowTabFirstItem();
+                                }
+                                return null;
+                            }));
                 }
                 debouncedReload.call();
             } else if (isStructuralChangeMode()) {
                 expand.run();
                 if (reloadStrategy.predicate().test(previousValue, value)) {
-                    menu.reset();
-                    menu.load().then(__ -> {
+                    menu.replace().then(__ -> {
                         menu.search(searchFilter, noResults, liveValue.get());
                         menu.allowTabFirstItem();
                         return null;

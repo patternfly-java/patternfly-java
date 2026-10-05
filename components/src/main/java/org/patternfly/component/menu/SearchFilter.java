@@ -55,4 +55,23 @@ public interface SearchFilter extends BiPredicate<MenuItem, String> {
             return true;
         };
     }
+
+    /**
+     * Creates a filter that uses only the text after the last occurrence of the given delimiter for matching. If the delimiter
+     * is not present, the entire query is used. Matching is case-insensitive.
+     * <p>
+     * This is useful for hierarchical typeaheads where the text before the delimiter selects a category, and the text after it
+     * filters within that category. For example, with delimiter {@code '/'}, the query {@code "laptops/mac"} filters items
+     * using only "mac".
+     *
+     * @param delimiter the character that separates hierarchical segments
+     * @return a {@link SearchFilter} that matches items against the last segment of the query
+     */
+    static SearchFilter lastSegment(char delimiter) {
+        return (item, query) -> {
+            int pos = query.lastIndexOf(delimiter);
+            String term = pos >= 0 ? query.substring(pos + 1).trim() : query.trim();
+            return term.isEmpty() || item.text().toLowerCase().contains(term.toLowerCase());
+        };
+    }
 }

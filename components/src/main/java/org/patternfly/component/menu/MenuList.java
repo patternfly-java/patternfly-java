@@ -281,6 +281,32 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                 });
     }
 
+    public Promise<Iterable<MenuItem>> replace() {
+        return async.replace(this,
+                this::addItem,
+                () -> {
+                    if (noItems != null) {
+                        noItemsItem = noItems.get();
+                        addItem(noItemsItem);
+                    }
+                },
+                err -> {
+                    logger.error("Unable to load items for %o: %s", element(), err);
+                    if (error != null) {
+                        errorItem = error.get();
+                        addItem(errorItem);
+                    }
+                },
+                () -> {
+                    if (loading != null) {
+                        loadingItem = loading.get();
+                        addItem(loadingItem);
+                    }
+                },
+                () -> failSafeRemoveFromParent(loadingItem),
+                this::internalClear);
+    }
+
     @Override
     public void reset() {
         async.reset(this::internalClear);

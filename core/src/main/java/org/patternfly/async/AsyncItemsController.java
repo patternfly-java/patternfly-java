@@ -152,6 +152,63 @@ public class AsyncItemsController<C, S> {
         return load(component, onItem, onEmpty, onError, onBefore, onAfter);
     }
 
+    /**
+     * Fetches new items while keeping old items visible, then swaps them atomically. Unlike {@link #reload}, this avoids the
+     * visual flash caused by clearing items before the async fetch completes.
+     */
+    @SuppressWarnings("unchecked")
+    public Promise<Iterable<S>> replace(C component,
+            Consumer<S> onItem,
+            Runnable onEmpty,
+            Consumer<Object> onError,
+            Runnable onBefore,
+            Runnable onAfter,
+            Runnable onClear) {
+        if (status != static_ && asyncItems != null) {
+            int currentGeneration = ++generation;
+            status = pending;
+            if (onBefore != null) {
+                onBefore.run();
+            }
+            return asyncItems.apply(component)
+                    .then(items -> {
+                        if (currentGeneration != generation) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
+                        status = resolved;
+                        if (onAfter != null) {
+                            onAfter.run();
+                        }
+                        if (onClear != null) {
+                            onClear.run();
+                        }
+                        int count = 0;
+                        for (S item : items) {
+                            onItem.accept(item);
+                            count++;
+                        }
+                        if (count == 0 && onEmpty != null) {
+                            onEmpty.run();
+                        }
+                        return Promise.resolve(items);
+                    })
+                    .catch_(err -> {
+                        if (currentGeneration != generation) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
+                        status = rejected;
+                        if (onAfter != null) {
+                            onAfter.run();
+                        }
+                        if (onError != null) {
+                            onError.accept(err);
+                        }
+                        return Promise.reject(err);
+                    });
+        }
+        return Promise.resolve((Iterable<S>) emptyList());
+    }
+
     public AsyncStatus status() {
         return status;
     }
