@@ -83,7 +83,8 @@ public class Overlay {
     private Supplier<HTMLElement> triggerSupplier;
     private HTMLElement trigger;
     private boolean cssPositioning;
-    private boolean matchTriggerWidth;
+    private boolean minTriggerWidth;
+    private boolean maxTriggerWidth;
     private int distance;
     private Placement placement;
 
@@ -111,7 +112,8 @@ public class Overlay {
         this.toggleHandlers = new ArrayList<>();
         this.triggerMode = manual;
         this.cssPositioning = false;
-        this.matchTriggerWidth = false;
+        this.minTriggerWidth = false;
+        this.maxTriggerWidth = false;
         this.visible = false;
         this.distance = 0;
         this.entryDelay = 0;
@@ -174,8 +176,13 @@ public class Overlay {
         return this;
     }
 
-    public Overlay matchTriggerWidth(boolean match) {
-        this.matchTriggerWidth = match;
+    public Overlay minTriggerWidth(boolean match) {
+        this.minTriggerWidth = match;
+        return this;
+    }
+
+    public Overlay maxTriggerWidth(boolean match) {
+        this.maxTriggerWidth = match;
         return this;
     }
 
@@ -326,11 +333,14 @@ public class Overlay {
         }
     }
 
-    private void applyMinWidth() {
-        if (matchTriggerWidth && trigger != null) {
-            String width = trigger.offsetWidth + "px";
-            overlayElement.style.setProperty("min-width", width);
-            overlayElement.style.setProperty("max-width", width);
+    private void applyMinMaxWidth() {
+        if (trigger != null) {
+            if (minTriggerWidth) {
+                overlayElement.style.setProperty("min-width", trigger.offsetWidth + "px");
+            }
+            if (maxTriggerWidth) {
+                overlayElement.style.setProperty("max-width", trigger.offsetWidth + "px");
+            }
         }
     }
 
@@ -400,7 +410,7 @@ public class Overlay {
     }
 
     private void internalShow(Event event) {
-        applyMinWidth();
+        applyMinMaxWidth();
         if (cssPositioning) {
             overlayElement.showPopover();
         } else {
