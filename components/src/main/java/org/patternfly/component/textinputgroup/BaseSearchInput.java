@@ -164,7 +164,19 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
                         debouncedReload.call();
                     } else if (isStructuralChangeMode()) {
                         if (!expanded()) {
+                            boolean wasLoaded = !menu.hasAsyncItems();
                             expand(false);
+                            if (wasLoaded) {
+                                if (reloadStrategy.predicate().test(previousValue, value)) {
+                                    menu.replace().then(__ -> {
+                                        search(value());
+                                        loadedHandler.forEach(lh -> lh.handle(new Event(""), that()));
+                                        return null;
+                                    });
+                                } else {
+                                    search(value);
+                                }
+                            }
                         } else if (reloadStrategy.predicate().test(previousValue, value)) {
                             menu.replace().then(__ -> {
                                 search(value());
