@@ -34,10 +34,12 @@ public class ReloadStrategy {
 
     private final int debounceMs;
     private final BiPredicate<String, String> predicate;
+    private final char delimiter;
 
-    private ReloadStrategy(int debounceMs, BiPredicate<String, String> predicate) {
+    private ReloadStrategy(int debounceMs, BiPredicate<String, String> predicate, char delimiter) {
         this.debounceMs = debounceMs;
         this.predicate = predicate;
+        this.delimiter = delimiter;
     }
 
     /**
@@ -47,7 +49,7 @@ public class ReloadStrategy {
      * @param debounceMs the debounce timeout in milliseconds; must be &gt; 0
      */
     public static ReloadStrategy everyInput(int debounceMs) {
-        return new ReloadStrategy(debounceMs, null);
+        return new ReloadStrategy(debounceMs, null, (char) 0);
     }
 
     /**
@@ -57,7 +59,7 @@ public class ReloadStrategy {
      * @param predicate receives (previousValue, currentValue), returns {@code true} to trigger a reload
      */
     public static ReloadStrategy structuralChange(BiPredicate<String, String> predicate) {
-        return new ReloadStrategy(0, predicate);
+        return new ReloadStrategy(0, predicate, (char) 0);
     }
 
     /**
@@ -70,9 +72,9 @@ public class ReloadStrategy {
      * @param delimiter reload when the count of this character changes between previous and current input
      */
     public static ReloadStrategy structuralChange(int minLength, char delimiter) {
-        return structuralChange((prev, curr) ->
+        return new ReloadStrategy(0, (prev, curr) ->
                 (prev.length() < minLength && curr.length() >= minLength) ||
-                        countOccurrences(prev, delimiter) != countOccurrences(curr, delimiter));
+                        countOccurrences(prev, delimiter) != countOccurrences(curr, delimiter), delimiter);
     }
 
     private static int countOccurrences(String s, char c) {
@@ -93,5 +95,10 @@ public class ReloadStrategy {
     /** Returns the predicate for structural change detection, or {@code null} if this is not a structural-change strategy. */
     public BiPredicate<String, String> predicate() {
         return predicate;
+    }
+
+    /** Returns the delimiter character for hierarchical input, or {@code '\0'} if none was set. */
+    public char delimiter() {
+        return delimiter;
     }
 }

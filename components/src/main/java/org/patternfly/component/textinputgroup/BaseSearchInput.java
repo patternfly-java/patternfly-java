@@ -495,8 +495,27 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         } else {
             expand(false);
             if (matching.size() == 1) {
-                hint = matching.get(0).text();
-                failSafeHintInput().value = hint;
+                String itemText = matching.get(0).text();
+                if (itemText.toLowerCase().startsWith(value.toLowerCase())) {
+                    hint = itemText;
+                    failSafeHintInput().value = hint;
+                } else if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
+                    char delimiter = reloadStrategy.delimiter();
+                    int pos = value.lastIndexOf(delimiter);
+                    if (pos >= 0) {
+                        String segment = value.substring(pos + 1);
+                        if (!segment.isEmpty() && itemText.toLowerCase().startsWith(segment.toLowerCase())) {
+                            hint = value.substring(0, pos + 1) + itemText;
+                            failSafeHintInput().value = hint;
+                        } else {
+                            clearHint();
+                        }
+                    } else {
+                        clearHint();
+                    }
+                } else {
+                    clearHint();
+                }
             } else {
                 clearHint();
             }
