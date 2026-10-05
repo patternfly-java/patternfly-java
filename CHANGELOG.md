@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Split `Overlay.matchTriggerWidth()` into separate `minTriggerWidth()` and `maxTriggerWidth()` methods for independent control of overlay width constraints relative to the trigger element
+
 ## [0.12.1] - 2026-10-05
 
 ### Added

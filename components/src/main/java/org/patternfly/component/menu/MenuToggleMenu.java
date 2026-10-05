@@ -100,7 +100,7 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
         overlay = overlay(menuPopover, bottomStart)
                 .trigger(menuToggle::element)
                 .cssPositioning(anchorNameSupported())
-                .matchTriggerWidth(true);
+                .minTriggerWidth(true);
 
         delegateTo(menuToggle.element());
         Attachable.register(menuToggle.element(), this);

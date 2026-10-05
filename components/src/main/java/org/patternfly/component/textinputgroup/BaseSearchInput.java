@@ -286,7 +286,8 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         this.overlay = overlay(menuPopover, bottomStart)
                 .trigger(inputElement)
                 .cssPositioning(anchorNameSupported())
-                .matchTriggerWidth(true);
+                .minTriggerWidth(true)
+                .maxTriggerWidth(true);
 
         return add(menuPopover);
     }
