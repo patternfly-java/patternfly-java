@@ -138,7 +138,17 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
             menuClickHandler = bind(menu, click, this::onMenuClick);
             keyHandler = bind(window, keydown, this::keyHandler);
             menu.onSingleSelect((e, item, selected) -> {
-                value(item.text());
+                if (isStructuralChangeMode() && reloadStrategy.delimiter() != 0) {
+                    String current = value();
+                    int pos = current.lastIndexOf(reloadStrategy.delimiter());
+                    if (pos >= 0) {
+                        value(current.substring(0, pos + 1) + item.text());
+                    } else {
+                        value(item.text());
+                    }
+                } else {
+                    value(item.text());
+                }
                 inputElement.focus();
             });
             onInput((e, c, value) -> {
