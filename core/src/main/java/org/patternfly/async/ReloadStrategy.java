@@ -65,7 +65,8 @@ public class ReloadStrategy {
      * characters, and again whenever the number of {@code delimiter} characters changes. Between reloads, items are filtered
      * locally using the configured filter.
      *
-     * @param minLength reload when input length crosses this threshold (previous &lt; minLength, current &gt;= minLength)
+     * @param minLength reload when input length first reaches or exceeds this threshold (previous &lt; minLength,
+     *                  current &gt;= minLength); deleting text back below the threshold does not trigger a reload
      * @param delimiter reload when the count of this character changes between previous and current input
      */
     public static ReloadStrategy structuralChange(int minLength, char delimiter) {
