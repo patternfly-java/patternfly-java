@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.12.1] - 2026-10-05
+
 ### Fixed
 
 - Fix typeahead and search input clearing and collapsing in debounce mode to reset the menu instead of just clearing the local search filter
@@ -1320,7 +1322,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.1...HEAD
+[0.12.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.11.0...v0.12.0
 [0.11.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.3...v0.11.0
 [0.10.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.10.2...v0.10.3
