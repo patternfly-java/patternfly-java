@@ -17,6 +17,7 @@ package org.patternfly.component.menu;
 
 import java.util.function.Function;
 
+import org.patternfly.async.ReloadStrategy;
 import org.patternfly.async.Reloadable;
 
 import elemental2.promise.Promise;
@@ -76,4 +77,18 @@ public interface Typeahead<M extends MenuToggleMenu<M>> extends Reloadable<M> {
      * @return the instance of the current type enabling method chaining.
      */
     M onNoResults(NoResults noResults);
+
+    /**
+     * Convenience method that sets both the reload strategy and the local search filter in a single call. This is particularly
+     * useful for the {@link org.patternfly.async.ReloadStrategy#structuralChange(java.util.function.BiPredicate)
+     * structuralChange} strategy, where a local filter is needed between server reloads.
+     *
+     * @param strategy     the {@link org.patternfly.async.ReloadStrategy} controlling when to reload items
+     * @param searchFilter the {@link SearchFilter} used for local filtering between reloads
+     * @return the instance for method chaining.
+     */
+    default M reloadOn(ReloadStrategy strategy, SearchFilter searchFilter) {
+        onFilter(searchFilter);
+        return reloadOn(strategy);
+    }
 }

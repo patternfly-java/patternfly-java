@@ -305,6 +305,20 @@ public abstract class BaseSearchInput<T extends BaseSearchInput<T>> extends Base
         return that();
     }
 
+    /**
+     * Convenience method that sets both the reload strategy and the local search filter in a single call. This is particularly
+     * useful for the {@link ReloadStrategy#structuralChange(java.util.function.BiPredicate) structuralChange} strategy, where a
+     * local filter is needed between server reloads.
+     *
+     * @param strategy     the {@link ReloadStrategy} controlling when to reload items
+     * @param searchFilter the {@link SearchFilter} used for local filtering between reloads
+     * @return the instance for method chaining
+     */
+    public T reloadOn(ReloadStrategy strategy, SearchFilter searchFilter) {
+        onFilter(searchFilter);
+        return reloadOn(strategy);
+    }
+
     // ------------------------------------------------------ events
 
     /**
