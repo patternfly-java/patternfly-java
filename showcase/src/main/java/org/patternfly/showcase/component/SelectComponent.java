@@ -66,6 +66,7 @@ import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
 import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
+import static org.patternfly.component.menu.SearchFilter.containsAll;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
 import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
@@ -295,18 +296,7 @@ public class SelectComponent extends SnippetPage {
             return div()
                     .add(singleTypeahead(si)
                             .applyToMenuToggle(FullWidth::fullWidth)
-                            .onFilter((item, query) -> {
-                                String text = item.text().toLowerCase();
-                                for (String term : query.replace("/", " ").trim().toLowerCase().split("\\s+")) {
-                                    if (!term.isEmpty() && !text.contains(term)) {
-                                        return false;
-                                    }
-                                }
-                                return true;
-                            })
-                            .reloadOn(structuralChange((prev, curr) ->
-                                    (prev.length() < 5 && curr.length() >= 5) ||
-                                            countChar(prev, '/') != countChar(curr, '/')))
+                            .reloadOn(structuralChange(5, '/'), containsAll('/'))
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
@@ -403,13 +393,4 @@ public class SelectComponent extends SnippetPage {
         addApiDoc(SingleSelectMenu.class, component);
     }
 
-    private static int countChar(String s, char c) {
-        int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == c) {
-                count++;
-            }
-        }
-        return count;
-    }
 }

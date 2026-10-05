@@ -41,6 +41,7 @@ import static org.patternfly.component.menu.MenuContent.menuContent;
 import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuType.menu;
+import static org.patternfly.component.menu.SearchFilter.containsAll;
 import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TEXT_TO_IDENTIFIER;
 import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
 import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
@@ -175,18 +176,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 code("tig-autocomplete-structural"), () -> {
             // @code-start:tig-autocomplete-structural
             SearchInput si = searchInput("tig-autocomplete-structural-0").icon(search());
-            si.onFilter((item, query) -> {
-                        String text = item.text().toLowerCase();
-                        for (String term : query.replace("/", " ").trim().toLowerCase().split("\\s+")) {
-                            if (!term.isEmpty() && !text.contains(term)) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    })
-                    .reloadOn(structuralChange((prev, curr) ->
-                            (prev.length() < 5 && curr.length() >= 5) ||
-                                    countChar(prev, '/') != countChar(curr, '/')))
+            si.reloadOn(structuralChange(5, '/'), containsAll('/'))
                     .add(menu(menu, click).scrollable()
                             .addContent(menuContent()
                                     .addList(menuList()
@@ -202,13 +192,4 @@ public class TextInputGroupComponent extends SnippetPage {
         addApiDoc(TextInputGroupUtilities.class, subcomponent);
     }
 
-    private static int countChar(String s, char c) {
-        int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == c) {
-                count++;
-            }
-        }
-        return count;
-    }
 }
