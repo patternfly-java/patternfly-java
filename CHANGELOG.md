@@ -8,9 +8,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [0.12.1] - 2026-10-05
 
+### Added
+
+- Add `SearchFilter.containsAll(char)` for multi-term matching with a delimiter
+- Add `SearchFilter.lastSegment(char)` for hierarchical filtering after a delimiter
+- Add `ReloadStrategy.structuralChange(int, char)` convenience factory with delimiter support
+- Add `reloadOn(ReloadStrategy, SearchFilter)` convenience overload on `Typeahead` and `BaseSearchInput`
+- Add `Menu.replace()`, `MenuList.replace()`, and `AsyncItemsController.replace()` to swap items without the visual flash caused by reset-then-load
+- Add `delimiter()` accessor on `ReloadStrategy`
+
+### Changed
+
+- Replace OpenLibrary with DummyJSON category/product hierarchy for structural change showcase demos
+
 ### Fixed
 
 - Fix typeahead and search input clearing and collapsing in debounce mode to reset the menu instead of just clearing the local search filter
+- Fix menu resetting on toggle expand and overlay show in debounce mode to prevent stale filtered results
+- Fix stale search value in structural change mode: search with current input value instead of value captured at predicate trigger time
+- Fix structural change menu not reloading when re-expanding after autocomplete completion
+- Fix prefix-aware autocomplete hint for hierarchical search input to align hint correctly after delimiters
+- Fix autocomplete hint preserving typed case in the overlap region to prevent visual artifacts
+- Fix delimiter prefix being lost when selecting a menu item in structural change mode
+- Fix hint not clearing on menu item selection, preventing ghost overlay
+- Constrain menu width to input width and show autocomplete hint after debounce reload completes
 
 ## [0.12.0] - 2026-10-01
 
