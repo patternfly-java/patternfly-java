@@ -26,8 +26,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.menu;
 
-/** The footer area of a {@link Menu} component. */
-
 /** A menu footer within a {@link Menu} component. */
 public class MenuFooter extends SubComponent<HTMLDivElement, MenuFooter> implements
         ElementTextMethods<HTMLDivElement, MenuFooter> {

@@ -32,7 +32,7 @@ import org.patternfly.core.Roles;
 import org.patternfly.overlay.Overlay;
 import org.patternfly.overlay.TriggerMode;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
@@ -66,7 +66,7 @@ import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Placement.bottomStart;
 
 /** Internal subcomponent that renders an overflow menu for tabs that do not fit in the visible area. */
-class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements Modifiers.Disabled<HTMLElement, OverflowTab> {
+class OverflowTab extends TabSubComponent<HTMLElement, OverflowTab> implements Disabled<HTMLElement, OverflowTab> {
 
     // ------------------------------------------------------ factory
 

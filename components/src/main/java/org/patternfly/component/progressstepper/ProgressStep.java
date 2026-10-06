@@ -107,11 +107,6 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
     }
 
     @Override
-    public ProgressStep that() {
-        return this;
-    }
-
-    @Override
     public Element textDelegate() {
         return getStepTitleElement();
     }
@@ -253,13 +248,18 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
         return this;
     }
 
+    @Override
+    public ProgressStep that() {
+        return this;
+    }
+
     // ------------------------------------------------------ aria
 
     public ProgressStep ariaLabel(String ariaLabel) {
         return aria(Aria.label, ariaLabel);
     }
 
-    // ------------------------------------------ package-private
+    // ------------------------------------------------------ internal
 
     ProgressStep current(boolean isCurrent) {
         if (this.isCurrent == isCurrent) {
@@ -280,8 +280,6 @@ public class ProgressStep extends SubComponent<HTMLLIElement, ProgressStep>
     boolean isCurrent() {
         return isCurrent;
     }
-
-    // ------------------------------------------------------ internal
 
     private HTMLContainerBuilder<HTMLDivElement> failSafeStepDescription() {
         if (stepDescription == null) {

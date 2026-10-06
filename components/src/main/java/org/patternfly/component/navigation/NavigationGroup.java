@@ -56,8 +56,6 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.section;
 import static org.patternfly.style.Classes.title;
 
-/** A group of navigation items within a {@link Navigation} component. */
-
 /** A navigation group within a {@link Navigation} component. */
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> implements
         ElementContainerDelegate<HTMLElement, NavigationGroup>,

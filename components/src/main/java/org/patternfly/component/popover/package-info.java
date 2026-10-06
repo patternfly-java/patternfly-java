@@ -50,6 +50,10 @@
  *         .addFooter("Popover footer");
  *}
  *
+ * @see org.patternfly.component.popover.Popover
+ * @see org.patternfly.component.popover.PopoverBody
+ * @see org.patternfly.component.popover.PopoverFooter
+ * @see org.patternfly.component.popover.PopoverHeader
  * @see <a href="https://www.patternfly.org/components/popover">https://www.patternfly.org/components/popover</a>
  */
 package org.patternfly.component.popover;

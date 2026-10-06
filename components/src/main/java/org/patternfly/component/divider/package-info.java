@@ -48,8 +48,8 @@
  *         .addItem(flexItem().text("Second item"));
  *}
  *
- * @see Divider
- * @see DividerType
+ * @see org.patternfly.component.divider.Divider
+ * @see org.patternfly.component.divider.DividerType
  * @see <a href="https://www.patternfly.org/components/divider">PatternFly Divider</a>
  */
 package org.patternfly.component.divider;

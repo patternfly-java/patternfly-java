@@ -103,7 +103,7 @@ public class NumberInput extends BaseComponent<HTMLDivElement, NumberInput> impl
     private UnaryOperator<Double> plusOperation;
     private UnaryOperator<Double> minusOperation;
 
-    private NumberInput(double initialValue) {
+    NumberInput(double initialValue) {
         super(ComponentType.NumberInput, div().css(component(numberInput)).element());
         this.value = clamp(initialValue);
 

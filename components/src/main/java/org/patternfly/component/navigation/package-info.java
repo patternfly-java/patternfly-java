@@ -52,6 +52,11 @@
  *                 .addItem(navigationItem("item-11", "Subnav link 2", "#item-11")));
  *}
  *
+ * @see org.patternfly.component.navigation.ExpandableNavigationGroup
+ * @see org.patternfly.component.navigation.Navigation
+ * @see org.patternfly.component.navigation.NavigationGroup
+ * @see org.patternfly.component.navigation.NavigationItem
+ * @see org.patternfly.component.navigation.NavigationLinkText
  * @see <a href="https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */
 package org.patternfly.component.navigation;

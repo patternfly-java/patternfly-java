@@ -58,6 +58,9 @@
  *         .addItem(jumpLinksItem("section-3", "API Reference"));
  *}
  *
+ * @see org.patternfly.component.jumplinks.JumpLinks
+ * @see org.patternfly.component.jumplinks.JumpLinksItem
+ * @see org.patternfly.component.jumplinks.JumpLinksList
  * @see <a href="https://www.patternfly.org/components/jump-links">PatternFly Jump Links</a>
  */
 package org.patternfly.component.jumplinks;

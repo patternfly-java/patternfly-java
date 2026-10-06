@@ -53,6 +53,8 @@
  *                 .dynamic());
  *}
  *
+ * @see org.patternfly.component.help.HelperText
+ * @see org.patternfly.component.help.HelperTextItem
  * @see <a href="https://www.patternfly.org/components/helper-text">PatternFly Helper Text</a>
  */
 package org.patternfly.component.help;

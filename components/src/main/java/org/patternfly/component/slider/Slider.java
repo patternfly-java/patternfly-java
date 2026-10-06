@@ -543,8 +543,6 @@ public class Slider extends BaseComponent<HTMLElement, Slider> implements
                 .on(blur, this::handleInputBlur);
     }
 
-    // ------------------------------------------------------ event handler
-
     private void handleRailClick(Event event) {
         if (disabled) {
             return;

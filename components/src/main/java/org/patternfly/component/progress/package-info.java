@@ -43,6 +43,7 @@
  *         .value(100);
  *}
  *
+ * @see org.patternfly.component.progress.Progress
  * @see <a href="https://www.patternfly.org/components/progress">https://www.patternfly.org/components/progress</a>
  */
 package org.patternfly.component.progress;

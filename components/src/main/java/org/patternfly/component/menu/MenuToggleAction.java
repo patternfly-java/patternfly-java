@@ -29,8 +29,6 @@ import static org.patternfly.style.Classes.button;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.menuToggle;
 
-/** An action element within a {@link MenuToggle} component. */
-
 /** A menu toggle action within a {@link MenuToggle} component. */
 public class MenuToggleAction extends MenuToggleSubComponent<HTMLButtonElement, MenuToggleAction> implements
         Disabled<HTMLButtonElement, MenuToggleAction>,

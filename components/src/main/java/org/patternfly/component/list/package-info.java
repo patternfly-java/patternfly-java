@@ -78,6 +78,23 @@
  *         .addItem(listItem("item-1").text("Second"));
  *}
  *
+ * @see org.patternfly.component.list.ActionList
+ * @see org.patternfly.component.list.ActionListGroup
+ * @see org.patternfly.component.list.ActionListItem
+ * @see org.patternfly.component.list.DataList
+ * @see org.patternfly.component.list.DataListAction
+ * @see org.patternfly.component.list.DataListCell
+ * @see org.patternfly.component.list.DataListExpandableContent
+ * @see org.patternfly.component.list.DataListItem
+ * @see org.patternfly.component.list.DescriptionList
+ * @see org.patternfly.component.list.DescriptionListDescription
+ * @see org.patternfly.component.list.DescriptionListGroup
+ * @see org.patternfly.component.list.DescriptionListTerm
+ * @see org.patternfly.component.list.List
+ * @see org.patternfly.component.list.ListItem
+ * @see org.patternfly.component.list.SimpleList
+ * @see org.patternfly.component.list.SimpleListGroup
+ * @see org.patternfly.component.list.SimpleListItem
  * @see <a href="https://www.patternfly.org/components/list">PatternFly List</a>
  * @see <a href="https://www.patternfly.org/components/data-list">PatternFly Data List</a>
  * @see <a href="https://www.patternfly.org/components/description-list">PatternFly Description List</a>

@@ -44,8 +44,6 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 
-/** An individual link item within a {@link JumpLinks} component. */
-
 /** A jump links item within a {@link JumpLinks} component. */
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
         ComponentContext<HTMLLIElement, JumpLinksItem>,

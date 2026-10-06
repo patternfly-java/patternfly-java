@@ -56,6 +56,7 @@
  * Icon dangerIcon = icon(errorFill()).status(danger);
  *}
  *
+ * @see org.patternfly.component.icon.Icon
  * @see <a href="https://www.patternfly.org/components/icon">PatternFly Icon</a>
  */
 package org.patternfly.component.icon;

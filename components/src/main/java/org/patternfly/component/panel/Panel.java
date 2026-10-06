@@ -18,7 +18,7 @@ package org.patternfly.component.panel;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Classes;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Bordered;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -42,7 +42,7 @@ import static org.patternfly.style.Classes.scrollable;
  *
  * @see <a href= "https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */
-public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Modifiers.Bordered<HTMLDivElement, Panel> {
+public class Panel extends BaseComponent<HTMLDivElement, Panel> implements Bordered<HTMLDivElement, Panel> {
 
     // ------------------------------------------------------ factory
 

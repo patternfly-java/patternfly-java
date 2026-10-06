@@ -63,6 +63,8 @@
  *         .first().next();
  *}
  *
+ * @see org.patternfly.component.progressstepper.ProgressStep
+ * @see org.patternfly.component.progressstepper.ProgressStepper
  * @see <a href=
  * "https://www.patternfly.org/components/progress-stepper">https://www.patternfly.org/components/progress-stepper</a>
  */

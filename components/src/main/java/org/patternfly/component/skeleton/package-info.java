@@ -46,6 +46,7 @@
  *         .screenReaderText("Loading square contents");
  *}
  *
+ * @see org.patternfly.component.skeleton.Skeleton
  * @see <a href="https://www.patternfly.org/components/skeleton">https://www.patternfly.org/components/skeleton</a>
  */
 package org.patternfly.component.skeleton;

@@ -30,8 +30,6 @@ import static org.patternfly.core.Roles.tabpanel;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.tabContent;
 
-/** The content panel associated with a {@link Tab}. */
-
 /** A tab content area within a {@link Tabs} component. */
 public class TabContent extends TabSubComponent<HTMLElement, TabContent> implements
         ComponentContext<HTMLElement, TabContent>, Disabled<HTMLElement, TabContent>,

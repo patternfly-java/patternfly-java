@@ -581,8 +581,6 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         }
     }
 
-    // ------------------------------------------------------ keyboard navigation
-
     // Navigation is split into two phases:
     // 1. cursorNavigation() — called by key handlers in MenuToggleMenu or BaseSearchInput when focus is outside the menu
     //    (e.g., in a search input). Jumps the focus to the first or last navigable item.

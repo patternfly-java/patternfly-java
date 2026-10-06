@@ -24,8 +24,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.header;
 import static org.patternfly.style.Classes.menu;
 
-/** The header area of a {@link Menu} component. */
-
 /** A menu header within a {@link Menu} component. */
 public class MenuHeader extends MenuSubComponent<HTMLDivElement, MenuHeader> implements
         ElementTextMethods<HTMLDivElement, MenuHeader> {

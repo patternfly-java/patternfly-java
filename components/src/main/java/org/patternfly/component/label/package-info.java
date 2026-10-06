@@ -62,6 +62,8 @@
  *         .addItem(label("Label 3", red).filled().closable());
  *}
  *
+ * @see org.patternfly.component.label.Label
+ * @see org.patternfly.component.label.LabelGroup
  * @see <a href="https://www.patternfly.org/components/label">PatternFly Label</a>
  * @see <a href="https://www.patternfly.org/components/label-group">PatternFly Label Group</a>
  */

@@ -60,15 +60,15 @@
  *         .addPanel(drawerPanel());
  *}
  *
- * @see Drawer
- * @see DrawerBody
- * @see DrawerCloseButton
- * @see DrawerContent
- * @see DrawerPanel
- * @see DrawerPanelHead
- * @see DrawerSection
- * @see DrawerColor
- * @see Position
+ * @see org.patternfly.component.drawer.Drawer
+ * @see org.patternfly.component.drawer.DrawerBody
+ * @see org.patternfly.component.drawer.DrawerCloseButton
+ * @see org.patternfly.component.drawer.DrawerContent
+ * @see org.patternfly.component.drawer.DrawerPanel
+ * @see org.patternfly.component.drawer.DrawerPanelHead
+ * @see org.patternfly.component.drawer.DrawerSection
+ * @see org.patternfly.component.drawer.DrawerColor
+ * @see org.patternfly.component.drawer.Position
  * @see <a href="https://www.patternfly.org/components/drawer">PatternFly Drawer</a>
  */
 package org.patternfly.component.drawer;

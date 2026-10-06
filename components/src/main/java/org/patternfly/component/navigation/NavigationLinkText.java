@@ -25,8 +25,6 @@ import static org.patternfly.style.Classes.link;
 import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.text;
 
-/** The text element of a navigation link in a {@link Navigation} component. */
-
 /** A text within a navigation link within a {@link NavigationItem} component. */
 public class NavigationLinkText extends NavigationSubComponent<HTMLElement, NavigationLinkText>
         implements ElementTextMethods<HTMLElement, NavigationLinkText> {

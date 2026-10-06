@@ -25,8 +25,6 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.notificationDrawer;
 
-/** The body content area of a {@link NotificationDrawer} component. */
-
 /** A notification drawer body within a {@link NotificationDrawer} component. */
 public class NotificationDrawerBody extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerBody> {
 

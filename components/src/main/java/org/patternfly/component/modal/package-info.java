@@ -60,6 +60,12 @@
  *         .appendToBody();
  *}
  *
+ * @see org.patternfly.component.modal.Modal
+ * @see org.patternfly.component.modal.ModalBody
+ * @see org.patternfly.component.modal.ModalFooter
+ * @see org.patternfly.component.modal.ModalHeader
+ * @see org.patternfly.component.modal.ModalHeaderDescription
+ * @see org.patternfly.component.modal.ModalHeaderTitle
  * @see <a href="https://www.patternfly.org/components/modal">https://www.patternfly.org/components/modal</a>
  */
 package org.patternfly.component.modal;

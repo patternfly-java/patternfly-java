@@ -41,6 +41,10 @@
  *         .addMain("Main content");
  *}
  *
+ * @see org.patternfly.component.panel.Panel
+ * @see org.patternfly.component.panel.PanelFooter
+ * @see org.patternfly.component.panel.PanelHeader
+ * @see org.patternfly.component.panel.PanelMain
  * @see <a href="https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */
 package org.patternfly.component.panel;

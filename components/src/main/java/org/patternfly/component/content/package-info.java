@@ -48,8 +48,8 @@
  *         .add(p().text("HTML elements within a wrapping Content are styled as well!"));
  *}
  *
- * @see Content
- * @see ContentType
+ * @see org.patternfly.component.content.Content
+ * @see org.patternfly.component.content.ContentType
  * @see <a href="https://www.patternfly.org/components/content">PatternFly Content</a>
  */
 package org.patternfly.component.content;

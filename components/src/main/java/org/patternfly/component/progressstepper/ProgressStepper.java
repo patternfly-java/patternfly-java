@@ -109,7 +109,30 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         return this;
     }
 
-    // ------------------------------------------------------ navigation
+    // ------------------------------------------------------ aria
+
+    public ProgressStepper ariaLabel(String label) {
+        return aria(Aria.label, label);
+    }
+
+    // ------------------------------------------------------ events
+
+    @Override
+    public ProgressStepper onAdd(AddItemHandler<ProgressStepper, ProgressStep> onAdd) {
+        return aur.onAdd(onAdd);
+    }
+
+    @Override
+    public ProgressStepper onUpdate(UpdateItemHandler<ProgressStepper, ProgressStep> onUpdate) {
+        return aur.onUpdate(onUpdate);
+    }
+
+    @Override
+    public ProgressStepper onRemove(RemoveItemHandler<ProgressStepper, ProgressStep> onRemove) {
+        return aur.onRemove(onRemove);
+    }
+
+    // ------------------------------------------------------ api
 
     /**
      * Selects the first step (index 0) if available. Does nothing if there are no steps or the first step is already current.
@@ -297,31 +320,6 @@ public class ProgressStepper extends BaseComponent<HTMLOListElement, ProgressSte
         actionForTheLastStep.accept(steps.get(currentIndex).current(true));
         return this;
     }
-
-    // ------------------------------------------------------ aria
-
-    public ProgressStepper ariaLabel(String label) {
-        return aria(Aria.label, label);
-    }
-
-    // ------------------------------------------------------ events
-
-    @Override
-    public ProgressStepper onAdd(AddItemHandler<ProgressStepper, ProgressStep> onAdd) {
-        return aur.onAdd(onAdd);
-    }
-
-    @Override
-    public ProgressStepper onUpdate(UpdateItemHandler<ProgressStepper, ProgressStep> onUpdate) {
-        return aur.onUpdate(onUpdate);
-    }
-
-    @Override
-    public ProgressStepper onRemove(RemoveItemHandler<ProgressStepper, ProgressStep> onRemove) {
-        return aur.onRemove(onRemove);
-    }
-
-    // ------------------------------------------------------ api
 
     @Override
     public Iterator<ProgressStep> iterator() {

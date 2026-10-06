@@ -24,8 +24,6 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.emptyState;
 
-/** The body content area of an {@link EmptyState} component. */
-
 /** A empty state body within a {@link EmptyState} component. */
 public class EmptyStateBody extends EmptyStateSubComponent<HTMLDivElement, EmptyStateBody> implements
         ElementTextMethods<HTMLDivElement, EmptyStateBody> {

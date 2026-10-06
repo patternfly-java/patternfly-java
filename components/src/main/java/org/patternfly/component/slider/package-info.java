@@ -53,6 +53,10 @@
  *         .onChange((e, s, v) -> {});
  *}
  *
+ * @see org.patternfly.component.slider.Slider
+ * @see org.patternfly.component.slider.SliderActions
+ * @see org.patternfly.component.slider.SliderStep
+ * @see org.patternfly.component.slider.SliderSteps
  * @see <a href="https://www.patternfly.org/components/slider">https://www.patternfly.org/components/slider</a>
  */
 package org.patternfly.component.slider;

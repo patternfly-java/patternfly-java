@@ -24,8 +24,6 @@ import static org.patternfly.style.Classes.body;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.hint;
 
-/** The body content area of a {@link Hint} component. */
-
 /** A hint body within a {@link Hint} component. */
 public class HintBody extends HintSubComponent<HTMLDivElement, HintBody> implements
         ElementTextMethods<HTMLDivElement, HintBody> {

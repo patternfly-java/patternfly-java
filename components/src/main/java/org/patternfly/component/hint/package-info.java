@@ -50,6 +50,11 @@
  *                         .text("Try it for 90 days")));
  *}
  *
+ * @see org.patternfly.component.hint.Hint
+ * @see org.patternfly.component.hint.HintActions
+ * @see org.patternfly.component.hint.HintBody
+ * @see org.patternfly.component.hint.HintFooter
+ * @see org.patternfly.component.hint.HintTitle
  * @see <a href="https://www.patternfly.org/components/hint">PatternFly Hint</a>
  */
 package org.patternfly.component.hint;

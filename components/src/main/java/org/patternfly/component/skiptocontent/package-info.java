@@ -37,6 +37,7 @@
  * SkipToContent stc = skipToContent("main-content-id", "Jump to main content");
  *}
  *
+ * @see org.patternfly.component.skiptocontent.SkipToContent
  * @see <a href=
  * "https://www.patternfly.org/components/skip-to-content">https://www.patternfly.org/components/skip-to-content</a>
  */

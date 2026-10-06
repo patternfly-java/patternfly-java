@@ -64,6 +64,13 @@
  *                                 .timestamp("20 minutes ago"))));
  *}
  *
+ * @see org.patternfly.component.notification.NotificationBadge
+ * @see org.patternfly.component.notification.NotificationDrawer
+ * @see org.patternfly.component.notification.NotificationDrawerBody
+ * @see org.patternfly.component.notification.NotificationDrawerHeader
+ * @see org.patternfly.component.notification.NotificationDrawerItem
+ * @see org.patternfly.component.notification.NotificationDrawerItemBody
+ * @see org.patternfly.component.notification.NotificationDrawerList
  * @see <a href="https://www.patternfly.org/components/notification-badge">
  * https://www.patternfly.org/components/notification-badge</a>
  * @see <a href="https://www.patternfly.org/components/notification-drawer">

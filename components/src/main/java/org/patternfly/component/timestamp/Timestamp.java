@@ -172,7 +172,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
         return this;
     }
 
-    // ------------------------------------------------------ accessors
+    // ------------------------------------------------------ api
 
     public Date dateTime() {
         return dateTime;

@@ -36,8 +36,6 @@ import static org.patternfly.core.Attributes.role;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.jumpLinks;
 
-/** A nested list of links within a {@link JumpLinks} component. */
-
 /** A jump links list within a {@link JumpLinks} component. */
 public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpLinksList> implements
         HasItems<HTMLUListElement, JumpLinksList, JumpLinksItem> {

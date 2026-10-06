@@ -15,8 +15,6 @@
  */
 package org.patternfly.component.page;
 
-import org.patternfly.component.ComponentType;
-import org.patternfly.component.SubComponent;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Sticky;
 
@@ -41,7 +39,7 @@ import static org.patternfly.style.Classes.shadowTop;
  * <p>
  * {@snippet class = PageDemo region = pageMainGroup}
  */
-public class PageGroup extends SubComponent<HTMLDivElement, PageGroup> {
+public class PageGroup extends PageSubComponent<HTMLDivElement, PageGroup> {
 
     // ------------------------------------------------------ factory
 
@@ -58,7 +56,7 @@ public class PageGroup extends SubComponent<HTMLDivElement, PageGroup> {
     public static final String SUB_COMPONENT_NAME = "PageGroup";
 
     PageGroup() {
-        super(ComponentType.Page, SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());
+        super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(page, main, group)).element());
     }
 
     // ------------------------------------------------------ add

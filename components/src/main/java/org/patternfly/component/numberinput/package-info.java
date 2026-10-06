@@ -39,6 +39,7 @@
  *         .unit("%");
  *}
  *
+ * @see org.patternfly.component.numberinput.NumberInput
  * @see <a href="https://www.patternfly.org/components/number-input">https://www.patternfly.org/components/number-input</a>
  */
 package org.patternfly.component.numberinput;

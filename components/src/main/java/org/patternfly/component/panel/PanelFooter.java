@@ -24,8 +24,6 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.footer;
 import static org.patternfly.style.Classes.panel;
 
-/** The footer area of a {@link Panel} component. */
-
 /** A panel footer within a {@link Panel} component. */
 public class PanelFooter extends PanelSubComponent<HTMLDivElement, PanelFooter> implements
         ElementTextMethods<HTMLDivElement, PanelFooter> {

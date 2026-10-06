@@ -48,9 +48,9 @@
  *         .addToggle(expandableSectionToggle("Show more", "Show less"));
  *}
  *
- * @see ExpandableSection
- * @see ExpandableSectionContent
- * @see ExpandableSectionToggle
+ * @see org.patternfly.component.expandable.ExpandableSection
+ * @see org.patternfly.component.expandable.ExpandableSectionContent
+ * @see org.patternfly.component.expandable.ExpandableSectionToggle
  * @see <a href="https://www.patternfly.org/components/expandable-section">PatternFly Expandable section</a>
  */
 package org.patternfly.component.expandable;

@@ -63,8 +63,6 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ factory
 
-    private static Page instance;
-
     /** Create or returns the page singleton. */
     public static Page page() {
         return page(false);
@@ -83,6 +81,7 @@ public class Page extends BaseComponent<HTMLDivElement, Page> implements Attacha
 
     // ------------------------------------------------------ instance
 
+    private static Page instance;
     private final ObservableValue<Rect> rect;
     private final List<ResizeHandler<Page>> resizeHandler;
     private SkipToContent skipToContent;

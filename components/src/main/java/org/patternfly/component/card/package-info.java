@@ -54,15 +54,15 @@
  *                 .addFooter(cardFooter().text("Footer")));
  *}
  *
- * @see Card
- * @see CardActions
- * @see CardBody
- * @see CardExpandableContent
- * @see CardFooter
- * @see CardHeader
- * @see CardSelectableActions
- * @see CardSubtitle
- * @see CardTitle
+ * @see org.patternfly.component.card.Card
+ * @see org.patternfly.component.card.CardActions
+ * @see org.patternfly.component.card.CardBody
+ * @see org.patternfly.component.card.CardExpandableContent
+ * @see org.patternfly.component.card.CardFooter
+ * @see org.patternfly.component.card.CardHeader
+ * @see org.patternfly.component.card.CardSelectableActions
+ * @see org.patternfly.component.card.CardSubtitle
+ * @see org.patternfly.component.card.CardTitle
  * @see <a href="https://www.patternfly.org/components/card">PatternFly Card</a>
  */
 package org.patternfly.component.card;

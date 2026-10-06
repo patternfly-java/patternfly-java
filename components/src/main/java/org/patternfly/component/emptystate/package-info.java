@@ -56,10 +56,10 @@
  *         .spinner("Loading...");
  *}
  *
- * @see EmptyState
- * @see EmptyStateActions
- * @see EmptyStateBody
- * @see EmptyStateFooter
+ * @see org.patternfly.component.emptystate.EmptyState
+ * @see org.patternfly.component.emptystate.EmptyStateActions
+ * @see org.patternfly.component.emptystate.EmptyStateBody
+ * @see org.patternfly.component.emptystate.EmptyStateFooter
  * @see <a href="https://www.patternfly.org/components/empty-state">PatternFly Empty state</a>
  */
 package org.patternfly.component.emptystate;

@@ -94,7 +94,7 @@ public class NotificationBadge extends BaseComponent<HTMLElement, NotificationBa
     private ObservableValue<NotificationStatus> os;
     private NotificationStatus status;
 
-    private NotificationBadge(int count, Button button) {
+    NotificationBadge(int count, Button button) {
         super(ComponentType.NotificationBadge, button.element());
         this.button = button;
         this.animated = false;

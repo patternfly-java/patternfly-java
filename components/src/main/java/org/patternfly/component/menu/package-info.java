@@ -80,6 +80,25 @@
  *                                 .addItem(menuItem("option-2", "Option 3")))));
  *}
  *
+ * @see org.patternfly.component.menu.Dropdown
+ * @see org.patternfly.component.menu.DropdownMenu
+ * @see org.patternfly.component.menu.Menu
+ * @see org.patternfly.component.menu.MenuContent
+ * @see org.patternfly.component.menu.MenuFooter
+ * @see org.patternfly.component.menu.MenuGroup
+ * @see org.patternfly.component.menu.MenuHeader
+ * @see org.patternfly.component.menu.MenuItem
+ * @see org.patternfly.component.menu.MenuItemAction
+ * @see org.patternfly.component.menu.MenuList
+ * @see org.patternfly.component.menu.MenuSearch
+ * @see org.patternfly.component.menu.MenuToggle
+ * @see org.patternfly.component.menu.MenuToggleAction
+ * @see org.patternfly.component.menu.MultiSelect
+ * @see org.patternfly.component.menu.MultiSelectMenu
+ * @see org.patternfly.component.menu.MultiSelectTypeahead
+ * @see org.patternfly.component.menu.SingleSelect
+ * @see org.patternfly.component.menu.SingleSelectMenu
+ * @see org.patternfly.component.menu.SingleSelectTypeahead
  * @see <a href="https://www.patternfly.org/components/menus/menu">PatternFly Menu</a>
  * @see <a href="https://www.patternfly.org/components/menus/dropdown">PatternFly Dropdown</a>
  * @see <a href="https://www.patternfly.org/components/menus/select">PatternFly Select</a>

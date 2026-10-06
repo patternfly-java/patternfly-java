@@ -49,10 +49,10 @@
  *         .code("long code content...");
  *}
  *
- * @see CodeBlock
- * @see CodeBlockAction
- * @see CodeBlockActions
- * @see CodeBlockHeader
+ * @see org.patternfly.component.codeblock.CodeBlock
+ * @see org.patternfly.component.codeblock.CodeBlockAction
+ * @see org.patternfly.component.codeblock.CodeBlockActions
+ * @see org.patternfly.component.codeblock.CodeBlockHeader
  * @see <a href="https://www.patternfly.org/components/code-block">PatternFly Code block</a>
  */
 package org.patternfly.component.codeblock;

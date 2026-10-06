@@ -56,6 +56,9 @@
  *                 .addButton(button("Search").control()));
  *}
  *
+ * @see org.patternfly.component.inputgroup.InputGroup
+ * @see org.patternfly.component.inputgroup.InputGroupItem
+ * @see org.patternfly.component.inputgroup.InputGroupText
  * @see <a href="https://www.patternfly.org/components/input-group">PatternFly Input Group</a>
  */
 package org.patternfly.component.inputgroup;

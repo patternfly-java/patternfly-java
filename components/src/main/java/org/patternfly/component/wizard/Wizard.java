@@ -336,8 +336,6 @@ public class Wizard extends BaseComponent<HTMLElement, Wizard> implements
         return current;
     }
 
-    // ------------------------------------------------------ navigation
-
     public void previous() {
         if (current != null) {
             WizardStep previousStep = previousEnabledStep(current.previous);

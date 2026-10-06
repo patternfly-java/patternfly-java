@@ -19,7 +19,7 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.IsElement;
 import org.patternfly.core.Roles;
-import org.patternfly.style.Modifiers;
+import org.patternfly.style.Modifiers.Fill;
 
 import elemental2.dom.AddEventListenerOptions;
 import elemental2.dom.Element;
@@ -46,7 +46,7 @@ import static org.patternfly.style.Classes.page;
  */
 public class PageMain extends PageSubComponent<HTMLElement, PageMain> implements
         ElementContainerDelegate<HTMLElement, PageMain>,
-        Modifiers.Fill<HTMLElement, PageMain> {
+        Fill<HTMLElement, PageMain> {
 
     // ------------------------------------------------------ factory
 
