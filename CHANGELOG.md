@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-10-06
+
 > [!IMPORTANT]
 > This release contains breaking changes.
 
@@ -1383,7 +1385,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.2...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.0...HEAD
+[0.13.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.2...v0.13.0
 [0.12.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.1...v0.12.2
 [0.12.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.11.0...v0.12.0
