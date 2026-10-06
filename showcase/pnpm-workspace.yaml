@@ -101,6 +101,8 @@ auditConfig:
     - GHSA-vfj7-8cjw-p6xm
     - GHSA-2jg2-4ch7-h545
     - GHSA-g89c-p67h-r497
+    - GHSA-6688-9rhm-gjv2
+    - GHSA-wq5f-xc86-pv6w
 
 # @patternfly/documentation-framework declares peer dependencies on React packages
 # that we don't use — we only import CSS files from it.
