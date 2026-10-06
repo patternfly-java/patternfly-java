@@ -1,6 +1,6 @@
 # PF Lint Summary
 
-**Date:** 2026-08-17
+**Date:** 2026-10-06
 **Components:** 51
 **Total errors:** 0
 **Total warnings:** 0
@@ -32,14 +32,14 @@
 | jumplinks | 5 | clean |
 | label | 5 | clean |
 | list | 24 | clean |
-| menu | 43 | clean |
+| menu | 32 | clean |
 | modal | 8 | clean |
 | navigation | 8 | clean |
 | notification | 9 | clean |
 | numberinput | 3 | clean |
 | page | 22 | clean |
 | panel | 6 | clean |
-| popover | 11 | clean |
+| popover | 6 | clean |
 | progress | 4 | clean |
 | progressstepper | 4 | clean |
 | skeleton | 3 | clean |
@@ -49,12 +49,12 @@
 | switch_ | 2 | clean |
 | table | 15 | clean |
 | tabs | 8 | clean |
-| textinputgroup | 9 | clean |
+| textinputgroup | 8 | clean |
 | timestamp | 7 | clean |
 | title | 2 | clean |
 | togglegroup | 4 | clean |
 | toolbar | 14 | clean |
-| tooltip | 5 | clean |
+| tooltip | 2 | clean |
 | tree | 5 | clean |
-| truncate | 3 | clean |
+| truncate | 2 | clean |
 | wizard | 20 | clean |

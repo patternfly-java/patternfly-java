@@ -1,64 +1,766 @@
 {
   "skillVersion": "0.1.0",
-  "date": "2026-08-17",
+  "date": "2026-10-06",
   "stats": {
-    "total": 51,
+    "total": 52,
     "linted": 51,
     "compared": 3,
-    "updateChecked": 51,
+    "updateChecked": 52,
     "outdated": 23
   },
   "components": [
-    {"name": "accordion", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "alert", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "avatar", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "backdrop", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "backtotop", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "badge", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "banner", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "brand", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "breadcrumb", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "button", "lint": "clean", "lintDate": "2026-06-28", "compare": "94% (16/17)", "compareDate": "2026-06-08", "actionItems": 14, "update": "current"},
-    {"name": "card", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "codeblock", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "content", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "divider", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "drawer", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "emptystate", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "expandable", "lint": "clean", "lintDate": "2026-06-28", "compare": "70% (7/10)", "compareDate": "2026-07-07", "actionItems": 6, "update": "current"},
-    {"name": "form", "lint": "clean", "lintDate": "2026-07-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "help", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "hint", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "icon", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "inputgroup", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "jumplinks", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "label", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "list", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "menu", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "modal", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "navigation", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "notification", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "numberinput", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "page", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "panel", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "popover", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "progress", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "progressstepper", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "skeleton", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "skiptocontent", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "slider", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "spinner", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "switch_", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "table", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "tabs", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "textinputgroup", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "timestamp", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "title", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "togglegroup", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "toolbar", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "tooltip", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "current"},
-    {"name": "tree", "lint": "clean", "lintDate": "2026-06-28", "compare": "36% (5/14)", "compareDate": "2026-06-25", "actionItems": 16, "update": "current"},
-    {"name": "truncate", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"},
-    {"name": "wizard", "lint": "clean", "lintDate": "2026-06-28", "compare": null, "update": "outdated (6.5.0)"}
+    {
+      "name": "accordion",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "alert",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "avatar",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "backdrop",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "backtotop",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "badge",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "banner",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "brand",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "breadcrumb",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "button",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": {
+        "date": "2026-06-08",
+        "pfVersion": "Release 6.5.1",
+        "pfTotal": 0,
+        "pfjTotal": 0,
+        "matched": 0,
+        "percentage": 0,
+        "missingInPfj": [],
+        "extraInPfj": [],
+        "actionItems": 14
+      },
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "card",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "codeblock",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "content",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "divider",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "drawer",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "emptystate",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "expandable",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": {
+        "date": "2026-07-07",
+        "pfVersion": "Release 6.6.0",
+        "pfTotal": 0,
+        "pfjTotal": 0,
+        "matched": 0,
+        "percentage": 0,
+        "missingInPfj": [],
+        "extraInPfj": [],
+        "actionItems": 6
+      },
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "form",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "help",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "hint",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "icon",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "inputgroup",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "jumplinks",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "label",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "list",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "menu",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "modal",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "navigation",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "notification",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "numberinput",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "page",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "panel",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "popover",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "progress",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "progressstepper",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "skeleton",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "skiptocontent",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "slider",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "spinner",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "switch_",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "table",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "tabs",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "textinputgroup",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "timestamp",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "title",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "togglegroup",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "toolbar",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "tooltip",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "tree",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": {
+        "date": "2026-06-25",
+        "pfVersion": "Release 6.5.1",
+        "pfTotal": 0,
+        "pfjTotal": 0,
+        "matched": 0,
+        "percentage": 0,
+        "missingInPfj": [],
+        "extraInPfj": [],
+        "actionItems": 16
+      },
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "truncate",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "typeahead",
+      "lint": null,
+      "compare": null,
+      "update": {
+        "status": "current",
+        "version": "6.5.0"
+      }
+    },
+    {
+      "name": "wizard",
+      "lint": {
+        "date": "2026-10-06",
+        "status": "clean",
+        "errors": 0,
+        "warnings": 0
+      },
+      "compare": null,
+      "update": {
+        "status": "outdated",
+        "version": "6.5.0"
+      }
+    }
   ]
 }
