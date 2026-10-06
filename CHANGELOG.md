@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+> [!IMPORTANT]
+> This release contains breaking changes.
+
 ### Added
 
 - Add `org.patternfly.component.typeahead` package with `Decision`, `RefreshStrategy`, `Typeahead`, and `TypeaheadController`

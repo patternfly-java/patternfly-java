@@ -53,7 +53,7 @@ When a PR scope uses PascalCase (e.g., `DataList`), convert to match PFJ directo
 | `Progress` | `progress` | |
 | `ProgressStepper` | `progressstepper` | |
 | `Radio` | `form` | Part of form module |
-| `SearchInput` | `textinputgroup` | PFJ uses textinputgroup |
+| `SearchInputGroup` | `textinputgroup` | PFJ uses textinputgroup |
 | `Select` | `menu` | PFJ uses menu for select |
 | `Skeleton` | `skeleton` | |
 | `SkipToContent` | `skiptocontent` | |
