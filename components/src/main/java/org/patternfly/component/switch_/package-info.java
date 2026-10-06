@@ -17,13 +17,13 @@
  * Provides a switch (toggle) component for binary on/off selections.
  *
  * <p>A switch is used to toggle the state of a setting between two options (on and off). It supports labels,
- * reversed layout, check icons, and a disabled state. The package name uses a trailing underscore because
- * {@code switch} is a reserved Java keyword.
+ * reversed layout, check icons, and a disabled state. The package name uses a trailing underscore because {@code switch} is a
+ * reserved Java keyword.
  *
  * <h2>Usage</h2>
  *
  * <p>Create a switch with an ID, name, and initial checked state:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.switch_.Switch.switch_;
  *
@@ -45,7 +45,7 @@
  * Switch disabled = switch_("disabled", "disabled", true)
  *         .disabled()
  *         .label("Disabled option");
- * }
+ *}
  *
  * @see org.patternfly.component.switch_.Switch
  * @see <a href="https://www.patternfly.org/components/switch">PatternFly Switch</a>

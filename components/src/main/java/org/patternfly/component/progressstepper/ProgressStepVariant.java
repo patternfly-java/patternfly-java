@@ -26,8 +26,8 @@ import static org.patternfly.icon.IconSets.rhUi.warningFill;
 import static org.patternfly.style.Classes.modifier;
 
 /**
- * Represents the variants of a progress step in a progress stepper component.
- * Each variant can have a specific icon and style associated with it.
+ * Represents the variants of a progress step in a progress stepper component. Each variant can have a specific icon and style
+ * associated with it.
  */
 public enum ProgressStepVariant {
     default_(null) {

@@ -20,16 +20,16 @@
  * custom step sizes, unit labels, validation status, and configurable input widths.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.numberinput.NumberInput.numberInput;
  *
  * NumberInput input = numberInput(90)
  *         .unit("%");
- * }
- *
+ *}
+ * <p>
  * A number input with minimum and maximum thresholds:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.numberinput.NumberInput.numberInput;
  *
@@ -37,7 +37,7 @@
  *         .min(0)
  *         .max(10)
  *         .unit("%");
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/number-input">https://www.patternfly.org/components/number-input</a>
  */

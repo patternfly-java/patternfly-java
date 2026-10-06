@@ -19,8 +19,8 @@
  * <p>This package provides a centralized controller for positioning, showing, and hiding overlay elements using the
  * native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API">Popover API</a> and
  * <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning">CSS Anchor Positioning</a>.
- * Components delegate all overlay behavior to this package, keeping their own code focused on component-specific
- * concerns like DOM structure, ARIA attributes, and content.
+ * Components delegate all overlay behavior to this package, keeping their own code focused on component-specific concerns like
+ * DOM structure, ARIA attributes, and content.
  *
  * <h2>Key Classes</h2>
  *
@@ -36,7 +36,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create an overlay, configure its trigger, placement, and interaction mode, then bind it to a trigger element:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.overlay.Overlay.overlay;
  *
@@ -45,7 +45,7 @@
  *     .triggerMode(TriggerMode.hover)
  *     .entryDelay(300)
  *     .exitDelay(300);
- * }
+ *}
  *
  * <h2>Positioning</h2>
  *

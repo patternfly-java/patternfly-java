@@ -30,13 +30,13 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.async.AsyncItems;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.component.form.Checkbox;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -95,6 +95,7 @@ import static org.patternfly.style.Classes.util;
 import static org.patternfly.style.Size.lg;
 
 /** An individual selectable item within a {@link Menu} component. */
+
 /** A menu item within a {@link Menu} component. */
 public class MenuItem extends MenuSubComponent<HTMLElement, MenuItem> implements
         Attachable,

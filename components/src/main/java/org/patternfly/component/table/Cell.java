@@ -20,9 +20,9 @@ import java.util.Map;
 
 import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.TypedBuilder;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.style.Modifiers.Center;
 import org.patternfly.style.Width;
 

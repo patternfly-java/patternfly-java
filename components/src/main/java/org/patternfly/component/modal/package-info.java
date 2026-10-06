@@ -21,7 +21,7 @@
  * action buttons.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.modal.Modal.modal;
@@ -37,10 +37,10 @@
  *                 .addButton(button("Cancel").link()))
  *         .appendToBody();
  * modal.open();
- * }
- *
+ *}
+ * <p>
  * Modals can include a header with title and description:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.modal.Modal.modal;
@@ -58,7 +58,7 @@
  *                 .addButton(button("Confirm").primary())
  *                 .addButton(button("Cancel").link()))
  *         .appendToBody();
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/modal">https://www.patternfly.org/components/modal</a>
  */

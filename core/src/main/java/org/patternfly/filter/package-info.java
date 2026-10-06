@@ -34,7 +34,7 @@
  * <h2>Basic Usage</h2>
  *
  * <p>Create a filter with multiple attributes, set values, and apply it to a collection:
- *
+ * <p>
  * {@snippet :
  * // Create a filter combining attributes with AND
  * Filter<User> filter = new Filter<>(FilterOperator.AND);
@@ -52,34 +52,34 @@
  *
  * // Or match a single object
  * boolean matches = filter.match(user);
- * }
+ *}
  *
  * <h2>Features</h2>
  *
  * <h3>Logical Operators</h3>
  * <p>Combine multiple filter attributes using {@link org.patternfly.filter.FilterOperator#AND} or
  * {@link org.patternfly.filter.FilterOperator#OR}:
- *
+ * <p>
  * {@snippet :
  * // Match users where name contains "John" OR email contains "john"
  * Filter<User> filter = new Filter<>(FilterOperator.OR)
  *     .add(new FilterAttribute<>("name", (u, v) -> u.name().contains(v)))
  *     .add(new FilterAttribute<>("email", (u, v) -> u.email().contains(v)));
- * }
+ *}
  *
  * <h3>Change Notifications</h3>
  * <p>Register handlers to be notified when filter state changes:
- *
+ * <p>
  * {@snippet :
  * filter.onChange((f, origin) -> {
  *     console.log("Filter changed from: " + origin);
  *     updateUI(f.filter(users));
  * });
- * }
+ *}
  *
  * <h3>Persistence</h3>
  * <p>Save and restore filter state using string serialization:
- *
+ * <p>
  * {@snippet :
  * // Mark attributes as persistent
  * filter.add(new FilterAttribute<>("name", true, nameCondition));
@@ -89,20 +89,20 @@
  *
  * // Later, restore filter state
  * filter.load(state);
- * }
+ *}
  *
  * <h3>Custom Attribute Modifiers</h3>
  * <p>Control how attribute values are updated using {@link org.patternfly.filter.FilterAttributeModifier}:
- *
+ * <p>
  * {@snippet :
  * // Toggle boolean values instead of replacing them
  * filter.set("flag", true, (oldValue, newValue) -> !oldValue);
- * }
+ *}
  *
  * <h2>Integration with Data Provider</h2>
  *
  * <p>Filters work seamlessly with {@link org.patternfly.dataprovider.DataProvider}:
- *
+ * <p>
  * {@snippet :
  * Filter<User> filter = new Filter<>(FilterOperator.AND)
  *     .add(new FilterAttribute<>("search", (u, v) -> u.name().contains(v)));
@@ -112,7 +112,7 @@
  * filter.onChange((f, origin) -> {
  *     dataProvider.addFilter("user-filter", user -> f.match(user));
  * });
- * }
+ *}
  *
  * @see org.patternfly.filter.Filter
  * @see org.patternfly.filter.FilterAttribute

@@ -17,24 +17,26 @@
  * Provides text input group components for search, filter, and text input with utilities.
  *
  * <p>A text input group is an input component with additional capabilities such as icons, search utilities (clear
- * button), and filter labels. This package includes a base text input group, a search input with built-in clear
- * functionality, and a filter input that supports adding and removing filter labels.
+ * button), and filter labels. This package includes a base text input group, a search input with built-in clear functionality,
+ * and a filter input that supports adding and removing filter labels.
  *
  * <h2>Key Classes</h2>
  *
  * <ul>
  *     <li>{@link org.patternfly.component.textinputgroup.TextInputGroup} - Base text input group</li>
- *     <li>{@link org.patternfly.component.textinputgroup.SearchInput} - Text input with search and clear utilities</li>
- *     <li>{@link org.patternfly.component.textinputgroup.FilterInput} - Text input with filter label management</li>
+ *     <li>{@link SearchInputGroup} - Text input with search and clear utilities</li>
+ *     <li>{@link SearchInputGroupTypeahead} - Search input with typeahead/autocomplete menu</li>
+ *     <li>{@link FilterInputGroup} - Text input with filter label management</li>
+ *     <li>{@link FilterInputGroupTypeahead} - Filter input with typeahead/autocomplete menu</li>
  *     <li>{@link org.patternfly.component.textinputgroup.TextInputGroupUtilities} - Utility buttons (clear, etc.)</li>
  * </ul>
  *
  * <h2>Usage</h2>
  *
  * <p>Create a basic text input group or a search input with an icon:
- *
+ * <p>
  * {@snippet :
- * import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
+ * import static org.patternfly.component.textinputgroup.SearchInputGroup.searchInputGroup;
  * import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
  * import static org.patternfly.icon.IconSets.rhUi.search;
  *
@@ -45,24 +47,24 @@
  * TextInputGroup disabled = textInputGroup("disabled-input", "Disabled").disabled();
  *
  * // Search input with icon
- * SearchInput searchInput = searchInput("search-0").icon(search());
- * }
+ * SearchInputGroup searchInput = searchInputGroup("search-0").icon(search());
+ *}
  *
  * <p>Create a filter input with label management:
- *
+ * <p>
  * {@snippet :
- * import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
+ * import static org.patternfly.component.textinputgroup.FilterInputGroup.filterInputGroup;
  * import static org.patternfly.icon.IconSets.rhUi.search;
  *
- * FilterInput filterInput = filterInput("filter-0").icon(search())
+ * FilterInputGroup filterInput = filterInputGroup("filter-0").icon(search())
  *         .allowDuplicates(false)
  *         .onAdd((fi, filter) -> console.log("Filter added: " + filter.text()))
  *         .onRemove((fi, filter) -> console.log("Filter removed: " + filter.text()));
- * }
+ *}
  *
  * @see org.patternfly.component.textinputgroup.TextInputGroup
- * @see org.patternfly.component.textinputgroup.SearchInput
- * @see org.patternfly.component.textinputgroup.FilterInput
+ * @see org.patternfly.component.textinputgroup.SearchInputGroup
+ * @see org.patternfly.component.textinputgroup.FilterInputGroup
  * @see <a href="https://www.patternfly.org/components/text-input-group">PatternFly Text Input Group</a>
  */
 package org.patternfly.component.textinputgroup;

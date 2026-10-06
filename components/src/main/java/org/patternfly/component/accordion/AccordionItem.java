@@ -27,8 +27,8 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.core.Roles;
 import org.patternfly.style.Classes;
 

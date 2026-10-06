@@ -25,15 +25,15 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.divider.Divider;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -57,6 +57,7 @@ import static org.patternfly.style.Classes.section;
 import static org.patternfly.style.Classes.title;
 
 /** A group of navigation items within a {@link Navigation} component. */
+
 /** A navigation group within a {@link Navigation} component. */
 public class NavigationGroup extends NavigationSubComponent<HTMLElement, NavigationGroup> implements
         ElementContainerDelegate<HTMLElement, NavigationGroup>,

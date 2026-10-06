@@ -16,8 +16,9 @@
 package org.patternfly.showcase.component;
 
 import org.jboss.elemento.router.Route;
-import org.patternfly.component.textinputgroup.FilterInput;
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.textinputgroup.FilterInputGroup;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
+import org.patternfly.component.textinputgroup.SearchInputGroupTypeahead;
 import org.patternfly.component.textinputgroup.TextInputGroup;
 import org.patternfly.component.textinputgroup.TextInputGroupUtilities;
 import org.patternfly.showcase.Snippet;
@@ -28,8 +29,6 @@ import org.patternfly.showcase.model.Words;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 import static org.jboss.elemento.Elements.div;
-import static org.patternfly.async.ReloadStrategy.everyInput;
-import static org.patternfly.async.ReloadStrategy.structuralChange;
 import static org.patternfly.component.SelectionMode.click;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
@@ -41,10 +40,11 @@ import static org.patternfly.component.menu.MenuItem.menuItem;
 import static org.patternfly.component.menu.MenuList.menuList;
 import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.SearchFilter.lastSegment;
-import static org.patternfly.component.textinputgroup.BaseFilterInput.DEFAULT_TEXT_TO_IDENTIFIER;
-import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
+import static org.patternfly.component.textinputgroup.BaseFilterInputGroup.DEFAULT_TEXT_TO_IDENTIFIER;
+import static org.patternfly.component.textinputgroup.SearchInputGroup.searchInput;
 import static org.patternfly.component.textinputgroup.TextInputGroup.textInputGroup;
+import static org.patternfly.component.typeahead.RefreshStrategy.everyInput;
+import static org.patternfly.component.typeahead.RefreshStrategy.structuralChange;
 import static org.patternfly.icon.IconSets.rhUi.search;
 import static org.patternfly.layout.flex.Direction.column;
 import static org.patternfly.layout.flex.Flex.flex;
@@ -91,7 +91,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 code("tig-search-input"), () ->
                 // @code-start:tig-search-input
                 div()
-                        .add(searchInput("tig-search-input-0").icon(search()))
+                        .add(SearchInputGroup.searchInputGroup("tig-search-input-0").icon(search()))
                         .element()
                 // @code-end:tig-search-input
         ));
@@ -125,7 +125,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 "A filter input manages a group of labels. Duplicates can be prevented with allowDuplicates(false).",
                 code("tig-filter-input"), () -> {
             // @code-start:tig-filter-input
-            FilterInput filterInput = filterInput("tig-filter-input-0").icon(search())
+            FilterInputGroup filterInput = FilterInputGroup.filterInputGroup("tig-filter-input-0").icon(search())
                     .allowDuplicates(false)
                     .onAdd((fi, filter) -> fi.removeIcon())
                     .onRemove((fi, filter) -> {
@@ -146,7 +146,7 @@ public class TextInputGroupComponent extends SnippetPage {
                 "A search input with an attached menu providing autocomplete suggestions. Items are loaded once and filtered locally as you type.",
                 code("tig-autocomplete"), () ->
                 // @code-start:tig-autocomplete
-                div().add(searchInput("tig-autocomplete-0").icon(search())
+                div().add(SearchInputGroupTypeahead.searchInputGroupTypeahead("tig-autocomplete-0").icon(search())
                                 .addMenu(menu(menu, click).scrollable()
                                         .addContent(menuContent()
                                                 .addList(menuList()
@@ -160,9 +160,10 @@ public class TextInputGroupComponent extends SnippetPage {
                 "Using everyInput(300), products are fetched from dummyjson.com on each keystroke (debounced at 300ms). The server handles all filtering.",
                 code("tig-autocomplete-debounce"), () -> {
             // @code-start:tig-autocomplete-debounce
-            SearchInput si = searchInput("tig-autocomplete-debounce-0").icon(search());
-            si.reloadOn(everyInput(300))
-                    .add(menu(menu, click).scrollable()
+            SearchInputGroupTypeahead si = SearchInputGroupTypeahead.searchInputGroupTypeahead("tig-autocomplete-debounce-0")
+                    .icon(search());
+            si.refreshOn(everyInput(300))
+                    .addMenu(menu(menu, click).scrollable()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItems(list -> DummyJson.searchProducts(si.value())))));
@@ -174,9 +175,11 @@ public class TextInputGroupComponent extends SnippetPage {
                 "Using structuralChange(), categories load from dummyjson.com when the query first reaches 3 characters and filter locally as you type. When you type '/', products for that category load from the server. Try typing 'laptops/' or 'smartphones/iphone'.",
                 code("tig-autocomplete-structural"), () -> {
             // @code-start:tig-autocomplete-structural
-            SearchInput si = searchInput("tig-autocomplete-structural-0").icon(search());
-            si.reloadOn(structuralChange(3, '/'), lastSegment('/'))
-                    .add(menu(menu, click).scrollable()
+            SearchInputGroupTypeahead si = SearchInputGroupTypeahead.searchInputGroupTypeahead("tig-autocomplete-structural-0")
+                    .icon(search());
+            si.filter(lastSegment('/'))
+                    .refreshOn(structuralChange(3, '/'))
+                    .addMenu(menu(menu, click).scrollable()
                             .addContent(menuContent()
                                     .addList(menuList()
                                             .addItems(list -> {
@@ -195,8 +198,8 @@ public class TextInputGroupComponent extends SnippetPage {
 
         startApiDocs(TextInputGroup.class);
         addApiDoc(TextInputGroup.class, component);
-        addApiDoc(SearchInput.class, component);
-        addApiDoc(FilterInput.class, component);
+        addApiDoc(SearchInputGroup.class, component);
+        addApiDoc(FilterInputGroup.class, component);
         addApiDoc(TextInputGroupUtilities.class, subcomponent);
     }
 

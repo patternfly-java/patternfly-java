@@ -123,8 +123,8 @@ public class AsyncItemsController<C, S> {
     }
 
     /**
-     * Resets the controller to {@link AsyncStatus#pending}, allowing a subsequent {@link #load} call. This works even when status
-     * is already {@code pending} — it increments the generation counter to invalidate any in-flight load.
+     * Resets the controller to {@link AsyncStatus#pending}, allowing a subsequent {@link #load} call. This works even when
+     * status is already {@code pending} — it increments the generation counter to invalidate any in-flight load.
      *
      * @param onClear called to clear existing items from the DOM (may be {@code null})
      */
@@ -139,25 +139,20 @@ public class AsyncItemsController<C, S> {
     }
 
     /**
-     * Convenience method: {@link #reset} followed by {@link #load}.
-     */
-    public Promise<Iterable<S>> reload(C component,
-            Consumer<S> onItem,
-            Runnable onEmpty,
-            Consumer<Object> onError,
-            Runnable onBefore,
-            Runnable onAfter,
-            Runnable onClear) {
-        reset(onClear);
-        return load(component, onItem, onEmpty, onError, onBefore, onAfter);
-    }
-
-    /**
-     * Fetches new items while keeping old items visible, then swaps them atomically. Unlike {@link #reload}, this avoids the
-     * visual flash caused by clearing items before the async fetch completes.
+     * Re-fetches items while keeping old items visible, then swaps them after the new items arrive. This avoids the visual
+     * flash caused by clearing items before the async fetch completes.
+     *
+     * @param component the component instance passed to the {@link AsyncItems} function
+     * @param onItem    called for each item in the result
+     * @param onEmpty   called when the result is empty (may be {@code null})
+     * @param onError   called when the promise rejects (may be {@code null})
+     * @param onBefore  called before the async fetch starts, e.g., to show a loading indicator (may be {@code null})
+     * @param onAfter   called after items have been processed, e.g., to remove the loading indicator (may be {@code null})
+     * @param onClear   called to clear existing items from the DOM before adding new ones
+     * @return a promise that resolves with the loaded items, or an empty list if skipped or stale
      */
     @SuppressWarnings("unchecked")
-    public Promise<Iterable<S>> replace(C component,
+    public Promise<Iterable<S>> refresh(C component,
             Consumer<S> onItem,
             Runnable onEmpty,
             Consumer<Object> onError,
@@ -179,9 +174,7 @@ public class AsyncItemsController<C, S> {
                         if (onAfter != null) {
                             onAfter.run();
                         }
-                        if (onClear != null) {
-                            onClear.run();
-                        }
+                        onClear.run();
                         int count = 0;
                         for (S item : items) {
                             onItem.accept(item);

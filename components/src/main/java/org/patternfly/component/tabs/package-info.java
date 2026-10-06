@@ -17,8 +17,8 @@
  * Provides a tabs component for organizing content into separate views within the same page.
  *
  * <p>Tabs allow users to switch between groups of related content. This package supports horizontal and vertical
- * layouts, box and secondary styling variants, disabled tabs, ARIA-disabled tabs with tooltip support, expandable
- * vertical tabs, and overflow handling.
+ * layouts, box and secondary styling variants, disabled tabs, ARIA-disabled tabs with tooltip support, expandable vertical
+ * tabs, and overflow handling.
  *
  * <h2>Key Classes</h2>
  *
@@ -33,7 +33,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create tabs with content panels:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.tabs.Tab.tab;
  * import static org.patternfly.component.tabs.TabContent.tabContent;
@@ -49,10 +49,10 @@
  *         .addItem(tab("disabled", "Disabled")
  *                 .disabled()
  *                 .addContent(tabContent().text("Disabled content")));
- * }
+ *}
  *
  * <p>Create vertical tabs with box styling:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.tabs.Tab.tab;
  * import static org.patternfly.component.tabs.TabContent.tabContent;
@@ -63,7 +63,7 @@
  *                 .addContent(tabContent().text("Tab 1 content")))
  *         .addItem(tab("tab-2", "Tab 2")
  *                 .addContent(tabContent().text("Tab 2 content")));
- * }
+ *}
  *
  * @see org.patternfly.component.tabs.Tabs
  * @see org.patternfly.component.tabs.Tab

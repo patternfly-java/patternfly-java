@@ -35,6 +35,14 @@
  * <ul>
  *     <li>{@link org.patternfly.core.ComponentContext} - Interface for storing and retrieving arbitrary values within a component</li>
  *     <li>{@link org.patternfly.core.ObservableValue} - A value wrapper that notifies subscribers when changed, enabling reactive patterns</li>
+ *     <li>{@link org.patternfly.core.HasValue} - Interface for components that expose a typed value</li>
+ *     <li>{@link org.patternfly.core.HasObservableValue} - Interface for components that bind to an {@code ObservableValue}</li>
+ *     <li>{@link org.patternfly.core.HasItems} - Interface for components that contain a collection of items</li>
+ *     <li>{@link org.patternfly.core.HasIdentifier} - Interface for (sub)components with an identifier</li>
+ *     <li>{@link org.patternfly.core.Ordered} - Interface for components that maintain elements in a specific order</li>
+ *     <li>{@link org.patternfly.core.AddItemHandler}, {@link org.patternfly.core.RemoveItemHandler},
+ *         {@link org.patternfly.core.UpdateItemHandler} - Handlers for item lifecycle events</li>
+ *     <li>{@link org.patternfly.core.AurHandler} - Utility for managing add, update, and remove handlers together</li>
  * </ul>
  *
  * <h3>Utilities</h3>
@@ -57,12 +65,12 @@
  *
  * <p>The {@link org.patternfly.core.ObservableValue} class enables reactive programming patterns by allowing components to
  * subscribe to value changes. Example usage:
- *
+ * <p>
  * {@snippet :
  * ObservableValue<String> value = ObservableValue.ov("initial");
  * value.subscribe((current, previous) -> console.log("Value changed: " + current));
  * value.set("new value"); // Triggers subscriber notification
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/">PatternFly Design System</a>
  * @see <a href="https://patternfly-java.github.io/">PatternFly Java Documentation</a>

@@ -33,7 +33,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create timestamps with various formats:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.timestamp.Timestamp.timestamp;
  * import org.patternfly.component.timestamp.TimestampFormat;
@@ -54,10 +54,10 @@
  *         .dateFormat(TimestampFormat.medium)
  *         .timeFormat(TimestampFormat._short)
  *         .displaySuffix("US Eastern");
- * }
+ *}
  *
  * <p>Create a timestamp with custom format options:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.timestamp.Timestamp.timestamp;
  * import org.patternfly.component.timestamp.CustomFormat;
@@ -70,7 +70,7 @@
  *                 .month(Month._short)
  *                 .year(Year._2digit)
  *                 .hour(Hour._2digit));
- * }
+ *}
  *
  * @see org.patternfly.component.timestamp.Timestamp
  * @see org.patternfly.component.timestamp.TimestampFormat

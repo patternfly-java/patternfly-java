@@ -18,9 +18,7 @@ package org.patternfly.component.timestamp;
 /**
  * Container for all date/time formatting options based on <a href=
  * "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">MDN
- * Intl.DateTimeFormat</a>
- * Consolidates all format enums into static inner classes for better
- * organization.
+ * Intl.DateTimeFormat</a> Consolidates all format enums into static inner classes for better organization.
  *
  */
 public class DateTimeFormatOptions {
@@ -180,9 +178,8 @@ public class DateTimeFormatOptions {
     }
 
     /**
-     * Options for fractional second digits.
-     * The number of digits used to represent fractions of a second (any additional
-     * digits are truncated).
+     * Options for fractional second digits. The number of digits used to represent fractions of a second (any additional digits
+     * are truncated).
      * <ul>
      * <li>{@code _1} - 1 digit</li>
      * <li>{@code _2} - 2 digits</li>
@@ -202,13 +199,11 @@ public class DateTimeFormatOptions {
     }
 
     /**
-     * Options for day period formatting.
-     * The formatting style used for day periods like "in the morning", "am",
-     * "noon", etc.
+     * Options for day period formatting. The formatting style used for day periods like "in the morning", "am", "noon", etc.
      * <p>
      * <strong>Note:</strong> This option only has an effect if a 12-hour clock
-     * ({@code hourCycle: "h12"} or {@code hourCycle: "h11"}) is used.
-     * Many locales use the same string irrespective of the width specified.
+     * ({@code hourCycle: "h12"} or {@code hourCycle: "h11"}) is used. Many locales use the same string irrespective of the
+     * width specified.
      * </p>
      * <ul>
      * <li>{@code narrow} - "mat." (French), "a" (English)</li>
@@ -229,14 +224,11 @@ public class DateTimeFormatOptions {
     }
 
     /**
-     * Options for time zone name formatting.
-     * The localized representation of the time zone name.
+     * Options for time zone name formatting. The localized representation of the time zone name.
      * <p>
      * <strong>Note:</strong> Timezone display may fall back to another format if a
-     * required string is unavailable.
-     * For example, the non-location formats should display the timezone without a
-     * specific country/city location
-     * like "Pacific Time", but may fall back to a timezone like "Los Angeles Time".
+     * required string is unavailable. For example, the non-location formats should display the timezone without a specific
+     * country/city location like "Pacific Time", but may fall back to a timezone like "Los Angeles Time".
      * </p>
      * <ul>
      * <li>{@code _short} - "PST", "GMT-8"</li>

@@ -21,11 +21,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.filter.Filter;
 
 import elemental2.dom.HTMLDivElement;
@@ -41,6 +41,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.toolbar;
 
 /** A content area for active filters within a {@link Toolbar} component. */
+
 /** A filter content within a toolbar within a {@link Toolbar} component. */
 public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, ToolbarFilterContent> implements
         HasItems<HTMLDivElement, ToolbarFilterContent, ToolbarItem> {

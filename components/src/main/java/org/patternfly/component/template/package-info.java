@@ -17,8 +17,8 @@
  * Template package serving as a blueprint for creating new PatternFly Java components.
  *
  * <p>This package contains template classes that demonstrate the required structure, conventions, and patterns for
- * implementing PatternFly components. It is not a functional component — it exists solely as a reference for code
- * generation and consistency.
+ * implementing PatternFly components. It is not a functional component — it exists solely as a reference for code generation
+ * and consistency.
  *
  * <h2>Package structure</h2>
  *
@@ -53,7 +53,7 @@
  * <h2>Usage</h2>
  *
  * <p>Creating a template component with items:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.template.TemplateComponent.template;
  * import static org.patternfly.component.template.TemplateItem.templateItem;
@@ -64,7 +64,7 @@
  *         .add(templateItem("item-3"))
  *         .compact()
  *         .onSelect((event, item, selected) -> {});
- * }
+ *}
  *
  * @see org.patternfly.component.template.TemplateComponent
  * @see org.patternfly.component.template.TemplateSubComponent

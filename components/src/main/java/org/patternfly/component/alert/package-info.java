@@ -17,22 +17,22 @@
  * Provides the PatternFly alert component for displaying notification messages to users.
  *
  * <p>Alerts are used to communicate the status of a system, feature, or page. They can appear inline on a page or as
- * toast notifications via alert groups. PatternFly supports several alert variants including custom, info, success,
- * warning, and danger, each with an associated status icon and color.
+ * toast notifications via alert groups. PatternFly supports several alert variants including custom, info, success, warning,
+ * and danger, each with an associated status icon and color.
  *
  * <h2>Usage</h2>
  *
  * <p>Basic alert variants:
- *
+ * <p>
  * {@snippet :
  * Alert infoAlert = alert(info, "Info alert title");
  * Alert successAlert = alert(success, "Success alert title");
  * Alert warningAlert = alert(warning, "Warning alert title");
  * Alert dangerAlert = alert(danger, "Danger alert title");
- * }
+ *}
  *
  * <p>Alert with description, actions, and close button:
- *
+ * <p>
  * {@snippet :
  * Alert alert = alert(success, "Success alert title")
  *     .closable()
@@ -40,15 +40,15 @@
  *     .addActionGroup(alertActionGroup()
  *         .addAction("View details", (e, a) -> handleViewDetails())
  *         .addAction("Ignore", (e, a) -> handleIgnore()));
- * }
+ *}
  *
  * <p>Inline alert group for static alerts:
- *
+ * <p>
  * {@snippet :
  * AlertGroup group = alertGroup(staticInline)
  *     .addItem(alert(success, "Success alert").inline())
  *     .addItem(alert(info, "Info alert"));
- * }
+ *}
  *
  * @see org.patternfly.component.alert.Alert
  * @see org.patternfly.component.alert.AlertGroup

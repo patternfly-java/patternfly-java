@@ -26,8 +26,8 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.expandableContent;
 
 /**
- * Represents the body content of an {@link AccordionItem}. Multiple bodies can be added to a single item to create
- * distinct content sections within the expandable area.
+ * Represents the body content of an {@link AccordionItem}. Multiple bodies can be added to a single item to create distinct
+ * content sections within the expandable area.
  */
 public class AccordionItemBody extends AccordionSubComponent<HTMLDivElement, AccordionItemBody> implements
         ElementTextMethods<HTMLDivElement, AccordionItemBody> {

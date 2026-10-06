@@ -20,9 +20,9 @@ import java.util.Map;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 
 import elemental2.dom.HTMLDivElement;
 
@@ -32,6 +32,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 
 /** An individual item within an {@link ActionList} component. */
+
 /** A action list item within a {@link ActionList} component. */
 public class ActionListItem extends ActionListSubComponent<HTMLDivElement, ActionListItem> implements
         HasIdentifier<HTMLDivElement, ActionListItem>,

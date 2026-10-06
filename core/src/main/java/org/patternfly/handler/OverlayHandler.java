@@ -29,7 +29,7 @@ public interface OverlayHandler {
      * Called when the overlay is shown or hidden.
      *
      * @param event the event that triggered the visibility change
-     * @param open {@code true} if the overlay was shown, {@code false} if it was hidden
+     * @param open  {@code true} if the overlay was shown, {@code false} if it was hidden
      */
     void handle(Event event, boolean open);
 }

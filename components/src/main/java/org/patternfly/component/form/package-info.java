@@ -17,8 +17,8 @@
  * Provides form components for building structured data entry interfaces.
  *
  * <p>This package contains the {@link org.patternfly.component.form.Form} component and its sub-components for
- * creating accessible, validated forms. Forms organize input controls into groups with labels, helper text, and
- * validation feedback. The package includes text inputs, text areas, form selects, checkboxes, and radio buttons.
+ * creating accessible, validated forms. Forms organize input controls into groups with labels, helper text, and validation
+ * feedback. The package includes text inputs, text areas, form selects, checkboxes, and radio buttons.
  *
  * <h2>Components</h2>
  *
@@ -55,7 +55,7 @@
  * <h2>Usage</h2>
  *
  * <p>A basic form with text inputs, checkboxes, and action buttons:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.form.Checkbox.checkbox;
@@ -89,7 +89,7 @@
  *         .addActionGroup(formActionGroup()
  *                 .addButton(button("Submit").primary())
  *                 .addButton(button("Cancel").link()));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/forms/form">PatternFly Form</a>
  * @see <a href="https://www.patternfly.org/components/forms/text-input">PatternFly Text Input</a>

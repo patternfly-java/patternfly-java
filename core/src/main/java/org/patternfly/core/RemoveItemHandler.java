@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.core;
 
 /**
  * Functional interface for handling the removal of items from a component that contains a collection of items. This interface

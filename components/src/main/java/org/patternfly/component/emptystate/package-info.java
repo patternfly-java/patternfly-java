@@ -22,9 +22,9 @@
  * spinner variant.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic empty state with icon, body text, and actions:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.emptystate.EmptyState.emptyState;
@@ -44,17 +44,17 @@
  *                 .addActions(emptyStateActions()
  *                         .add(button("Multiple").link())
  *                         .add(button("Action Buttons").link())));
- * }
- *
+ *}
+ * <p>
  * An empty state with a loading spinner:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.emptystate.EmptyState.emptyState;
  *
  * emptyState()
  *         .text("Loading...")
  *         .spinner("Loading...");
- * }
+ *}
  *
  * @see EmptyState
  * @see EmptyStateActions

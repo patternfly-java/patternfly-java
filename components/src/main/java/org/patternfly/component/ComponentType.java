@@ -69,7 +69,9 @@ public enum ComponentType {
 
     ExpandableSection("exs", "PF6/Component/ExpandableSection"),
 
-    FilterInput("fi", "PF6/Component/FilterInput"),
+    FilterInputGroup("fig", "PF6/Component/FilterInputGroup"),
+
+    FilterInputGroupTypeahead("figt", "PF6/Component/FilterInputGroupTypeahead"),
 
     Finder("fnd", "PF6/Component/Finder"),
 
@@ -101,9 +103,9 @@ public enum ComponentType {
 
     Modal("mo", "PF6/Component/Modal"),
 
-    MultiSelect("msl", "PF6/Component/MultiSelect"),
+    MultiSelect("ms", "PF6/Component/MultiSelect"),
 
-    MultiTypeahead("mty", "PF6/Component/MultiTypeahead"),
+    MultiSelectTypeahead("mst", "PF6/Component/MultiSelectTypeahead"),
 
     Navigation("nav", "PF6/Component/Nav"),
 
@@ -127,7 +129,9 @@ public enum ComponentType {
 
     Radio("rd", "PF6/Component/Radio"),
 
-    SearchInput("si", "PF6/Component/SearchInput"),
+    SearchInputGroup("sig", "PF6/Component/SearchInputGroup"),
+
+    SearchInputGroupTypeahead("sigt", "PF6/Component/SearchInputGroupTypeahead"),
 
     ServiceCard("sc", "PF6/Component/ServiceCard"),
 
@@ -135,9 +139,9 @@ public enum ComponentType {
 
     SimpleList("sl", "PF6/Component/SimpleList"),
 
-    SingleSelect("ssl", "PF6/Component/SingleSelect"),
+    SingleSelect("ss", "PF6/Component/SingleSelect"),
 
-    SingleTypeahead("sty", "PF6/Component/SingleTypeahead"),
+    SingleSelectTypeahead("sst", "PF6/Component/SingleSelectTypeahead"),
 
     Skeleton("sk", "PF6/Component/Skeleton"),
 

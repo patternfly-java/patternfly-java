@@ -19,12 +19,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLUListElement;
@@ -37,6 +37,7 @@ import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.jumpLinks;
 
 /** A nested list of links within a {@link JumpLinks} component. */
+
 /** A jump links list within a {@link JumpLinks} component. */
 public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpLinksList> implements
         HasItems<HTMLUListElement, JumpLinksList, JumpLinksItem> {

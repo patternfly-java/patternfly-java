@@ -20,10 +20,10 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
-import org.patternfly.component.HasValue;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.Aria;
+import org.patternfly.core.HasValue;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
 
@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.screenReader;
 
 /** An individual helper text item within a {@link HelperText} component. */
+
 /** A helper text item within a {@link HelperText} component. */
 public class HelperTextItem extends HelperTextSubComponent<HTMLElement, HelperTextItem> implements
         ComponentIcon<HTMLElement, HelperTextItem>,

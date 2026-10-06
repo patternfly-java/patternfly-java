@@ -19,10 +19,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.elemento.ElementTextDelegate;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 

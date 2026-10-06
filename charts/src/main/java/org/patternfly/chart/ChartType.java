@@ -25,8 +25,7 @@ public enum ChartType {
 
     DonutThreshold("dntt", "PF6/Chart/DonutThreshold"),
 
-    Pie("pie", "PF6/Chart/Pie")
-    ;
+    Pie("pie", "PF6/Chart/Pie");
 
     public final String id;
     public final String chartName;

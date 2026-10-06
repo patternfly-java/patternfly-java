@@ -17,11 +17,11 @@
  * Provides the PatternFly popover component and its subcomponents.
  * <p>
  * A popover is a floating content container that is triggered by a click (or hover) on a trigger element. It can display a
- * header, body, and footer, and supports configurable placement relative to the trigger element. Popovers are typically
- * used to provide more information or contextual actions.
+ * header, body, and footer, and supports configurable placement relative to the trigger element. Popovers are typically used to
+ * provide more information or contextual actions.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import org.jboss.elemento.By;
  * import static org.patternfly.component.button.Button.button;
@@ -34,10 +34,10 @@
  *         .addHeader("Popover header")
  *         .addBody("Popovers are triggered by click rather than hover.")
  *         .addFooter("Popover footer");
- * }
- *
+ *}
+ * <p>
  * A hoverable popover:
- *
+ * <p>
  * {@snippet :
  * import org.jboss.elemento.By;
  * import static org.patternfly.component.popover.Popover.popover;
@@ -48,7 +48,7 @@
  *         .addHeader("Popover header")
  *         .addBody("This popover opens on hover.")
  *         .addFooter("Popover footer");
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/popover">https://www.patternfly.org/components/popover</a>
  */

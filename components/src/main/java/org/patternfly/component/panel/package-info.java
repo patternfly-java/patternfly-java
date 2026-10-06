@@ -20,7 +20,7 @@
  * footer, with optional dividers between sections. Panels support raised, bordered, and scrollable variants.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.panel.Panel.panel;
  *
@@ -29,17 +29,17 @@
  *         .addDivider()
  *         .addMain("Main content")
  *         .addFooter("Footer content");
- * }
- *
+ *}
+ * <p>
  * A raised panel:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.panel.Panel.panel;
  *
  * Panel panel = panel()
  *         .raised()
  *         .addMain("Main content");
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/panel">https://www.patternfly.org/components/panel</a>
  */

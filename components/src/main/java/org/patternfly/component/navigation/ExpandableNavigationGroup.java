@@ -29,16 +29,16 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.divider.Divider;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -79,6 +79,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggle;
 
 /** An expandable group of navigation items within a {@link Navigation} component. */
+
 /** A expandable group of navigation items within a {@link Navigation} component. */
 public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElement, ExpandableNavigationGroup> implements
         ElementContainerDelegate<HTMLLIElement, ExpandableNavigationGroup>,

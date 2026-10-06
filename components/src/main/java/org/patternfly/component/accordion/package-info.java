@@ -22,7 +22,7 @@
  * <h2>Usage</h2>
  *
  * <p>Single expand accordion where only one item can be open at a time:
- *
+ * <p>
  * {@snippet :
  * Accordion accordion = accordion().singleExpand()
  *     .addItem(accordionItem("item-1", "First item")
@@ -31,10 +31,10 @@
  *         .add(p().text("Content for second item")))
  *     .addItem(accordionItem("item-3", "Third item")
  *         .add(p().text("Content for third item")));
- * }
+ *}
  *
  * <p>Bordered accordion with multiple body sections:
- *
+ * <p>
  * {@snippet :
  * Accordion accordion = accordion().singleExpand().bordered()
  *     .addItem(accordionItem("item-1", "First item")
@@ -42,7 +42,7 @@
  *             .add(p().text("First body section")))
  *         .addBody(accordionItemBody()
  *             .add(button().text("Call to action").link().inline())));
- * }
+ *}
  *
  * @see org.patternfly.component.accordion.Accordion
  * @see org.patternfly.component.accordion.AccordionItem

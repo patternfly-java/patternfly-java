@@ -17,23 +17,23 @@
  * Provides the PatternFly button component for triggering actions and navigation.
  *
  * <p>A button is a box area or text that communicates and triggers user actions when clicked or selected.
- * PatternFly supports several button styling variants including primary, secondary, tertiary, danger, warning,
- * link, plain, and control. Buttons can also include icons, progress indicators, and badge counts.
+ * PatternFly supports several button styling variants including primary, secondary, tertiary, danger, warning, link, plain, and
+ * control. Buttons can also include icons, progress indicators, and badge counts.
  *
  * <h2>Usage</h2>
  *
  * <p>Button variants:
- *
+ * <p>
  * {@snippet :
  * Button primary = button("Primary").primary();
  * Button secondary = button("Secondary").secondary();
  * Button danger = button("Danger").danger();
  * Button link = button("Link").link();
  * Button plain = button().icon(times()).plain();
- * }
+ *}
  *
  * <p>Buttons with icons, progress, and click handlers:
- *
+ * <p>
  * {@snippet :
  * Button withIcon = button()
  *     .iconAndText(plusCircle(), "Add item", start)
@@ -43,7 +43,7 @@
  *     .onClick((event, btn) -> btn.toggleProgress());
  * Button withBadge = button("Issues").primary()
  *     .addBadge(badge(7).unread());
- * }
+ *}
  *
  * @see org.patternfly.component.button.Button
  * @see <a href="https://www.patternfly.org/components/button">PatternFly Button</a>

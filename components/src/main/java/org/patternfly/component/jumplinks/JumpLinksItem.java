@@ -20,11 +20,11 @@ import java.util.Map;
 
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.Elements;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.text;
 
 /** An individual link item within a {@link JumpLinks} component. */
+
 /** A jump links item within a {@link JumpLinks} component. */
 public class JumpLinksItem extends JumpLinksSubComponent<HTMLLIElement, JumpLinksItem> implements
         ComponentContext<HTMLLIElement, JumpLinksItem>,

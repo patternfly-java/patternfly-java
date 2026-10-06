@@ -16,12 +16,12 @@
 /**
  * Provides the PatternFly progress stepper component and its subcomponents.
  * <p>
- * A progress stepper displays progress through a sequence of discrete steps. Each step can have a variant indicating its
- * status (success, info, warning, danger, or pending), an optional description, and custom icons. The stepper supports
- * vertical, centered, and compact layout options.
+ * A progress stepper displays progress through a sequence of discrete steps. Each step can have a variant indicating its status
+ * (success, info, warning, danger, or pending), an optional description, and custom icons. The stepper supports vertical,
+ * centered, and compact layout options.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.progressstepper.ProgressStep.progressStep;
  * import static org.patternfly.component.progressstepper.ProgressStepVariant.info;
@@ -38,10 +38,10 @@
  *         .add(progressStep("step-3", "Third step")
  *                 .variant(pending))
  *         .first().next();
- * }
- *
+ *}
+ * <p>
  * A progress stepper with step descriptions:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.progressstepper.ProgressStep.progressStep;
  * import static org.patternfly.component.progressstepper.ProgressStepVariant.info;
@@ -61,9 +61,9 @@
  *                 .variant(pending)
  *                 .description("This is the last thing to happen"))
  *         .first().next();
- * }
+ *}
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/progress-stepper">https://www.patternfly.org/components/progress-stepper</a>
+ * "https://www.patternfly.org/components/progress-stepper">https://www.patternfly.org/components/progress-stepper</a>
  */
 package org.patternfly.component.progressstepper;

@@ -20,20 +20,21 @@ import java.util.function.Function;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
-import org.patternfly.async.ReloadStrategy;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.label.Label;
 import org.patternfly.component.label.LabelGroup;
-import org.patternfly.component.textinputgroup.BaseFilterInput;
-import org.patternfly.component.textinputgroup.FilterInput;
+import org.patternfly.component.textinputgroup.BaseFilterInputGroup;
+import org.patternfly.component.textinputgroup.FilterInputGroup;
+import org.patternfly.component.typeahead.RefreshStrategy;
+import org.patternfly.component.typeahead.Typeahead;
+import org.patternfly.component.typeahead.TypeaheadController;
 
 import elemental2.dom.Element;
 import elemental2.promise.Promise;
 
-import static org.patternfly.component.menu.TypeaheadSupport.shouldExpandOnKeyup;
-import static org.patternfly.component.menu.TypeaheadSupport.typeaheadDefaults;
-import static org.patternfly.component.menu.TypeaheadSupport.utilitiesClick;
-import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
+import static org.patternfly.component.menu.MenuTypeaheadSupport.shouldExpandOnKeyup;
+import static org.patternfly.component.menu.MenuTypeaheadSupport.typeaheadDefaults;
+import static org.patternfly.component.menu.MenuTypeaheadSupport.utilitiesClick;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.labelGroup;
@@ -49,49 +50,49 @@ import static org.patternfly.style.Classes.list;
  *
  * @see <a href= "https://www.patternfly.org/components/menus/select">https://www.patternfly.org/components/menus/select</a>
  */
-public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implements Typeahead<MultiTypeahead> {
+public class MultiSelectTypeahead extends MultiMenuToggleMenu<MultiSelectTypeahead> implements Typeahead<MultiSelectTypeahead> {
 
     // ------------------------------------------------------ factory
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and a
-     * {@link FilterInput}.
+     * Creates a new {@link MultiSelectTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
+     * and a {@link FilterInputGroup}.
      */
-    public static MultiTypeahead multiTypeahead(String id, String placeholder) {
-        return new MultiTypeahead(filterInput(id).plain().placeholder(placeholder));
+    public static MultiSelectTypeahead multiSelectTypeahead(String id, String placeholder) {
+        return new MultiSelectTypeahead(FilterInputGroup.filterInputGroup(id).plain().placeholder(placeholder));
     }
 
     /**
-     * Creates a new {@link MultiTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead} and the
-     * specified {@link BaseFilterInput}.
+     * Creates a new {@link MultiSelectTypeahead} component with a {@link MenuToggle} of type {@link MenuToggleType#typeahead}
+     * and the specified {@link BaseFilterInputGroup}.
      *
-     * @param filterInput the {@link BaseFilterInput} instance used to configure the typeahead component
-     * @return a new {@link MultiTypeahead} instance configured with the given filter input
+     * @param filterInput the {@link BaseFilterInputGroup} instance used to configure the typeahead component
+     * @return a new {@link MultiSelectTypeahead} instance configured with the given filter input
      */
-    public static MultiTypeahead multiTypeahead(BaseFilterInput<?> filterInput) {
-        return new MultiTypeahead(filterInput);
+    public static MultiSelectTypeahead multiSelectTypeahead(BaseFilterInputGroup<?> filterInput) {
+        return new MultiSelectTypeahead(filterInput);
     }
 
     // ------------------------------------------------------ instance
 
-    private final BaseFilterInput<?> filterInput;
-    private final TypeaheadInputController inputController;
+    private final BaseFilterInputGroup<?> filterInput;
+    private final TypeaheadController tc;
 
-    MultiTypeahead(BaseFilterInput<?> filterInput) {
-        super(ComponentType.MultiTypeahead, MenuToggle.menuToggle(filterInput));
+    MultiSelectTypeahead(BaseFilterInputGroup<?> filterInput) {
+        super(ComponentType.MultiSelectTypeahead, MenuToggle.menuToggle(filterInput));
         this.filterInput = filterInput;
-        this.inputController = new TypeaheadInputController();
-        onLoaded((e, c) -> inputController.handleLoaded(menu, c.menuToggle.text()));
+        this.tc = new TypeaheadController();
+        onLoaded((e, c) -> tc.handleLoaded(menu, c.menuToggle.text()));
 
-        typeaheadDefaults(this, inputController);
+        typeaheadDefaults(this, tc);
         filterInput
                 .onKeyup((e, c, value) -> {
                     if (shouldExpandOnKeyup(this, e)) {
                         expand(false);
                     }
-                    inputController.handleKeyup(menu, value);
+                    tc.handleKeyup(menu, value);
                 })
-                .onInput((e, c, value) -> inputController.handleInput(value, c::value, menu,
+                .onInput((e, c, value) -> tc.handleInput(value, c::value, menu,
                         () -> expand(false),
                         () -> collapse(false)))
                 .noAddOnEnter()
@@ -129,7 +130,7 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
     // ------------------------------------------------------ add
 
     @Override
-    public MultiTypeahead add(Menu menu) {
+    public MultiSelectTypeahead add(Menu menu) {
         super.add(menu);
         searchInputControlsMenuList();
         return this;
@@ -137,35 +138,38 @@ public class MultiTypeahead extends MultiMenuToggleMenu<MultiTypeahead> implemen
 
     // ------------------------------------------------------ builder
 
-    @Override
-    public MultiTypeahead allowNewItems(Function<String, String> prompt,
+    public MultiSelectTypeahead allowNewItems(Function<String, Promise<MenuItem>> createItem) {
+        return allowNewItems(value -> "Create new item \"" + value + "\"", createItem);
+    }
+
+    public MultiSelectTypeahead allowNewItems(Function<String, String> prompt,
             Function<String, Promise<MenuItem>> createItem) {
-        TypeaheadSupport.allowNewItems(this, this, prompt, createItem);
+        MenuTypeaheadSupport.allowNewItems(this, this, prompt, createItem);
         return this;
     }
 
     @Override
-    public MultiTypeahead that() {
+    public MultiSelectTypeahead that() {
         return this;
     }
 
     // ------------------------------------------------------ events
 
     @Override
-    public MultiTypeahead onFilter(SearchFilter searchFilter) {
-        inputController.searchFilter(searchFilter);
+    public MultiSelectTypeahead filter(SearchFilter searchFilter) {
+        tc.searchFilter(searchFilter);
         return this;
     }
 
     @Override
-    public MultiTypeahead onNoResults(NoResults noResults) {
-        inputController.noResults(noResults);
+    public MultiSelectTypeahead onNoResults(NoResults noResults) {
+        tc.noResults(noResults);
         return this;
     }
 
     @Override
-    public MultiTypeahead reloadOn(ReloadStrategy strategy) {
-        inputController.reloadOn(strategy);
+    public MultiSelectTypeahead refreshOn(RefreshStrategy strategy) {
+        tc.refreshOn(strategy);
         this.loadOnExpand = false;
         return this;
     }

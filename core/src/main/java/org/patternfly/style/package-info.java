@@ -17,8 +17,8 @@
  * Styling utilities including CSS classes, modifiers, breakpoints, and CSS variables.
  *
  * <p>This package provides programmatic access to PatternFly's CSS styling system. It includes utilities for
- * applying modifier classes, working with responsive breakpoints, managing CSS variables, and using typed
- * modifier interfaces for component styling.
+ * applying modifier classes, working with responsive breakpoints, managing CSS variables, and using typed modifier interfaces
+ * for component styling.
  *
  * <h2>Key Classes</h2>
  *
@@ -39,7 +39,7 @@
  * <h2>CSS Classes</h2>
  *
  * <p>The {@link org.patternfly.style.Classes} class provides constants for PatternFly CSS classes:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.style.Classes.*;
  *
@@ -49,13 +49,13 @@
  *
  * // Modifier classes
  * div().css(modifier("bordered"), modifier("compact"));
- * }
+ *}
  *
  * <h2>Modifiers</h2>
  *
  * <p>The {@link org.patternfly.style.Modifiers} interface defines sub-interfaces for common styling flags.
  * Components implement these interfaces to provide type-safe modifier methods:
- *
+ * <p>
  * {@snippet :
  * // Components implement modifier interfaces
  * Card card = card()
@@ -67,7 +67,7 @@
  * Alert alert = alert("Warning")
  *     .inline(isInlineMode)
  *     .plain(!hasIcon);
- * }
+ *}
  *
  * <p>Available modifier interfaces include:
  * <ul>
@@ -82,7 +82,7 @@
  * <h2>Responsive Breakpoints</h2>
  *
  * <p>Use {@link org.patternfly.style.Breakpoint} for responsive design:
- *
+ * <p>
  * {@snippet :
  * // Determine current breakpoint
  * Breakpoint current = Breakpoint.breakpoint(window.innerWidth);
@@ -100,13 +100,13 @@
  *     .lg(4);
  *
  * int cols = columns.get(current);
- * }
+ *}
  *
  * <h2>CSS Variables</h2>
  *
  * <p>PatternFly uses CSS custom properties (variables) for theming. The {@link org.patternfly.style.Variable}
  * class provides type-safe access:
- *
+ * <p>
  * {@snippet :
  * // Create a typed variable
  * Variable<String> colorVar = new Variable<>("--pf-v6-global--primary-color--100");
@@ -115,12 +115,12 @@
  * Variables variables = new Variables();
  * variables.set(colorVar, "#0066cc");
  * element.style.cssText = variables.toCss();
- * }
+ *}
  *
  * <h2>Colors and Sizes</h2>
  *
  * <p>Use enum constants for consistent colors and sizes:
- *
+ * <p>
  * {@snippet :
  * // Colors
  * Badge badge = badge("New")
@@ -135,12 +135,12 @@
  *
  * Title title = title(1, "Heading")
  *     .size(Size._2xl);
- * }
+ *}
  *
  * <h2>Typed Modifiers</h2>
  *
  * <p>Use {@link org.patternfly.style.TypedModifier} for type-safe modifier application:
- *
+ * <p>
  * {@snippet :
  * TypedModifier<Size> sizeModifier = new TypedModifier<>(
  *     "size",
@@ -149,7 +149,7 @@
  *
  * // Apply to element
  * element.classList.add(sizeModifier.modifier(Size.lg));
- * }
+ *}
  *
  * <h2>Additional Enums</h2>
  *

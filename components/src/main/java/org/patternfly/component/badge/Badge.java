@@ -21,8 +21,8 @@ import java.util.function.Function;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasObservableValue;
-import org.patternfly.component.HasValue;
+import org.patternfly.core.HasObservableValue;
+import org.patternfly.core.HasValue;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;

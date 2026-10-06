@@ -25,18 +25,18 @@ import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ButtonType;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.tooltip.TooltipToggle;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.style.Classes;
@@ -81,7 +81,7 @@ import static org.patternfly.style.Classes.overflow;
  * A group of labels that can be used to display a collection of {@link Label} components.
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/label#label-group">https://www.patternfly.org/components/label#label-group</a>
+ * "https://www.patternfly.org/components/label#label-group">https://www.patternfly.org/components/label#label-group</a>
  */
 public class LabelGroup extends BaseComponent<HTMLDivElement, LabelGroup> implements
         Attachable,

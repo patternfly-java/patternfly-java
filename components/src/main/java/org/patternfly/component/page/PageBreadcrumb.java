@@ -26,8 +26,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.page;
 
 /**
- * Container to nest a {@link Breadcrumb} in a {@link PageGroup} or {@link PageMain}
- * container.
+ * Container to nest a {@link Breadcrumb} in a {@link PageGroup} or {@link PageMain} container.
  */
 public class PageBreadcrumb extends PageSectionBuilder<HTMLElement, PageBreadcrumb> {
 

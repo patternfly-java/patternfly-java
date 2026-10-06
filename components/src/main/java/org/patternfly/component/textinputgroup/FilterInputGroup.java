@@ -21,38 +21,37 @@ import org.patternfly.component.ComponentType;
 import org.patternfly.handler.ComponentHandler;
 
 /**
- * A filter input is a special {@linkplain SearchInput search input} that adds a
+ * A filter input is a special {@linkplain SearchInputGroup search input} that adds a
  * {@linkplain org.patternfly.component.label.LabelGroup label group}.
  * <p>
  * Use {@link #noAddOnEnter()} to disable the default enter behavior. You can add additional enter handlers using
  * {@link #onEnter(ComponentHandler)}. To control the utilities visibility use {@link #showUtilitiesIf(BiFunction)}.
  *
- * @see <a
- *      href="https://www.patternfly.org/components/text-input-group#with-filters">
- *      https://www.patternfly.org/components/text-input-group#with-filters</a>
+ * @see <a href="https://www.patternfly.org/components/text-input-group#with-filters">
+ * https://www.patternfly.org/components/text-input-group#with-filters</a>
  */
-public class FilterInput extends BaseFilterInput<FilterInput> {
+public class FilterInputGroup extends BaseFilterInputGroup<FilterInputGroup> {
 
     // ------------------------------------------------------ factory
 
-    public static FilterInput filterInput(String id) {
-        return new FilterInput(id);
+    public static FilterInputGroup filterInputGroup(String id) {
+        return new FilterInputGroup(id);
     }
 
-    public static FilterInput filterInput(String id, String value) {
-        return new FilterInput(id).value(value);
+    public static FilterInputGroup filterInput(String id, String value) {
+        return new FilterInputGroup(id).value(value);
     }
 
     // ------------------------------------------------------ instance
 
-    FilterInput(String id) {
-        super(ComponentType.FilterInput, id);
+    FilterInputGroup(String id) {
+        super(ComponentType.FilterInputGroup, id);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public FilterInput that() {
+    public FilterInputGroup that() {
         return this;
     }
 }

@@ -20,9 +20,9 @@
  * spacing, responsive column overrides at different breakpoints, and ordering control.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic grid layout with column spans and gutters:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.grid.Grid.grid;
  * import static org.patternfly.layout.grid.GridItem.gridItem;
@@ -32,10 +32,10 @@
  *         .addItem(gridItem().span(4).text("Sidebar"))
  *         .addItem(gridItem().span(4).text("Footer left"))
  *         .addItem(gridItem().span(8).text("Footer right"));
- * }
- *
+ *}
+ * <p>
  * A grid with responsive column overrides:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.grid.Grid.grid;
  * import static org.patternfly.layout.grid.GridItem.gridItem;
@@ -50,7 +50,7 @@
  *         .addItem(gridItem().text("Grid item"))
  *         .addItem(gridItem().text("Grid item"))
  *         .addItem(gridItem().text("Grid item"));
- * }
+ *}
  *
  * @see Grid
  * @see GridItem

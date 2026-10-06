@@ -17,9 +17,8 @@
  * Provides theme, color scheme, and contrast management for PatternFly applications.
  *
  * <p>This package contains a color and theme system that manages PatternFly visual themes (default, felt),
- * color schemes (system, light, dark), and contrast modes (system, default, high contrast, glass). Preferences
- * are persisted in local storage and respond to system-level media queries such as {@code prefers-color-scheme}
- * and {@code prefers-contrast}.
+ * color schemes (system, light, dark), and contrast modes (system, default, high contrast, glass). Preferences are persisted in
+ * local storage and respond to system-level media queries such as {@code prefers-color-scheme} and {@code prefers-contrast}.
  *
  * <p><strong>Key classes:</strong>
  * <ul>
@@ -31,11 +30,11 @@
  * </ul>
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * ThemeSelector selector = themeSelector()
  *     .placement(bottom);
- * }
+ *}
  *
  * @see org.patternfly.componentgroup.theme.ThemeSelector
  */

@@ -19,6 +19,7 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.menu.MenuToggle;
 import org.patternfly.component.menu.MenuToggleAction;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 
@@ -34,7 +35,6 @@ import static org.patternfly.component.menu.MenuToggleAction.menuToggleAction;
 import static org.patternfly.component.menu.MenuToggleType.plainText;
 import static org.patternfly.component.menu.MenuToggleType.split;
 import static org.patternfly.component.menu.MenuToggleType.typeahead;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.icon.IconSets.rhUi.ellipsisVertical;
 import static org.patternfly.icon.IconSets.rhUi.settings;
 import static org.patternfly.showcase.ApiDoc.Type.component;
@@ -242,7 +242,7 @@ public class MenuToggleComponent extends SnippetPage {
                 // @code-start:menu-toggle-typeahead
                 div()
                         .add(menuToggle(typeahead).fullWidth()
-                                .addSearchInput(searchInput("menu-toggle-typeahead-tig").plain()))
+                                .addSearchInput(SearchInputGroup.searchInputGroup("menu-toggle-typeahead-tig").plain()))
                         .element()
                 // @code-end:menu-toggle-typeahead
         ));

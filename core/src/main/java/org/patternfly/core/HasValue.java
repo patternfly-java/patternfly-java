@@ -13,17 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.core;
 
-import org.jboss.elemento.IsElement;
-import org.jboss.elemento.TypedBuilder;
-import org.patternfly.core.ObservableValue;
+/** Interface for components that expose a typed value, such as form controls and inputs. */
+public interface HasValue<T> {
 
-import elemental2.dom.Element;
-
-/** Interface for components that can bind to an {@link ObservableValue} and react to value changes. */
-public interface HasObservableValue<E extends Element, B extends TypedBuilder<E, B>, T> extends TypedBuilder<E, B>,
-        IsElement<E> {
-
-    B bind(ObservableValue<T> ov);
+    T value();
 }

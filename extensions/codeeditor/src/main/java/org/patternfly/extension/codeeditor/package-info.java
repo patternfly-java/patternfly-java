@@ -17,8 +17,7 @@
  * Provides the PatternFly code editor extension for displaying and editing code.
  *
  * <p>A code editor is a versatile text editor that supports displaying code with an optional header containing
- * actions, tabs, and links. The editor can operate in read-only mode and supports custom actions such as
- * copy-to-clipboard.
+ * actions, tabs, and links. The editor can operate in read-only mode and supports custom actions such as copy-to-clipboard.
  *
  * <p><strong>Key classes:</strong>
  * <ul>
@@ -29,12 +28,12 @@
  * </ul>
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * CodeEditor editor = codeEditor("System.out.println(\"Hello world\");")
  *     .addHeader(codeEditorHeader()
  *         .addAction(codeEditorCopyToClipboardAction()));
- * }
+ *}
  *
  * @see org.patternfly.extension.codeeditor.CodeEditor
  * @see <a href="https://www.patternfly.org/extensions/code-editor">PatternFly Code Editor</a>

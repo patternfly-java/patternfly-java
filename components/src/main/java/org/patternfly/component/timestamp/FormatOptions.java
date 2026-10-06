@@ -19,8 +19,8 @@ import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
 /**
- * A marker interface for different formatting options used in the Timestamp component.
- * This allows for a unified handling of various format settings.
+ * A marker interface for different formatting options used in the Timestamp component. This allows for a unified handling of
+ * various format settings.
  */
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public interface FormatOptions {

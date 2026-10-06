@@ -25,11 +25,11 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.emptystate.EmptyState;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;

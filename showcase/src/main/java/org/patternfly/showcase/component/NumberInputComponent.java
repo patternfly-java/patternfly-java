@@ -53,7 +53,7 @@ public class NumberInputComponent extends SnippetPage {
                             console.log("change");
                         }))
                         .element()
-        // @code-end:number-input-default
+                // @code-end:number-input-default
         ));
 
         // With unit
@@ -68,27 +68,27 @@ public class NumberInputComponent extends SnippetPage {
                         .add(numberInput(90)
                                 .unit("$", before))
                         .element()
-        // @code-end:number-input-with-unit
+                // @code-end:number-input-with-unit
         ));
 
         // With unit and thresholds
         addSnippet(new Snippet("number-input-with-unit-and-thresholds", "With unit and thresholds",
                 "To enable a user entered value to snap to the nearest threshold if the entered input is out of bounds, define the blur event handler",
                 code("number-input-with-unit-and-thresholds"), () -> {
-                    // @code-start:number-input-with-unit-and-thresholds
+            // @code-start:number-input-with-unit-and-thresholds
 
-                    NumberInput numberInput = numberInput(0)
-                            .min(0)
-                            .max(10)
-                            .unit("%");
+            NumberInput numberInput = numberInput(0)
+                    .min(0)
+                    .max(10)
+                    .unit("%");
 
-                    return div()
-                            .add(" With a minimum value of 0 and maximum value of 10")
-                            .add(br())
-                            .add(numberInput)
-                            .element();
-                    // @code-end:number-input-with-unit-and-thresholds
-                }));
+            return div()
+                    .add(" With a minimum value of 0 and maximum value of 10")
+                    .add(br())
+                    .add(numberInput)
+                    .element();
+            // @code-end:number-input-with-unit-and-thresholds
+        }));
 
         // Disabled
         addSnippet(new Snippet("number-input-disabled", "Disabled",
@@ -98,30 +98,30 @@ public class NumberInputComponent extends SnippetPage {
                         .add(numberInput(100)
                                 .disabled(true))
                         .element()
-        // @code-end:number-input-disabled
+                // @code-end:number-input-disabled
         ));
 
         // With status
         addSnippet(new Snippet("number-input-with-status", "With status",
                 code("number-input-with-status"), () -> {
-                    // @code-start:number-input-with-status
-                    NumberInput statusInput = numberInput(5)
-                            .validated(success)
-                            .onChange((e, component, value) -> {
-                                double distance = Math.abs(value - 5);
-                                if (distance == 0) {
-                                    component.validated(success);
-                                } else if (distance <= 2) {
-                                    component.validated(warning);
-                                } else {
-                                    component.validated(error);
-                                }
-                            });
-                    return div()
-                            .add(statusInput)
-                            .element();
-                    // @code-end:number-input-with-status
-                }));
+            // @code-start:number-input-with-status
+            NumberInput statusInput = numberInput(5)
+                    .validated(success)
+                    .onChange((e, component, value) -> {
+                        double distance = Math.abs(value - 5);
+                        if (distance == 0) {
+                            component.validated(success);
+                        } else if (distance <= 2) {
+                            component.validated(warning);
+                        } else {
+                            component.validated(error);
+                        }
+                    });
+            return div()
+                    .add(statusInput)
+                    .element();
+            // @code-end:number-input-with-status
+        }));
 
         // Varying sizes
         addSnippet(new Snippet("number-input-varying-sizes", "Varying sizes",
@@ -139,7 +139,7 @@ public class NumberInputComponent extends SnippetPage {
                         .add(br())
                         .add(numberInput(12345).widthChars(5))
                         .element()
-        // @code-end:number-input-varying-sizes
+                // @code-end:number-input-varying-sizes
         ));
 
         // Custom increment/decrement
@@ -149,7 +149,7 @@ public class NumberInputComponent extends SnippetPage {
                 div()
                         .add(numberInput(90).step(3))
                         .element()
-        // @code-end:number-input-custom-increment-decrement
+                // @code-end:number-input-custom-increment-decrement
         ));
 
         // Custom increment/decrement and thresholds
@@ -163,7 +163,7 @@ public class NumberInputComponent extends SnippetPage {
                                 .max(100)
                                 .step(3))
                         .element()
-        // @code-end:number-input-custom-increment-decrement-thresholds
+                // @code-end:number-input-custom-increment-decrement-thresholds
         ));
 
         startApiDocs(NumberInput.class);

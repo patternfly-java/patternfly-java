@@ -21,16 +21,16 @@
  * square, or default rectangle).
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.skeleton.Skeleton.skeleton;
  *
  * Skeleton skeleton = skeleton()
  *         .screenReaderText("Loading contents");
- * }
- *
+ *}
+ * <p>
  * Skeletons with custom widths and shapes:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.skeleton.Shape.circle;
  * import static org.patternfly.component.skeleton.Shape.square;
@@ -44,7 +44,7 @@
  *         .shape(square)
  *         .width("30%")
  *         .screenReaderText("Loading square contents");
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/skeleton">https://www.patternfly.org/components/skeleton</a>
  */

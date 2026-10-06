@@ -60,7 +60,7 @@ import static org.patternfly.style.Placement.bottomStart;
 
 /**
  * Abstract base component for components that combine a {@link MenuToggle} and a {@link Menu}, such as {@link Dropdown}, *
- * {@link SingleSelect}, {@link SingleTypeahead}, or {@link MultiSelect}.
+ * {@link SingleSelect}, {@link SingleSelectTypeahead}, or {@link MultiSelect}.
  * <p>
  * The component delegates to the {@link MenuToggle} component. The {@link Menu} is managed using the native Popover API and CSS
  * anchor positioning via {@link Overlay}.

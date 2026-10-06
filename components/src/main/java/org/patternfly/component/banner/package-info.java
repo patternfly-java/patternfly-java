@@ -17,21 +17,21 @@
  * Provides the PatternFly banner component for displaying prominent messages across the top of a page.
  *
  * <p>A banner is a 1-line, full color, full width container that can be used to communicate short snippets of
- * information to users. Banners can be styled with different colors and can optionally convey status using
- * severity indicators.
+ * information to users. Banners can be styled with different colors and can optionally convey status using severity
+ * indicators.
  *
  * <h2>Usage</h2>
  *
  * <p>Basic banners with different colors:
- *
+ * <p>
  * {@snippet :
  * Banner defaultBanner = banner("Default banner");
  * Banner redBanner = banner("Red banner", red);
  * Banner blueBanner = banner("Blue banner", blue);
- * }
+ *}
  *
  * <p>Banner with links and status:
- *
+ * <p>
  * {@snippet :
  * Banner linked = banner(blue)
  *     .text("Blue banner with an ")
@@ -39,7 +39,7 @@
  * Banner statusBanner = banner()
  *     .status(success.status)
  *     .screenReader("Success banner");
- * }
+ *}
  *
  * @see org.patternfly.component.banner.Banner
  * @see <a href="https://www.patternfly.org/components/banner">PatternFly Banner</a>

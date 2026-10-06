@@ -18,7 +18,7 @@ package org.patternfly.component.menu;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -48,7 +48,7 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     public static final String SUB_COMPONENT_NAME = "MenuSearch";
 
     private final HTMLElement inputContainer;
-    private SearchInput searchInput;
+    private SearchInputGroup searchInput;
     private SearchFilter searchFilter;
     private NoResults noResults;
 
@@ -85,7 +85,7 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
 
     // ------------------------------------------------------ add
 
-    public MenuSearch addSearchInput(SearchInput searchInput) {
+    public MenuSearch addSearchInput(SearchInputGroup searchInput) {
         this.searchInput = searchInput;
         return add(searchInput);
     }
@@ -100,7 +100,7 @@ public class MenuSearch extends MenuSubComponent<HTMLElement, MenuSearch> implem
     // ------------------------------------------------------ events
 
     /**
-     * Configures the search behavior for the search input you have added with {@link #addSearchInput(SearchInput)}.
+     * Configures the search behavior for the search input you have added with {@link #addSearchInput(SearchInputGroup)}.
      * <p>
      * By default, the search filter will match items that contain the search query in their text.
      *

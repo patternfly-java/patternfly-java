@@ -62,7 +62,7 @@ public class PieChart extends SnippetPage {
                                 .width(350)
                                 .height(230))
                         .element()
-        // @code-end:pie-basic
+                // @code-end:pie-basic
         ));
 
         addSnippet(new Snippet("pie-mc", "Multi-color (ordered) with bottom aligned legend",
@@ -82,7 +82,7 @@ public class PieChart extends SnippetPage {
                                 .width(300)
                                 .height(275))
                         .element()
-        // @code-end:pie-mc
+                // @code-end:pie-mc
         ));
 
         addSnippet(new Snippet("pie-custom-cs", "Custom color scale with right aligned legend",
@@ -108,7 +108,7 @@ public class PieChart extends SnippetPage {
                                         chartThemeColorscalesYellowColorscale100.var,
                                         chartThemeColorscalesBlueColorscale100.var))
                         .element()
-        // @code-end:pie-custom-cs
+                // @code-end:pie-custom-cs
         ));
 
         startApiDocs(Pie.class);

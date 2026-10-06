@@ -33,9 +33,9 @@ import static org.patternfly.core.Ouia.ouia;
 /**
  * Base class for PatternFly components backed by an {@link SVGElement}. Currently only used by
  * {@link org.patternfly.component.spinner.Spinner}. Intentionally separate from {@link BaseComponent} because
- * {@code HTMLElement} and {@code SVGElement} have disjoint type hierarchies and require different mixin interface sets.
- * Does not support {@link ComponentStore} or {@link ComponentRegistry} since SVG components don't participate in
- * parent-child wiring.
+ * {@code HTMLElement} and {@code SVGElement} have disjoint type hierarchies and require different mixin interface sets. Does
+ * not support {@link ComponentStore} or {@link ComponentRegistry} since SVG components don't participate in parent-child
+ * wiring.
  *
  * @see BaseComponent for the HTML element counterpart
  */

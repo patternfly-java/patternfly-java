@@ -24,13 +24,13 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.Ordered;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.Ordered;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -50,6 +50,7 @@ import static org.patternfly.style.Classes.simpleList;
 import static org.patternfly.style.Classes.title;
 
 /** A group of related items within a {@link SimpleList} component. */
+
 /** A simple list group within a {@link SimpleList} component. */
 public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleListGroup> implements
         ElementContainerDelegate<HTMLElement, SimpleListGroup>,

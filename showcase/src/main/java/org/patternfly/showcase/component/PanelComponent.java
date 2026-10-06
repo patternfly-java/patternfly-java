@@ -84,7 +84,7 @@ public class PanelComponent extends SnippetPage {
                 code("panel-no-body"), () ->
                 // @code-start:panel-no-body
                 panel()
-                        .addMain(panelMain().apply( main -> main.textContent = "Main content"))
+                        .addMain(panelMain().apply(main -> main.textContent = "Main content"))
                         .element()
                 // @code-end:panel-no-body
         ));

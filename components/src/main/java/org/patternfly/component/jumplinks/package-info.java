@@ -17,9 +17,9 @@
  * Provides jump links components for navigating within a page using anchor-based scroll navigation.
  *
  * <p>This package contains the {@link org.patternfly.component.jumplinks.JumpLinks} component and its sub-components
- * for creating a table-of-contents style navigation that links to sections on the same page. Jump links can be
- * displayed horizontally or vertically, with optional labels, centered alignment, and expandable subsections.
- * They support scroll spying to automatically highlight the active section.
+ * for creating a table-of-contents style navigation that links to sections on the same page. Jump links can be displayed
+ * horizontally or vertically, with optional labels, centered alignment, and expandable subsections. They support scroll spying
+ * to automatically highlight the active section.
  *
  * <h2>Components</h2>
  *
@@ -32,7 +32,7 @@
  * <h2>Usage</h2>
  *
  * <p>Vertical jump links with a label and nested subsections:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.jumplinks.JumpLinks.jumpLinks;
  * import static org.patternfly.component.jumplinks.JumpLinksItem.jumpLinksItem;
@@ -56,7 +56,7 @@
  *                         .addItem(jumpLinksItem("section-2a", "Basic Setup"))
  *                         .addItem(jumpLinksItem("section-2b", "Advanced Options"))))
  *         .addItem(jumpLinksItem("section-3", "API Reference"));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/jump-links">PatternFly Jump Links</a>
  */

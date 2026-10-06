@@ -29,7 +29,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create a single-select toggle group:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.SelectionMode.single;
  * import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
@@ -39,10 +39,10 @@
  *         .addItem(toggleGroupItem("option-1", "Option 1"))
  *         .addItem(toggleGroupItem("option-2", "Option 2"))
  *         .addItem(toggleGroupItem("option-3", "Option 3"));
- * }
+ *}
  *
  * <p>Create a multi-select toggle group with icons:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.SelectionMode.multi;
  * import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
@@ -53,7 +53,7 @@
  * ToggleGroup iconGroup = toggleGroup(multi)
  *         .addItem(toggleGroupItem("copy").iconAndText(copy(), "Copy"))
  *         .addItem(toggleGroupItem("undo").iconAndText(undo(), "Undo"));
- * }
+ *}
  *
  * @see org.patternfly.component.togglegroup.ToggleGroup
  * @see org.patternfly.component.togglegroup.ToggleGroupItem

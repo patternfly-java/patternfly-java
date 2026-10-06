@@ -20,9 +20,9 @@
  * indented variations, detached layout, truncation of long content, and custom toggle content with icons or badges.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic expandable section with dynamic toggle text:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.expandable.ExpandableSection.expandableSection;
  * import static org.patternfly.component.expandable.ExpandableSectionContent.expandableSectionContent;
@@ -32,10 +32,10 @@
  *         .addToggle(expandableSectionToggle("Show more", "Show less"))
  *         .addContent(expandableSectionContent()
  *                 .text("This content is visible only when the component is expanded."));
- * }
- *
+ *}
+ * <p>
  * An expandable section with truncation for long content:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.expandable.ExpandableSection.expandableSection;
  * import static org.patternfly.component.expandable.ExpandableSectionContent.expandableSectionContent;
@@ -46,7 +46,7 @@
  *         .addContent(expandableSectionContent()
  *                 .text("Long content that will be truncated to 2 lines..."))
  *         .addToggle(expandableSectionToggle("Show more", "Show less"));
- * }
+ *}
  *
  * @see ExpandableSection
  * @see ExpandableSectionContent

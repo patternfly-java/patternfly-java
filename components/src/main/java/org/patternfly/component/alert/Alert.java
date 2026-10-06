@@ -28,12 +28,12 @@ import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Severity;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.IconSets;
@@ -250,12 +250,10 @@ public class Alert extends BaseComponent<HTMLDivElement, Alert> implements
      * <li><code>aria-atomic: false</code></li>
      * </ul>
      *
-     * @see <a href=
-     *      "https://www.patternfly.org/components/alert/accessibility#accessibility">
-     *      https://www.patternfly.org/components/alert/accessibility#accessibility</a>
-     * @see <a href=
-     *      "https://www.patternfly.org/components/alert/accessibility#aria-live">
-     *      https://www.patternfly.org/components/alert/accessibility#aria-live</a>
+     * @see <a href= "https://www.patternfly.org/components/alert/accessibility#accessibility">
+     * https://www.patternfly.org/components/alert/accessibility#accessibility</a>
+     * @see <a href= "https://www.patternfly.org/components/alert/accessibility#aria-live">
+     * https://www.patternfly.org/components/alert/accessibility#aria-live</a>
      */
     public Alert liveRegion() {
         aria(live, "polite");

@@ -17,22 +17,22 @@
  * Provides the PatternFly divider component for visually separating content with a horizontal or vertical line.
  * <p>
  * A divider is a horizontal or vertical line that is placed between content to create visual separation. Dividers can be
- * rendered as {@code <hr>}, {@code <li>}, or {@code <div>} elements depending on the context. The divider supports insets
- * and orientation switching at various breakpoints.
+ * rendered as {@code <hr>}, {@code <li>}, or {@code <div>} elements depending on the context. The divider supports insets and
+ * orientation switching at various breakpoints.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A simple horizontal divider using an {@code <hr>} element:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.divider.Divider.divider;
  * import static org.patternfly.component.divider.DividerType.hr;
  *
  * divider(hr);
- * }
- *
+ *}
+ * <p>
  * A vertical divider in a flex layout:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.divider.Divider.divider;
  * import static org.patternfly.component.divider.DividerType.hr;
@@ -46,7 +46,7 @@
  *         .addItem(flexItem().text("First item"))
  *         .add(divider(hr).orientation(breakpoints(default_, vertical)))
  *         .addItem(flexItem().text("Second item"));
- * }
+ *}
  *
  * @see Divider
  * @see DividerType

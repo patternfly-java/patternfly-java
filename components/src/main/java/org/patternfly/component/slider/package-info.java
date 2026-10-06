@@ -16,14 +16,13 @@
 /**
  * Provides the PatternFly slider component and its subcomponents.
  * <p>
- * A slider allows users to set a value within a numeric range by dragging a thumb along a track. Sliders support continuous
- * and discrete modes with configurable ranges, custom step values, tick marks, boundary labels, input fields, and action
- * buttons.
+ * A slider allows users to set a value within a numeric range by dragging a thumb along a track. Sliders support continuous and
+ * discrete modes with configurable ranges, custom step values, tick marks, boundary labels, input fields, and action buttons.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A discrete slider with custom steps:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.slider.Slider.slider;
  * import static org.patternfly.component.slider.SliderStep.sliderStep;
@@ -40,10 +39,10 @@
  *                 sliderStep(4, "E"),
  *                 sliderStep(5, "F")))
  *         .onChange((e, s, v) -> {});
- * }
- *
+ *}
+ * <p>
  * A slider with a numeric range and step size:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.slider.Slider.slider;
  *
@@ -52,7 +51,7 @@
  *         .range(0, 200, 50)
  *         .showTicks()
  *         .onChange((e, s, v) -> {});
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/slider">https://www.patternfly.org/components/slider</a>
  */

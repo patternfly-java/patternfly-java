@@ -22,9 +22,9 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
@@ -40,6 +40,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.list;
 
 /** An individual item within a {@link List} component. */
+
 /** A list item within a {@link List} component. */
 public class ListItem extends ListSubComponent<HTMLLIElement, ListItem> implements
         ComponentContext<HTMLLIElement, ListItem>,

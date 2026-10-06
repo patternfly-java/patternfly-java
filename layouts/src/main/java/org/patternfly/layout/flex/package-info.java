@@ -21,9 +21,9 @@
  * nesting flex containers, individual item spacing, responsive breakpoints, and various alignment and justification options.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic flex layout with items:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.flex.Flex.flex;
  * import static org.patternfly.layout.flex.FlexItem.flexItem;
@@ -32,10 +32,10 @@
  *         .addItem(flexItem().text("Flex item"))
  *         .addItem(flexItem().text("Flex item"))
  *         .addItem(flexItem().text("Flex item"));
- * }
- *
+ *}
+ * <p>
  * A flex layout with custom spacing and responsive direction:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.flex.Flex.flex;
  * import static org.patternfly.layout.flex.FlexItem.flexItem;
@@ -49,7 +49,7 @@
  *         .addItem(flexItem().text("Item 1"))
  *         .addItem(flexItem().text("Item 2"))
  *         .addItem(flexItem().text("Item 3"));
- * }
+ *}
  *
  * @see Flex
  * @see FlexItem

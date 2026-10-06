@@ -21,9 +21,9 @@
  * and actions using the fluent builder API.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic card with title, body, and footer:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.card.Card.card;
  * import static org.patternfly.component.card.CardBody.cardBody;
@@ -34,10 +34,10 @@
  *         .addTitle(cardTitle("Title"))
  *         .addBody(cardBody().text("Body"))
  *         .addFooter(cardFooter().text("Footer"));
- * }
- *
+ *}
+ * <p>
  * An expandable card with header, actions, and expandable content:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.card.Card.card;
  * import static org.patternfly.component.card.CardBody.cardBody;
@@ -52,7 +52,7 @@
  *         .addExpandableContent(cardExpandableContent()
  *                 .addBody(cardBody().text("Body"))
  *                 .addFooter(cardFooter().text("Footer")));
- * }
+ *}
  *
  * @see Card
  * @see CardActions

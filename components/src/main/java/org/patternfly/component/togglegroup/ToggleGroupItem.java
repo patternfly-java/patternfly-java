@@ -24,11 +24,11 @@ import org.jboss.elemento.ElementTextMethods;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentIconAndText;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.IconPosition;
 import org.patternfly.component.SelectionMode;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
@@ -57,6 +57,7 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.toggleGroup;
 
 /** An individual toggle button within a {@link ToggleGroup} component. */
+
 /** A toggle group item within a {@link ToggleGroup} component. */
 public class ToggleGroupItem extends ToggleGroupSubComponent<HTMLDivElement, ToggleGroupItem> implements
         ComponentContext<HTMLDivElement, ToggleGroupItem>,

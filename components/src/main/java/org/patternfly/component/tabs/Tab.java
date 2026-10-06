@@ -29,13 +29,13 @@ import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.Closeable;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.CloseHandler;
 import org.patternfly.icon.IconSets;
 import org.patternfly.icon.IconSets.patternfly;
@@ -84,6 +84,7 @@ import static org.patternfly.style.Modifiers.toggleModifier;
 
 // TODO Horizontal tabs don't shrink!
 /** An individual tab within a {@link Tabs} component. */
+
 /** A tab within a {@link Tabs} component. */
 public class Tab extends TabSubComponent<HTMLElement, Tab> implements
         Closeable<HTMLElement, Tab>,

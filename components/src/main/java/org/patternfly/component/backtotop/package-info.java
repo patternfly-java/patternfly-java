@@ -22,10 +22,10 @@
  * <h2>Usage</h2>
  *
  * <p>Basic back to top button that is always visible:
- *
+ * <p>
  * {@snippet :
  * BackToTop backToTop = backToTop().alwaysVisible();
- * }
+ *}
  *
  * @see org.patternfly.component.backtotop.BackToTop
  * @see <a href="https://www.patternfly.org/components/back-to-top">PatternFly Back to top</a>

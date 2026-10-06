@@ -17,10 +17,9 @@
  * Provides label and label group components for displaying compact, categorized metadata.
  *
  * <p>This package contains the {@link org.patternfly.component.label.Label} and
- * {@link org.patternfly.component.label.LabelGroup} components for displaying tags, categories, or status
- * indicators. Labels support multiple colors, filled and outline variants, icons, close buttons, clickable
- * behavior, editable text, and overflow truncation. Label groups organize multiple labels together with
- * optional overflow handling.
+ * {@link org.patternfly.component.label.LabelGroup} components for displaying tags, categories, or status indicators. Labels
+ * support multiple colors, filled and outline variants, icons, close buttons, clickable behavior, editable text, and overflow
+ * truncation. Label groups organize multiple labels together with optional overflow handling.
  *
  * <h2>Components</h2>
  *
@@ -34,7 +33,7 @@
  * <h2>Usage</h2>
  *
  * <p>Labels with different colors and variants:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.label.Label.label;
  * import static org.patternfly.component.label.LabelGroup.labelGroup;
@@ -61,7 +60,7 @@
  *         .addItem(label("Label 1", blue).filled())
  *         .addItem(label("Label 2", green).filled())
  *         .addItem(label("Label 3", red).filled().closable());
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/label">PatternFly Label</a>
  * @see <a href="https://www.patternfly.org/components/label-group">PatternFly Label Group</a>

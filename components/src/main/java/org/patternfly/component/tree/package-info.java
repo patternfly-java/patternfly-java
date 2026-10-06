@@ -17,8 +17,8 @@
  * Provides a tree view component for displaying hierarchical data.
  *
  * <p>A tree view renders data in a hierarchical structure with expandable/collapsible nodes. It supports
- * selectable items, checkboxes, custom icons, action buttons, and lazy loading of child items. Tree view
- * items can be nested to any depth.
+ * selectable items, checkboxes, custom icons, action buttons, and lazy loading of child items. Tree view items can be nested to
+ * any depth.
  *
  * <h2>Key Classes</h2>
  *
@@ -31,7 +31,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create a basic tree view with nested items:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.tree.TreeView.treeView;
  * import static org.patternfly.component.tree.TreeViewItem.treeViewItem;
@@ -44,10 +44,10 @@
  *                 .addItem(treeViewItem("app-2", "Application 2")))
  *         .addItem(treeViewItem("cost", "Cost management")
  *                 .addItem(treeViewItem("app-3", "Application 3")));
- * }
+ *}
  *
  * <p>Create a tree view with checkboxes:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.tree.TreeView.treeView;
  * import static org.patternfly.component.tree.TreeViewItem.treeViewItem;
@@ -58,7 +58,7 @@
  *                 .addItem(treeViewItem("child-1", "Child 1"))
  *                 .addItem(treeViewItem("child-2", "Child 2")))
  *         .addItem(treeViewItem("item-2", "Item 2"));
- * }
+ *}
  *
  * @see org.patternfly.component.tree.TreeView
  * @see org.patternfly.component.tree.TreeViewItem

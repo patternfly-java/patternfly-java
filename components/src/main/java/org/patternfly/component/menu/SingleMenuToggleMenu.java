@@ -64,8 +64,8 @@ abstract class SingleMenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> exte
     // ------------------------------------------------------ builder
 
     /**
-     * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link SingleSelect}. If the
-     * menu, menu content, or menu list is not yet initialized, they will be created as part of this method.
+     * Applies the provided {@link Consumer} to the {@link MenuList} associated with this {@link SingleSelect}. If the menu,
+     * menu content, or menu list is not yet initialized, they will be created as part of this method.
      * <p>
      * This method simplifies the process of adding menu items to the component. It is a shortcut for creating and adding a
      * {@link SingleSelectMenu}, {@link MenuContent}, and {@link MenuList} in a single step. Don't use this method if you need

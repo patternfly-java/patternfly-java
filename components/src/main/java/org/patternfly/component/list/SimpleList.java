@@ -24,15 +24,15 @@ import java.util.Map;
 
 import org.jboss.elemento.By;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.Ordered;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.Ordered;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.SelectHandler;
 
 import elemental2.dom.Event;

@@ -20,8 +20,7 @@ package org.patternfly.component.timestamp;
  * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat">
  * Intl.DateTimeFormat</a> API.
  * <p>
- * The formats correspond to the standard JavaScript Intl.DateTimeFormat
- * options:
+ * The formats correspond to the standard JavaScript Intl.DateTimeFormat options:
  * </p>
  * <ul>
  * <li>{@code full} - Tuesday, August 9, 2022 | 11:25:00 AM Eastern Daylight Time</li>

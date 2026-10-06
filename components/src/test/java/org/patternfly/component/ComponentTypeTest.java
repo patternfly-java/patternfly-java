@@ -34,4 +34,15 @@ class ComponentTypeTest {
         assertEquals(values.length, ids.size(),
                 "ComponentType.id values must be unique");
     }
+
+    @Test
+    void uniqueComponentNames() {
+        ComponentType[] values = ComponentType.values();
+        Set<String> names = new HashSet<>();
+        for (ComponentType type : values) {
+            names.add(type.componentName);
+        }
+        assertEquals(values.length, names.size(),
+                "ComponentType.componentName values must be unique");
+    }
 }

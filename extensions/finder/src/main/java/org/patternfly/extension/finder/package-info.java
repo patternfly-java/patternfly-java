@@ -17,8 +17,8 @@
  * Provides a multi-column finder component inspired by the macOS Finder for hierarchical data navigation.
  *
  * <p>The finder displays data in a series of columns, where selecting an item in one column reveals its children
- * in the next column. Columns support asynchronous loading, keyboard navigation, filtering, sorting, and an
- * optional preview pane. Finder paths can be serialized for URL routing and restored programmatically.
+ * in the next column. Columns support asynchronous loading, keyboard navigation, filtering, sorting, and an optional preview
+ * pane. Finder paths can be serialized for URL routing and restored programmatically.
  *
  * <p><strong>Key classes:</strong>
  * <ul>
@@ -30,7 +30,7 @@
  * </ul>
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * Finder finder = finder()
  *     .addColumn(finderColumn("categories")
@@ -38,7 +38,7 @@
  *             .nextColumn(() -> finderColumn("items")
  *                 .addItem(finderItem("item-1", "Item 1"))
  *                 .addItem(finderItem("item-2", "Item 2")))));
- * }
+ *}
  *
  * @see org.patternfly.extension.finder.Finder
  * @see org.patternfly.extension.finder.FinderColumn

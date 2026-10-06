@@ -21,10 +21,10 @@ import java.util.Map;
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.Element;
@@ -49,6 +49,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.text;
 
 /** An individual navigation link within a {@link Navigation} component. */
+
 /** A navigation item within a {@link Navigation} component. */
 public class NavigationItem extends NavigationSubComponent<HTMLLIElement, NavigationItem> implements
         ComponentContext<HTMLLIElement, NavigationItem>,

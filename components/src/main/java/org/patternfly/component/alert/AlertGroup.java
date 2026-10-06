@@ -19,14 +19,14 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Timeouts;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Element;
@@ -54,9 +54,8 @@ import static org.patternfly.style.Classes.modifier;
  * inline with the page content. Alert groups should always rank alerts by age, stacking new alerts on top of old ones as they
  * surface.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/alert#alert-group-examples">
- *      https://www.patternfly.org/components/alert#alert-group-examples</a>
+ * @see <a href= "https://www.patternfly.org/components/alert#alert-group-examples">
+ * https://www.patternfly.org/components/alert#alert-group-examples</a>
  */
 public class AlertGroup extends BaseComponent<HTMLUListElement, AlertGroup> implements
         HasItems<HTMLUListElement, AlertGroup, Alert> {

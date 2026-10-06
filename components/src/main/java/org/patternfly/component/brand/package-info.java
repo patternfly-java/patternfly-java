@@ -22,13 +22,13 @@
  * <h2>Usage</h2>
  *
  * <p>Basic brand with a logo image:
- *
+ * <p>
  * {@snippet :
  * Brand logo = brand("/img/logo.svg", "Product logo");
- * }
+ *}
  *
  * <p>Responsive brand with different sources for different screen sizes:
- *
+ * <p>
  * {@snippet :
  * Brand responsive = brand()
  *     .widths(breakpoints(default_, "40px", sm, "60px", md, "220px"))
@@ -36,7 +36,7 @@
  *     .addSource("/img/icon-logo.svg", "(min-width: 576px)")
  *     .addImg(img("/img/full-logo.svg")
  *         .apply(i -> i.alt = "Fallback logo"));
- * }
+ *}
  *
  * @see org.patternfly.component.brand.Brand
  * @see <a href="https://www.patternfly.org/components/brand">PatternFly Brand</a>

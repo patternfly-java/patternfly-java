@@ -29,7 +29,7 @@
  * <h2>Usage</h2>
  *
  * <p>Truncate text at different positions:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.truncate.Truncate.truncate;
  * import static org.patternfly.component.truncate.TruncatePosition.middle;
@@ -43,7 +43,7 @@
  *
  * // Truncation at the start
  * Truncate startTruncate = truncate("This is a very long text that will be truncated at the start", start);
- * }
+ *}
  *
  * @see org.patternfly.component.truncate.Truncate
  * @see org.patternfly.component.truncate.TruncatePosition

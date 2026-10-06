@@ -24,6 +24,7 @@ import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
 public class PieElement extends ChartElement {
+
     public JsArray<Data> data;
     public JsArray<String> colorScale;
 }

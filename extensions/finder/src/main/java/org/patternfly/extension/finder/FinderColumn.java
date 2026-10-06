@@ -28,16 +28,18 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.async.AsyncItems;
+import org.patternfly.async.AsyncItemsController;
 import org.patternfly.async.AsyncStatus;
 import org.patternfly.async.HasAsyncItems;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.Ordered;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.Ordered;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
 
@@ -48,7 +50,6 @@ import elemental2.promise.Promise;
 
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
-import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -58,11 +59,6 @@ import static org.jboss.elemento.Elements.removeChildrenFrom;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.Elements.ul;
 import static org.jboss.elemento.Role.tree;
-import static org.patternfly.async.AsyncStatus.pending;
-import static org.patternfly.async.AsyncStatus.rejected;
-import static org.patternfly.async.AsyncStatus.resolved;
-import static org.patternfly.async.AsyncStatus.static_;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.extension.finder.FinderClasses.column;
 import static org.patternfly.extension.finder.FinderColumnHeader.finderColumnHeader;
@@ -109,14 +105,12 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     private final Map<String, Object> data;
     private final Map<String, FinderItem> items;
     private final AurHandler<FinderColumn, FinderItem> aur;
+    private final AsyncItemsController<FinderColumn, FinderItem> async;
     private final List<SelectHandler<FinderItem>> selectHandler;
     private final HTMLContainerBuilder<HTMLUListElement> ul;
     private boolean pinnable;
-    private AsyncStatus status;
     private FinderColumnSearch search;
     private Comparator<FinderItem> comparator;
-    private AsyncItems<FinderColumn, FinderItem> asyncItems;
-    private Promise<Iterable<FinderItem>> loadPromise;
 
     FinderColumn(String identifier) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(FinderClasses.finder, column))
@@ -126,8 +120,8 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
+        this.async = new AsyncItemsController<>();
         this.selectHandler = new ArrayList<>();
-        this.status = static_;
 
         add(ul = ul().css(component(FinderClasses.finder, column, FinderClasses.items))
                 .role(tree));
@@ -167,8 +161,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
     }
 
     public FinderColumn add(AsyncItems<FinderColumn, FinderItem> items) {
-        status = pending;
-        asyncItems = items;
+        async.set(items);
         return this;
     }
 
@@ -203,7 +196,8 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
      */
     public FinderColumn defaultSearch(String placeholder) {
         return addSearch(finderColumnSearch()
-                .addSearchInput(searchInput(Id.unique(SUB_COMPONENT_ID)).icon(search()).placeholder(placeholder),
+                .addSearchInput(
+                        SearchInputGroup.searchInputGroup(Id.unique(SUB_COMPONENT_ID)).icon(search()).placeholder(placeholder),
                         (item, value) -> {
                             String lcv = value.toLowerCase();
                             return !value.isEmpty() && !item.text().toLowerCase().contains(lcv);
@@ -312,69 +306,61 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     @Override
     public Promise<Iterable<FinderItem>> load() {
-        if (status == pending && asyncItems != null) {
-            if (loadPromise != null) {
-                return loadPromise;
-            }
-
-            // show a loading indicator after a given timeout
-            FinderItem[] loadingItem = new FinderItem[1];
-            double handle = setTimeout(__ -> {
-                loadingItem[0] = loadingItem();
-                loadingItem[0].column = this;
-                ul.add(loadingItem[0].element());
-            }, LOADING_TIMEOUT);
-
-            // load items
-            loadPromise = asyncItems.apply(this)
-                    .then(items -> {
-                        status = resolved;
-                        loadPromise = null;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        for (FinderItem child : items) {
-                            addItem(child);
-                        }
-                        return Promise.resolve(items);
-                    })
-                    .catch_(error -> {
-                        status = rejected;
-                        loadPromise = null;
-                        clearTimeout(handle);
-                        failSafeRemoveFromParent(loadingItem[0]);
-                        logger.error("Unable to load items for %o - %s: %s", element(), identifier, error);
-                        FinderItem errorItem = errorItem();
-                        errorItem.column = this;
-                        ul.add(errorItem);
-                        return Promise.reject(error);
-                    });
-            return loadPromise;
-        } else {
-            return Promise.resolve(emptyList());
-        }
+        final double[] handle = {0};
+        final FinderItem[] loadingIndicator = new FinderItem[1];
+        return async.load(this,
+                this::addItem,
+                null,
+                err -> {
+                    logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
+                    FinderItem errorItem = errorItem();
+                    errorItem.column = this;
+                    ul.add(errorItem);
+                },
+                () -> handle[0] = setTimeout(__ -> {
+                    loadingIndicator[0] = loadingItem();
+                    loadingIndicator[0].column = this;
+                    ul.add(loadingIndicator[0].element());
+                }, LOADING_TIMEOUT),
+                () -> {
+                    clearTimeout(handle[0]);
+                    failSafeRemoveFromParent(loadingIndicator[0]);
+                });
     }
 
     @Override
-    public Promise<Iterable<FinderItem>> reload() {
-        if (status != pending) {
-            reset();
-            return load().then(Promise::resolve);
-        }
-        return Promise.resolve(emptyList());
+    public Promise<Iterable<FinderItem>> refresh() {
+        final double[] handle = {0};
+        final FinderItem[] loadingIndicator = new FinderItem[1];
+        return async.refresh(this,
+                this::addItem,
+                null,
+                err -> {
+                    logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
+                    FinderItem errorItem = errorItem();
+                    errorItem.column = this;
+                    ul.add(errorItem);
+                },
+                () -> handle[0] = setTimeout(__ -> {
+                    loadingIndicator[0] = loadingItem();
+                    loadingIndicator[0].column = this;
+                    ul.add(loadingIndicator[0].element());
+                }, LOADING_TIMEOUT),
+                () -> {
+                    clearTimeout(handle[0]);
+                    failSafeRemoveFromParent(loadingIndicator[0]);
+                },
+                this::internalClear);
     }
 
     @Override
     public void reset() {
-        if (status == resolved || status == rejected) {
-            status = pending;
-            loadPromise = null;
-            internalClear();
-        }
+        async.reset(this::internalClear);
     }
 
     @Override
     public AsyncStatus status() {
-        return status;
+        return async.status();
     }
 
     @Override
@@ -437,11 +423,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
 
     @Override
     public void clear() {
-        if (status == static_) {
-            internalClear();
-        } else if (status == resolved || status == rejected || status == pending) {
-            reset();
-        }
+        internalClear();
     }
 
     public void select(String identifier) {

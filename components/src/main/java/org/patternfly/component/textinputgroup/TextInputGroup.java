@@ -19,7 +19,7 @@ import org.patternfly.component.ComponentType;
 
 /**
  * A text input group is a more flexible composable version of a text input. It enables consumers of PatternFly to build custom
- * inputs for filtering and similar use cases by placing elements like icons, chips groups and buttons within a text input.
+ * inputs for filtering and similar use cases by placing elements like icons, chips groups, and buttons within a text input.
  *
  * @see <a href=
  * "https://www.patternfly.org/components/text-input-group">https://www.patternfly.org/components/text-input-group</a>

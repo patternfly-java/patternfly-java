@@ -31,17 +31,17 @@ import org.patternfly.async.AsyncItems;
 import org.patternfly.async.AsyncItemsController;
 import org.patternfly.async.AsyncStatus;
 import org.patternfly.async.HasAsyncItems;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -76,7 +76,6 @@ import static org.jboss.elemento.EventType.click;
 import static org.jboss.elemento.InputType.checkbox;
 import static org.patternfly.async.AsyncStatus.pending;
 import static org.patternfly.async.AsyncStatus.resolved;
-import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.component.tree.TreeViewType.checkboxes;
 import static org.patternfly.component.tree.TreeViewType.default_;
@@ -104,6 +103,7 @@ import static org.patternfly.style.Classes.treeView;
 import static org.patternfly.style.Size.md;
 
 /** An individual item within a {@link TreeView} component. */
+
 /** A tree view item within a {@link TreeView} component. */
 public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewItem> implements
         Compact<HTMLLIElement, TreeViewItem>,
@@ -370,38 +370,38 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
     }
 
     @Override
-    public Promise<Iterable<TreeViewItem>> reload() {
+    public Promise<Iterable<TreeViewItem>> refresh() {
         boolean wasExpanded = expanded();
         final double[] handle = {0};
         final TreeViewItem[] loadingItem = new TreeViewItem[1];
-        return async.reload(this,
-                this::addItem,
-                () -> {
-                    failSafeRemoveFromParent(toggleElement);
-                    collapse(false);
-                },
-                err -> {
-                    logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
-                    TreeViewItem errorItem = TreeViewItem.error.get();
-                    errorItem.finishDOM(tv);
-                    childrenElement.appendChild(errorItem.element());
-                },
-                () -> handle[0] = setTimeout(__ -> {
-                    loadingItem[0] = loading.get();
-                    loadingItem[0].finishDOM(tv);
-                    childrenElement.appendChild(loadingItem[0].element());
-                }, LOADING_TIMEOUT),
-                () -> {
-                    clearTimeout(handle[0]);
-                    failSafeRemoveFromParent(loadingItem[0]);
-                },
-                () -> {
-                    internalClear();
-                    collapse(false);
-                    if (domFinished && !containerElement.contains(toggleElement)) {
-                        insertFirst(containerElement, toggleElement);
-                    }
-                })
+        return async.refresh(this,
+                        this::addItem,
+                        () -> {
+                            failSafeRemoveFromParent(toggleElement);
+                            collapse(false);
+                        },
+                        err -> {
+                            logger.error("Unable to load items for %o - %s: %s", element(), identifier, err);
+                            TreeViewItem errorItem = TreeViewItem.error.get();
+                            errorItem.finishDOM(tv);
+                            childrenElement.appendChild(errorItem.element());
+                        },
+                        () -> handle[0] = setTimeout(__ -> {
+                            loadingItem[0] = loading.get();
+                            loadingItem[0].finishDOM(tv);
+                            childrenElement.appendChild(loadingItem[0].element());
+                        }, LOADING_TIMEOUT),
+                        () -> {
+                            clearTimeout(handle[0]);
+                            failSafeRemoveFromParent(loadingItem[0]);
+                        },
+                        () -> {
+                            internalClear();
+                            collapse(false);
+                            if (domFinished && !containerElement.contains(toggleElement)) {
+                                insertFirst(containerElement, toggleElement);
+                            }
+                        })
                 .then(items -> {
                     if (wasExpanded) {
                         expand(false);
@@ -481,11 +481,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
 
     @Override
     public void clear() {
-        if (async.status() == static_) {
-            internalClear();
-        } else {
-            reset();
-        }
+        internalClear();
     }
 
     @Override

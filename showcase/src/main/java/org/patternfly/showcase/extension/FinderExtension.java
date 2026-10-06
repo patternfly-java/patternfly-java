@@ -244,7 +244,7 @@ public class FinderExtension extends SnippetPage {
                     .run(column -> column.addHeader(finderColumnHeader(decade[0] + " - " + decade[1])
                             .addActions(finderColumnActions()
                                     .addButton(button(redo()).plain()
-                                            .onClick((e, b) -> column.reload())))))
+                                            .onClick((e, b) -> column.refresh())))))
                     .addItems(item -> new Promise<>((resolve, reject) -> {
                         boolean boom = Math.random() < 0.25; // simulate error
                         int delay = new Random().nextInt(2000); // simulate remote call

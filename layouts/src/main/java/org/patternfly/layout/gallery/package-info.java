@@ -22,9 +22,9 @@
  * breakpoints.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic gallery with gutters:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.gallery.Gallery.gallery;
  * import static org.patternfly.layout.gallery.GalleryItem.galleryItem;
@@ -34,10 +34,10 @@
  *         .addItem(galleryItem().text("Gallery item"))
  *         .addItem(galleryItem().text("Gallery item"))
  *         .addItem(galleryItem().text("Gallery item"));
- * }
- *
+ *}
+ * <p>
  * A gallery with responsive minimum widths:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.core.Tuple.tuple;
  * import static org.patternfly.layout.gallery.Gallery.gallery;
@@ -51,7 +51,7 @@
  *         .addItem(galleryItem().text("Gallery item"))
  *         .addItem(galleryItem().text("Gallery item"))
  *         .addItem(galleryItem().text("Gallery item"));
- * }
+ *}
  *
  * @see Gallery
  * @see GalleryItem

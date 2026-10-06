@@ -46,7 +46,10 @@ public final class Ouia {
         }
     }
 
-    /** Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given HTML element. */
+    /**
+     * Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given
+     * HTML element.
+     */
     public static void ouia(HTMLElement element, String componentId, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             if (componentId != null) {
@@ -65,7 +68,10 @@ public final class Ouia {
         }
     }
 
-    /** Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given SVG element. */
+    /**
+     * Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given SVG
+     * element.
+     */
     public static void ouia(SVGElement element, String componentId, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             if (componentId != null) {
@@ -122,8 +128,5 @@ public final class Ouia {
     // Access it via JsPropertyMap to avoid casting SVGElement to an unrelated type.
     private static JsPropertyMap<String> svgDataset(SVGElement element) {
         return Js.cast(Js.<JsPropertyMap<Object>>cast(element).get("dataset"));
-    }
-
-    private Ouia() {
     }
 }

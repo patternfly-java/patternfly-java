@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `org.patternfly.component.typeahead` package with `Decision`, `RefreshStrategy`, `Typeahead`, and `TypeaheadController`
+- Add `Decision.keep()` action for strategies that want to ignore certain input transitions
+- Add `RefreshStrategy.composeSelection(String, String)` for strategies to control how selected items compose the input value (e.g., preserving delimiter prefixes in hierarchical input)
+- Add `SearchInputGroupTypeahead` — explicit search input with typeahead/autocomplete menu support
+- Add `FilterInputGroupTypeahead` — explicit filter input with typeahead/autocomplete menu support
+
+### Changed
+
+- **BREAKING:** Move `HasValue`, `HasObservableValue`, `HasItems`, `HasIdentifier`, `Ordered`, `AddItemHandler`, `RemoveItemHandler`, `UpdateItemHandler`, and `AurHandler` from `org.patternfly.component` to `org.patternfly.core`
+- **BREAKING:** Move `RefreshStrategy` and `Decision` from `org.patternfly.async` to `org.patternfly.component.typeahead`
+- **BREAKING:** Move `Typeahead` interface from `org.patternfly.component.menu` to `org.patternfly.component.typeahead`
+- **BREAKING:** Move `TypeaheadController` from `org.patternfly.component` to `org.patternfly.component.typeahead`
+- **BREAKING:** Rename `ReloadStrategy` to `RefreshStrategy` and `reloadOn()` to `refreshOn()` across `Typeahead` and `BaseSearchInputGroup`
+- **BREAKING:** Rename `onFilter(SearchFilter)` to `filter(SearchFilter)` in `Typeahead` and `BaseSearchInputGroup` to follow builder naming conventions
+- **BREAKING:** Extract typeahead/menu support from `BaseSearchInputGroup` into dedicated `SearchInputGroupTypeahead` and `FilterInputGroupTypeahead` classes; `BaseSearchInputGroup` is now a plain search input without menu/typeahead capability
+- **BREAKING:** Rename `SingleTypeahead` to `SingleSelectTypeahead` and `MultiTypeahead` to `MultiSelectTypeahead` for consistent `[BaseComponent]Typeahead` naming
+- **BREAKING:** Rename `BaseSearchInput` to `BaseSearchInputGroup`, `SearchInput` to `SearchInputGroup`, `BaseFilterInput` to `BaseFilterInputGroup`, and `FilterInput` to `FilterInputGroup` for consistent naming with `TextInputGroup`
+- Replace heuristic `TypeaheadController.isDebounceMode()` with `lastAction()` that tracks the actual last strategy evaluation result
+- Rename `TypeaheadSupport` to `MenuTypeaheadSupport` (internal)
+
+### Removed
+
+- Remove `Refreshable` / `Reloadable` interface (superseded by `Typeahead` interface in `org.patternfly.component.typeahead`)
+- Remove `RefreshStrategy` and `Decision` from `org.patternfly.async` (moved to `org.patternfly.component.typeahead`)
+- Remove `delimiter()` accessor from `RefreshStrategy` (delimiter handling is now internal to the strategy)
+- Remove `Menu.replace()`, `MenuList.replace()`, and `AsyncItemsController.replace()` (superseded by `refresh()`)
+- Remove old `Typeahead` interface and `TypeaheadInputController` from `org.patternfly.component.menu`
+- Remove `refreshOn(RefreshStrategy, SearchFilter)` convenience default method from `Typeahead` interface
+
 ## [0.12.2] - 2026-10-05
 
 ### Changed
@@ -19,9 +50,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Add `SearchFilter.containsAll(char)` for multi-term matching with a delimiter
 - Add `SearchFilter.lastSegment(char)` for hierarchical filtering after a delimiter
 - Add `ReloadStrategy.structuralChange(int, char)` convenience factory with delimiter support
-- Add `reloadOn(ReloadStrategy, SearchFilter)` convenience overload on `Typeahead` and `BaseSearchInput`
+- Add `reloadOn(ReloadStrategy, SearchFilter)` convenience overload on `Typeahead` and `BaseSearchInputGroup`
 - Add `Menu.replace()`, `MenuList.replace()`, and `AsyncItemsController.replace()` to swap items without the visual flash caused by reset-then-load
-- Add `delimiter()` accessor on `ReloadStrategy`
+- Add `delimiter()` accessor on `RefreshStrategy`
 
 ### Changed
 
@@ -43,19 +74,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add `org.patternfly.async` package in the core module with `AsyncStatus`, `AsyncItems`, `AsyncItemsController`, `HasAsyncItems`, `Reloadable`, and `ReloadStrategy`
-- Add `ReloadStrategy` value class with `everyInput(int)` and `structuralChange(BiPredicate)` factory methods to make the three typeahead reload modes explicit and mutually exclusive
-- Add `Reloadable` interface with a single `reloadOn(ReloadStrategy)` method, implemented by `Typeahead` and `BaseSearchInput`
-- Add `TypeaheadInputController` delegate to share typeahead input handling between `SingleTypeahead` and `MultiTypeahead`
-- Add `onNoResults(NoResults)` to `BaseSearchInput` for feature parity with typeahead components
+- Add `org.patternfly.async` package in the core module with `AsyncStatus`, `AsyncItems`, `AsyncItemsController`, `HasAsyncItems`, `Refreshable`, and `RefreshStrategy`
+- Add `RefreshStrategy` value class with `everyInput(int)` and `structuralChange(BiPredicate)` factory methods to make the three typeahead reload modes explicit and mutually exclusive
+- Add `Refreshable` interface with a single `reloadOn(ReloadStrategy)` method, implemented by `Typeahead` and `BaseSearchInputGroup`
+- Add `TypeaheadController` delegate to share typeahead input handling between `SingleTypeahead` and `MultiTypeahead`
+- Add `onNoResults(NoResults)` to `BaseSearchInputGroup` for feature parity with typeahead components
 
 ### Changed
 
 - Move `AsyncStatus` from `org.patternfly.core` to `org.patternfly.async`
 - Move `AsyncItems`, `AsyncItemsController`, and `HasAsyncItems` from `org.patternfly.component` to `org.patternfly.async`
 - Consolidate two package-private `StayOpenPredicate` interfaces into a single typed `org.patternfly.component.StayOpenPredicate<C>`
-- Rename `onSearch(SearchFilter)` to `onFilter(SearchFilter)` in `Typeahead` and `BaseSearchInput` to clarify it filters existing menu items
-- Replace `reQueryOnInput(int)` and `reloadWhen(BiPredicate)` with `reloadOn(ReloadStrategy)` in `Typeahead` and `BaseSearchInput`
+- Rename `onSearch(SearchFilter)` to `onFilter(SearchFilter)` in `Typeahead` and `BaseSearchInputGroup` to clarify it filters existing menu items
+- Replace `reQueryOnInput(int)` and `reloadWhen(BiPredicate)` with `reloadOn(ReloadStrategy)` in `Typeahead` and `BaseSearchInputGroup`
 
 ### Removed
 
@@ -63,7 +94,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Fixed
 
-- Fix stale debounce callback surviving strategy changes in `TypeaheadInputController` and `BaseSearchInput`
+- Fix stale debounce callback surviving strategy changes in `TypeaheadController` and `BaseSearchInputGroup`
 - Fix `Menu.search()` Javadoc claiming `int` return type when method returns `List<MenuItem>`
 
 ## [0.11.0] - 2026-09-30
@@ -71,13 +102,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add `AsyncItemsController` delegate for concurrent-load-safe async item loading with a generation counter that discards stale responses
-- Add debounced server-side search-as-you-type to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
-- Add consumer-controlled reload with local filtering between reloads to `BaseSearchInput`, `SingleTypeahead`, and `MultiTypeahead`
+- Add debounced server-side search-as-you-type to `BaseSearchInputGroup`, `SingleTypeahead`, and `MultiTypeahead`
+- Add consumer-controlled reload with local filtering between reloads to `BaseSearchInputGroup`, `SingleTypeahead`, and `MultiTypeahead`
 
 ### Changed
 
 - Migrate `MenuList` and `TreeViewItem` async loading to `AsyncItemsController`
-- Decouple overlay display from data loading in `BaseSearchInput` and `MenuToggleMenu` when in re-query mode
+- Decouple overlay display from data loading in `BaseSearchInputGroup` and `MenuToggleMenu` when in re-query mode
 
 ### Fixed
 
@@ -109,7 +140,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Changed
 
 - Refactor `Menu.reset()` to use a shared `doForAllMenuLists()` helper, reducing duplication across menu-list operations
-- Improve `BaseSearchInput` hint clearing: clear hint on clear button click and when no items match; disable "no items" indicator for typeahead menus
+- Improve `BaseSearchInputGroup` hint clearing: clear hint on clear button click and when no items match; disable "no items" indicator for typeahead menus
 
 ## [0.10.0] - 2026-09-18
 
@@ -118,7 +149,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add typeahead hint input to `BaseSearchInput`: when a single menu item matches, a disabled hint input shows the completion text; pressing ArrowRight accepts the hint
+- Add typeahead hint input to `BaseSearchInputGroup`: when a single menu item matches, a disabled hint input shows the completion text; pressing ArrowRight accepts the hint
 
 ### Changed
 
@@ -134,7 +165,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add `Menu.reset()` to clear filtered state across all menu groups and lists
-- Add typeahead and overlay support to `BaseSearchInput`, enabling search inputs to host menus with keyboard navigation, filtering, and CSS anchor positioning
+- Add typeahead and overlay support to `BaseSearchInputGroup`, enabling search inputs to host menus with keyboard navigation, filtering, and CSS anchor positioning
 
 ### Changed
 

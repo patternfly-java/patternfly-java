@@ -21,9 +21,9 @@
  * variants.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A flat vertical navigation with simple items:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.navigation.Navigation.navigation;
  * import static org.patternfly.component.navigation.NavigationItem.navigationItem;
@@ -33,10 +33,10 @@
  *         .addItem(navigationItem("item-0", "Link 1", "#item-0"))
  *         .addItem(navigationItem("item-1", "Link 2", "#item-1"))
  *         .addItem(navigationItem("item-2", "Link 3", "#item-2"));
- * }
- *
+ *}
+ * <p>
  * An expandable navigation with grouped items:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.navigation.ExpandableNavigationGroup.expandableNavigationGroup;
  * import static org.patternfly.component.navigation.Navigation.navigation;
@@ -50,7 +50,7 @@
  *         .addGroup(expandableNavigationGroup("grp-1", "Expandable group 2")
  *                 .addItem(navigationItem("item-10", "Subnav link 1", "#item-10"))
  *                 .addItem(navigationItem("item-11", "Subnav link 2", "#item-11")));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/navigation">https://www.patternfly.org/components/navigation</a>
  */

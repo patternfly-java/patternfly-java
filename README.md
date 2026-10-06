@@ -27,7 +27,7 @@ card().flat().rounded().large()
 </dependencyManagement>
 ```
 
-Then add `patternfly-java-gwt` (GWT) or `patternfly-java-j2cl` (J2CL) as a dependency. See the [Get Started](https://patternfly-java.github.io/get-started) guide for full setup instructions.
+Then add `patternfly-java-components` and `patternfly-java-layouts` as dependencies. See the [Get Started](https://patternfly-java.github.io/get-started) guide for full setup instructions.
 
 ## Resources
 

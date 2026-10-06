@@ -18,7 +18,14 @@ package org.patternfly.async;
 import elemental2.promise.Promise;
 
 /**
- * Represents a component or entity that can asynchronously manage items and their associated operations.
+ * Represents a component that can asynchronously load and manage items.
+ * <p>
+ * The async lifecycle has three operations:
+ * <ul>
+ *     <li>{@link #load()} — first-time fetch, only runs when status is {@link AsyncStatus#pending}, idempotent</li>
+ *     <li>{@link #refresh()} — re-fetch while keeping old items visible, then swap atomically</li>
+ *     <li>{@link #reset()} — clear all items and go back to {@link AsyncStatus#pending} without fetching</li>
+ * </ul>
  *
  * @param <C> the type of the component used for method chaining
  * @param <S> the type of the items
@@ -31,10 +38,13 @@ public interface HasAsyncItems<C, S> {
 
     C add(AsyncItems<C, S> items);
 
+    /** Fetches items for the first time. Only runs when status is {@link AsyncStatus#pending}. Idempotent. */
     Promise<Iterable<S>> load();
 
-    Promise<Iterable<S>> reload();
+    /** Re-fetches items while keeping old items visible, then swaps them after the new items arrive. */
+    Promise<Iterable<S>> refresh();
 
+    /** Clears all items and sets status back to {@link AsyncStatus#pending}. Does not fetch. */
     void reset();
 
     AsyncStatus status();

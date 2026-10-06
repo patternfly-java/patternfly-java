@@ -18,6 +18,9 @@ package org.patternfly.component.menu;
 import java.util.function.Function;
 
 import org.jboss.elemento.By;
+import org.patternfly.component.typeahead.Decision;
+import org.patternfly.component.typeahead.Typeahead;
+import org.patternfly.component.typeahead.TypeaheadController;
 import org.patternfly.core.Aria;
 
 import elemental2.dom.Element;
@@ -37,9 +40,9 @@ import static org.patternfly.style.Classes.textInputGroup;
 import static org.patternfly.style.Classes.utilities;
 
 /** Internal helper that wires typeahead keyboard and click behavior for {@link MenuToggleMenu} implementations. */
-class TypeaheadSupport {
+class MenuTypeaheadSupport {
 
-    static void typeaheadDefaults(MenuToggleMenu<?> mtm, TypeaheadInputController inputController) {
+    static void typeaheadDefaults(MenuToggleMenu<?> mtm, TypeaheadController tc) {
         mtm.menuToggle.searchInput().input()
                 .attr(role, combobox)
                 .aria(Aria.expanded, false)
@@ -48,7 +51,7 @@ class TypeaheadSupport {
 
         mtm.onToggle((e, c, expanded) -> {
             if (expanded) {
-                if (inputController.isDebounceMode()) {
+                if (tc.lastAction() == Decision.Action.DEBOUNCE) {
                     mtm.menu.reset();
                 } else {
                     mtm.menu.clearSearch();
@@ -57,7 +60,7 @@ class TypeaheadSupport {
         });
         mtm.menuToggle.searchInput()
                 .onClear((e, si) -> {
-                    if (inputController.isDebounceMode()) {
+                    if (tc.lastAction() == Decision.Action.DEBOUNCE) {
                         mtm.menu.reset();
                     } else {
                         mtm.menu.clearSearch();
@@ -67,7 +70,7 @@ class TypeaheadSupport {
                 })
                 .onChange((e, c, value) -> {
                     if (value.isEmpty()) {
-                        if (inputController.isDebounceMode()) {
+                        if (tc.lastAction() == Decision.Action.DEBOUNCE) {
                             mtm.menu.reset();
                         } else {
                             mtm.menu.clearSearch();

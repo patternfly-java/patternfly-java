@@ -18,7 +18,7 @@ package org.patternfly.component.menu;
 import org.patternfly.component.SelectionMode;
 
 /**
- * Menu used for {@link SingleSelect} and {@link SingleTypeahead} components.
+ * Menu used for {@link SingleSelect} and {@link SingleSelectTypeahead} components.
  */
 public class SingleSelectMenu extends Menu {
 

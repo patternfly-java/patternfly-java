@@ -17,8 +17,8 @@
  * Common event handler interfaces used throughout PatternFly Java components.
  *
  * <p>This package defines functional interfaces for handling various component events in a type-safe manner.
- * All handlers follow a consistent pattern: they accept a DOM event, the component that triggered the event,
- * and event-specific data. Components register these handlers using {@code on<Event>()} methods.
+ * All handlers follow a consistent pattern: they accept a DOM event, the component that triggered the event, and event-specific
+ * data. Components register these handlers using {@code on<Event>()} methods.
  *
  * <h2>Handler Interfaces</h2>
  *
@@ -37,28 +37,28 @@
  *
  * <h3>Change Handler</h3>
  * <p>Handle value changes in form components:
- *
+ * <p>
  * {@snippet :
  * TextInput input = textInput("username")
  *     .onChange((event, component, value) -> {
  *         console.log("Username changed to: " + value);
  *         validateUsername(value);
  *     });
- * }
+ *}
  *
  * <h3>Selection Handler</h3>
  * <p>Respond to selection events in lists and tables:
- *
+ * <p>
  * {@snippet :
  * DataList<User> dataList = dataList(dataProvider)
  *     .onSelect((event, item, selected) -> {
  *         console.log("User " + item.name() + " selected: " + selected);
  *     });
- * }
+ *}
  *
  * <h3>Toggle Handler</h3>
  * <p>Handle expand/collapse state in expandable components:
- *
+ * <p>
  * {@snippet :
  * Drawer drawer = drawer()
  *     .onToggle((event, component, expanded) -> {
@@ -67,30 +67,30 @@
  *             loadDrawerContent();
  *         }
  *     });
- * }
+ *}
  *
  * <h3>Close Handler</h3>
  * <p>Perform cleanup when components are closed:
- *
+ * <p>
  * {@snippet :
  * Alert alert = alert("Success", "Operation completed")
  *     .onClose((event, component) -> {
  *         console.log("Alert dismissed");
  *         removeFromDOM(component);
  *     });
- * }
+ *}
  *
  * <h2>Handler Registration Pattern</h2>
  *
  * <p>Components follow a consistent pattern for registering handlers. Methods are named {@code on<Event>()} and
  * return the component to enable method chaining:
- *
+ * <p>
  * {@snippet :
  * Switch switch_ = switch_("enable-feature")
  *     .value(false)
  *     .onChange((e, c, value) -> console.log("Switch: " + value))
  *     .onToggle((e, c, checked) -> updateFeatureState(checked));
- * }
+ *}
  *
  * <h2>Functional Interface Benefits</h2>
  *
@@ -102,6 +102,7 @@
  *     <li>Clear IDE support with parameter hints</li>
  * </ul>
  *
- * @see <a href="https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html">Handler API Documentation</a>
+ * @see <a href="https://patternfly-java.github.io/apidocs/org/patternfly/handler/package-summary.html">Handler API
+ * Documentation</a>
  */
 package org.patternfly.handler;

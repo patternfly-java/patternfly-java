@@ -17,8 +17,8 @@
  * Provides a tooltip component for displaying contextual information on hover or focus.
  *
  * <p>A tooltip is a small overlay that appears near a trigger element to provide additional information.
- * Tooltips are referenced by a CSS selector pointing to the trigger element, support configurable placements
- * (top, bottom, left, right), dynamic content updates, and close event handlers.
+ * Tooltips are referenced by a CSS selector pointing to the trigger element, support configurable placements (top, bottom,
+ * left, right), dynamic content updates, and close event handlers.
  *
  * <h2>Key Classes</h2>
  *
@@ -30,7 +30,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create a tooltip attached to a trigger element:
- *
+ * <p>
  * {@snippet :
  * import org.jboss.elemento.By;
  * import static org.patternfly.component.button.Button.button;
@@ -38,10 +38,10 @@
  *
  * button("Hover me").primary().id("my-button");
  * tooltip(By.id("my-button"), "This is a tooltip");
- * }
+ *}
  *
  * <p>Create a tooltip with placement and dynamic content:
- *
+ * <p>
  * {@snippet :
  * import org.jboss.elemento.By;
  * import static org.patternfly.component.tooltip.Tooltip.tooltip;
@@ -53,7 +53,7 @@
  *
  * // Update content dynamically
  * tooltip.text("Successfully copied!");
- * }
+ *}
  *
  * @see org.patternfly.component.tooltip.Tooltip
  * @see <a href="https://www.patternfly.org/components/tooltip">PatternFly Tooltip</a>

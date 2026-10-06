@@ -17,9 +17,9 @@
  * Provides helper text components for displaying supplementary information alongside form controls.
  *
  * <p>This package contains the {@link org.patternfly.component.help.HelperText} component and its sub-components
- * for showing contextual help messages, validation feedback, and status information. Helper text items support
- * different validation statuses (default, indeterminate, warning, success, error) and can display static or
- * dynamic content with optional custom icons.
+ * for showing contextual help messages, validation feedback, and status information. Helper text items support different
+ * validation statuses (default, indeterminate, warning, success, error) and can display static or dynamic content with optional
+ * custom icons.
  *
  * <h2>Components</h2>
  *
@@ -32,7 +32,7 @@
  * <h2>Usage</h2>
  *
  * <p>Static helper text with different validation statuses:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.ValidationStatus.error;
  * import static org.patternfly.component.ValidationStatus.success;
@@ -51,7 +51,7 @@
  *                 .dynamic())
  *         .addItem(helperTextItem("Cannot contain the word 'redhat'", error)
  *                 .dynamic());
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/helper-text">PatternFly Helper Text</a>
  */

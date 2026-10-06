@@ -22,11 +22,11 @@ import java.util.Map;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.Severity;
 import org.patternfly.component.menu.Dropdown;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.style.Classes;
 
@@ -51,6 +51,7 @@ import static org.patternfly.style.Classes.timestamp;
 import static org.patternfly.style.Modifiers.toggleModifier;
 
 /** An individual notification entry within a {@link NotificationDrawer}. */
+
 /** A notification drawer item within a {@link NotificationDrawer} component. */
 public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLElement, NotificationDrawerItem> implements
         ComponentContext<HTMLElement, NotificationDrawerItem>,
@@ -81,9 +82,9 @@ public class NotificationDrawerItem extends NotificationDrawerSubComponent<HTMLE
     NotificationDrawerItem(Severity severity, String identifier, String title) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME,
                 li().css(component(notificationDrawer, list, item), severity.status.modifier())
-                .attr(tabindex, 0)
-                .data(Dataset.identifier, identifier)
-                .element());
+                        .attr(tabindex, 0)
+                        .data(Dataset.identifier, identifier)
+                        .element());
         this.identifier = identifier;
         this.data = new HashMap<>();
         this.handler = new ArrayList<>();

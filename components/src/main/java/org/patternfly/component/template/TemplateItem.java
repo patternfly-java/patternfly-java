@@ -18,9 +18,9 @@ package org.patternfly.component.template;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.HTMLElement;

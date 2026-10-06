@@ -22,9 +22,9 @@ import org.jboss.elemento.By;
 import org.jboss.elemento.HTMLElementBuilder;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -42,6 +42,7 @@ import static org.patternfly.style.Classes.item;
 import static org.patternfly.style.Classes.menu;
 
 /** An action element associated with a {@link MenuItem}. */
+
 /** A menu item action within a {@link MenuItem} component. */
 public class MenuItemAction extends MenuSubComponent<HTMLElement, MenuItemAction> implements
         HasIdentifier<HTMLElement, MenuItemAction>,

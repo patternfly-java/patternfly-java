@@ -20,9 +20,9 @@
  * indicator, within a larger container.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * Center content using the bullseye layout:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.bullseye.Bullseye.bullseye;
  * import static org.patternfly.layout.bullseye.BullseyeItem.bullseyeItem;
@@ -30,7 +30,7 @@
  * bullseye()
  *         .addItem(bullseyeItem()
  *                 .text("Centered content"));
- * }
+ *}
  *
  * @see Bullseye
  * @see BullseyeItem

@@ -29,6 +29,7 @@ import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.SelectionMode;
+import org.patternfly.component.textinputgroup.BaseSearchInputGroup;
 import org.patternfly.handler.MultiSelectHandler;
 import org.patternfly.handler.SelectHandler;
 import org.patternfly.style.Classes;
@@ -266,8 +267,7 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
 
     /**
      * Handles arrow up/down events when focus is <em>outside</em> the menu (e.g., in a {@link MenuToggle} search input or a
-     * {@link org.patternfly.component.textinputgroup.BaseSearchInput} text field). Moves focus to the first (ArrowDown) or last
-     * (ArrowUp) navigable menu item.
+     * {@link BaseSearchInputGroup} text field). Moves focus to the first (ArrowDown) or last (ArrowUp) navigable menu item.
      * <p>
      * This method is the entry point into menu keyboard navigation. Once focus has moved inside the menu,
      * {@link #handleArrows(KeyboardEvent, HTMLElement, JsArray)} takes over and cycles through items relative to the current
@@ -363,33 +363,17 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
         return Promise.resolve((Void) null);
     }
 
-    public Promise<Void> reload() {
-        if (content != null) {
-            List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
-            for (MenuGroup group : content.groups) {
-                if (group.list != null) {
-                    promises.add(group.list.reload());
-                }
-            }
-            if (content.list != null) {
-                promises.add(content.list.reload());
-            }
-            return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
-        }
-        return Promise.resolve((Void) null);
-    }
-
     @SuppressWarnings({"unchecked", "RedundantSuppression"})
-    public Promise<Void> replace() {
+    public Promise<Void> refresh() {
         if (content != null) {
             List<Promise<Iterable<MenuItem>>> promises = new ArrayList<>();
             for (MenuGroup group : content.groups) {
                 if (group.list != null) {
-                    promises.add(group.list.replace());
+                    promises.add(group.list.refresh());
                 }
             }
             if (content.list != null) {
-                promises.add(content.list.replace());
+                promises.add(content.list.refresh());
             }
             return Promise.all(promises.toArray(new Promise[0])).then((__) -> Promise.resolve((Void) null));
         }

@@ -17,28 +17,28 @@
  * Provides the PatternFly badge component for displaying counts and status indicators.
  *
  * <p>A badge is used to annotate other information like a label or an object name. Badges are typically used to
- * reflect counts such as the number of unread items or the number of objects in a collection. They can be displayed
- * in a read or unread state and support custom display formatting and value limits.
+ * reflect counts such as the number of unread items or the number of objects in a collection. They can be displayed in a read
+ * or unread state and support custom display formatting and value limits.
  *
  * <h2>Usage</h2>
  *
  * <p>Read and unread badges:
- *
+ * <p>
  * {@snippet :
  * Badge readBadge = badge(7).read();
  * Badge unreadBadge = badge(24).unread();
  * Badge limitedBadge = badge(1000).limit(999).unread();
- * }
+ *}
  *
  * <p>Badges with custom display formatting:
- *
+ * <p>
  * {@snippet :
  * Badge customBadge = badge(7).read()
  *     .display(v -> v + " items");
  * Badge limitedCustom = badge(1000).limit(999).unread()
  *     .display(v -> v + " items")
  *     .maxDisplay(v -> "More than you can handle");
- * }
+ *}
  *
  * @see org.patternfly.component.badge.Badge
  * @see <a href="https://www.patternfly.org/components/badge">PatternFly Badge</a>

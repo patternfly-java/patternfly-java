@@ -22,9 +22,9 @@
  * notification items with severity, timestamps, and action support.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A notification badge with a count:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.notification.NotificationBadge.notificationBadge;
  *
@@ -32,10 +32,10 @@
  *         .ariaLabel("10 unread notifications")
  *         .unread()
  *         .count(10);
- * }
- *
+ *}
+ * <p>
  * A notification drawer with items of different severity:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.Severity.danger;
  * import static org.patternfly.component.Severity.info;
@@ -62,13 +62,11 @@
  *                                 .addBody(notificationDrawerItemBody("This is a warning notification."))
  *                                 .read()
  *                                 .timestamp("20 minutes ago"))));
- * }
+ *}
  *
- * @see <a
- *      href="https://www.patternfly.org/components/notification-badge">
- *      https://www.patternfly.org/components/notification-badge</a>
- * @see <a
- *      href="https://www.patternfly.org/components/notification-drawer">
- *      https://www.patternfly.org/components/notification-drawer</a>
+ * @see <a href="https://www.patternfly.org/components/notification-badge">
+ * https://www.patternfly.org/components/notification-badge</a>
+ * @see <a href="https://www.patternfly.org/components/notification-drawer">
+ * https://www.patternfly.org/components/notification-drawer</a>
  */
 package org.patternfly.component.notification;

@@ -17,8 +17,8 @@
  * Provides input group components for combining form controls with text, icons, or buttons.
  *
  * <p>This package contains the {@link org.patternfly.component.inputgroup.InputGroup} component and its sub-components
- * for grouping a text input or text area with supplementary elements such as static text, icons, buttons, or dropdowns.
- * Input groups visually connect related controls into a single composite input.
+ * for grouping a text input or text area with supplementary elements such as static text, icons, buttons, or dropdowns. Input
+ * groups visually connect related controls into a single composite input.
  *
  * <h2>Components</h2>
  *
@@ -32,7 +32,7 @@
  * <h2>Usage</h2>
  *
  * <p>An input group with a text input and a static text suffix:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.form.TextInput.textInput;
@@ -54,7 +54,7 @@
  *                 .addControl(textInput("search")))
  *         .addItem(inputGroupItem()
  *                 .addButton(button("Search").control()));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/input-group">PatternFly Input Group</a>
  */

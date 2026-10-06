@@ -22,9 +22,9 @@
  * and works with both GWT and J2CL.
  *
  * <h2>Quick Start</h2>
- *
+ * <p>
  * Components are created using static factory methods and configured using a fluent builder API:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.alert.Alert.alert;
@@ -36,27 +36,26 @@
  *         .flat()
  *         .rounded()
  *         .large();
- * }
+ *}
  *
  * <h2>API Design</h2>
- *
+ * <p>
  * The component API follows consistent patterns organized into these groups:
  *
  * <h3>Static Factory Methods</h3>
- *
- * Create components using static factory methods named after the component. These methods are overloaded
- * to accept required and optional arguments:
- *
+ * <p>
+ * Create components using static factory methods named after the component. These methods are overloaded to accept required and
+ * optional arguments:
+ * <p>
  * {@snippet :
  * Button button1 = button("Click me!");
  * Button button2 = button("PatternFly", "https://www.patternfly.org");
- * }
+ *}
  *
  * <h3>Add Methods</h3>
- *
- * Add subcomponents using {@code add<SubComponent>()} methods that return the parent component
- * for method chaining:
- *
+ * <p>
+ * Add subcomponents using {@code add<SubComponent>()} methods that return the parent component for method chaining:
+ * <p>
  * {@snippet :
  * Dropdown dropdown = dropdown()
  *         .addToggle(menuToggle("Dropdown"))
@@ -64,68 +63,70 @@
  *                 .addContent(menuContent()
  *                         .addList(menuList()
  *                                 .addItem(actionMenuItem("item-0", "Action")))));
- * }
+ *}
  *
  * <h3>Builder/Modifier Methods</h3>
- *
+ * <p>
  * Modify component appearance and behavior using chainable builder methods:
- *
+ * <p>
  * {@snippet :
  * Card card = card()
  *         .flat()
  *         .rounded()
  *         .large();
- * }
+ *}
  *
  * <h3>Event Handlers</h3>
- *
- * Register event handlers using {@code on<Event>()} methods. PatternFly Java defines
- * common event handlers in {@link org.patternfly.handler} that are reused across components:
- *
+ * <p>
+ * Register event handlers using {@code on<Event>()} methods. PatternFly Java defines common event handlers in
+ * {@link org.patternfly.handler} that are reused across components:
+ * <p>
  * {@snippet :
  * Drawer drawer = drawer().id("drw")
  *         .onToggle((e, c, expanded) -> console.log("Drawer expanded: " + expanded));
- * }
+ *}
  *
  * <h3>ARIA Methods</h3>
- *
+ * <p>
  * Set ARIA attributes using {@code aria<Attribute>()} methods for accessibility:
- *
+ * <p>
  * {@snippet :
  * Navigation navigation = navigation(flat)
  *         .ariaScrollBackLabel("← back")
  *         .ariaScrollForwardLabel("→ forward");
- * }
+ *}
  *
  * <h2>Component Hierarchy</h2>
- *
+ * <p>
  * All components extend from either:
  * <ul>
  *     <li>{@link BaseComponent} - Base class for HTML element-based components</li>
  *     <li>{@link BaseComponentSVG} - Base class for SVG element-based components</li>
  * </ul>
- *
+ * <p>
  * These base classes implement <a href="https://hal-console.gitbook.io/elemento/builder-api#classes-and-interfaces">
  * Elemento interfaces</a> for element manipulation.
  *
  * <h2>Common Interfaces</h2>
- *
+ * <p>
  * Components implement common interfaces to provide consistent behavior:
  *
  * <ul>
  *     <li>{@link org.patternfly.style.Modifiers Modifiers.*} - Toggle component flags (e.g., {@code plain()}, {@code inline()})</li>
  *     <li>{@link Closeable} - For components with closeable popups</li>
  *     <li>{@link org.patternfly.core.ComponentContext ComponentContext},
- *         {@link HasIdentifier}, {@link HasItems} - For parent-child component relationships</li>
+ *         {@link org.patternfly.core.HasIdentifier HasIdentifier},
+ *         {@link org.patternfly.core.HasItems HasItems} - For parent-child component relationships</li>
  *     <li>{@link ComponentIcon}, {@link ComponentIconAndText} - For components with icons and text</li>
  *     <li>{@link ComponentProgress} - For components showing progress</li>
  *     <li>{@link Expandable} - For components with expandable content</li>
- *     <li>{@link HasValue}, {@link HasObservableValue} - For components with values</li>
+ *     <li>{@link org.patternfly.core.HasValue HasValue},
+ *         {@link org.patternfly.core.HasObservableValue HasObservableValue} - For components with values</li>
  *     <li>{@link Validatable}, {@link ValidationStatus} - For components with validation</li>
  * </ul>
  *
  * <h2>Available Components</h2>
- *
+ * <p>
  * This package provides a comprehensive set of PatternFly components including:
  * <p>
  * <strong>Actions &amp; Controls:</strong> Button, Switch, Slider, Number input
@@ -149,9 +150,9 @@
  * <strong>Advanced:</strong> Code block, Tree view, Expandable section, Hint, Help
  *
  * <h2>Example: Building a Page</h2>
- *
+ * <p>
  * Here's a complete example showing how components work together:
- *
+ * <p>
  * {@snippet :
  * body().add(page()
  *         .addSkipToContent(skipToContent("main-id"))
@@ -173,7 +174,7 @@
  *                                 .add(title(1, "PatternFly - Java"))
  *                                 .add(p()
  *                                         .add("PatternFly Java is a 100% Java implementation of PatternFly."))))));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/">PatternFly Design System</a>
  * @see <a href="https://patternfly-java.github.io/">PatternFly Java Showcase</a>

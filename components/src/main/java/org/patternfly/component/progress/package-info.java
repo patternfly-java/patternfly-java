@@ -20,17 +20,17 @@
  * (inside, outside, or none), and status variants for success, warning, danger, and info states.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.progress.Progress.progress;
  *
  * Progress progress = progress()
  *         .title("Title")
  *         .value(33);
- * }
- *
+ *}
+ * <p>
  * A progress bar with status and measure location:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.progress.MeasureLocation.inside;
  * import static org.patternfly.component.progress.Progress.progress;
@@ -41,7 +41,7 @@
  *         .status(success)
  *         .title("Completed")
  *         .value(100);
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/progress">https://www.patternfly.org/components/progress</a>
  */

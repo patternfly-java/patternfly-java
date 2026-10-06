@@ -20,10 +20,10 @@
  * comparative measures and qualitative ranges.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * Use the {@link org.patternfly.chart.bullet.Bullet#bullet()} factory method to create a bullet chart and
  * {@link org.patternfly.chart.bullet.BulletData#bulletData(String, double)} to create data points:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.chart.bullet.Bullet.bullet;
  * import static org.patternfly.chart.bullet.BulletData.bulletData;
@@ -38,7 +38,7 @@
  *         .maxDomain(100)
  *         .height(150)
  *         .width(600);
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/charts/bullet-chart">PatternFly Bullet Chart</a>
  * @see org.patternfly.chart.bullet.Bullet

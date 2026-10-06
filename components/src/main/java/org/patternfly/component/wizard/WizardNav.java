@@ -20,13 +20,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.jboss.elemento.HTMLContainerBuilder;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLElement;
@@ -43,6 +43,7 @@ import static org.patternfly.style.Classes.nav;
 import static org.patternfly.style.Classes.wizard;
 
 /** The navigation sidebar of a {@link Wizard} component. */
+
 /** A wizard navigation within a {@link Wizard} component. */
 public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implements
         HasItems<HTMLElement, WizardNav, WizardNavItem> {

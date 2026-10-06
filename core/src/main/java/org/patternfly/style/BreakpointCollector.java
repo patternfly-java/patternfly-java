@@ -39,7 +39,7 @@ import static org.patternfly.style.Classes.modifier;
  * </p>
  *
  * <p>
- * {@snippet class=BreakpointsDemo region=collector}
+ * {@snippet class = BreakpointsDemo region = collector}
  * </p>
  *
  * @param <V> the type of the values to be collected
@@ -64,7 +64,7 @@ public class BreakpointCollector<V> implements Collector<Tuple<Breakpoint, V>, S
      * Returns a collector that accumulates {@code Tuple<Breakpoint, V>} objects into a {@code StringBuilder} and produces a
      * {@code String} representation of the accumulated modifiers.
      *
-     * @param <V> the type of the value in the {@code Tuple}
+     * @param <V>         the type of the value in the {@code Tuple}
      * @param stringValue a function that converts the value of the {@code Tuple} to a {@code String}
      */
     public static <V> Collector<Tuple<Breakpoint, V>, StringBuilder, String> modifiers(Function<V, String> stringValue) {
@@ -85,7 +85,7 @@ public class BreakpointCollector<V> implements Collector<Tuple<Breakpoint, V>, S
      * Returns a collector that accumulates {@code Tuple<Breakpoint, V>} objects into a {@code StringBuilder} and produces a
      * {@code String} representation of the accumulated vertical modifiers.
      *
-     * @param <V> the type of the value in the {@code Tuple}
+     * @param <V>         the type of the value in the {@code Tuple}
      * @param stringValue a function that converts the value of the {@code Tuple} to a {@code String}
      */
     public static <V> Collector<Tuple<Breakpoint, V>, StringBuilder, String> verticalModifiers(

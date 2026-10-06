@@ -17,13 +17,13 @@
  * Provides a spinner component to indicate that an action is in progress.
  *
  * <p>The spinner is an SVG-based loading indicator that can be used standalone or inline within text content.
- * It supports predefined sizes ({@code sm}, {@code md}, {@code lg}, {@code xl}), custom diameters, and an inline
- * variant that adjusts to the surrounding text size.
+ * It supports predefined sizes ({@code sm}, {@code md}, {@code lg}, {@code xl}), custom diameters, and an inline variant that
+ * adjusts to the surrounding text size.
  *
  * <h2>Usage</h2>
  *
  * <p>Create a basic spinner or configure it with a specific size:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.spinner.Spinner.spinner;
  * import static org.patternfly.style.Size.lg;
@@ -38,10 +38,10 @@
  *
  * // Spinner with custom diameter
  * Spinner custom = spinner().diameter("80px");
- * }
+ *}
  *
  * <p>Use an inline spinner within text content:
- *
+ * <p>
  * {@snippet :
  * import static org.jboss.elemento.Elements.h;
  * import static org.jboss.elemento.Elements.p;
@@ -53,7 +53,7 @@
  * p().add("Please wait ")
  *         .add(spinner("Processing").inline())
  *         .add(" while we process your request.");
- * }
+ *}
  *
  * @see org.patternfly.component.spinner.Spinner
  * @see <a href="https://www.patternfly.org/components/spinner">PatternFly Spinner</a>

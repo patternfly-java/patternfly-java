@@ -22,10 +22,10 @@ import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.ComponentIcon;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.SubComponent;
 import org.patternfly.component.popover.Popover;
 import org.patternfly.core.Aria;
+import org.patternfly.core.HasIdentifier;
 
 import elemental2.dom.Element;
 import elemental2.dom.HTMLButtonElement;

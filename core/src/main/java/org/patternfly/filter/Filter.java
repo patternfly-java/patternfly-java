@@ -36,7 +36,7 @@ import static org.patternfly.filter.FilterOperator.AND;
  * The filter class supports change notifications whenever the filter state changes via the
  * {@link #onChange(FilterChangeHandler)} method and can be persisted using {@link #save()} and {@link #load(String)} methods.
  * <p>
- * {@snippet class=FilterDemo region=filter}
+ * {@snippet class = FilterDemo region = filter}
  *
  * @param <T> The type of object that this filter will be applied to.
  */
@@ -165,9 +165,9 @@ public class Filter<T> implements Iterable<FilterAttribute<T, ?>> {
     }
 
     /**
-     * Retrieves the filter attribute associated with the given name. The caller must ensure that {@code V} matches the type used
-     * when the attribute was {@linkplain #add(FilterAttribute) added}; a mismatch will cause a {@link ClassCastException} at the
-     * call site.
+     * Retrieves the filter attribute associated with the given name. The caller must ensure that {@code V} matches the type
+     * used when the attribute was {@linkplain #add(FilterAttribute) added}; a mismatch will cause a {@link ClassCastException}
+     * at the call site.
      *
      * @param name the name of the filter attribute to retrieve
      * @param <V>  the type of the value for the filter attribute

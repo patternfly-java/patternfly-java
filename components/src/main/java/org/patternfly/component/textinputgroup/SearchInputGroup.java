@@ -30,28 +30,28 @@ import org.patternfly.handler.ComponentHandler;
  *
  * @see <a href= "https://www.patternfly.org/components/search-input/">https://www.patternfly.org/components/search-input/</a>
  */
-public class SearchInput extends BaseSearchInput<SearchInput> {
+public class SearchInputGroup extends BaseSearchInputGroup<SearchInputGroup> {
 
     // ------------------------------------------------------ factory
 
-    public static SearchInput searchInput(String id) {
-        return new SearchInput(id);
+    public static SearchInputGroup searchInputGroup(String id) {
+        return new SearchInputGroup(id);
     }
 
-    public static SearchInput searchInput(String id, String value) {
-        return new SearchInput(id).value(value);
+    public static SearchInputGroup searchInput(String id, String value) {
+        return new SearchInputGroup(id).value(value);
     }
 
     // ------------------------------------------------------ instance
 
-    SearchInput(String id) {
-        super(ComponentType.SearchInput, id);
+    SearchInputGroup(String id) {
+        super(ComponentType.SearchInputGroup, id);
     }
 
     // ------------------------------------------------------ builder
 
     @Override
-    public SearchInput that() {
+    public SearchInputGroup that() {
         return this;
     }
 }

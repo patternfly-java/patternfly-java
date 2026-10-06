@@ -22,12 +22,12 @@
  * <h2>Usage</h2>
  *
  * <p>Basic avatar with size and border variations:
- *
+ * <p>
  * {@snippet :
  * Avatar basicAvatar = avatar("/img/avatar.svg", "User avatar");
  * Avatar largeAvatar = avatar("/img/avatar.svg", "User avatar").size(lg);
  * Avatar borderedAvatar = avatar("/img/avatar.svg", "User avatar").bordered();
- * }
+ *}
  *
  * @see org.patternfly.component.avatar.Avatar
  * @see <a href="https://www.patternfly.org/components/avatar">PatternFly Avatar</a>

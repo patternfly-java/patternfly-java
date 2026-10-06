@@ -34,8 +34,8 @@ import elemental2.dom.HTMLElement;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Base class for components that delegate to a lazily assigned root element. Used when the actual DOM element is not
- * known at construction time but is determined later via {@link #delegateTo(HTMLElement)}.
+ * Base class for components that delegate to a lazily assigned root element. Used when the actual DOM element is not known at
+ * construction time but is determined later via {@link #delegateTo(HTMLElement)}.
  */
 public abstract class ComponentDelegate<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
         Component,

@@ -28,8 +28,8 @@ import org.patternfly.component.ValidationStatus;
 import org.patternfly.component.avatar.Avatar;
 import org.patternfly.component.badge.Badge;
 import org.patternfly.component.form.Checkbox;
-import org.patternfly.component.textinputgroup.BaseFilterInput;
-import org.patternfly.component.textinputgroup.BaseSearchInput;
+import org.patternfly.component.textinputgroup.BaseFilterInputGroup;
+import org.patternfly.component.textinputgroup.BaseSearchInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.icon.PredefinedIcon;
 import org.patternfly.style.Classes;
@@ -68,9 +68,8 @@ import static org.patternfly.style.Modifiers.toggleModifier;
  * implementations. Using a menu toggle with a menu enables you to create custom component configurations not supported by the
  * standard dropdown or select components.
  *
- * @see <a
- *      href="https://www.patternfly.org/components/menus/menu-toggle">
- *      https://www.patternfly.org/components/menus/menu-toggle</a>
+ * @see <a href="https://www.patternfly.org/components/menus/menu-toggle">
+ * https://www.patternfly.org/components/menus/menu-toggle</a>
  */
 public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implements
         ComponentIcon<HTMLElement, MenuToggle>,
@@ -108,11 +107,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return menuToggle(MenuToggleType.plain).icon(icon).ariaLabel(label);
     }
 
-    public static <T extends BaseSearchInput<T>> MenuToggle menuToggle(BaseSearchInput<T> searchInput) {
+    public static <T extends BaseSearchInputGroup<T>> MenuToggle menuToggle(BaseSearchInputGroup<T> searchInput) {
         return menuToggle(MenuToggleType.typeahead).addSearchInput(searchInput);
     }
 
-    public static <T extends BaseFilterInput<T>> MenuToggle menuToggle(BaseFilterInput<T> filterInput) {
+    public static <T extends BaseFilterInputGroup<T>> MenuToggle menuToggle(BaseFilterInputGroup<T> filterInput) {
         return menuToggle(MenuToggleType.typeahead).addFilterInput(filterInput);
     }
 
@@ -141,8 +140,8 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
     private Badge badge;
     private MenuToggleAction action;
     private Checkbox checkbox;
-    private BaseSearchInput<?> searchInput;
-    private BaseFilterInput<?> filterInput;
+    private BaseSearchInputGroup<?> searchInput;
+    private BaseFilterInputGroup<?> filterInput;
     private ValidationStatus status;
     private Element icon;
     private HTMLElement textElement;
@@ -251,23 +250,23 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return this;
     }
 
-    public MenuToggle addSearchInput(BaseSearchInput<?> searchInput) {
+    public MenuToggle addSearchInput(BaseSearchInputGroup<?> searchInput) {
         return add(searchInput);
     }
 
     // override to ensure internal wiring
-    public MenuToggle add(BaseSearchInput<?> searchInput) {
+    public MenuToggle add(BaseSearchInputGroup<?> searchInput) {
         this.searchInput = searchInput;
         insertFirst(element(), searchInput.element());
         return this;
     }
 
-    public MenuToggle addFilterInput(BaseFilterInput<?> filterInput) {
+    public MenuToggle addFilterInput(BaseFilterInputGroup<?> filterInput) {
         return add(filterInput);
     }
 
     // override to ensure internal wiring
-    public MenuToggle add(BaseFilterInput<?> filterInput) {
+    public MenuToggle add(BaseFilterInputGroup<?> filterInput) {
         this.searchInput = filterInput; // every filter input is also a search input!
         this.filterInput = filterInput;
         insertFirst(element(), filterInput.element());
@@ -438,11 +437,11 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return null;
     }
 
-    public BaseSearchInput<?> searchInput() {
+    public BaseSearchInputGroup<?> searchInput() {
         return searchInput;
     }
 
-    public BaseFilterInput<?> filterInput() {
+    public BaseFilterInputGroup<?> filterInput() {
         return filterInput;
     }
 

@@ -21,7 +21,7 @@
  * fluent builder API as other PatternFly Java components and work with both GWT and J2CL.
  *
  * <h2>Core Classes</h2>
- *
+ * <p>
  * This package provides the shared foundation for all chart types:
  * <ul>
  *     <li>{@link org.patternfly.chart.Chart} - Common chart interface</li>
@@ -44,9 +44,9 @@
  * </ul>
  *
  * <h2>Quick Start</h2>
- *
+ * <p>
  * Charts are created using static factory methods and configured with a fluent builder API:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.chart.Data.data;
  * import static org.patternfly.chart.donut.Donut.donut;
@@ -58,7 +58,7 @@
  *         .ariaDesc("Average number of pets")
  *         .data(data("Cats", 35), data("Dogs", 55), data("Birds", 10))
  *         .labels(data -> data.x + ": " + data.y + "%");
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/charts/about">PatternFly Charts</a>
  * @see <a href="https://patternfly-java.github.io/">PatternFly Java Showcase</a>

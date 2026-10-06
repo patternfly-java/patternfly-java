@@ -17,9 +17,8 @@
  * Provides the icon component for rendering styled SVG icons with configurable size and status.
  *
  * <p>This package contains the {@link org.patternfly.component.icon.Icon} component for wrapping SVG icons from
- * icon sets (such as FontAwesome or PatternFly icons) with consistent sizing and optional status coloring.
- * Icons can be sized to match body text, heading text, or standalone sizes, and can display status colors
- * for contextual meaning.
+ * icon sets (such as FontAwesome or PatternFly icons) with consistent sizing and optional status coloring. Icons can be sized
+ * to match body text, heading text, or standalone sizes, and can display status colors for contextual meaning.
  *
  * <h2>Components</h2>
  *
@@ -32,7 +31,7 @@
  * <h2>Usage</h2>
  *
  * <p>Creating icons with different sizes and status colors:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.icon.Icon.icon;
  * import static org.patternfly.component.icon.IconSize.lg;
@@ -55,7 +54,7 @@
  * // Icons with status colors
  * Icon successIcon = icon(checkCircleFill()).status(success);
  * Icon dangerIcon = icon(errorFill()).status(danger);
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/icon">PatternFly Icon</a>
  */

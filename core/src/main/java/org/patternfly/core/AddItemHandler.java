@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.component;
+package org.patternfly.core;
 
 /**
  * A functional interface that defines a handler for adding items to components. The handler is invoked when an item is added to

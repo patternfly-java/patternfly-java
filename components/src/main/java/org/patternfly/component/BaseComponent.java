@@ -35,8 +35,8 @@ import static java.util.Objects.requireNonNull;
 import static org.patternfly.component.ComponentRegistry.componentRegistry;
 
 /**
- * Base class for PatternFly components backed by an {@link HTMLElement}. Provides OUIA support, component type
- * identification, and access to {@link ComponentStore} and {@link ComponentRegistry}.
+ * Base class for PatternFly components backed by an {@link HTMLElement}. Provides OUIA support, component type identification,
+ * and access to {@link ComponentStore} and {@link ComponentRegistry}.
  *
  * @see BaseComponentSVG for the SVG element counterpart (used only by Spinner)
  */

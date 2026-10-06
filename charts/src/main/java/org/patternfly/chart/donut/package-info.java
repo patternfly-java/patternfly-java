@@ -16,13 +16,13 @@
 /**
  * Provides the PatternFly donut chart component for displaying proportional data in a ring shape.
  * <p>
- * Donut charts display data as segments of a ring, with an optional title and subtitle in the center. They support
- * legends, theme colors, custom padding, and different sizes.
+ * Donut charts display data as segments of a ring, with an optional title and subtitle in the center. They support legends,
+ * theme colors, custom padding, and different sizes.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * Use the {@link org.patternfly.chart.donut.Donut#donut()} factory method to create a donut chart:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.chart.Data.data;
  * import static org.patternfly.chart.LegendOrientation.vertical;
@@ -42,7 +42,7 @@
  *         .legendPosition(right)
  *         .padding(padding(20, 140, 20, 20))
  *         .width(350);
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/charts/donut-chart">PatternFly Donut Chart</a>
  * @see org.patternfly.chart.donut.Donut

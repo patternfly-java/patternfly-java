@@ -35,15 +35,11 @@ import static org.patternfly.style.Classes.text;
 import static org.patternfly.style.Classes.timestamp;
 
 /**
- * A timestamp component for displaying date and time values.
- * This component supports various formatting options including
- * custom formats, standard date/time styles, and UTC display.
- * It can also handle custom HTML content or plain text.
- *
- * @see <a href=
- *      "https://www.patternfly.org/components/timestamp">https://www.patternfly.org/components/timestamp</a>
+ * A timestamp component for displaying date and time values. This component supports various formatting options including
+ * custom formats, standard date/time styles, and UTC display. It can also handle custom HTML content or plain text.
  *
  * @author mskacelik
+ * @see <a href= "https://www.patternfly.org/components/timestamp">https://www.patternfly.org/components/timestamp</a>
  */
 public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
         implements ElementTextDelegate<HTMLElement, Timestamp> {
@@ -186,9 +182,8 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
 
 
     /**
-     * Updates both the display text and datetime attribute of the timestamp
-     * component.
-     * This method is called whenever any formatting property changes.
+     * Updates both the display text and datetime attribute of the timestamp component. This method is called whenever any
+     * formatting property changes.
      */
     private void updateDisplayAndDatetime() {
         timeElement.attr(DATETIME_ATTR, formatDateTimeAttribute());
@@ -199,8 +194,8 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     }
 
     /**
-     * Formats the display text using current date and formatting options.
-     * Separated from updateDisplayAndDatetime for clarity and reusability.
+     * Formats the display text using current date and formatting options. Separated from updateDisplayAndDatetime for clarity
+     * and reusability.
      */
     private String formatDisplayText() {
         Date dateToFormat = (dateTime != null) ? dateTime : new Date();
@@ -219,8 +214,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     }
 
     /**
-     * Formats the date using custom format options.
-     * CustomFormat settings take precedence over builder-level settings.
+     * Formats the date using custom format options. CustomFormat settings take precedence over builder-level settings.
      */
     private String formatWithCustomFormat(JsDate jsDate) {
         if (shouldDisplayUTC) {
@@ -230,8 +224,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     }
 
     /**
-     * Formats the date using standard TimestampFormat options with builder-level
-     * preferences.
+     * Formats the date using standard TimestampFormat options with builder-level preferences.
      */
     private String formatWithStandardOptions(JsDate jsDate) {
         LocaleOptions formatOptions = LocaleOptions.create();
@@ -262,8 +255,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     }
 
     /**
-     * Determines the UTC suffix to use for display.
-     * Returns the displaySuffix if set, otherwise uses the default based on
+     * Determines the UTC suffix to use for display. Returns the displaySuffix if set, otherwise uses the default based on
      * timeFormat.
      */
     private String determineUtcSuffix() {
@@ -288,8 +280,7 @@ public class Timestamp extends BaseComponent<HTMLElement, Timestamp>
     }
 
     /**
-     * Formats the datetime attribute for semantic HTML compliance.
-     * Always uses ISO format regardless of display formatting.
+     * Formats the datetime attribute for semantic HTML compliance. Always uses ISO format regardless of display formatting.
      */
     private String formatDateTimeAttribute() {
         Date dateToFormat = (dateTime != null) ? dateTime : new Date();

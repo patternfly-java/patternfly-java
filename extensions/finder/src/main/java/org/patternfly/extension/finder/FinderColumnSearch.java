@@ -17,7 +17,7 @@ package org.patternfly.extension.finder;
 
 import java.util.function.BiPredicate;
 
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
 
 import elemental2.dom.HTMLElement;
 
@@ -32,7 +32,7 @@ import static org.patternfly.style.Classes.search;
 /**
  * The {@code FinderColumnSearch} class is a subcomponent designed to handle search functionality within a finder column. It
  * extends the {@link FinderSubComponent} class to provide a specialized interface for managing search inputs. The class allows
- * adding {@link SearchInput} instances with or without filtering predicates and defines the behavior for filtering
+ * adding {@link SearchInputGroup} instances with or without filtering predicates and defines the behavior for filtering
  * {@link FinderItem}s based on user-provided search values.
  * <p>
  * The filtering predicate determines how {@link FinderItem}s are flagged as filtered depending on their text content and the
@@ -58,50 +58,50 @@ public class FinderColumnSearch extends FinderSubComponent<HTMLElement, FinderCo
     // ------------------------------------------------------ add
 
     /**
-     * Adds a {@link SearchInput} instance to the FinderColumnSearch with no specific filtering predicate.
+     * Adds a {@link SearchInputGroup} instance to the FinderColumnSearch with no specific filtering predicate.
      *
-     * @param input the {@link SearchInput} instance to be added
+     * @param input the {@link SearchInputGroup} instance to be added
      * @return the updated {@code FinderColumnSearch} instance
      */
-    public FinderColumnSearch addSearchInput(SearchInput input) {
+    public FinderColumnSearch addSearchInput(SearchInputGroup input) {
         return add(input, null);
     }
 
     /**
-     * Adds a {@link SearchInput} instance to the FinderColumnSearch with no specific filtering predicate.
+     * Adds a {@link SearchInputGroup} instance to the FinderColumnSearch with no specific filtering predicate.
      *
-     * @param input the {@link SearchInput} instance to be added
+     * @param input the {@link SearchInputGroup} instance to be added
      * @return the updated {@code FinderColumnSearch} instance
      */
-    public FinderColumnSearch add(SearchInput input) {
+    public FinderColumnSearch add(SearchInputGroup input) {
         return add(input, null);
     }
 
     /**
-     * Adds a {@link SearchInput} instance to the FinderColumnSearch with a specific filtering predicate. The filtering
+     * Adds a {@link SearchInputGroup} instance to the FinderColumnSearch with a specific filtering predicate. The filtering
      * predicate is used to determine how {@link FinderItem}s should be filtered based on their text content and the specified
      * search value. If the filter predicate returns {@code true}, the {@link FinderItem} will be marked as filtered.
      *
-     * @param input     the {@link SearchInput} instance to be added
+     * @param input     the {@link SearchInputGroup} instance to be added
      * @param predicate a {@link BiPredicate} that defines the filtering logic based on a {@link FinderItem} and the given
      *                  search value
      * @return the updated {@code FinderColumnSearch} instance
      */
-    public FinderColumnSearch addSearchInput(SearchInput input, BiPredicate<FinderItem, String> predicate) {
+    public FinderColumnSearch addSearchInput(SearchInputGroup input, BiPredicate<FinderItem, String> predicate) {
         return add(input, predicate);
     }
 
     /**
-     * Adds a {@link SearchInput} instance to the FinderColumnSearch with a specific filtering predicate. The filtering
+     * Adds a {@link SearchInputGroup} instance to the FinderColumnSearch with a specific filtering predicate. The filtering
      * predicate is used to determine how {@link FinderItem}s should be filtered based on their text content and the specified
      * search value. If the filter predicate returns {@code true}, the {@link FinderItem} will be marked as filtered.
      *
-     * @param input     the {@link SearchInput} instance to be added
+     * @param input     the {@link SearchInputGroup} instance to be added
      * @param predicate a {@link BiPredicate} that defines the filtering logic based on a {@link FinderItem} and the given
      *                  search value
      * @return the updated {@code FinderColumnSearch} instance
      */
-    public FinderColumnSearch add(SearchInput input, BiPredicate<FinderItem, String> predicate) {
+    public FinderColumnSearch add(SearchInputGroup input, BiPredicate<FinderItem, String> predicate) {
         add(input.element());
         if (predicate != null) {
             input.onInput((e, si, value) -> {

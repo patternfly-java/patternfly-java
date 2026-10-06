@@ -20,11 +20,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.jboss.elemento.ElementContainerDelegate;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Breakpoints;
 import org.patternfly.style.Visibility;
 

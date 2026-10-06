@@ -17,8 +17,8 @@
  * Provides a wizard component for guiding users through a multi-step workflow.
  *
  * <p>A wizard presents a series of steps with navigation, back/next buttons, and optional validation.
- * It supports step types (default, review, summary), custom headers with title and description, custom
- * footers, step enter/leave handlers, and asynchronous next/previous handlers using promises.
+ * It supports step types (default, review, summary), custom headers with title and description, custom footers, step
+ * enter/leave handlers, and asynchronous next/previous handlers using promises.
  *
  * <h2>Key Classes</h2>
  *
@@ -38,7 +38,7 @@
  * <h2>Usage</h2>
  *
  * <p>Create a basic wizard with steps:
- *
+ * <p>
  * {@snippet :
  * import static org.jboss.elemento.Elements.p;
  * import static org.patternfly.component.wizard.Wizard.wizard;
@@ -52,7 +52,7 @@
  *                 .add(p().text("Step 2 content")))
  *         .addItem(wizardStep("step-2", "Review", review)
  *                 .add(p().text("Review your selections")));
- * }
+ *}
  *
  * @see org.patternfly.component.wizard.Wizard
  * @see org.patternfly.component.wizard.WizardStep

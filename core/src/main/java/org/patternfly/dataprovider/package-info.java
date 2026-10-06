@@ -36,7 +36,7 @@
  *
  * <p>The typical workflow involves creating a {@link org.patternfly.dataprovider.DataProvider}, binding it to one or more
  * {@link org.patternfly.dataprovider.Display} components, and then manipulating the data:
- *
+ * <p>
  * {@snippet :
  * // Create a data provider with an identifier function
  * DataProvider<User> dataProvider = new DataProvider<>(user -> user.id());
@@ -56,7 +56,7 @@
  *
  * // Navigate pages
  * dataProvider.gotoNextPage();
- * }
+ *}
  *
  * <h2>Features</h2>
  *

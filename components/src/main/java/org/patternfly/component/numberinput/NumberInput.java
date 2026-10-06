@@ -24,7 +24,6 @@ import org.jboss.elemento.EventType;
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValue;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.component.button.Button;
 import org.patternfly.component.form.TextInput;
@@ -32,6 +31,7 @@ import org.patternfly.component.form.TextInputType;
 import org.patternfly.component.inputgroup.InputGroup;
 import org.patternfly.component.inputgroup.InputGroupItem;
 import org.patternfly.core.Aria;
+import org.patternfly.core.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.icon.IconSets.fas;
 import org.patternfly.style.Modifiers.Disabled;
@@ -55,11 +55,10 @@ import static org.patternfly.style.Classes.unit;
 import static org.patternfly.style.Variable.componentVar;
 
 /**
- * A number input combines a text input field with buttons to provide users with
- * a quick and effective way to enter and modify a numeric value.
+ * A number input combines a text input field with buttons to provide users with a quick and effective way to enter and modify a
+ * numeric value.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/number-input">https://www.patternfly.org/components/number-input</a>
+ * @see <a href= "https://www.patternfly.org/components/number-input">https://www.patternfly.org/components/number-input</a>
  */
 public class NumberInput extends BaseComponent<HTMLDivElement, NumberInput> implements
         Disabled<HTMLDivElement, NumberInput>,

@@ -21,9 +21,9 @@ import java.util.Map;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.patternfly.component.ComponentIcon;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Disabled;
 
@@ -50,6 +50,7 @@ import static org.patternfly.style.Classes.screenReader;
 import static org.patternfly.style.Classes.wizard;
 
 /** An individual navigation item within a {@link WizardNav}. */
+
 /** A wizard nav item within a {@link WizardNav} component. */
 public class WizardNavItem extends WizardSubComponent<HTMLElement, WizardNavItem> implements
         ComponentContext<HTMLElement, WizardNavItem>,

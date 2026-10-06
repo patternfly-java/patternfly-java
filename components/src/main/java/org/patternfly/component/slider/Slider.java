@@ -26,12 +26,12 @@ import org.jboss.elemento.Key;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValue;
 import org.patternfly.component.form.TextInput;
 import org.patternfly.component.inputgroup.InputGroup;
 import org.patternfly.component.inputgroup.InputGroupItem;
 import org.patternfly.component.tooltip.Tooltip;
 import org.patternfly.core.Aria;
+import org.patternfly.core.HasValue;
 import org.patternfly.core.LanguageDirection;
 import org.patternfly.core.ObservableValue;
 import org.patternfly.core.Roles;
@@ -99,9 +99,8 @@ import static org.patternfly.style.Variable.componentVar;
 /**
  * A slider provides a quick and effective way for users to set and adjust a numeric value from a defined range of values.
  *
- * @see <a
- *      href="https://www.patternfly.org/components/slider#sliderstepobject">
- *      https://www.patternfly.org/components/slider#sliderstepobject</a>
+ * @see <a href="https://www.patternfly.org/components/slider#sliderstepobject">
+ * https://www.patternfly.org/components/slider#sliderstepobject</a>
  */
 public class Slider extends BaseComponent<HTMLElement, Slider> implements
         Disabled<HTMLElement, Slider>,

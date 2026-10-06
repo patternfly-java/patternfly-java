@@ -21,9 +21,9 @@
  * automatically receive PatternFly typography styles.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * Content used as a wrapper for headings:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.content.Content.content;
  * import static org.patternfly.component.content.ContentType.h1;
@@ -34,10 +34,10 @@
  *         .add(content(h1).text("Hello World"))
  *         .add(content(h2).text("Second Level"))
  *         .add(content(h3).text("Third Level"));
- * }
- *
+ *}
+ * <p>
  * Content as a wrapper for standard HTML elements:
- *
+ * <p>
  * {@snippet :
  * import static org.jboss.elemento.Elements.p;
  * import static org.patternfly.component.content.Content.content;
@@ -46,7 +46,7 @@
  * content()
  *         .add(content(p).text("Content component renders with PatternFly styles."))
  *         .add(p().text("HTML elements within a wrapping Content are styled as well!"));
- * }
+ *}
  *
  * @see Content
  * @see ContentType

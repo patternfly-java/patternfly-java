@@ -17,8 +17,8 @@
  * Provides a toolbar component for organizing actions, filters, and controls in a horizontal layout.
  *
  * <p>A toolbar is a container for grouping related controls such as search inputs, buttons, filters, and
- * pagination. It supports content sections, item and group types, toggle groups for responsive behavior,
- * filter label groups, adjustable insets, sticky positioning, and color variants.
+ * pagination. It supports content sections, item and group types, toggle groups for responsive behavior, filter label groups,
+ * adjustable insets, sticky positioning, and color variants.
  *
  * <h2>Key Classes</h2>
  *
@@ -44,10 +44,10 @@
  * <h2>Usage</h2>
  *
  * <p>Create a toolbar with search input and action buttons:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
- * import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
+ * import static org.patternfly.component.textinputgroup.SearchInputGroup.searchInputGroup;
  * import static org.patternfly.component.toolbar.Toolbar.toolbar;
  * import static org.patternfly.component.toolbar.ToolbarContent.toolbarContent;
  * import static org.patternfly.component.toolbar.ToolbarItem.toolbarItem;
@@ -55,16 +55,16 @@
  * Toolbar toolbar = toolbar()
  *         .addContent(toolbarContent()
  *                 .addItem(toolbarItem()
- *                         .add(searchInput("search-0")))
+ *                         .add(searchInputGroup("search-0")))
  *                 .addItem(toolbarItem()
  *                         .add(button("Action").secondary()))
  *                 .addDivider()
  *                 .addItem(toolbarItem()
  *                         .add(button("Primary").primary())));
- * }
+ *}
  *
  * <p>Create a toolbar with grouped action buttons:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.toolbar.Toolbar.toolbar;
@@ -81,7 +81,7 @@
  *                 .addDivider()
  *                 .addGroup(toolbarGroup(actionGroup)
  *                         .addItem(toolbarItem().add(button("Save").primary()))));
- * }
+ *}
  *
  * @see org.patternfly.component.toolbar.Toolbar
  * @see <a href="https://www.patternfly.org/components/toolbar">PatternFly Toolbar</a>

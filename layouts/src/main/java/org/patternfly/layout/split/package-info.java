@@ -17,13 +17,13 @@
  * Provides the PatternFly split layout for distributing content horizontally with support for a fill item, wrapping, and
  * spacing control.
  * <p>
- * The split layout positions items side by side. One item can use {@code fill()} to take up the remaining horizontal space.
- * The layout also supports gutters for spacing and wrapping when items overflow.
+ * The split layout positions items side by side. One item can use {@code fill()} to take up the remaining horizontal space. The
+ * layout also supports gutters for spacing and wrapping when items overflow.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic split layout with a fill item:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.split.Split.split;
  * import static org.patternfly.layout.split.SplitItem.splitItem;
@@ -32,10 +32,10 @@
  *         .addItem(splitItem().text("content"))
  *         .addItem(splitItem().fill().text("pf-m-fill"))
  *         .addItem(splitItem().text("content"));
- * }
- *
+ *}
+ * <p>
  * A wrappable split layout with gutters:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.split.Split.split;
  * import static org.patternfly.layout.split.SplitItem.splitItem;
@@ -45,7 +45,7 @@
  *         .addItem(splitItem().text("content"))
  *         .addItem(splitItem().text("content"))
  *         .addItem(splitItem().text("content"));
- * }
+ *}
  *
  * @see Split
  * @see SplitItem

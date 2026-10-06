@@ -33,7 +33,7 @@ import static org.jboss.elemento.Key.Enter;
 import static org.patternfly.component.label.Label.label;
 
 /** Base class for filter input components within a {@link TextInputGroup}. */
-public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends BaseSearchInput<T> {
+public abstract class BaseFilterInputGroup<T extends BaseFilterInputGroup<T>> extends BaseSearchInputGroup<T> {
 
     // ------------------------------------------------------ instance
 
@@ -51,7 +51,7 @@ public abstract class BaseFilterInput<T extends BaseFilterInput<T>> extends Base
     protected BiFunction<T, String, Boolean> labelGroupVisibility;
     protected LabelGroup labelGroup;
 
-    protected BaseFilterInput(ComponentType componentType, String id) {
+    protected BaseFilterInputGroup(ComponentType componentType, String id) {
         super(componentType, id);
         this.allowDuplicates = true;
         this.onEnter = new ArrayList<>();

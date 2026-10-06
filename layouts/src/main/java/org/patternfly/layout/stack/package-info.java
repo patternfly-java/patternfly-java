@@ -21,9 +21,9 @@
  * remaining vertical space. The layout also supports gutters for spacing between items.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic stack layout with a fill item:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.stack.Stack.stack;
  * import static org.patternfly.layout.stack.StackItem.stackItem;
@@ -32,10 +32,10 @@
  *         .addItem(stackItem().text("Header"))
  *         .addItem(stackItem().fill().text("Main content"))
  *         .addItem(stackItem().text("Footer"));
- * }
- *
+ *}
+ * <p>
  * A stack layout with gutters:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.stack.Stack.stack;
  * import static org.patternfly.layout.stack.StackItem.stackItem;
@@ -44,7 +44,7 @@
  *         .addItem(stackItem().text("Header"))
  *         .addItem(stackItem().fill().text("Main content"))
  *         .addItem(stackItem().text("Footer"));
- * }
+ *}
  *
  * @see Stack
  * @see StackItem

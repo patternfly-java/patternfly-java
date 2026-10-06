@@ -22,17 +22,17 @@
  * <h2>Usage</h2>
  *
  * <p>Basic breadcrumb with linked items:
- *
+ * <p>
  * {@snippet :
  * Breadcrumb breadcrumb = breadcrumb()
  *     .addItem(breadcrumbItem("home", "Section home", "#home"))
  *     .addItem(breadcrumbItem("title", "Section title", "#title"))
  *     .addItem(breadcrumbItem("landing", "Section landing", "#landing")
  *         .active());
- * }
+ *}
  *
  * <p>Breadcrumb without a home link:
- *
+ * <p>
  * {@snippet :
  * Breadcrumb breadcrumb = breadcrumb()
  *     .addItem(breadcrumbItem("home", "Section home"))
@@ -40,7 +40,7 @@
  *     .addItem(breadcrumbItem("title-2", "Section title", "#title-2"))
  *     .addItem(breadcrumbItem("landing", "Section landing", "#landing")
  *         .active());
- * }
+ *}
  *
  * @see org.patternfly.component.breadcrumb.Breadcrumb
  * @see org.patternfly.component.breadcrumb.BreadcrumbItem

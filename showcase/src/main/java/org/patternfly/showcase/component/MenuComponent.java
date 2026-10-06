@@ -30,6 +30,7 @@ import org.patternfly.component.menu.MenuItemAction;
 import org.patternfly.component.menu.MenuList;
 import org.patternfly.component.menu.MenuSearch;
 import org.patternfly.component.menu.MenuType;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
 import org.patternfly.core.Aria;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
@@ -60,7 +61,6 @@ import static org.patternfly.component.menu.MenuSearch.menuSearch;
 import static org.patternfly.component.menu.MenuType.checkbox;
 import static org.patternfly.component.menu.MenuType.menu;
 import static org.patternfly.component.menu.MenuType.select;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
 import static org.patternfly.icon.IconSets.fas.bars;
 import static org.patternfly.icon.IconSets.fas.clipboard;
 import static org.patternfly.icon.IconSets.fas.codeBranch;
@@ -328,7 +328,7 @@ public class MenuComponent extends SnippetPage {
                 div()
                         .add(menu(menu, click)
                                 .addSearch(menuSearch()
-                                        .addSearchInput(searchInput("menu-filter-0").icon(search())))
+                                        .addSearchInput(SearchInputGroup.searchInputGroup("menu-filter-0").icon(search())))
                                 .addDivider()
                                 .addContent(menuContent()
                                         .addList(menuList()

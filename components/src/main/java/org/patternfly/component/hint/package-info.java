@@ -17,8 +17,8 @@
  * Provides hint components for displaying contextual banners with supplementary information.
  *
  * <p>This package contains the {@link org.patternfly.component.hint.Hint} component and its sub-components
- * for presenting inline messages that provide guidance or suggestions to the user. A hint can include a title,
- * body text, actions, and a footer with links or buttons.
+ * for presenting inline messages that provide guidance or suggestions to the user. A hint can include a title, body text,
+ * actions, and a footer with links or buttons.
  *
  * <h2>Components</h2>
  *
@@ -33,7 +33,7 @@
  * <h2>Usage</h2>
  *
  * <p>A hint with title, body, actions, and footer:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.hint.Hint.hint;
@@ -48,7 +48,7 @@
  *         .addFooter(hintFooter()
  *                 .add(button().link().inline()
  *                         .text("Try it for 90 days")));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/hint">PatternFly Hint</a>
  */

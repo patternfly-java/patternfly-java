@@ -15,12 +15,11 @@
  */
 
 /**
- * PatternFly layouts provide structure and positioning for content on a page. They offer flexible, responsive
- * solutions for organizing UI elements and are designed to work seamlessly across different screen sizes and
- * breakpoints.
+ * PatternFly layouts provide structure and positioning for content on a page. They offer flexible, responsive solutions for
+ * organizing UI elements and are designed to work seamlessly across different screen sizes and breakpoints.
  *
  * <h2>Available Layouts</h2>
- *
+ * <p>
  * This package provides the following layout types:
  *
  * <dl>
@@ -48,7 +47,7 @@
  * </dl>
  *
  * <h2>Common API Pattern</h2>
- *
+ * <p>
  * All layouts follow a consistent API design:
  *
  * <ol>
@@ -61,19 +60,19 @@
  * <h2>Usage Examples</h2>
  *
  * <h3>Bullseye Layout</h3>
- *
+ * <p>
  * Center content both vertically and horizontally:
- *
+ * <p>
  * {@snippet :
  * Bullseye bullseye = bullseye()
  *     .addItem(bullseyeItem()
  *         .add(div().textContent("Centered content")));
- * }
+ *}
  *
  * <h3>Flex Layout</h3>
- *
+ * <p>
  * Create a flexible layout with custom spacing and alignment:
- *
+ * <p>
  * {@snippet :
  * Flex flex = flex()
  *     .direction(Direction.column)
@@ -81,45 +80,45 @@
  *     .addItem(flexItem().add(div().textContent("Item 1")))
  *     .addItem(flexItem().add(div().textContent("Item 2")))
  *     .addItem(flexItem().add(div().textContent("Item 3")));
- * }
+ *}
  *
  * <h3>Gallery Layout</h3>
- *
+ * <p>
  * Create a responsive grid of cards:
- *
+ * <p>
  * {@snippet :
  * Gallery gallery = gallery()
  *     .gutter()
  *     .addItem(galleryItem().add(card()))
  *     .addItem(galleryItem().add(card()))
  *     .addItem(galleryItem().add(card()));
- * }
+ *}
  *
  * <h3>Grid Layout</h3>
- *
+ * <p>
  * Position content on a 12-column grid:
- *
+ * <p>
  * {@snippet :
  * Grid grid = grid()
  *     .gutter()
  *     .addItem(gridItem().span(8).add(div().textContent("Main content")))
  *     .addItem(gridItem().span(4).add(div().textContent("Sidebar")));
- * }
+ *}
  *
  * <h3>Stack Layout</h3>
- *
+ * <p>
  * Arrange items vertically:
- *
+ * <p>
  * {@snippet :
  * Stack stack = stack()
  *     .gutter()
  *     .addItem(stackItem().add(div().textContent("Header")))
  *     .addItem(stackItem().fill().add(div().textContent("Main content")))
  *     .addItem(stackItem().add(div().textContent("Footer")));
- * }
+ *}
  *
  * <h2>Base Classes</h2>
- *
+ * <p>
  * All layouts extend from {@link org.patternfly.layout.BaseLayout BaseLayout}, which implements common
  * interfaces from Elemento for element manipulation:
  *
@@ -130,14 +129,14 @@
  *     <li>{@link org.jboss.elemento.HTMLElementStyleMethods HTMLElementStyleMethods}</li>
  *     <li>And more...</li>
  * </ul>
- *
+ * <p>
  * This provides a rich set of methods to manipulate the layout's underlying DOM element.
  *
  * <h2>Responsive Design</h2>
- *
+ * <p>
  * Many layout properties support responsive values at different breakpoints using the
  * {@link org.patternfly.style.Breakpoints Breakpoints} API:
- *
+ * <p>
  * {@snippet :
  * Flex flex = flex()
  *     .direction(breakpoints(
@@ -146,8 +145,8 @@
  *     .spaceItems(breakpoints(
  *         default_, SpaceItems.sm,
  *         lg, SpaceItems.lg));
- * }
- *
+ *}
+ * <p>
  * Available breakpoints:
  * <ul>
  *     <li>{@link org.patternfly.style.Breakpoint#default_ default_} - Default value</li>
@@ -159,17 +158,17 @@
  * </ul>
  *
  * <h2>Gutter Support</h2>
- *
+ * <p>
  * Several layouts implement the {@link org.patternfly.style.Modifiers.Gutter Gutter} interface, which provides
  * methods to add spacing between child items:
- *
+ * <p>
  * {@snippet :
  * Gallery gallery = gallery()
  *     .gutter()  // Enable gutter spacing
  *     .addItem(galleryItem().add(card()))
  *     .addItem(galleryItem().add(card()));
- * }
- *
+ *}
+ * <p>
  * Layouts supporting gutters:
  * <ul>
  *     <li>{@link org.patternfly.layout.gallery.Gallery Gallery}</li>

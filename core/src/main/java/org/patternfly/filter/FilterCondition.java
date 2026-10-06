@@ -28,7 +28,7 @@ public interface FilterCondition<T, V> {
      * Evaluates whether the given object satisfies the specified condition with the provided value.
      *
      * @param object the object to be tested against the condition
-     * @param value the value used in the condition for testing the object
+     * @param value  the value used in the condition for testing the object
      * @return true if the object matches the condition with the provided value, false otherwise
      */
     boolean match(T object, V value);

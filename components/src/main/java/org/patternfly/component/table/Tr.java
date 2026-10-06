@@ -31,18 +31,18 @@ import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.async.AsyncStatus;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.HasItems;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.tree.TreeViewItem;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.HasItems;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
@@ -83,6 +83,7 @@ import static org.patternfly.style.Size.md;
 
 // TODO Add Aria.setsize and Aria.posinset for child rows
 /** A table row within a {@link Table} component. */
+
 /** A table row within a {@link Table} component. */
 public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         ComponentContext<HTMLTableRowElement, Tr>,

@@ -16,13 +16,13 @@
 /**
  * Provides the PatternFly pie chart component for displaying proportional data as a circle.
  * <p>
- * Pie charts display data as segments of a circle. They support legends, theme colors, custom color scales, and
- * configurable padding.
+ * Pie charts display data as segments of a circle. They support legends, theme colors, custom color scales, and configurable
+ * padding.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * Use the {@link org.patternfly.chart.pie.Pie#pie()} factory method to create a pie chart:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.chart.Data.data;
  * import static org.patternfly.chart.LegendOrientation.vertical;
@@ -43,7 +43,7 @@
  *         .padding(padding(20, 140, 20, 20))
  *         .width(350)
  *         .height(230);
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/charts/pie-chart">PatternFly Pie Chart</a>
  * @see org.patternfly.chart.pie.Pie

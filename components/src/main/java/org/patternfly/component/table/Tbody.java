@@ -23,13 +23,13 @@ import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
-import org.patternfly.component.HasIdentifier;
-import org.patternfly.component.Ordered;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
 import org.patternfly.component.emptystate.EmptyState;
+import org.patternfly.core.AddItemHandler;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.HasIdentifier;
+import org.patternfly.core.Ordered;
+import org.patternfly.core.RemoveItemHandler;
+import org.patternfly.core.UpdateItemHandler;
 
 import elemental2.dom.HTMLTableSectionElement;
 
@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.tbody;
 
 /** A table body section within a {@link Table} component. */
+
 /** A table body within a {@link Table} component. */
 public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
         Ordered<HTMLTableSectionElement, Tbody, Tr> {

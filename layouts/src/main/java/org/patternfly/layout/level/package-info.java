@@ -16,13 +16,13 @@
 /**
  * Provides the PatternFly level layout for distributing content evenly across a horizontal row.
  * <p>
- * The level layout is useful for creating horizontal rows where items are distributed evenly, such as toolbars, status bars,
- * or summary sections. It supports gutters for spacing between items.
+ * The level layout is useful for creating horizontal rows where items are distributed evenly, such as toolbars, status bars, or
+ * summary sections. It supports gutters for spacing between items.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic level layout:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.level.Level.level;
  * import static org.patternfly.layout.level.LevelItem.levelItem;
@@ -31,10 +31,10 @@
  *         .addItem(levelItem().text("Level item"))
  *         .addItem(levelItem().text("Level item"))
  *         .addItem(levelItem().text("Level item"));
- * }
- *
+ *}
+ * <p>
  * A level layout with gutters:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.layout.level.Level.level;
  * import static org.patternfly.layout.level.LevelItem.levelItem;
@@ -43,7 +43,7 @@
  *         .addItem(levelItem().text("Level item"))
  *         .addItem(levelItem().text("Level item"))
  *         .addItem(levelItem().text("Level item"));
- * }
+ *}
  *
  * @see Level
  * @see LevelItem

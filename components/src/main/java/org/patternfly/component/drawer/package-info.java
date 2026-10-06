@@ -21,9 +21,9 @@
  * resizable panels, and configurable positions.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic drawer with a toggle button:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.button.Button.button;
  * import static org.patternfly.component.drawer.Drawer.drawer;
@@ -43,10 +43,10 @@
  *                 .addHead(drawerPanelHead()
  *                         .add(span().text("Panel content"))
  *                         .addCloseButton(drawerCloseButton())));
- * }
- *
+ *}
+ * <p>
  * A drawer with the panel positioned at the start:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.drawer.Drawer.drawer;
  * import static org.patternfly.component.drawer.DrawerBody.drawerBody;
@@ -58,7 +58,7 @@
  *         .addContent(drawerContent()
  *                 .addBody(drawerBody().text("Main content")))
  *         .addPanel(drawerPanel());
- * }
+ *}
  *
  * @see Drawer
  * @see DrawerBody

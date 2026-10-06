@@ -23,9 +23,9 @@ import java.util.function.Function;
 import org.jboss.elemento.Attachable;
 import org.jboss.elemento.HTMLSelectElementBuilder;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.HasValue;
 import org.patternfly.core.Attributes;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasValue;
 import org.patternfly.handler.ChangeHandler;
 import org.patternfly.style.Classes;
 

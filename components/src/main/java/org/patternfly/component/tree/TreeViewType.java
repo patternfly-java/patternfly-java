@@ -18,8 +18,7 @@ package org.patternfly.component.tree;
 public enum TreeViewType {
 
     /**
-     * The default modifier combines the expansion and selection behaviors, meaning a parent node will be selected and
-     * toggled.
+     * The default modifier combines the expansion and selection behaviors, meaning a parent node will be selected and toggled.
      */
     default_,
 

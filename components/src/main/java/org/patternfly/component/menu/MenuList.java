@@ -30,14 +30,14 @@ import org.patternfly.async.AsyncItems;
 import org.patternfly.async.AsyncItemsController;
 import org.patternfly.async.AsyncStatus;
 import org.patternfly.async.HasAsyncItems;
-import org.patternfly.component.AddItemHandler;
-import org.patternfly.component.AurHandler;
 import org.patternfly.component.ComponentType;
-import org.patternfly.component.Ordered;
-import org.patternfly.component.RemoveItemHandler;
-import org.patternfly.component.UpdateItemHandler;
+import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.Aria;
+import org.patternfly.core.AurHandler;
+import org.patternfly.core.Ordered;
+import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
+import org.patternfly.core.UpdateItemHandler;
 
 import elemental2.dom.HTMLUListElement;
 import elemental2.dom.MutationRecord;
@@ -45,7 +45,6 @@ import elemental2.promise.Promise;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.ul;
-import static org.patternfly.async.AsyncStatus.static_;
 import static org.patternfly.component.SelectionMode.multi;
 import static org.patternfly.component.SelectionMode.single;
 import static org.patternfly.component.divider.Divider.divider;
@@ -59,6 +58,7 @@ import static org.patternfly.style.Classes.list;
 import static org.patternfly.style.Classes.menu;
 
 /** A list of items within a {@link Menu} or {@link MenuGroup}. */
+
 /** A menu list within a {@link Menu} component. */
 public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> implements
         HasAsyncItems<MenuList, MenuItem>,
@@ -240,36 +240,36 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
     }
 
     @Override
-    public Promise<Iterable<MenuItem>> reload() {
+    public Promise<Iterable<MenuItem>> refresh() {
         List<String> selected = new ArrayList<>();
         for (MenuItem menuItem : this) {
             if (menuItem.isSelected()) {
                 selected.add(menuItem.identifier());
             }
         }
-        return async.reload(this,
-                this::addItem,
-                () -> {
-                    if (noItems != null) {
-                        noItemsItem = noItems.get();
-                        addItem(noItemsItem);
-                    }
-                },
-                err -> {
-                    logger.error("Unable to load items for %o: %s", element(), err);
-                    if (error != null) {
-                        errorItem = error.get();
-                        addItem(errorItem);
-                    }
-                },
-                () -> {
-                    if (loading != null) {
-                        loadingItem = loading.get();
-                        addItem(loadingItem);
-                    }
-                },
-                () -> failSafeRemoveFromParent(loadingItem),
-                this::internalClear)
+        return async.refresh(this,
+                        this::addItem,
+                        () -> {
+                            if (noItems != null) {
+                                noItemsItem = noItems.get();
+                                addItem(noItemsItem);
+                            }
+                        },
+                        err -> {
+                            logger.error("Unable to load items for %o: %s", element(), err);
+                            if (error != null) {
+                                errorItem = error.get();
+                                addItem(errorItem);
+                            }
+                        },
+                        () -> {
+                            if (loading != null) {
+                                loadingItem = loading.get();
+                                addItem(loadingItem);
+                            }
+                        },
+                        () -> failSafeRemoveFromParent(loadingItem),
+                        this::internalClear)
                 .then(value -> {
                     Menu menu = lookupComponent(true);
                     if (menu != null) {
@@ -279,32 +279,6 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
                     }
                     return Promise.resolve(value);
                 });
-    }
-
-    public Promise<Iterable<MenuItem>> replace() {
-        return async.replace(this,
-                this::addItem,
-                () -> {
-                    if (noItems != null) {
-                        noItemsItem = noItems.get();
-                        addItem(noItemsItem);
-                    }
-                },
-                err -> {
-                    logger.error("Unable to load items for %o: %s", element(), err);
-                    if (error != null) {
-                        errorItem = error.get();
-                        addItem(errorItem);
-                    }
-                },
-                () -> {
-                    if (loading != null) {
-                        loadingItem = loading.get();
-                        addItem(loadingItem);
-                    }
-                },
-                () -> failSafeRemoveFromParent(loadingItem),
-                this::internalClear);
     }
 
     @Override
@@ -357,13 +331,9 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         aur.removed(item);
     }
 
-    @Override
+    /** Removes all items from the DOM and the internal map. Does not affect async state. */
     public void clear() {
-        if (async.status() == static_) {
-            internalClear();
-        } else {
-            reset();
-        }
+        internalClear();
     }
 
     // ------------------------------------------------------ internal

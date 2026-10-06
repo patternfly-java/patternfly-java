@@ -29,8 +29,8 @@ import org.patternfly.component.menu.MultiSelect;
 import org.patternfly.component.menu.MultiSelectMenu;
 import org.patternfly.component.menu.SingleSelect;
 import org.patternfly.component.menu.SingleSelectMenu;
-import org.patternfly.component.textinputgroup.FilterInput;
-import org.patternfly.component.textinputgroup.SearchInput;
+import org.patternfly.component.textinputgroup.FilterInputGroup;
+import org.patternfly.component.textinputgroup.SearchInputGroup;
 import org.patternfly.showcase.LoremIpsum;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
@@ -45,8 +45,6 @@ import static java.util.stream.Collectors.toList;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.setVisible;
 import static org.jboss.elemento.router.Link.link;
-import static org.patternfly.async.ReloadStrategy.everyInput;
-import static org.patternfly.async.ReloadStrategy.structuralChange;
 import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.ValidationStatus.success;
 import static org.patternfly.component.ValidationStatus.warning;
@@ -64,13 +62,13 @@ import static org.patternfly.component.menu.MenuToggle.menuToggle;
 import static org.patternfly.component.menu.MultiSelect.multiSelect;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectCheckboxMenu;
 import static org.patternfly.component.menu.MultiSelectMenu.multiSelectMenu;
-import static org.patternfly.component.menu.MultiTypeahead.multiTypeahead;
+import static org.patternfly.component.menu.MultiSelectTypeahead.multiSelectTypeahead;
 import static org.patternfly.component.menu.SearchFilter.lastSegment;
 import static org.patternfly.component.menu.SingleSelect.singleSelect;
 import static org.patternfly.component.menu.SingleSelectMenu.singleSelectMenu;
-import static org.patternfly.component.menu.SingleTypeahead.singleTypeahead;
-import static org.patternfly.component.textinputgroup.FilterInput.filterInput;
-import static org.patternfly.component.textinputgroup.SearchInput.searchInput;
+import static org.patternfly.component.menu.SingleSelectTypeahead.singleSelectTypeahead;
+import static org.patternfly.component.typeahead.RefreshStrategy.everyInput;
+import static org.patternfly.component.typeahead.RefreshStrategy.structuralChange;
 import static org.patternfly.icon.IconSets.fas.bell;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.Code.code;
@@ -212,7 +210,7 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead"), () ->
                 // @code-start:single-typeahead
                 div()
-                        .add(singleTypeahead("single-typeahead-0", "Select a state")
+                        .add(singleSelectTypeahead("single-typeahead-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -230,7 +228,7 @@ public class SelectComponent extends SnippetPage {
                 code("single-typeahead-create"), () ->
                 // @code-start:single-typeahead-create
                 div()
-                        .add(singleTypeahead("single-typeahead-create-0", "Select a state")
+                        .add(singleSelectTypeahead("single-typeahead-create-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -258,7 +256,7 @@ public class SelectComponent extends SnippetPage {
                             1234 + new Random().nextInt(3456)));
 
             return div()
-                    .add(singleTypeahead("single-typeahead-async-0", "Lorem ipsum")
+                    .add(singleSelectTypeahead("single-typeahead-async-0", "Lorem ipsum")
                             .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
@@ -272,12 +270,12 @@ public class SelectComponent extends SnippetPage {
                 "Using everyInput(300), the server is queried on each keystroke (debounced at 300ms). Products are fetched from dummyjson.com.",
                 code("single-typeahead-debounce"), () -> {
             // @code-start:single-typeahead-debounce
-            SearchInput si = searchInput("single-typeahead-debounce-0").plain()
+            SearchInputGroup si = SearchInputGroup.searchInputGroup("single-typeahead-debounce-0").plain()
                     .placeholder("Search products...");
             return div()
-                    .add(singleTypeahead(si)
+                    .add(singleSelectTypeahead(si)
                             .applyToMenuToggle(FullWidth::fullWidth)
-                            .reloadOn(everyInput(300))
+                            .refreshOn(everyInput(300))
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
@@ -286,16 +284,17 @@ public class SelectComponent extends SnippetPage {
             // @code-end:single-typeahead-debounce
         }));
 
-        addSnippet(new Snippet("single-typeahead-structural", "Typeahead with structural change reload",
+        addSnippet(new Snippet("single-typeahead-structural", "Typeahead with structural change refresh",
                 "Using structuralChange(), categories load from dummyjson.com when the query first reaches 3 characters and filter locally as you type. When you type '/', products for that category load from the server. Try typing 'laptops/' or 'smartphones/iphone'.",
                 code("single-typeahead-structural"), () -> {
             // @code-start:single-typeahead-structural
-            SearchInput si = searchInput("single-typeahead-structural-0").plain()
+            SearchInputGroup si = SearchInputGroup.searchInputGroup("single-typeahead-structural-0").plain()
                     .placeholder("Search categories...");
             return div()
-                    .add(singleTypeahead(si)
+                    .add(singleSelectTypeahead(si)
                             .applyToMenuToggle(FullWidth::fullWidth)
-                            .reloadOn(structuralChange(3, '/'), lastSegment('/'))
+                            .filter(lastSegment('/'))
+                            .refreshOn(structuralChange(3, '/'))
                             .addMenu(singleSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()
@@ -320,7 +319,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead"), () ->
                 // @code-start:multi-typeahead
                 div()
-                        .add(multiTypeahead("multi-typeahead-0", "Select a state")
+                        .add(multiSelectTypeahead("multi-typeahead-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -338,7 +337,7 @@ public class SelectComponent extends SnippetPage {
                 code("multi-typeahead-create"), () ->
                 // @code-start:multi-typeahead-create
                 div()
-                        .add(multiTypeahead("multi-typeahead-create-0", "Select a state")
+                        .add(multiSelectTypeahead("multi-typeahead-create-0", "Select a state")
                                 .applyToMenuToggle(FullWidth::fullWidth)
                                 .applyToMenuList(list -> list
                                         .addItem(menuItem("alabama", "Alabama"))
@@ -366,7 +365,7 @@ public class SelectComponent extends SnippetPage {
                             1234 + new Random().nextInt(3456)));
 
             return div()
-                    .add(multiTypeahead("multi-typeahead-async-0", "Lorem ipsum")
+                    .add(multiSelectTypeahead("multi-typeahead-async-0", "Lorem ipsum")
                             .applyToMenuToggle(FullWidth::fullWidth)
                             .addMenu(multiSelectMenu().scrollable()
                                     .addContent(menuContent()
@@ -380,12 +379,12 @@ public class SelectComponent extends SnippetPage {
                 "Using everyInput(300), users are fetched from dummyjson.com on each keystroke (debounced at 300ms). Multiple selections are shown as labels.",
                 code("multi-typeahead-debounce"), () -> {
             // @code-start:multi-typeahead-debounce
-            FilterInput fi = filterInput("multi-typeahead-debounce-0").plain()
+            FilterInputGroup fi = FilterInputGroup.filterInputGroup("multi-typeahead-debounce-0").plain()
                     .placeholder("Search users...");
             return div()
-                    .add(multiTypeahead(fi)
+                    .add(multiSelectTypeahead(fi)
                             .applyToMenuToggle(FullWidth::fullWidth)
-                            .reloadOn(everyInput(300))
+                            .refreshOn(everyInput(300))
                             .addMenu(multiSelectMenu().scrollable()
                                     .addContent(menuContent()
                                             .addList(menuList()

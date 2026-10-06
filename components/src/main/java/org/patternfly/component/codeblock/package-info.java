@@ -21,9 +21,9 @@
  * snippets.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * A basic code block with copy-to-clipboard and a custom action:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.codeblock.CodeBlock.codeBlock;
  * import static org.patternfly.component.codeblock.CodeBlockAction.codeBlockAction;
@@ -35,10 +35,10 @@
  *                 .ariaLabel("Play")
  *                 .onClick((action, codeBlock) -> console.log("Play")))
  *         .code("apiVersion: helm.openshift.io/v1beta1/\nkind: HelmChartRepository");
- * }
- *
+ *}
+ * <p>
  * A truncated (expandable) code block:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.codeblock.CodeBlock.codeBlock;
  * import static org.patternfly.component.codeblock.CodeBlockAction.codeBlockCopyToClipboardAction;
@@ -47,7 +47,7 @@
  *         .addAction(codeBlockCopyToClipboardAction())
  *         .truncate()
  *         .code("long code content...");
- * }
+ *}
  *
  * @see CodeBlock
  * @see CodeBlockAction

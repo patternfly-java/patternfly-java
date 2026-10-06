@@ -26,9 +26,6 @@
  *     <li>{@link org.patternfly.async.AsyncItemsController} - State machine delegate managing load lifecycle,
  *         generation counting for concurrent-load safety, and reset-during-pending</li>
  *     <li>{@link org.patternfly.async.HasAsyncItems} - Interface for components that asynchronously manage items</li>
- *     <li>{@link org.patternfly.async.Reloadable} - Interface for components with configurable reload strategies</li>
- *     <li>{@link org.patternfly.async.ReloadStrategy} - Defines when and how items should be reloaded in response to
- *         input (debounced re-query or structural-change detection)</li>
  * </ul>
  *
  * @see org.patternfly.async.AsyncItemsController

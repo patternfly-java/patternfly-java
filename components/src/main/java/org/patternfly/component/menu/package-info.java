@@ -17,9 +17,9 @@
  * Provides menu components for building dropdowns, selects, and general-purpose menus.
  *
  * <p>This package contains the {@link org.patternfly.component.menu.Menu} component and related classes for creating
- * menus, dropdowns, single selects, multi selects, and typeaheads. Menus support different types (action, select,
- * checkbox), selection modes (click, single, multi), grouped items, icons, descriptions, danger items, search
- * filtering, and item actions.
+ * menus, dropdowns, single selects, multi selects, and typeaheads. Menus support different types (action, select, checkbox),
+ * selection modes (click, single, multi), grouped items, icons, descriptions, danger items, search filtering, and item
+ * actions.
  *
  * <h2>Components</h2>
  *
@@ -39,8 +39,8 @@
  *     <li>{@link org.patternfly.component.menu.DropdownMenu} - Menu variant used within dropdown components</li>
  *     <li>{@link org.patternfly.component.menu.SingleSelect} - Pre-configured menu for single selection</li>
  *     <li>{@link org.patternfly.component.menu.MultiSelect} - Pre-configured menu for multiple selection</li>
- *     <li>{@link org.patternfly.component.menu.SingleTypeahead} - Single-select typeahead with search input</li>
- *     <li>{@link org.patternfly.component.menu.MultiTypeahead} - Multi-select typeahead with filter input</li>
+ *     <li>{@link org.patternfly.component.menu.SingleSelectTypeahead} - Single-select typeahead with search input</li>
+ *     <li>{@link org.patternfly.component.menu.MultiSelectTypeahead} - Multi-select typeahead with filter input</li>
  *     <li>{@link org.patternfly.component.menu.MenuType} - Enumeration of menu types (menu, select, checkbox)</li>
  *     <li>{@link org.patternfly.component.menu.MenuToggleType} - Enumeration of menu toggle variants (default,
  *     plain, split button)</li>
@@ -50,7 +50,7 @@
  * <h2>Usage</h2>
  *
  * <p>A basic action menu and a dropdown:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.SelectionMode.click;
  * import static org.patternfly.component.menu.Dropdown.dropdown;
@@ -78,7 +78,7 @@
  *                                 .addItem(menuItem("option-0", "Option 1"))
  *                                 .addItem(menuItem("option-1", "Option 2"))
  *                                 .addItem(menuItem("option-2", "Option 3")))));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/menus/menu">PatternFly Menu</a>
  * @see <a href="https://www.patternfly.org/components/menus/dropdown">PatternFly Dropdown</a>

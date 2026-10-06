@@ -16,8 +16,8 @@
 /**
  * Provides the PatternFly page layout component and its subcomponents.
  * <p>
- * The page component provides the overall structure for an application, including a masthead with branding and tools, a
- * sidebar for navigation, and a main content area with sections. It includes support for the masthead, sidebar, page sections,
+ * The page component provides the overall structure for an application, including a masthead with branding and tools, a sidebar
+ * for navigation, and a main content area with sections. It includes support for the masthead, sidebar, page sections,
  * breadcrumbs, navigation, tabs, and groups.
  *
  * <h2>Key Classes</h2>
@@ -43,7 +43,7 @@
  * </ul>
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.page.Masthead.masthead;
  * import static org.patternfly.component.page.MastheadBrand.mastheadBrand;
@@ -73,7 +73,7 @@
  *                         .text("Section 1"))
  *                 .addSection(pageSection().secondary()
  *                         .text("Section 2")));
- * }
+ *}
  *
  * @see <a href="https://www.patternfly.org/components/page">https://www.patternfly.org/components/page</a>
  */

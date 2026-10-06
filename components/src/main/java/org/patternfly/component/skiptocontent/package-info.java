@@ -16,28 +16,28 @@
 /**
  * Provides the PatternFly skip to content component.
  * <p>
- * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it.
- * It is typically added as the first element inside a {@link org.patternfly.component.page.Page} component and links to the
- * main content area.
+ * A skip to content component allows screen reader and keyboard users to bypass navigation rather than tabbing through it. It
+ * is typically added as the first element inside a {@link org.patternfly.component.page.Page} component and links to the main
+ * content area.
  *
  * <h2>Usage</h2>
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.page.Page.page;
  * import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
  *
  * page().addSkipToContent(skipToContent("main-content-id"));
- * }
- *
+ *}
+ * <p>
  * With custom text:
- *
+ * <p>
  * {@snippet :
  * import static org.patternfly.component.skiptocontent.SkipToContent.skipToContent;
  *
  * SkipToContent stc = skipToContent("main-content-id", "Jump to main content");
- * }
+ *}
  *
  * @see <a href=
- *      "https://www.patternfly.org/components/skip-to-content">https://www.patternfly.org/components/skip-to-content</a>
+ * "https://www.patternfly.org/components/skip-to-content">https://www.patternfly.org/components/skip-to-content</a>
  */
 package org.patternfly.component.skiptocontent;

@@ -22,11 +22,11 @@ import java.util.function.Function;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
 import org.patternfly.component.Expandable;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.button.Button;
 import org.patternfly.core.Aria;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ToggleHandler;
 
 import elemental2.dom.Event;
@@ -51,6 +51,7 @@ import static org.patternfly.style.Classes.row;
 import static org.patternfly.style.Classes.toggle;
 
 /** An individual item within a {@link DataList} component. */
+
 /** A data list item within a {@link DataList} component. */
 public class DataListItem extends DataListSubComponent<HTMLLIElement, DataListItem> implements
         ComponentContext<HTMLLIElement, DataListItem>,

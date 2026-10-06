@@ -23,9 +23,9 @@ import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.ElementTextDelegate;
 import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.core.ComponentContext;
 import org.patternfly.core.Dataset;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.handler.ComponentHandler;
 
 import elemental2.dom.Element;
@@ -45,6 +45,7 @@ import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.simpleList;
 
 /** An individual item within a {@link SimpleList} component. */
+
 /** A simple list item within a {@link SimpleList} component. */
 public class SimpleListItem extends SimpleListSubComponent<HTMLLIElement, SimpleListItem> implements
         ComponentContext<HTMLLIElement, SimpleListItem>,

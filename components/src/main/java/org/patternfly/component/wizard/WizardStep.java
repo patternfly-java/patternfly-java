@@ -22,9 +22,9 @@ import java.util.function.Consumer;
 
 import org.jboss.elemento.ElementContainerDelegate;
 import org.jboss.elemento.logger.Logger;
-import org.patternfly.component.HasIdentifier;
 import org.patternfly.component.ValidationStatus;
 import org.patternfly.core.ComponentContext;
+import org.patternfly.core.HasIdentifier;
 import org.patternfly.style.Modifiers.Disabled;
 
 import elemental2.dom.Element;
@@ -44,6 +44,7 @@ import static org.patternfly.style.Classes.main;
 import static org.patternfly.style.Classes.wizard;
 
 /** An individual step within a {@link Wizard} component. */
+
 /** A wizard step within a {@link Wizard} component. */
 public class WizardStep extends WizardSubComponent<HTMLElement, WizardStep> implements
         ComponentContext<HTMLElement, WizardStep>,

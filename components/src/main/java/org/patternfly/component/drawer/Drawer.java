@@ -41,9 +41,8 @@ import static org.patternfly.style.TypedModifier.swap;
  * A drawer is a sliding panel that enters from the right edge of the viewport. It can be configured to either overlay content
  * on a page or create a sidebar by pushing that content to the left.
  *
- * @see <a href=
- *      "https://www.patternfly.org/components/drawer#with-focus-trap">
- *      https://www.patternfly.org/components/drawer#with-focus-trap</a>
+ * @see <a href= "https://www.patternfly.org/components/drawer#with-focus-trap">
+ * https://www.patternfly.org/components/drawer#with-focus-trap</a>
  */
 public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         Expandable<HTMLElement, Drawer>,
