@@ -2,7 +2,7 @@
   "name": "patternfly-java-showcase",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.9.1+sha512.06b055fff5cd20dc12781de173ced3310ce0951bf2ec620211a16045d5444d5c93a663210764ef29a653a610459ba0368f0e74f84d80c54723cf95aae7bc0d6d",
+  "packageManager": "pnpm@12.10.1",
   "scripts": {
     "audit:fix": "node audit.mjs",
     "code": "node code.mjs",
@@ -18,7 +18,7 @@
     "@patternfly/patternfly": "^6.6.1"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "6.52.2",
+    "@patternfly/documentation-framework": "6.52.3",
     "@shikijs/rehype": "^4.5.0",
     "esbuild": "^0.28.2",
     "http-server": "^14.1.1",
@@ -30,7 +30,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
-    "vite": "^8.3.2",
+    "vite": "8.3.3",
     "yaml": "^2.9.1"
   }
 }
