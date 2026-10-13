@@ -44,6 +44,7 @@ import elemental2.dom.MutationRecord;
 import elemental2.dom.Node;
 
 import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertAfter;
@@ -228,7 +229,9 @@ abstract class MenuToggleMenu<B extends TypedBuilder<HTMLElement, B>> extends Co
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), that(), false));
             }
-            menuToggle.element().focus();
+            // Defer focus so that a keyup from an Enter-based menu selection
+            // fires on the menu item, not on the input element.
+            setTimeout(__ -> menuToggle.element().focus(), 0);
         }
     }
 
