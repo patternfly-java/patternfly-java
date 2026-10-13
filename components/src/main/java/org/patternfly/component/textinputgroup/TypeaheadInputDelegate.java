@@ -43,7 +43,7 @@ import elemental2.dom.KeyboardEvent;
 import elemental2.dom.Node;
 
 import static elemental2.dom.DomGlobal.document;
-import static elemental2.dom.DomGlobal.setTimeout;
+
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -245,9 +245,7 @@ class TypeaheadInputDelegate<T extends BaseSearchInputGroup<T>> {
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), input, false));
             }
-            // Defer focus so that a keyup from an Enter-based menu selection
-            // fires on the menu item, not on the input element.
-            setTimeout(__ -> input.inputElement.focus(), 0);
+            input.inputElement.focus();
         }
     }
 

@@ -54,6 +54,7 @@ import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.EventType.bind;
 import static org.jboss.elemento.EventType.keydown;
+import static org.jboss.elemento.EventType.keyup;
 import static org.jboss.elemento.Key.ArrowDown;
 import static org.jboss.elemento.Key.ArrowLeft;
 import static org.jboss.elemento.Key.ArrowRight;
@@ -113,6 +114,11 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     private final List<MultiSelectHandler<Menu, MenuItem>> multiSelectHandler;
     private MenuItem noResultsItem;
     private HandlerRegistration keyHandler;
+    private HandlerRegistration keyupHandler;
+    // Flag to swallow the keyup event after the menu consumed an Enter/Space keydown for item selection.
+    // Without this, the keyup bubbles out of the menu into parent components (e.g., a search input group)
+    // and triggers unintended actions there.
+    private boolean enterConsumed;
 
     Menu(MenuType menuType, SelectionMode selectionMode) {
         super(ComponentType.Menu, div().css(component(menu)).element());
@@ -131,12 +137,16 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
     public void attach(MutationRecord mutationRecord) {
         allowTabFirstItem();
         keyHandler = bind(window, keydown, this::keyHandler);
+        keyupHandler = bind(element(), keyup, this::keyupHandler);
     }
 
     @Override
     public void detach(MutationRecord mutationRecord) {
         if (keyHandler != null) {
             keyHandler.removeHandler();
+        }
+        if (keyupHandler != null) {
+            keyupHandler.removeHandler();
         }
     }
 
@@ -597,13 +607,25 @@ public class Menu extends BaseComponent<HTMLDivElement, Menu> implements
             if (Enter.match(event)) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
+                enterConsumed = true;
                 activeElement.click();
             } else if (Spacebar.match(event)) {
                 event.preventDefault();
                 event.stopImmediatePropagation();
+                enterConsumed = true;
                 activeElement.click();
             }
             handleArrows(event, activeElement, navigableElements);
+        }
+    }
+
+    // Swallows the keyup event that follows an Enter/Space keydown consumed by keyHandler().
+    // The menu's DOM is inside its parent component (e.g., a SearchInputGroupTypeahead), so without this,
+    // the keyup would bubble up and trigger unintended handlers on the parent.
+    private void keyupHandler(Event event) {
+        if (enterConsumed && (Enter.match(event) || Spacebar.match(event))) {
+            event.stopPropagation();
+            enterConsumed = false;
         }
     }
 
