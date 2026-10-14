@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix Enter/Space keyup events bubbling out of menu after typeahead item selection by deferring focus and stopping key event propagation
+
 ## [0.13.0] - 2026-10-06
 
 > [!IMPORTANT]
