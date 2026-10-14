@@ -173,8 +173,8 @@ importers:
         specifier: 26.6.5
         version: 26.6.5
       camelcase:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: 10.0.0
+        version: 10.0.0
 
 packages:
 
@@ -184,9 +184,9 @@ packages:
   '@types/node@26.6.5':
     resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
 
-  camelcase@9.0.0:
-    resolution: {integrity: sha512-TO9xmyXTZ9HUHI8M1OnvExxYB0eYVS/1e5s7IDMTAoIcwUd+aNcFODs6Xk83mobk0velyHFQgA1yIrvYc6wclw==}
-    engines: {node: '>=20'}
+  camelcase@10.0.0:
+    resolution: {integrity: sha512-p1wew5BGDCONz/5R+xHF6ByqXQM2V+5r4e+FdlFUeROawuMPimdDOFLw5k2QSqp1rm5h2QAglToqJyvnsl3ArQ==}
+    engines: {node: '>=22'}
 
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
@@ -199,6 +199,6 @@ snapshots:
     dependencies:
       undici-types: 8.9.0
 
-  camelcase@9.0.0: {}
+  camelcase@10.0.0: {}
 
   undici-types@8.9.0: {}

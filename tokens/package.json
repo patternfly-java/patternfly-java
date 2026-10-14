@@ -2,7 +2,7 @@
   "devDependencies": {
     "@patternfly/react-tokens": "^6.6.1",
     "@types/node": "26.6.5",
-    "camelcase": "^9.0.0"
+    "camelcase": "10.0.0"
   },
   "name": "icons",
   "packageManager": "pnpm@12.11.2",
