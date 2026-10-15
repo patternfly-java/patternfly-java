@@ -137,7 +137,7 @@ class TypeaheadInputDelegate<T extends BaseSearchInputGroup<T>> {
         tc.afterRefresh(() -> {
             List<MenuItem> items = menu.items();
             if (items.isEmpty()) {
-                collapse(true);
+                collapse(false);
                 clearHint();
             } else {
                 menu.allowTabFirstItem();
@@ -265,10 +265,10 @@ class TypeaheadInputDelegate<T extends BaseSearchInputGroup<T>> {
         }
         List<MenuItem> matching = menu.search(tc.searchFilter(), tc.noResults(), value);
         if (matching.isEmpty()) {
-            collapse(true);
+            collapse(false);
             clearHint();
         } else {
-            expand(true);
+            expand(false);
             if (matching.size() == 1) {
                 updateHint(value, matching.get(0).text());
             } else {
