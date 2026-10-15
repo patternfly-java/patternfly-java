@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 - Fix tree table toggle using wrong caret icon (`rhUi.caretDown` → `rhMicrons.caretRight`) to match PatternFly
-- Fix duplicate identifier in `add()` removing the wrong DOM element when re-adding a component with an existing identifier
+- Fix duplicate identifier in `add()` removing the wrong DOM element when re-adding a component with an existing identifier ([#504](https://github.com/patternfly-java/patternfly-java/issues/504))
 
 ## [0.13.1] - 2026-10-14
 
