@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `onToggle` handler never firing for input-driven expansion in `SearchInputGroupTypeahead` and `FilterInputGroupTypeahead` ([#505](https://github.com/patternfly-java/patternfly-java/issues/505))
+
 ## [0.13.2] - 2026-10-15
 
 ### Fixed
