@@ -36,7 +36,7 @@ import static org.jboss.elemento.Elements.insertFirst;
 import static org.jboss.elemento.Elements.isAttached;
 import static org.jboss.elemento.Elements.span;
 import static org.patternfly.component.button.Button.button;
-import static org.patternfly.icon.IconSets.rhUi.caretDown;
+import static org.patternfly.icon.IconSets.rhMicrons.caretRight;
 import static org.patternfly.icon.IconSets.rhUi.ellipsisHorizontal;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.details;
@@ -179,7 +179,7 @@ public class TitleCell extends Cell<TitleCell> implements
                                 }
                             })
                             .add(div().css(component(table, toggle, Classes.icon))
-                                    .add(caretDown())))
+                                    .add(caretRight())))
                     .element());
         }
     }
