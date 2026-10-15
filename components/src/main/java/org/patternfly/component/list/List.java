@@ -87,6 +87,10 @@ public class List extends BaseComponent<HTMLElement, List> implements
 
     @Override
     public List add(ListItem item) {
+        ListItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(this, item);
         items.put(item.identifier(), item);
         return aur.added(item);

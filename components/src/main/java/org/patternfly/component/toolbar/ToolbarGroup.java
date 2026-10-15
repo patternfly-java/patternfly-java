@@ -70,6 +70,10 @@ public class ToolbarGroup extends ToolbarSubComponent<HTMLDivElement, ToolbarGro
 
     @Override
     public ToolbarGroup add(ToolbarItem item) {
+        ToolbarItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         ToolbarGroup result = add(item.element());
         return aur.added(item);

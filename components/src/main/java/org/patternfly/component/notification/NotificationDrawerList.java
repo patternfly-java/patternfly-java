@@ -68,6 +68,10 @@ public class NotificationDrawerList extends NotificationDrawerSubComponent<HTMLE
      */
     @Override
     public NotificationDrawerList add(NotificationDrawerItem item) {
+        NotificationDrawerItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         insertFirst(element(), item.element());
         return aur.added(item);

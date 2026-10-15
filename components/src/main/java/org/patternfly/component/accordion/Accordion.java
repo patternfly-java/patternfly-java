@@ -118,6 +118,10 @@ public class Accordion extends BaseComponent<HTMLElement, Accordion> implements
 
     @Override
     public Accordion add(AccordionItem item) {
+        AccordionItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         if (isAttached(this)) {
             item.appendTo(this);

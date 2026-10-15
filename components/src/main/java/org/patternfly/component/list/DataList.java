@@ -92,6 +92,10 @@ public class DataList extends BaseComponent<HTMLUListElement, DataList> implemen
 
     @Override
     public DataList add(DataListItem item) {
+        DataListItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(this, item);
         items.put(item.identifier(), item);
         return aur.added(item);

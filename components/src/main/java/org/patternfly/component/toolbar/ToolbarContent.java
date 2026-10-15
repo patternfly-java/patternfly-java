@@ -86,6 +86,10 @@ public class ToolbarContent extends ToolbarSubComponent<HTMLDivElement, ToolbarC
 
     @Override
     public ToolbarContent add(ToolbarItem item) {
+        ToolbarItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         contentSection.appendChild(item.element());
         return aur.added(item);

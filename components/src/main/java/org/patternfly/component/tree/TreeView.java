@@ -150,6 +150,10 @@ public class TreeView extends BaseComponent<HTMLElement, TreeView> implements
 
     @Override
     public TreeView add(TreeViewItem item) {
+        TreeViewItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         item.finishDOM(this);
         ul.add(item);

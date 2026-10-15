@@ -82,6 +82,10 @@ public class Breadcrumb extends BaseComponent<HTMLElement, Breadcrumb> implement
 
     @Override
     public Breadcrumb add(BreadcrumbItem item) {
+        BreadcrumbItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         ol.add(item);
         return aur.added(item);

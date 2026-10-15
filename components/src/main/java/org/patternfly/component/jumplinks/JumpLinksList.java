@@ -65,6 +65,10 @@ public class JumpLinksList extends JumpLinksSubComponent<HTMLUListElement, JumpL
 
     @Override
     public JumpLinksList add(JumpLinksItem item) {
+        JumpLinksItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);

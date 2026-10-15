@@ -460,6 +460,10 @@ public class Navigation extends BaseComponent<HTMLElement, Navigation> implement
     }
 
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
+        NavigationItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         dom.accept(item);
         if (scrollButtons != null && isAttached(element())) {

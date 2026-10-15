@@ -100,6 +100,10 @@ public class SimpleListGroup extends SimpleListSubComponent<HTMLElement, SimpleL
 
     @Override
     public SimpleListGroup add(SimpleListItem item) {
+        SimpleListItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(ul, item);
         items.put(item.identifier(), item);
         return aur.added(item);

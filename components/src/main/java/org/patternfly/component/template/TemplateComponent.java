@@ -92,6 +92,10 @@ public class TemplateComponent extends BaseComponent<HTMLElement, TemplateCompon
 
     @Override
     public TemplateComponent add(TemplateItem item) {
+        TemplateItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(this, item);
         items.put(item.identifier(), item);
         return aur.added(item);

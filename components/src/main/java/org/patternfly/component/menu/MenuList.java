@@ -132,6 +132,10 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
 
     @Override
     public MenuList add(MenuItem item) {
+        MenuItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(this, item);
         items.put(item.identifier(), item);
         return aur.added(item);

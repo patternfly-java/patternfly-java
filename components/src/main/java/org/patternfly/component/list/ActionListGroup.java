@@ -78,6 +78,10 @@ public class ActionListGroup extends ActionListSubComponent<HTMLDivElement, Acti
 
     @Override
     public ActionListGroup add(ActionListItem item) {
+        ActionListItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);

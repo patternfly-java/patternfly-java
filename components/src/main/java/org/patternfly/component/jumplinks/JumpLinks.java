@@ -153,6 +153,10 @@ public class JumpLinks extends BaseComponent<HTMLElement, JumpLinks> implements
 
     @Override
     public JumpLinks add(JumpLinksItem item) {
+        JumpLinksItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         ulElement.add(item);
         return aur.added(item);

@@ -68,6 +68,10 @@ public class ToolbarFilterContent extends ToolbarSubComponent<HTMLDivElement, To
 
     @Override
     public ToolbarFilterContent add(ToolbarItem item) {
+        ToolbarItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         ToolbarFilterContent result = add(item.element());
         return aur.added(item);

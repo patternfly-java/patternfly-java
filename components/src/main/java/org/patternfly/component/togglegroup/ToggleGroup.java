@@ -107,6 +107,10 @@ public class ToggleGroup extends BaseComponent<HTMLElement, ToggleGroup> impleme
 
     @Override
     public ToggleGroup add(ToggleGroupItem item) {
+        ToggleGroupItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);

@@ -247,6 +247,10 @@ public class NavigationGroup extends NavigationSubComponent<HTMLElement, Navigat
     // ------------------------------------------------------ internal
 
     private void internalAddItem(NavigationItem item, Consumer<NavigationItem> dom) {
+        NavigationItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         dom.accept(item);
         aur.added(item);

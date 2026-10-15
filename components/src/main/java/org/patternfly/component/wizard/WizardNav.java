@@ -77,6 +77,10 @@ public class WizardNav extends WizardSubComponent<HTMLElement, WizardNav> implem
      */
     @Override
     public WizardNav add(WizardNavItem item) {
+        WizardNavItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         ol.add(item);
         return aur.added(item);

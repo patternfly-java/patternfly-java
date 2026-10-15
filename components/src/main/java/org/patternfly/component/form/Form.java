@@ -98,6 +98,10 @@ public class Form extends BaseComponent<HTMLFormElement, Form> implements
 
     @Override
     public Form add(FormGroup item) {
+        FormGroup existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);

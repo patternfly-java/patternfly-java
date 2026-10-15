@@ -87,6 +87,10 @@ public class DescriptionList extends BaseComponent<HTMLElement, DescriptionList>
 
     @Override
     public DescriptionList add(DescriptionListGroup item) {
+        DescriptionListGroup existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         addOrdered(this, item);
         items.put(item.identifier(), item);
         return aur.added(item);

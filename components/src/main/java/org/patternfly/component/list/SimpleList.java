@@ -116,6 +116,10 @@ public class SimpleList extends BaseComponent<HTMLElement, SimpleList> implement
             return this;
         }
         type = SimpleListType.items;
+        SimpleListItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         failSafeUlElement().appendChild(item.element());
         return aur.added(item);

@@ -79,6 +79,10 @@ public class ToolbarToggleGroup extends ToolbarSubComponent<HTMLDivElement, Tool
 
     @Override
     public ToolbarToggleGroup add(ToolbarItem item) {
+        ToolbarItem existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);

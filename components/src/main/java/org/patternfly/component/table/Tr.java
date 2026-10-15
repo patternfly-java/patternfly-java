@@ -153,6 +153,10 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
 
     @Override
     public Tr add(Cell<?> item) {
+        Cell<?> existing = items.get(item.identifier());
+        if (existing != null) {
+            failSafeRemoveFromParent(existing);
+        }
         items.put(item.identifier(), item);
         add(item.element());
         return aur.added(item);
