@@ -16,9 +16,13 @@
 package org.patternfly.async;
 
 import java.util.function.Consumer;
+import java.util.logging.Logger;
+
+import org.jboss.elemento.IsElement;
 
 import elemental2.promise.Promise;
 
+import static elemental2.dom.DomGlobal.document;
 import static java.util.Collections.emptyList;
 import static org.patternfly.async.AsyncStatus.pending;
 import static org.patternfly.async.AsyncStatus.rejected;
@@ -38,6 +42,7 @@ public class AsyncItemsController<C, S> {
 
     // ------------------------------------------------------ instance
 
+    private static final Logger logger = Logger.getLogger(AsyncItemsController.class.getName());
     private AsyncItems<C, S> asyncItems;
     private AsyncStatus status;
     private int generation;
@@ -91,6 +96,9 @@ public class AsyncItemsController<C, S> {
                         if (currentGeneration != generation) {
                             return Promise.resolve((Iterable<S>) emptyList());
                         }
+                        if (detached(component)) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
                         status = resolved;
                         if (onAfter != null) {
                             onAfter.run();
@@ -107,6 +115,9 @@ public class AsyncItemsController<C, S> {
                     })
                     .catch_(err -> {
                         if (currentGeneration != generation) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
+                        if (detached(component)) {
                             return Promise.resolve((Iterable<S>) emptyList());
                         }
                         status = rejected;
@@ -170,6 +181,9 @@ public class AsyncItemsController<C, S> {
                         if (currentGeneration != generation) {
                             return Promise.resolve((Iterable<S>) emptyList());
                         }
+                        if (detached(component)) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
                         status = resolved;
                         if (onAfter != null) {
                             onAfter.run();
@@ -187,6 +201,9 @@ public class AsyncItemsController<C, S> {
                     })
                     .catch_(err -> {
                         if (currentGeneration != generation) {
+                            return Promise.resolve((Iterable<S>) emptyList());
+                        }
+                        if (detached(component)) {
                             return Promise.resolve((Iterable<S>) emptyList());
                         }
                         status = rejected;
@@ -212,5 +229,17 @@ public class AsyncItemsController<C, S> {
      */
     public boolean hasAsyncItems() {
         return asyncItems != null && status == pending;
+    }
+
+    // ------------------------------------------------------ internal
+
+    private boolean detached(C component) {
+        if (component instanceof IsElement) {
+            if (!document.body.contains(((IsElement<?>) component).element())) {
+                logger.warning("Discarding async items for detached component");
+                return true;
+            }
+        }
+        return false;
     }
 }
