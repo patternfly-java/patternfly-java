@@ -60,6 +60,14 @@ function addIgnoreEntries(missing) {
   writeFileSync(WORKSPACE, updated);
 }
 
+function removeStaleEntries(stale) {
+  let content = readFileSync(WORKSPACE, "utf8");
+  for (const id of stale) {
+    content = content.replace(new RegExp(`^\\s*- ${id}\\n`, "m"), "");
+  }
+  writeFileSync(WORKSPACE, content);
+}
+
 // ── Dependabot ──────────────────────────────────────────────────────
 
 function openDependabotAlerts() {
@@ -90,14 +98,24 @@ function dismissAlert(number) {
 // 1. Handle pnpm audit
 const ignored = currentIgnored();
 const reported = auditGhsas();
+const reportedSet = new Set(reported);
 const missing = reported.filter((id) => !ignored.has(id));
+const stale = [...ignored].filter((id) => !reportedSet.has(id)).sort();
 
 if (missing.length > 0) {
   console.log(`Adding ${missing.length} new GHSA entr${missing.length === 1 ? "y" : "ies"} to ${WORKSPACE}:`);
-  missing.forEach((id) => console.log(`  - ${id}`));
+  missing.forEach((id) => console.log(`  + ${id}`));
   addIgnoreEntries(missing);
 } else {
   console.log("pnpm audit: no new advisories to ignore.");
+}
+
+if (stale.length > 0) {
+  console.log(`Removing ${stale.length} stale GHSA entr${stale.length === 1 ? "y" : "ies"} from ${WORKSPACE}:`);
+  stale.forEach((id) => console.log(`  - ${id}`));
+  removeStaleEntries(stale);
+} else {
+  console.log("pnpm audit: no stale advisories to remove.");
 }
 
 // 2. Dismiss open Dependabot alerts
