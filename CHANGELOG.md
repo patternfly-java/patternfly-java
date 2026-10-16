@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.13.4] - 2026-10-16
+
 ### Fixed
 
 - Fix detached-component guard in `AsyncItemsController` being too aggressive — add `checkDetached` constructor parameter so that `TreeViewItem` and `FinderColumn` can opt out of the check, since they intentionally load items while detached ([#506](https://github.com/patternfly-java/patternfly-java/issues/506))
@@ -1409,7 +1411,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.3...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.4...HEAD
+[0.13.4]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.3...v0.13.4
 [0.13.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.2...v0.13.3
 [0.13.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.1...v0.13.2
 [0.13.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.0...v0.13.1
