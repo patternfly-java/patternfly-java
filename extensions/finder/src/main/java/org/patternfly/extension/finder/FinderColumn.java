@@ -120,7 +120,7 @@ public class FinderColumn extends FinderSubComponent<HTMLElement, FinderColumn> 
         this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
-        this.async = new AsyncItemsController<>();
+        this.async = new AsyncItemsController<>(false);
         this.selectHandler = new ArrayList<>();
 
         add(ul = ul().css(component(FinderClasses.finder, column, FinderClasses.items))

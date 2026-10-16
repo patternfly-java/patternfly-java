@@ -101,7 +101,7 @@ public class MenuList extends MenuSubComponent<HTMLUListElement, MenuList> imple
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, ul().css(component(menu, list)).element());
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
-        this.async = new AsyncItemsController<>();
+        this.async = new AsyncItemsController<>(true);
         this.loading = defaultLoading;
         this.noItems = defaultNoItems;
         this.error = defaultError;

@@ -172,7 +172,7 @@ public class TreeViewItem extends TreeViewSubComponent<HTMLLIElement, TreeViewIt
                 .element());
         this.identifier = identifier;
         this.domFinished = false;
-        this.async = new AsyncItemsController<>();
+        this.async = new AsyncItemsController<>(false);
         this.items = new LinkedHashMap<>();
         this.data = new HashMap<>();
         this.buttonElements = new ArrayList<>();

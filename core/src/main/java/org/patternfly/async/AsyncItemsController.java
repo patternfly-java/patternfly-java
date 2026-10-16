@@ -43,15 +43,31 @@ public class AsyncItemsController<C, S> {
     // ------------------------------------------------------ instance
 
     private static final Logger logger = Logger.getLogger(AsyncItemsController.class.getName());
+    private final boolean checkDetached;
     private AsyncItems<C, S> asyncItems;
     private AsyncStatus status;
     private int generation;
 
     // ------------------------------------------------------ factory / constructor
 
-    public AsyncItemsController() {
+    /**
+     * Creates a controller with explicit control over detached-component handling.
+     * <p>
+     * When {@code checkDetached} is {@code true}, async results are silently discarded if the component has been detached from
+     * the DOM between the time the request was made and the time the promise resolved. This prevents errors in components like
+     * menus, where a closed menu's items would try to look up a parent component via {@code closest()} on a detached element
+     * tree.
+     * <p>
+     * Pass {@code false} for components that intentionally load items while detached. For example, {@code TreeViewItem} keeps
+     * its children element ({@code <ul>}) detached until the item is expanded. During programmatic loading of a deep path,
+     * items are loaded into detached child elements — the detached check would incorrectly discard those items.
+     *
+     * @param checkDetached {@code true} to discard results for detached components, {@code false} to skip the check
+     */
+    public AsyncItemsController(boolean checkDetached) {
         this.status = static_;
         this.generation = 0;
+        this.checkDetached = checkDetached;
     }
 
     // ------------------------------------------------------ api
@@ -234,7 +250,7 @@ public class AsyncItemsController<C, S> {
     // ------------------------------------------------------ internal
 
     private boolean detached(C component) {
-        if (component instanceof IsElement) {
+        if (checkDetached && component instanceof IsElement) {
             if (!document.body.contains(((IsElement<?>) component).element())) {
                 logger.warning("Discarding async items for detached component");
                 return true;

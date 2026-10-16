@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix detached-component guard in `AsyncItemsController` being too aggressive — add `checkDetached` constructor parameter so that `TreeViewItem` and `FinderColumn` can opt out of the check, since they intentionally load items while detached ([#506](https://github.com/patternfly-java/patternfly-java/issues/506))
+
 ## [0.13.3] - 2026-10-15
 
 ### Fixed
