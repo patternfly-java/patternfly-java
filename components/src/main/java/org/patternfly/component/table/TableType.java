@@ -20,6 +20,8 @@ public enum TableType {
 
     table("grid"),
 
+    expandable("grid"),
+
     treeTable("treegrid");
 
     public final String role;

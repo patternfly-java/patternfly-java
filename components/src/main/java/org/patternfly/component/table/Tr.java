@@ -126,13 +126,13 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private final Map<String, Object> data;
     private final List<ToggleHandler<Tr>> toggleHandler;
     private final LinkedList<Tr> children;
+    private final AurHandler<Tr, Cell<?>> aur;
     private Tr parent;
     private TitleCell titleCell;
     private AsyncStatus status;
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
     private Function<Tr, Promise<Iterable<Tr>>> asyncChildren;
-    private final AurHandler<Tr, Cell<?>> aur;
 
     Tr(String identifier) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))

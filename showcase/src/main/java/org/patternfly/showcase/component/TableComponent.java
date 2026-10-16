@@ -249,11 +249,48 @@ public class TableComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("table-exp", "Expandable",
-                code("table-exp"), () ->
-                // @code-start:table-exp
-                nyi().element()
-                // @code-end:table-exp
-        ));
+                "Repositories with more than three branches are expandable",
+                code("table-exp"), () -> {
+            // @code-start:table-exp
+            List<Repository> repositories = repositories(8);
+            return table()
+                    .selectionMode(multi)
+                    .addHead(thead()
+                            .addRow(tr("table-exp-head")
+                                    .addItem(th().screenReader("Row expansion"))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
+                    .addItems(repositories, repository -> {
+                        boolean expandable = repository.branches > 3;
+                        return tbody("table-exp-body" + repository.id)
+                                .addRow(tr("table-exp-row" + repository.id)
+                                        .run(tr -> {
+                                            if (expandable) {
+                                                tr.addItem(td().text("⌄"));
+                                            } else {
+                                                tr.addItem(td().text(""));
+                                            }
+                                        })
+                                        .addItem(td(columns.get(0).value).text(repository.name))
+                                        .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                        .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                        .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
+                                        .addItem(td(columns.get(4).value)
+                                                .add(htmlElement("relative-time", HTMLElement.class)
+                                                        .attr("datetime", repository.lastCommit.toISOString())
+                                                        .text(repository.lastCommit.toISOString()))))
+                                .run(tbody -> {
+                                    if (expandable) {
+                                        tbody.addRow(tr("table-exp-data" + repository.id)
+                                                .addItem(td().text(""))
+                                                .addItem(td().colSpan(5)
+                                                        .add(div().css("pf-v6-c-table__expandable-row-content")
+                                                                .text(repository.extraData))));
+                                    }
+                                });
+                    })
+                    .element();
+            // @code-end:table-exp
+        }));
 
         addSnippet(new Snippet("table-exp-compound", "Compound expandable",
                 code("table-exp-compound"), () ->
