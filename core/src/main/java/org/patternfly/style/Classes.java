@@ -40,6 +40,7 @@ public interface Classes {
     String alignRight = "align-right";
     String alignTop = "align-top";
     String animateCurrent = "animate-current";
+    String animateExpand = "animate-expand";
     String ariaDisabled = "aria-disabled";
     String arrow = "arrow";
     String attention = "attention";

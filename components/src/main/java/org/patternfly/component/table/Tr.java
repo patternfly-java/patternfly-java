@@ -28,6 +28,7 @@ import java.util.function.Function;
 import org.gwtproject.event.shared.HandlerRegistration;
 import org.jboss.elemento.By;
 import org.jboss.elemento.Elements;
+import org.jboss.elemento.HTMLContainerBuilder;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.logger.Logger;
 import org.patternfly.async.AsyncStatus;
@@ -47,6 +48,7 @@ import org.patternfly.handler.ToggleHandler;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.Event;
+import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLTableRowElement;
@@ -55,6 +57,7 @@ import elemental2.promise.Promise;
 import static elemental2.dom.DomGlobal.clearTimeout;
 import static elemental2.dom.DomGlobal.setTimeout;
 import static java.util.Collections.emptyList;
+import static org.jboss.elemento.Elements.button;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.insertAfter;
 import static org.jboss.elemento.Elements.isAttached;
@@ -75,13 +78,17 @@ import static org.patternfly.core.Roles.row;
 import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.icon.IconSets.rhUi.errorFill;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.expandable;
+import static org.patternfly.style.Classes.expanded;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.selected;
 import static org.patternfly.style.Classes.table;
+import static org.patternfly.style.Classes.toggle;
 import static org.patternfly.style.Classes.tr;
 import static org.patternfly.style.Size.md;
 
 // TODO Add Aria.setsize and Aria.posinset for child rows
+
 /** A table row within a {@link Table} component. */
 public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
         ComponentContext<HTMLTableRowElement, Tr>,
@@ -96,6 +103,10 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
      */
     public static Tr tr(String identifier) {
         return new Tr(identifier);
+    }
+
+    public static Tr expandableTr(String identifier) {
+        return new Tr(identifier).css(component(table, expandable, row));
     }
 
     // ------------------------------------------------------ instance
@@ -126,13 +137,13 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private final Map<String, Object> data;
     private final List<ToggleHandler<Tr>> toggleHandler;
     private final LinkedList<Tr> children;
+    private final AurHandler<Tr, Cell<?>> aur;
     private Tr parent;
     private TitleCell titleCell;
     private AsyncStatus status;
     private HandlerRegistration clickHandler;
     private HandlerRegistration keyHandler;
     private Function<Tr, Promise<Iterable<Tr>>> asyncChildren;
-    private final AurHandler<Tr, Cell<?>> aur;
 
     Tr(String identifier) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.tr().css(component(table, tr))
@@ -279,14 +290,40 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     @Override
     public void collapse(boolean fireEvent) {
         if (expanded()) {
-            Expandable.collapse(element(), element(), null);
-            List<Tr> allChildren = new ArrayList<>();
-            collectAllChildren(allChildren);
-            for (Tr child : allChildren) {
-                child.element().hidden = true;
-            }
-            if (titleCell != null) {
-                titleCell.collapse();
+            Table table = lookupComponent();
+            if (table.type == TableType.expandable) {
+                classList().remove(modifier(expanded));
+                if (tbody != null) {
+                    tbody.classList().remove(modifier(expanded));
+                    HTMLElement trElement = tbody.querySelector(
+                            By.element("tr").and(By.classname(component(Classes.table, expandable, row))));
+                    if (trElement != null) {
+                        HTMLContainerBuilder<HTMLTableRowElement> expandableTr = Elements.tr(trElement);
+                        expandableTr.classList().remove(modifier(expanded));
+                        expandableTr.attr("hidden", true);
+                        expandableTr.attr("inert", true);
+                    }
+                }
+                HTMLElement buttonElement = querySelector(By
+                        .element("td")
+                        .and(By.classname(component(Classes.table, toggle))
+                                .child(By.element("button"))));
+                if (buttonElement != null) {
+                    HTMLContainerBuilder<HTMLButtonElement> button = button(buttonElement);
+                    button.aria(Aria.expanded, false);
+                    button.classList().remove(modifier(expanded));
+                }
+
+            } else if (table.type == TableType.treeTable) {
+                Expandable.collapse(element(), element(), null);
+                List<Tr> allChildren = new ArrayList<>();
+                collectAllChildren(allChildren);
+                for (Tr child : allChildren) {
+                    child.element().hidden = true;
+                }
+                if (titleCell != null) {
+                    titleCell.collapse();
+                }
             }
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), this, false));
@@ -297,16 +334,41 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     @Override
     public void expand(boolean fireEvent) {
         if (!expanded()) {
-            Expandable.expand(element(), element(), null);
-            List<Tr> allChildren = new ArrayList<>();
-            collectAllChildren(allChildren);
-            for (Tr child : allChildren) {
-                boolean parentExpanded = child.parent != null && Boolean.parseBoolean(
-                        child.parent.element().getAttribute(Aria.expanded));
-                child.element().hidden = !parentExpanded;
-            }
-            if (titleCell != null) {
-                titleCell.expand();
+            Table table = lookupComponent();
+            if (table.type == TableType.expandable) {
+                classList().add(modifier(expanded));
+                if (tbody != null) {
+                    tbody.classList().add(modifier(expanded));
+                    HTMLElement trElement = tbody.querySelector(
+                            By.element("tr").and(By.classname(component(Classes.table, expandable, row))));
+                    if (trElement != null) {
+                        trElement.classList.add(modifier(expanded));
+                        trElement.removeAttribute("hidden");
+                        trElement.removeAttribute("inert");
+                    }
+                }
+                HTMLElement buttonElement = querySelector(By
+                        .element("td")
+                        .and(By.classname(component(Classes.table, toggle))
+                                .child(By.element("button"))));
+                if (buttonElement != null) {
+                    HTMLContainerBuilder<HTMLButtonElement> button = button(buttonElement);
+                    button.aria(Aria.expanded, true);
+                    button.classList().add(modifier(expanded));
+                }
+
+            } else if (table.type == TableType.treeTable) {
+                Expandable.expand(element(), element(), null);
+                List<Tr> allChildren = new ArrayList<>();
+                collectAllChildren(allChildren);
+                for (Tr child : allChildren) {
+                    boolean parentExpanded = child.parent != null && Boolean.parseBoolean(
+                            child.parent.element().getAttribute(Aria.expanded));
+                    child.element().hidden = !parentExpanded;
+                }
+                if (titleCell != null) {
+                    titleCell.expand();
+                }
             }
             if (fireEvent) {
                 toggleHandler.forEach(th -> th.onToggle(new Event(""), this, true));

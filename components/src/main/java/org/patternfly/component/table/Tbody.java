@@ -16,21 +16,25 @@
 package org.patternfly.component.table;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
+import org.patternfly.component.ComponentType;
 import org.patternfly.component.emptystate.EmptyState;
 import org.patternfly.core.AddItemHandler;
 import org.patternfly.core.AurHandler;
+import org.patternfly.core.ComponentContext;
+import org.patternfly.core.Dataset;
 import org.patternfly.core.HasIdentifier;
 import org.patternfly.core.Ordered;
 import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.UpdateItemHandler;
-
 import elemental2.dom.HTMLTableSectionElement;
 
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
@@ -46,6 +50,8 @@ import static org.patternfly.style.Classes.tbody;
 
 /** A table body within a {@link Table} component. */
 public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> implements
+        ComponentContext<HTMLTableSectionElement, Tbody>,
+        HasIdentifier<HTMLTableSectionElement, Tbody>,
         Ordered<HTMLTableSectionElement, Tbody, Tr> {
 
     // ------------------------------------------------------ factory
@@ -54,24 +60,51 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
      * Factory method to create a new instance of this component.
      */
     public static Tbody tbody() {
-        return new Tbody();
+        return new Tbody(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID));
+    }
+
+    public static Tbody tbody(String identifier) {
+        return new Tbody(identifier);
     }
 
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_ID = "tbd";
     public static final String SUB_COMPONENT_NAME = "Tbody";
+
     final Map<String, Tr> items;
+    private final String identifier;
+    private final Map<String, Object> data;
     private final AurHandler<Tbody, Tr> aur;
     private Tr emptyRow;
     private Comparator<Tr> comparator;
 
-    Tbody() {
+    Tbody(String identifier) {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, Elements.tbody().css(component(table, tbody))
                 .attr(role, rowgroup)
+                .data(Dataset.identifier, identifier)
                 .element());
+        this.identifier = identifier;
+        this.data = new HashMap<>();
         this.items = new LinkedHashMap<>();
         this.aur = new AurHandler<>(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Tbody tbody = (Tbody) o;
+        return Objects.equals(identifier, tbody.identifier);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(identifier);
     }
 
     // ------------------------------------------------------ add
@@ -102,6 +135,12 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     @Override
+    public <T> Tbody store(String key, T value) {
+        data.put(key, value);
+        return that();
+    }
+
+    @Override
     public Tbody that() {
         return this;
     }
@@ -124,6 +163,24 @@ public class Tbody extends TableSubComponent<HTMLTableSectionElement, Tbody> imp
     }
 
     // ------------------------------------------------------ api
+
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    @Override
+    public boolean has(String key) {
+        return data.containsKey(key);
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key) {
+        if (data.containsKey(key)) {
+            return (T) data.get(key);
+        }
+        return null;
+    }
 
     @Override
     public Comparator<Tr> comparator() {
