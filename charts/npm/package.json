@@ -58,5 +58,5 @@
     "dev": "vite"
   },
   "type": "module",
-  "version": "0.13.5-SNAPSHOT"
+  "version": "0.14.0"
 }
