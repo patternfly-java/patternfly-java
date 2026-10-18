@@ -34,7 +34,6 @@ import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
 import org.patternfly.showcase.model.Repository;
 import org.patternfly.style.Size;
-
 import elemental2.dom.HTMLElement;
 import elemental2.promise.Promise;
 
@@ -48,17 +47,21 @@ import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.emptystate.EmptyState.emptyState;
 import static org.patternfly.component.emptystate.EmptyStateBody.emptyStateBody;
 import static org.patternfly.component.emptystate.EmptyStateFooter.emptyStateFooter;
+import static org.patternfly.component.table.ExpandableRowContent.expandableRowContent;
 import static org.patternfly.component.table.Table.table;
 import static org.patternfly.component.table.TableCaption.tableCaption;
 import static org.patternfly.component.table.TableText.tableText;
+import static org.patternfly.component.table.TableType.expandable;
 import static org.patternfly.component.table.TableType.treeTable;
 import static org.patternfly.component.table.Tbody.tbody;
 import static org.patternfly.component.table.Td.checkboxTd;
+import static org.patternfly.component.table.Td.expandableTd;
 import static org.patternfly.component.table.Td.td;
 import static org.patternfly.component.table.Th.checkboxTh;
 import static org.patternfly.component.table.Th.th;
 import static org.patternfly.component.table.Thead.thead;
 import static org.patternfly.component.table.TitleCell.titleCell;
+import static org.patternfly.component.table.Tr.expandableTr;
 import static org.patternfly.component.table.Tr.tr;
 import static org.patternfly.component.table.Wrap.fitContent;
 import static org.patternfly.component.togglegroup.ToggleGroup.toggleGroup;
@@ -249,11 +252,49 @@ public class TableComponent extends SnippetPage {
         ));
 
         addSnippet(new Snippet("table-exp", "Expandable",
-                code("table-exp"), () ->
-                // @code-start:table-exp
-                nyi().element()
-                // @code-end:table-exp
-        ));
+                "Repositories with more than three branches are expandable",
+                code("table-exp"), () -> {
+            // @code-start:table-exp
+            List<Repository> repositories = repositories(8);
+            return table(expandable)
+                    .selectionMode(multi)
+                    .addHead(thead()
+                            .addRow(tr("table-exp-head")
+                                    .addItem(th().screenReader("Row expansion"))
+                                    .addItems(columns, t -> th(t.key).text(t.value))))
+                    .addItems(repositories, repository -> {
+                        boolean expandable = repository.branches > 3;
+                        return tbody("table-exp-body-" + repository.id)
+                                .addRow(tr("table-exp-row-" + repository.id)
+                                        .run(tr -> {
+                                            if (expandable) {
+                                                tr.addItem(expandableTd());
+                                            } else {
+                                                tr.addItem(td().text(""));
+                                            }
+                                        })
+                                        .addItem(td(columns.get(0).value).text(repository.name))
+                                        .addItem(td(columns.get(1).value).text(String.valueOf(repository.branches)))
+                                        .addItem(td(columns.get(2).value).text(String.valueOf(repository.pullRequests)))
+                                        .addItem(td(columns.get(3).value).text(String.valueOf(repository.workspaces)))
+                                        .addItem(td(columns.get(4).value)
+                                                .add(htmlElement("relative-time", HTMLElement.class)
+                                                        .attr("datetime", repository.lastCommit.toISOString())
+                                                        .text(repository.lastCommit.toISOString()))))
+                                .run(tbody -> {
+                                    if (expandable) {
+                                        tbody.addRow(expandableTr("table-exp-data-" + repository.id)
+                                                .addItem(td().text(""))
+                                                .addItem(td().colSpan(5)
+                                                        .addExpandableRowContent(expandableRowContent()
+                                                                .noPadding()
+                                                                .text(repository.extraData))));
+                                    }
+                                });
+                    })
+                    .element();
+            // @code-end:table-exp
+        }));
 
         addSnippet(new Snippet("table-exp-compound", "Compound expandable",
                 code("table-exp-compound"), () ->
