@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add expandable row support for tables with `ExpandableRowContent` component, toggle controls in `Td`, and expand/collapse logic in `Tr`
+
 ## [0.13.4] - 2026-10-16
 
 ### Fixed

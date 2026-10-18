@@ -88,7 +88,7 @@ public class Table extends BaseComponent<HTMLTableElement, Table> implements
 
     // ------------------------------------------------------ instance
 
-    private final TableType type;
+    final TableType type;
     private final Map<String, Tbody> items;
     private final AurHandler<Table, Tbody> aur;
     private final List<SelectHandler<Tr>> selectHandler;

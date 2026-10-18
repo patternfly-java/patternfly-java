@@ -26,6 +26,17 @@
 }
 
 /* ===================================================================
+   Expandable row content w/o padding
+   =================================================================== */
+
+.pf-v6-c-table__expandable-row .pf-v6-c-table__expandable-row-content.pf-m-no-padding {
+    --pf-v6-c-table__expandable-row-content--PaddingBlockStart: 0;
+    --pf-v6-c-table__expandable-row-content--PaddingBlockEnd: 0;
+    --pf-v6-c-table__expandable-row-content--PaddingInlineStart: 0;
+    --pf-v6-c-table__expandable-row-content--PaddingInlineEnd: 0;
+}
+
+/* ===================================================================
    Shared styles for components using the popover API
    =================================================================== */
 

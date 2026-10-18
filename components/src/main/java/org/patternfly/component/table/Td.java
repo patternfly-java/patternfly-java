@@ -18,19 +18,26 @@ package org.patternfly.component.table;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.Id;
 import org.patternfly.component.ComponentType;
+import org.patternfly.component.button.Button;
+import org.patternfly.core.Aria;
 import org.patternfly.core.Dataset;
 
+import static org.jboss.elemento.Elements.div;
+import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.form.Checkbox.checkbox;
 import static org.patternfly.core.Aria.label;
 import static org.patternfly.core.Attributes.role;
 import static org.patternfly.core.Attributes.tabindex;
 import static org.patternfly.core.Roles.cell;
+import static org.patternfly.icon.IconSets.rhMicrons.caretDown;
 import static org.patternfly.style.Classes.action;
 import static org.patternfly.style.Classes.check;
 import static org.patternfly.style.Classes.component;
+import static org.patternfly.style.Classes.icon;
 import static org.patternfly.style.Classes.modifier;
 import static org.patternfly.style.Classes.table;
 import static org.patternfly.style.Classes.td;
+import static org.patternfly.style.Classes.toggle;
 
 /** A data cell within a table row in a {@link Table} component. */
 public class Td extends Cell<Td> {
@@ -53,6 +60,11 @@ public class Td extends Cell<Td> {
         return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox"), null).addCheckbox();
     }
 
+    public static Td expandableTd() {
+        return new Td(Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "expandable"), null)
+                .addToggle();
+    }
+
     // ------------------------------------------------------ instance
 
     public static final String SUB_COMPONENT_ID = "td";
@@ -67,6 +79,12 @@ public class Td extends Cell<Td> {
         if (column != null) {
             data(Dataset.label, column);
         }
+    }
+
+    // ------------------------------------------------------ add
+
+    public Td addExpandableRowContent(ExpandableRowContent expandableRowContent) {
+        return add(expandableRowContent);
     }
 
     // ------------------------------------------------------ builder
@@ -104,6 +122,25 @@ public class Td extends Cell<Td> {
                     table.select(tr, value);
                 })
         );
+        return this;
+    }
+
+    private Td addToggle() {
+        css(component(table, toggle));
+        String id = Id.unique(ComponentType.Table.id, SUB_COMPONENT_ID, "checkbox");
+        Button button = button();
+        button.plain()
+                .id(id)
+                .aria(Aria.expanded, false)
+                .aria(Aria.label, "Details")
+                .icon(div().css(component(table, toggle, icon))
+                        .add(caretDown())
+                        .element())
+                .onClick((e, b) -> {
+                    Tr tr = lookupSubComponent(Tr.SUB_COMPONENT_ID);
+                    tr.toggle();
+                });
+        add(button);
         return this;
     }
 }
