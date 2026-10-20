@@ -2,7 +2,7 @@
   "name": "patternfly-java-showcase",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.11.2",
+  "packageManager": "pnpm@12.14.0",
   "scripts": {
     "audit:fix": "node audit.mjs",
     "code": "node code.mjs",
