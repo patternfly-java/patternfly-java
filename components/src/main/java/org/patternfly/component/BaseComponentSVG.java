@@ -26,9 +26,10 @@ import org.jboss.elemento.TypedBuilder;
 import org.jboss.elemento.svg.SVGElement;
 import org.jboss.elemento.svg.SVGElementDataMethods;
 import org.jboss.elemento.svg.SVGElementStyleMethods;
+import org.patternfly.core.Ouia;
 
 import static java.util.Objects.requireNonNull;
-import static org.patternfly.core.Ouia.ouia;
+import static org.patternfly.core.Ouia.ouiaId;
 
 /**
  * Base class for PatternFly components backed by an {@link SVGElement}. Currently only used by
@@ -57,11 +58,11 @@ public abstract class BaseComponentSVG<E extends SVGElement, B extends TypedBuil
     protected BaseComponentSVG(ComponentType componentType, E element) {
         this.componentType = requireNonNull(componentType, "component type required");
         this.element = requireNonNull(element, "element required");
-        ouia(element, componentType.componentName);
+        Ouia.ouiaType(element, componentType.componentName);
     }
 
     public B ouiaId(String id) {
-        ouia(element(), id, componentType().componentName);
+        Ouia.ouiaId(element(), id);
         return that();
     }
 

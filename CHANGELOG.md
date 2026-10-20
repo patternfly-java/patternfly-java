@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Update to PatternFly 6.7.0
+- Refactor OUIA API: rename `Ouia.ouia()` to `Ouia.ouiaType()` and `Ouia.ouiaId()` to separate type and id concerns, and remove redundant `initOuia(String)` overload from `OuiaSupport`
+
 ## [0.14.0] - 2026-10-18
 
 ### Added
