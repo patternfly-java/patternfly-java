@@ -88,7 +88,7 @@
         <version.gwt.safehtml>1.0.0-RC1</version.gwt.safehtml> <!-- Only used to link the API doc -->
         <version.junit>6.1.3</version.junit>
         <version.node>v26.3.1</version.node>
-        <version.patternfly>6.6.1</version.patternfly>
+        <version.patternfly>6.7.0</version.patternfly>
 
         <!-- Plugin versions -->
         <version.central.publishing.plugin>0.12.0</version.central.publishing.plugin>
