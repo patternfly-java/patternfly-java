@@ -167,13 +167,13 @@ importers:
   .:
     devDependencies:
       '@patternfly/react-tokens':
-        specifier: 6.7.0
+        specifier: ^6.7.0
         version: 6.7.0
       '@types/node':
-        specifier: 26.6.5
+        specifier: ^26.6.5
         version: 26.6.5
       camelcase:
-        specifier: 10.0.0
+        specifier: ^10.0.0
         version: 10.0.0
 
 packages:

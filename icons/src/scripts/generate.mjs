@@ -21,7 +21,14 @@ import {rhMicrons, rhStandard, rhUi} from "./rhIcons.mjs";
 
 // ------------------------------------------------------ constants
 
-const keywords = ["clone", "default", "import", "new", "package", "private"];
+const keywords = [
+    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "clone",
+    "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally",
+    "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long",
+    "native", "new", "package", "private", "protected", "public", "return", "short", "static",
+    "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try",
+    "void", "volatile", "while",
+];
 const root = "../main/java";
 const path = "org/patternfly/icon";
 const package_ = path.replaceAll('/', '.');
