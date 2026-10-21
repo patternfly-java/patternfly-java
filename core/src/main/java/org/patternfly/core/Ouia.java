@@ -39,10 +39,18 @@ import static elemental2.dom.DomGlobal.window;
 public final class Ouia {
 
     /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given HTML element. */
-    public static void ouia(HTMLElement element, String componentType) {
+    public static void ouiaType(HTMLElement element, String componentType) {
         if (element != null && componentType != null && isSupported()) {
             element.dataset.set("ouiaComponentType", componentType);
             element.dataset.set("ouiaSafe", "true");
+        }
+    }
+
+    /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given SVG element. */
+    public static void ouiaType(SVGElement element, String componentType) {
+        if (element != null && componentType != null && isSupported()) {
+            svgDataset(element).set("ouiaComponentType", componentType);
+            svgDataset(element).set("ouiaSafe", "true");
         }
     }
 
@@ -50,21 +58,9 @@ public final class Ouia {
      * Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given
      * HTML element.
      */
-    public static void ouia(HTMLElement element, String componentId, String componentType) {
-        if (element != null && componentType != null && isSupported()) {
-            if (componentId != null) {
-                element.dataset.set("ouiaComponentId", componentId);
-            }
-            element.dataset.set("ouiaComponentType", componentType);
-            element.dataset.set("ouiaSafe", "true");
-        }
-    }
-
-    /** Sets {@code data-ouia-component-type} and {@code data-ouia-safe="true"} on the given SVG element. */
-    public static void ouia(SVGElement element, String componentType) {
-        if (element != null && componentType != null && isSupported()) {
-            svgDataset(element).set("ouiaComponentType", componentType);
-            svgDataset(element).set("ouiaSafe", "true");
+    public static void ouiaId(HTMLElement element, String componentId) {
+        if (element != null && componentId != null && isSupported()) {
+            element.dataset.set("ouiaComponentId", componentId);
         }
     }
 
@@ -72,13 +68,9 @@ public final class Ouia {
      * Sets {@code data-ouia-component-id}, {@code data-ouia-component-type}, and {@code data-ouia-safe="true"} on the given SVG
      * element.
      */
-    public static void ouia(SVGElement element, String componentId, String componentType) {
-        if (element != null && componentType != null && isSupported()) {
-            if (componentId != null) {
-                svgDataset(element).set("ouiaComponentId", componentId);
-            }
-            svgDataset(element).set("ouiaComponentType", componentType);
-            svgDataset(element).set("ouiaSafe", "true");
+    public static void ouiaId(SVGElement element, String componentId) {
+        if (element != null && componentId != null && isSupported()) {
+            svgDataset(element).set("ouiaComponentId", componentId);
         }
     }
 

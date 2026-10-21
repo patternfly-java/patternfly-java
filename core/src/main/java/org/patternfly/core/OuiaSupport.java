@@ -51,17 +51,12 @@ public interface OuiaSupport<E extends HTMLElement, B extends TypedBuilder<E, B>
 
     /** Initializes OUIA attributes ({@code data-ouia-component-type} and {@code data-ouia-safe}) on this component's element. */
     default void initOuia() {
-        Ouia.ouia(element(), ouiaComponentType());
-    }
-
-    /** Initializes OUIA attributes with a component ID on this component's element. */
-    default void initOuia(String id) {
-        Ouia.ouia(element(), id, ouiaComponentType());
+        Ouia.ouiaType(element(), ouiaComponentType());
     }
 
     /** Sets the {@code data-ouia-component-id} attribute on this component's element. */
     default B ouiaId(String id) {
-        Ouia.ouia(element(), id, ouiaComponentType());
+        Ouia.ouiaId(element(), id);
         return that();
     }
 

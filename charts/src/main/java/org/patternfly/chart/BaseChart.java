@@ -57,7 +57,7 @@ public abstract class BaseChart<E extends ChartElement, B extends TypedBuilder<E
     protected BaseChart(ChartType chartType, E element) {
         this.chartType = requireNonNull(chartType, "chart type required");
         this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
-        initOuia(chartType.id);
+        initOuia();
     }
 
     @Override
