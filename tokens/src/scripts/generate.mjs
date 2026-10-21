@@ -19,7 +19,14 @@ import * as TOKENS from "@patternfly/react-tokens";
 
 // ------------------------------------------------------ constants
 
-const keywords = ["clone", "import", "package", "private"];
+const keywords = [
+    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "clone",
+    "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally",
+    "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long",
+    "native", "new", "package", "private", "protected", "public", "return", "short", "static",
+    "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try",
+    "void", "volatile", "while",
+];
 const root = "../main/java";
 const path = "org/patternfly/token";
 const package_ = path.replaceAll('/', '.');

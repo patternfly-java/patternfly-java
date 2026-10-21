@@ -167,19 +167,19 @@ importers:
   .:
     devDependencies:
       '@patternfly/react-tokens':
-        specifier: ^6.6.1
-        version: 6.6.1
+        specifier: ^6.7.0
+        version: 6.7.0
       '@types/node':
-        specifier: 26.6.5
+        specifier: ^26.6.5
         version: 26.6.5
       camelcase:
-        specifier: 10.0.0
+        specifier: ^10.0.0
         version: 10.0.0
 
 packages:
 
-  '@patternfly/react-tokens@6.6.1':
-    resolution: {integrity: sha512-t7dDEJMnO3QkdIKyjbyKJznVYki9ONZG27Cn/9RXwaM0lDGCrgQEJXy2XoVUCdYhIdXZu+TGSEqXeNFYUyZECg==}
+  '@patternfly/react-tokens@6.7.0':
+    resolution: {integrity: sha512-jH96EUmjSUSTabxkBvxb95Fr+7baMACNlGBSUwOYJJcJQTE2N78lhRf8muoUKBFzpkmzn/w0KThoiBQRD2TdMw==}
 
   '@types/node@26.6.5':
     resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
@@ -193,7 +193,7 @@ packages:
 
 snapshots:
 
-  '@patternfly/react-tokens@6.6.1': {}
+  '@patternfly/react-tokens@6.7.0': {}
 
   '@types/node@26.6.5':
     dependencies:
