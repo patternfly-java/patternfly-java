@@ -58,7 +58,7 @@ public abstract class BaseLayout<E extends HTMLElement, B extends TypedBuilder<E
     protected BaseLayout(LayoutType layoutType, E element) {
         this.layoutType = requireNonNull(layoutType, "layout type required");
         this.element = Js.uncheckedCast(requireNonNull(element, "element required"));
-        initOuia(layoutType.id);
+        initOuia();
     }
 
     @Override
