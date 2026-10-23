@@ -2,7 +2,7 @@
   "name": "patternfly-java-showcase",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.14.0",
+  "packageManager": "pnpm@12.15.0",
   "scripts": {
     "audit:fix": "node audit.mjs",
     "code": "node code.mjs",
@@ -30,7 +30,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
-    "vite": "8.3.4",
+    "vite": "8.3.5",
     "yaml": "^2.9.1"
   }
 }
