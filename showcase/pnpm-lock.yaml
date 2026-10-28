@@ -174,8 +174,8 @@ importers:
         version: 6.7.0
     devDependencies:
       '@patternfly/documentation-framework':
-        specifier: 6.54.3
-        version: 6.54.3(@patternfly/patternfly@6.7.0)(@patternfly/react-code-editor@6.7.0(monaco-editor@0.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.7.1-prerelease.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(webpack@5.112.2(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.34.5)(uglify-js@3.19.3))
+        specifier: 6.54.4
+        version: 6.54.4(@patternfly/patternfly@6.7.0)(@patternfly/react-code-editor@6.7.0(monaco-editor@0.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.7.1-prerelease.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(webpack@5.112.2(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.34.5)(uglify-js@3.19.3))
       '@shikijs/rehype':
         specifier: ^4.5.0
         version: 4.5.0
@@ -1292,8 +1292,8 @@ packages:
   '@patternfly/ast-helpers@1.26.2':
     resolution: {integrity: sha512-oN8pYX2Ekep0m6uFbTe4j+YjQhubWqDR0Yoj4jJSKp3gnbi+SknOEzvzMMqjCi1bWODjfmaerKBxN2WaW7c7dA==}
 
-  '@patternfly/documentation-framework@6.54.3':
-    resolution: {integrity: sha512-qdkOWQg4rEAFgs54OkSR9gmOTA+BsnC822E8vBtVsgUBGprZL/TADSrLilRSYSrSkLeW+EKLVqIHkDx3/KwYWQ==}
+  '@patternfly/documentation-framework@6.54.4':
+    resolution: {integrity: sha512-HUWqiAduH/h758l/wieQUF9DqaPcm6ewoWg+hliOjRQF9TPVIX7AhA6xC8DA0CHZTlqFAadIgLt0LQjH+bip2w==}
     hasBin: true
     peerDependencies:
       '@patternfly/patternfly': ^6.7.0
@@ -6657,7 +6657,7 @@ snapshots:
       acorn-static-class-features: 1.0.0(acorn@8.19.0)
       astring: 1.9.0
 
-  '@patternfly/documentation-framework@6.54.3(@patternfly/patternfly@6.7.0)(@patternfly/react-code-editor@6.7.0(monaco-editor@0.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.7.1-prerelease.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(webpack@5.112.2(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.34.5)(uglify-js@3.19.3))':
+  '@patternfly/documentation-framework@6.54.4(@patternfly/patternfly@6.7.0)(@patternfly/react-code-editor@6.7.0(monaco-editor@0.57.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-core@6.7.1-prerelease.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-icons@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@patternfly/react-table@6.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(debug@4.4.3(supports-color@8.1.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(webpack@5.112.2(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.31)(sharp@0.34.5)(uglify-js@3.19.3))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/preset-env': 7.29.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
