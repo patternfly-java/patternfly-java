@@ -18,7 +18,7 @@
     "@patternfly/patternfly": "^6.7.0"
   },
   "devDependencies": {
-    "@patternfly/documentation-framework": "6.54.3",
+    "@patternfly/documentation-framework": "6.54.4",
     "@shikijs/rehype": "^4.5.0",
     "esbuild": "^0.28.2",
     "http-server": "^14.1.1",
