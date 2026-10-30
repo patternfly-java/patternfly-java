@@ -728,7 +728,7 @@ public class Tabs extends BaseComponent<HTMLElement, Tabs> implements
             tab.content.classList().add(modifier(Classes.secondary));
         }
         element().appendChild(tab.content.element());
-        tab.content.element().hidden = true;
+        tab.content.element().hidden = HTMLElement.HiddenUnionType.of(true);
     }
 
     private void internalClose(Tab tab) {

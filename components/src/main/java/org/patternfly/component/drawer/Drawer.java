@@ -136,7 +136,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         ouiaTransition();
         element().classList.remove(modifier(expanded));
         if (panel != null) {
-            panel.element().hidden = true;
+            panel.element().hidden = HTMLElement.HiddenUnionType.of(true);
             panel.element().setAttribute("inert", "");
         }
         if (fireEvent) {
@@ -149,7 +149,7 @@ public class Drawer extends BaseComponent<HTMLElement, Drawer> implements
         ouiaTransition();
         element().classList.add(modifier(expanded));
         if (panel != null) {
-            panel.element().hidden = false;
+            panel.element().hidden = HTMLElement.HiddenUnionType.of(false);
             panel.element().removeAttribute("inert");
         }
         if (fireEvent) {

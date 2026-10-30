@@ -25,6 +25,7 @@ import org.patternfly.core.Aria;
 import org.patternfly.style.Classes;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 import elemental2.dom.MutationRecord;
 
 import static org.jboss.elemento.Elements.div;
@@ -167,12 +168,12 @@ public class MenuContent extends MenuSubComponent<HTMLDivElement, MenuContent> i
     void showFavorites(boolean visible) {
         if (favoritesDivider != null) {
             setVisible(favoritesDivider, visible);
-            favoritesDivider.element().hidden = !visible;
+            favoritesDivider.element().hidden = HTMLElement.HiddenUnionType.of(!visible);
             favoritesDivider.element().setAttribute(Aria.hidden, !visible);
         }
         if (favoritesGroup != null) {
             setVisible(favoritesGroup, visible);
-            favoritesGroup.element().hidden = !visible;
+            favoritesGroup.element().hidden = HTMLElement.HiddenUnionType.of(!visible);
             favoritesGroup.element().setAttribute(Aria.hidden, !visible);
         }
     }

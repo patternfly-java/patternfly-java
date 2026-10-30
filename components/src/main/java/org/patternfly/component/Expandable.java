@@ -46,7 +46,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
                 toggle.setAttribute(Aria.expanded, false);
             }
             if (menu != null) {
-                menu.hidden = true;
+                menu.hidden = HTMLElement.HiddenUnionType.of(true);
             }
         }
     }
@@ -63,7 +63,7 @@ public interface Expandable<E extends Element, B extends TypedBuilder<E, B>> ext
                 toggle.setAttribute(Aria.expanded, true);
             }
             if (menu != null) {
-                menu.hidden = false;
+                menu.hidden = HTMLElement.HiddenUnionType.of(false);
             }
         }
     }
