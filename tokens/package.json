@@ -2,13 +2,13 @@
   "name": "icons",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@12.15.0",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
     "generate": "node src/scripts/generate.mjs"
   },
   "devDependencies": {
     "@patternfly/react-tokens": "^6.7.0",
-    "@types/node": "^26.6.5",
+    "@types/node": "26.6.6",
     "camelcase": "^10.0.0"
   }
 }
