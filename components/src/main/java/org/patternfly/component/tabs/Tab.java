@@ -400,7 +400,7 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                                 content = c;
                                 asyncContent = null;
                                 tabs.addTabContent(this);
-                                content.element().hidden = false;
+                                content.element().hidden = HTMLElement.HiddenUnionType.of(false);
                                 return null;
                             })
                             .catch_(error -> {
@@ -412,12 +412,12 @@ public class Tab extends TabSubComponent<HTMLElement, Tab> implements
                     logger.error("No content defined for tab %o", element());
                 }
             } else {
-                content.element().hidden = false;
+                content.element().hidden = HTMLElement.HiddenUnionType.of(false);
             }
         } else {
             classList().remove(modifier(current));
             if (content != null) {
-                content.element().hidden = true;
+                content.element().hidden = HTMLElement.HiddenUnionType.of(true);
             }
         }
     }

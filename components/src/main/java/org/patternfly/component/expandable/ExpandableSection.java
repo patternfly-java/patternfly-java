@@ -234,7 +234,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             toggle.collapse(directionUp);
         }
         if (content != null) {
-            content.element().hidden = true;
+            content.element().hidden = HTMLElement.HiddenUnionType.of(true);
         } else if (detached) {
             // Two different expandable sections! The call above is for the one containing the trigger.
             contentEsElement.classList.remove(modifier(expanded));
@@ -252,7 +252,7 @@ public class ExpandableSection extends BaseComponent<HTMLDivElement, ExpandableS
             toggle.expand(directionUp);
         }
         if (content != null) {
-            content.element().hidden = false;
+            content.element().hidden = HTMLElement.HiddenUnionType.of(false);
         } else if (detached) {
             // Two different expandable sections! The call above is for the one containing the trigger.
             contentEsElement.classList.add(modifier(expanded));
