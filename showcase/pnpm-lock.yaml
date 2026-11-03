@@ -3986,8 +3986,8 @@ packages:
     engines: {node: '>=4'}
     deprecated: This module is not used anymore, npm uses minipass-fetch for its fetch implementation now
 
-  node-forge@1.4.0:
-    resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==}
+  node-forge@1.4.2:
+    resolution: {integrity: sha512-rRtAR5XLJ8gCKd9du4qrKAsgCG1ObGP4gLeNJMa4vYSeq4bmBMOJk5IHkrviBV0q7uoAJlVd8HEQYQSVUb4FGQ==}
     engines: {node: '>= 6.13.0'}
 
   node-releases@2.0.60:
@@ -9746,7 +9746,7 @@ snapshots:
       json-parse-better-errors: 1.0.2
       safe-buffer: 5.2.1
 
-  node-forge@1.4.0: {}
+  node-forge@1.4.2: {}
 
   node-releases@2.0.60: {}
 
@@ -10596,7 +10596,7 @@ snapshots:
   selfsigned@2.4.1:
     dependencies:
       '@types/node-forge': 1.3.14
-      node-forge: 1.4.0
+      node-forge: 1.4.2
 
   selfsigned@5.5.0:
     dependencies:
