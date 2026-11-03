@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix showcase production build failure caused by missing Closure Compiler externs for new DOM types in elemental2 1.4.0-RC2 by upgrading Elemento from 2.5.11 to 2.5.12
+
 ## [0.14.2] - 2026-11-03
 
 ### Changed
