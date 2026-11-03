@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- Prepare for Elemental2 1.4.0: adapt `HTMLElement.hidden` assignments to new `HiddenUnionType` API across expandable components (Alert, Card, Drawer, ExpandableSection, Menu, Navigation, Table, Tabs)
+- Upgrade Elemento from 2.5.10 to 2.5.11
+- Upgrade Elemental2 from 1.3.2 to 1.4.0-RC2
+
+### Security
+
+- Fix Dependabot security alerts by bumping node-forge from 1.4.0 to 1.4.2 and brace-expansion from 5.0.6 to 5.0.12
+
 ## [0.14.1] - 2026-10-27
 
 ### Changed
