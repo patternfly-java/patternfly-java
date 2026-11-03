@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.14.3] - 2026-11-03
+
 ### Fixed
 
 - Fix showcase production build failure caused by missing Closure Compiler externs for new DOM types in elemental2 1.4.0-RC2 by upgrading Elemento from 2.5.11 to 2.5.12
@@ -1440,7 +1442,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.2...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.3...HEAD
+[0.14.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.2...v0.14.3
 [0.14.2]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.1...v0.14.2
 [0.14.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.0...v0.14.1
 [0.14.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.13.4...v0.14.0
