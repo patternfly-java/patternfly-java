@@ -18,6 +18,7 @@ package org.patternfly.component.card;
 import org.patternfly.style.Modifiers.NoFill;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.style.Classes.card;
@@ -43,7 +44,7 @@ public class CardExpandableContent extends CardSubComponent<HTMLDivElement, Card
 
     CardExpandableContent() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(card, expandableContent))
-                .apply(e -> e.hidden = true)
+                .apply(e -> e.hidden = HTMLElement.HiddenUnionType.of(true))
                 .element());
     }
 

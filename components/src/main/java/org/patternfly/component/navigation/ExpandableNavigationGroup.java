@@ -359,7 +359,7 @@ public class ExpandableNavigationGroup extends NavigationSubComponent<HTMLLIElem
     void collapse() {
         element().classList.remove(modifier("expanded"));
         buttonElement.setAttribute(Aria.expanded, false);
-        section.hidden = true;
+        section.hidden = HTMLElement.HiddenUnionType.of(true);
         section.setAttribute("inert", "");
     }
 }

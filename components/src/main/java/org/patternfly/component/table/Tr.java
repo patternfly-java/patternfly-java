@@ -319,7 +319,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
                 List<Tr> allChildren = new ArrayList<>();
                 collectAllChildren(allChildren);
                 for (Tr child : allChildren) {
-                    child.element().hidden = true;
+                    child.element().hidden = HTMLElement.HiddenUnionType.of(true);
                 }
                 if (titleCell != null) {
                     titleCell.collapse();
@@ -364,7 +364,7 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
                 for (Tr child : allChildren) {
                     boolean parentExpanded = child.parent != null && Boolean.parseBoolean(
                             child.parent.element().getAttribute(Aria.expanded));
-                    child.element().hidden = !parentExpanded;
+                    child.element().hidden = HTMLElement.HiddenUnionType.of(!parentExpanded);
                 }
                 if (titleCell != null) {
                     titleCell.expand();
@@ -556,7 +556,8 @@ public class Tr extends TableSubComponent<HTMLTableRowElement, Tr> implements
     private void internalAddChild(Tr child, HTMLElement after) {
         child.tbody = tbody;
         child.parent = this;
-        child.element().hidden = !Boolean.parseBoolean(element().getAttribute(Aria.expanded));
+        child.element().hidden =
+                HTMLElement.HiddenUnionType.of(!Boolean.parseBoolean(element().getAttribute(Aria.expanded)));
         int currentLevel = currentLevel();
         if (currentLevel > 0) {
             child.aria(Aria.level, currentLevel + 1);

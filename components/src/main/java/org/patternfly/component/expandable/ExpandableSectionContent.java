@@ -18,6 +18,7 @@ package org.patternfly.component.expandable;
 import org.jboss.elemento.ElementTextMethods;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.div;
 import static org.patternfly.core.Roles.region;
@@ -42,7 +43,7 @@ public class ExpandableSectionContent extends ExpandableSectionSubComponent<HTML
 
     ExpandableSectionContent() {
         super(SUB_COMPONENT_ID, SUB_COMPONENT_NAME, div().css(component(expandableSection, content))
-                .apply(e -> e.hidden = true)
+                .apply(e -> e.hidden = HTMLElement.HiddenUnionType.of(true))
                 .role(region)
                 .element());
     }
