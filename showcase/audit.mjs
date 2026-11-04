@@ -32,11 +32,18 @@ function currentIgnored() {
 }
 
 function auditGhsas() {
+  // Temporarily strip ignoreGhsas entries so pnpm audit reports ALL vulnerabilities,
+  // not just unignored ones. Without this, ignored entries look "stale" every run.
+  const original = readFileSync(WORKSPACE, "utf8");
+  const stripped = original.replace(/^(\s+ignoreGhsas:\n)((?:\s+-\s+GHSA-[a-z0-9-]+\n)*)/m, "$1");
+  writeFileSync(WORKSPACE, stripped);
   let output;
   try {
     output = execSync("pnpm audit 2>&1", { encoding: "utf8" });
   } catch (e) {
     output = e.stdout || "";
+  } finally {
+    writeFileSync(WORKSPACE, original);
   }
   const matches = output.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
   return [...new Set(matches || [])].sort();
