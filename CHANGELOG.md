@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add pagination component with page navigation controls, page size selector, and page number input field
+- Add pagination component with page navigation controls, page size selector, and page number input field ([#76](https://github.com/patternfly-java/patternfly-java/issues/76))
 
 ### Changed
 
