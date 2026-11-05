@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add pagination component with page navigation controls, page size selector, and page number input field
+
+### Changed
+
+- Move `PageInfo` from `org.patternfly.dataprovider` to `org.patternfly.component.pagination` and convert to an immutable record
+
+### Removed
+
+- Remove unused `DataProvider`, `Display`, `ItemDisplay`, `SelectionInfo`, and `SortInfo` classes from `org.patternfly.dataprovider`
+
 ## [0.14.3] - 2026-11-03
 
 ### Fixed
