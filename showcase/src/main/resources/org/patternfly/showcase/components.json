@@ -436,6 +436,7 @@
     "name": "pagination",
     "title": "Pagination",
     "route": "/components/pagination",
+    "clazz": "org.patternfly.component.pagination.Pagination",
     "illustration": "pagination.png",
     "summary": "A <b>pagination</b> component allows users to navigate through large content views that have been split across multiple pages."
   },

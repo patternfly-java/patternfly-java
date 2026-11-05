@@ -437,6 +437,10 @@ public class MenuToggle extends BaseComponent<HTMLElement, MenuToggle> implement
         return null;
     }
 
+    public HTMLElement textElement() {
+        return textElement;
+    }
+
     public BaseSearchInputGroup<?> searchInput() {
         return searchInput;
     }

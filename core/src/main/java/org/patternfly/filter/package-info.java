@@ -99,23 +99,7 @@
  * filter.set("flag", true, (oldValue, newValue) -> !oldValue);
  *}
  *
- * <h2>Integration with Data Provider</h2>
- *
- * <p>Filters work seamlessly with {@link org.patternfly.dataprovider.DataProvider}:
- * <p>
- * {@snippet :
- * Filter<User> filter = new Filter<>(FilterOperator.AND)
- *     .add(new FilterAttribute<>("search", (u, v) -> u.name().contains(v)));
- *
- * DataProvider<User> dataProvider = new DataProvider<>(User::id);
- *
- * filter.onChange((f, origin) -> {
- *     dataProvider.addFilter("user-filter", user -> f.match(user));
- * });
- *}
- *
  * @see org.patternfly.filter.Filter
  * @see org.patternfly.filter.FilterAttribute
- * @see org.patternfly.dataprovider.DataProvider
  */
 package org.patternfly.filter;

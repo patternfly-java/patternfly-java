@@ -26,6 +26,16 @@
 }
 
 /* ===================================================================
+   Compact pagination
+   =================================================================== */
+
+.pf-v6-c-pagination.pf-m-compact .pf-v6-c-pagination__nav-control.pf-m-first,
+.pf-v6-c-pagination.pf-m-compact .pf-v6-c-pagination__nav-page-select,
+.pf-v6-c-pagination.pf-m-compact .pf-v6-c-pagination__nav-control.pf-m-last {
+    display: none;
+}
+
+/* ===================================================================
    Expandable row content w/o padding
    =================================================================== */
 

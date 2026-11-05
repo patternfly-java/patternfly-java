@@ -117,6 +117,8 @@ public enum ComponentType {
 
     Page("pg", "PF6/Component/Page"),
 
+    Pagination("pgn", "PF6/Component/Pagination"),
+
     PageHeader("ph", "PF6/Component/PageHeader"),
 
     Panel("pnl", "PF6/Component/Panel"),

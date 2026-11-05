@@ -13,14 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.patternfly.dataprovider;
+package org.patternfly.component.pagination;
 
-/** Displays items managed by a {@link DataProvider}. */
-public interface Display<T> {
+public enum PageSize {
 
-    void showItems(Iterable<T> items, PageInfo pageInfo);
+    _10("10-per-page", 10, "10 per page"),
+    _20("20-per-page", 20, "20 per page"),
+    _50("50-per-page", 50, "50 per page"),
+    _100("100-per-page", 100, "100 per page"),
+    ;
 
-    void updateSelection(SelectionInfo<T> selectionInfo);
+    public final String identifier;
+    public final int value;
+    public final String text;
 
-    void updateSortInfo(SortInfo<T> sortInfo);
+    PageSize(String identifier, int value, String text) {
+        this.identifier = identifier;
+        this.value = value;
+        this.text = text;
+    }
 }

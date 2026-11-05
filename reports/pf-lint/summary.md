@@ -1,7 +1,7 @@
 # PF Lint Summary
 
 **Date:** 2026-10-06
-**Components:** 51
+**Components:** 52
 **Total errors:** 0
 **Total warnings:** 0
 
@@ -38,6 +38,7 @@
 | notification | 9 | clean |
 | numberinput | 3 | clean |
 | page | 22 | clean |
+| pagination | 6 | clean |
 | panel | 6 | clean |
 | popover | 6 | clean |
 | progress | 4 | clean |
