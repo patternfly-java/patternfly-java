@@ -87,7 +87,7 @@ import "@patternfly-java/finder";
 PatternFly Java consists of these Maven modules (a-z):
 
 | Module                     | Description           |
-|----------------------------|-----------------------|
+| -------------------------- | --------------------- |
 | patternfly-java-bom        | Bill of materials     |
 | patternfly-java-charts     | Charts                |
 | patternfly-java-codeeditor | Code editor extension |

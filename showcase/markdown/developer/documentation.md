@@ -38,7 +38,6 @@ id: my-page
 title: My Page
 order: 3
 ---
-
 # My Page
 
 Content goes here...
@@ -46,22 +45,22 @@ Content goes here...
 
 ### Frontmatter Fields
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| `id` | Yes | Route segment and JSON filename. Must be unique within its folder. |
-| `title` | Yes | Page title shown in the browser tab and navigation. |
-| `order` | No | Sort order within the parent folder. Lower numbers come first. Defaults to 0. Pages with the same order are sorted alphabetically by title. |
+| Field   | Required | Description                                                                                                                                 |
+| ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`    | Yes      | Route segment and JSON filename. Must be unique within its folder.                                                                          |
+| `title` | Yes      | Page title shown in the browser tab and navigation.                                                                                         |
+| `order` | No       | Sort order within the parent folder. Lower numbers come first. Defaults to 0. Pages with the same order are sorted alphabetically by title. |
 
 ### When Java Changes Are Needed
 
 Routes are registered automatically from the manifest — **you never need a Java page class for markdown pages**. However, navigation placement in `Showcase.java` follows these rules:
 
-| Action | Java change needed? |
-|--------|---------------------|
-| Add a page inside an existing folder | **No** — appears automatically |
-| Add a new top-level page (root level) | **Yes** — add `manifest.navItem(placeManager, "/my-page")` to navigation in `Showcase.java` |
-| Add a new folder | **Yes** — add `manifest.navGroup(placeManager, "my-folder")` to navigation in `Showcase.java` |
-| Add a page inside a new subfolder of an existing folder | **No** — nested groups are built recursively |
+| Action                                                  | Java change needed?                                                                           |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Add a page inside an existing folder                    | **No** — appears automatically                                                                |
+| Add a new top-level page (root level)                   | **Yes** — add `manifest.navItem(placeManager, "/my-page")` to navigation in `Showcase.java`   |
+| Add a new folder                                        | **Yes** — add `manifest.navGroup(placeManager, "my-folder")` to navigation in `Showcase.java` |
+| Add a page inside a new subfolder of an existing folder | **No** — nested groups are built recursively                                                  |
 
 The reason top-level items and new folders need manual placement is to control their position relative to non-markdown sections (Components, Extensions, Charts, Layouts).
 
@@ -99,12 +98,10 @@ Each markdown file produces a JSON file with:
 
 ```json
 {
-  "id": "developer/building",
-  "title": "Building",
-  "html": "<h1>...</h1>...",
-  "toc": [
-    { "id": "prerequisites", "text": "Prerequisites", "level": 2 }
-  ]
+    "id": "developer/building",
+    "title": "Building",
+    "html": "<h1>...</h1>...",
+    "toc": [{ "id": "prerequisites", "text": "Prerequisites", "level": 2 }]
 }
 ```
 
@@ -114,14 +111,23 @@ The `manifest.json` file describes the navigation tree:
 
 ```json
 [
-  { "type": "page", "id": "get-started", "route": "/get-started", "title": "Get started", "order": 1 },
-  {
-    "type": "group", "id": "developer", "route": "/developer",
-    "title": "Developer", "order": 5,
-    "children": [
-      { "type": "page", "id": "developer/api-design", "route": "/developer/api-design", "title": "API design", "order": 0 }
-    ]
-  }
+    { "type": "page", "id": "get-started", "route": "/get-started", "title": "Get started", "order": 1 },
+    {
+        "type": "group",
+        "id": "developer",
+        "route": "/developer",
+        "title": "Developer",
+        "order": 5,
+        "children": [
+            {
+                "type": "page",
+                "id": "developer/api-design",
+                "route": "/developer/api-design",
+                "title": "API design",
+                "order": 0
+            }
+        ]
+    }
 ]
 ```
 

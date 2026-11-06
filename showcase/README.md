@@ -38,4 +38,5 @@ cd showcase
 mvn com.github.eirslett:frontend-maven-plugin:corepack@http-server
 
 ```
+
 After a successful build, open https://localhost:8080

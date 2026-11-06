@@ -9,14 +9,14 @@ PatternFly Java uses GitHub Actions for continuous integration, snapshot publish
 
 ## Workflow Overview
 
-| Workflow | Trigger | Purpose |
-|----------|---------|---------|
-| [verify.yml](#verify) | Push/PR to `main` | Validate the build |
-| [snapshot.yml](#snapshot) | After verify succeeds | Publish snapshot artifacts |
-| [publish-docs.yml](#publish-docs) | Push to `showcase/markdown/**` or manual | Update markdown documentation |
-| [showcase.yml](#showcase) | Manual dispatch | Publish showcase website |
-| [apidocs.yml](#apidocs) | Manual dispatch | Publish API documentation |
-| [release.yml](#release) | Tag `v*` | Full release pipeline (see [Releasing](/releasing)) |
+| Workflow                          | Trigger                                  | Purpose                                             |
+| --------------------------------- | ---------------------------------------- | --------------------------------------------------- |
+| [verify.yml](#verify)             | Push/PR to `main`                        | Validate the build                                  |
+| [snapshot.yml](#snapshot)         | After verify succeeds                    | Publish snapshot artifacts                          |
+| [publish-docs.yml](#publish-docs) | Push to `showcase/markdown/**` or manual | Update markdown documentation                       |
+| [showcase.yml](#showcase)         | Manual dispatch                          | Publish showcase website                            |
+| [apidocs.yml](#apidocs)           | Manual dispatch                          | Publish API documentation                           |
+| [release.yml](#release)           | Tag `v*`                                 | Full release pipeline (see [Releasing](/releasing)) |
 
 ## Verify
 
@@ -94,11 +94,11 @@ Orchestrates the full release pipeline. This is covered in detail on the [Releas
 
 The following GitHub secrets are required by the CI/CD workflows:
 
-| Secret | Used by | Purpose |
-|--------|---------|---------|
-| `CENTRAL_USERNAME` | snapshot, release | Maven Central authentication |
-| `CENTRAL_PASSWORD` | snapshot, release | Maven Central authentication |
-| `MAVEN_GPG_PRIVATE_KEY` | release | GPG signing of release artifacts |
-| `MAVEN_GPG_PASSPHRASE` | release | GPG key passphrase |
-| `PUBLISH_CONTENT` | publish-docs, showcase, apidocs, release | GitHub token for pushing to `patternfly-java.github.io` and `patternfly-java/apidocs` |
-| `GITHUB_TOKEN` | release | Create GitHub Release (provided automatically) |
+| Secret                  | Used by                                  | Purpose                                                                               |
+| ----------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------- |
+| `CENTRAL_USERNAME`      | snapshot, release                        | Maven Central authentication                                                          |
+| `CENTRAL_PASSWORD`      | snapshot, release                        | Maven Central authentication                                                          |
+| `MAVEN_GPG_PRIVATE_KEY` | release                                  | GPG signing of release artifacts                                                      |
+| `MAVEN_GPG_PASSPHRASE`  | release                                  | GPG key passphrase                                                                    |
+| `PUBLISH_CONTENT`       | publish-docs, showcase, apidocs, release | GitHub token for pushing to `patternfly-java.github.io` and `patternfly-java/apidocs` |
+| `GITHUB_TOKEN`          | release                                  | Create GitHub Release (provided automatically)                                        |

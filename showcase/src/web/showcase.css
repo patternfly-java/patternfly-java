@@ -17,7 +17,8 @@
     --pf-v6-c-content--FontSize: var(--pf-t--global--font--size--lg);
 }
 
-.pfj-popover-box, .pfj-tooltip-box {
+.pfj-popover-box,
+.pfj-tooltip-box {
     height: 450px;
     position: relative;
     width: 100%;
@@ -31,13 +32,14 @@
 .pfj-popover-box::after,
 .pfj-tooltip-box::before,
 .pfj-tooltip-box::after {
-    content: '';
+    content: "";
     display: block;
     width: 1500px;
     height: 600px;
 }
 
-.pfj-popover-button, .pfj-tooltip-button {
+.pfj-popover-button,
+.pfj-tooltip-button {
     position: absolute;
     left: 600px;
 }

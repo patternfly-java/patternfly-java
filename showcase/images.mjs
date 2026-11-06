@@ -13,17 +13,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
-import https from 'https';
-import puppeteer from 'puppeteer';
+import * as fs from "fs";
+import * as path from "path";
+import { fileURLToPath } from "url";
+import https from "https";
+import puppeteer from "puppeteer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const url = 'https://www.patternfly.org/components/all-components';
-const selector = '.pf-v6-l-gallery .pf-v6-c-card__body img';
-const imageDir = path.join(__dirname, 'src', 'web', 'images');
+const url = "https://www.patternfly.org/components/all-components";
+const selector = ".pf-v6-l-gallery .pf-v6-c-card__body img";
+const imageDir = path.join(__dirname, "src", "web", "images");
 
 if (!fs.existsSync(imageDir)) {
     fs.mkdirSync(imageDir, { recursive: true });
@@ -34,31 +34,31 @@ if (!fs.existsSync(imageDir)) {
     const page = await browser.newPage();
 
     console.log(`Loading ${url}`);
-    await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil: "networkidle0" });
 
-    console.log('Extracting images');
-    const imageUrls = await page.$$eval(selector, imgs =>
-        imgs.map(img => img.src)
-    );
+    console.log("Extracting images");
+    const imageUrls = await page.$$eval(selector, (imgs) => imgs.map((img) => img.src));
     await browser.close();
     console.log(`Found ${imageUrls.length} images`);
 
     let downloaded = 0;
     imageUrls.forEach((imgUrl) => {
-        let fileName = path.basename(imgUrl.split('?')[0]);
-        fileName = fileName.replace(/\.[a-f0-9]+(\.\w+)$/, '$1');
+        let fileName = path.basename(imgUrl.split("?")[0]);
+        fileName = fileName.replace(/\.[a-f0-9]+(\.\w+)$/, "$1");
         const filePath = path.join(imageDir, fileName);
 
-        https.get(imgUrl, (imgRes) => {
-            const fileStream = fs.createWriteStream(filePath);
-            imgRes.pipe(fileStream);
-            fileStream.on('finish', () => {
-                fileStream.close();
-                downloaded++;
-                console.log(`Downloaded: ${fileName} (${downloaded}/${imageUrls.length})`);
+        https
+            .get(imgUrl, (imgRes) => {
+                const fileStream = fs.createWriteStream(filePath);
+                imgRes.pipe(fileStream);
+                fileStream.on("finish", () => {
+                    fileStream.close();
+                    downloaded++;
+                    console.log(`Downloaded: ${fileName} (${downloaded}/${imageUrls.length})`);
+                });
+            })
+            .on("error", (err) => {
+                console.error(`Error downloading ${imgUrl}:`, err.message);
             });
-        }).on('error', (err) => {
-            console.error(`Error downloading ${imgUrl}:`, err.message);
-        });
     });
 })();

@@ -9,12 +9,12 @@ This page covers how to build PatternFly Java locally, explains the Maven profil
 
 ## Prerequisites
 
-| Tool | Version | Notes |
-|------|---------|-------|
-| Java | 21+ | Required for compilation |
-| Maven | 3.9.9+ | Maven Wrapper (`mvnw`) included |
-| Node | 24+ | For showcase and markdown processing |
-| pnpm | 11+ | Installed via corepack (`corepack enable`) |
+| Tool  | Version | Notes                                      |
+| ----- | ------- | ------------------------------------------ |
+| Java  | 21+     | Required for compilation                   |
+| Maven | 3.9.9+  | Maven Wrapper (`mvnw`) included            |
+| Node  | 24+     | For showcase and markdown processing       |
+| pnpm  | 11+     | Installed via corepack (`corepack enable`) |
 
 ## Quick Start
 
@@ -36,22 +36,22 @@ mvn verify -Dquickly
 
 The project is organized into these modules:
 
-| Module | Description |
-|--------|-------------|
-| **bom** | Bill of Materials (separate reactor, built first) |
-| **build-config** | Build configuration (checkstyle rules, license headers) |
-| **code-parent** | Parent POM for code modules |
-| **core** | Core classes, handlers, styles, utilities |
-| **components** | All UI components (50+ component packages) |
-| **layouts** | Page layouts (Page, Sidebar, etc.) |
-| **icons** | Icon sets (FontAwesome, PatternFly, Red Hat icons) |
-| **tokens** | PatternFly design tokens as enum constants |
-| **charts** | Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle |
-| **extensions/codeeditor** | Code editor extension |
-| **extensions/finder** | Finder extension |
-| **showcase** | Interactive demo website (activated via `-P showcase`) |
-| **snippet-tests** | Build-time validation of inline JavaDoc code snippets (activated via `-P check`, not deployed) |
-| **apidoc** | API documentation aggregation (activated via `-P apidoc`) |
+| Module                    | Description                                                                                                                                                           |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **bom**                   | Bill of Materials (separate reactor, built first)                                                                                                                     |
+| **build-config**          | Build configuration (checkstyle rules, license headers)                                                                                                               |
+| **code-parent**           | Parent POM for code modules                                                                                                                                           |
+| **core**                  | Core classes, handlers, styles, utilities                                                                                                                             |
+| **components**            | All UI components (50+ component packages)                                                                                                                            |
+| **layouts**               | Page layouts (Page, Sidebar, etc.)                                                                                                                                    |
+| **icons**                 | Icon sets (FontAwesome, PatternFly, Red Hat icons)                                                                                                                    |
+| **tokens**                | PatternFly design tokens as enum constants                                                                                                                            |
+| **charts**                | Chart web components wrapper — standalone NPM package (`@patternfly-java/charts`), built and published independently with pnpm, not part of the Maven build lifecycle |
+| **extensions/codeeditor** | Code editor extension                                                                                                                                                 |
+| **extensions/finder**     | Finder extension                                                                                                                                                      |
+| **showcase**              | Interactive demo website (activated via `-P showcase`)                                                                                                                |
+| **snippet-tests**         | Build-time validation of inline JavaDoc code snippets (activated via `-P check`, not deployed)                                                                        |
+| **apidoc**                | API documentation aggregation (activated via `-P apidoc`)                                                                                                             |
 
 The BOM lives in a separate Maven reactor and must be installed before building the main project. All build scripts and CI workflows handle this automatically.
 
@@ -59,29 +59,29 @@ The BOM lives in a separate Maven reactor and must be installed before building 
 
 ### Profiles
 
-| Profile | Activation | Purpose |
-|---------|-----------|---------|
-| `format` | `-P format` | Auto-format sources: editorconfig, import sorting, license headers |
-| `check` | `-P check` | Validate sources: enforcer, checkstyle, editorconfig, import sorting, license headers, snippet validation |
-| `showcase` | `-P showcase` | Include the showcase module in the build |
-| `quick-build` | `-Dquickly` | Skip tests, javadoc, and integration tests |
-| `skip-j2cl` | `-DskipJ2CL` | Disable J2CL compilation (showcase only) |
-| `skip-j2cl-quickly` | `-Dquickly` | Also disables J2CL compilation when using quick build (showcase only) |
-| `prod` | `-P prod` | Production build: advanced J2CL optimizations, Vite production build |
-| `apidoc` | `-P apidoc` | Include the API documentation module |
-| `release` | `-P release` | Attach sources/javadoc, GPG sign, publish to Maven Central |
+| Profile             | Activation    | Purpose                                                                                                   |
+| ------------------- | ------------- | --------------------------------------------------------------------------------------------------------- |
+| `format`            | `-P format`   | Auto-format sources: editorconfig, import sorting, license headers                                        |
+| `check`             | `-P check`    | Validate sources: enforcer, checkstyle, editorconfig, import sorting, license headers, snippet validation |
+| `showcase`          | `-P showcase` | Include the showcase module in the build                                                                  |
+| `quick-build`       | `-Dquickly`   | Skip tests, javadoc, and integration tests                                                                |
+| `skip-j2cl`         | `-DskipJ2CL`  | Disable J2CL compilation (showcase only)                                                                  |
+| `skip-j2cl-quickly` | `-Dquickly`   | Also disables J2CL compilation when using quick build (showcase only)                                     |
+| `prod`              | `-P prod`     | Production build: advanced J2CL optimizations, Vite production build                                      |
+| `apidoc`            | `-P apidoc`   | Include the API documentation module                                                                      |
+| `release`           | `-P release`  | Attach sources/javadoc, GPG sign, publish to Maven Central                                                |
 
 Profiles activated with `-P` are explicit profiles. Profiles activated with `-D` are triggered by setting a system property — Maven activates them automatically when the property is present.
 
 ### Properties
 
-| Property | Set by | Effect |
-|----------|--------|--------|
-| `quickly` | `-Dquickly` | Activates `quick-build` and `skip-j2cl-quickly` profiles |
-| `skipJ2CL` | `-DskipJ2CL` | Activates `skip-j2cl` profile (showcase only) |
-| `skipTests` | `-DskipTests` | Skip unit tests (standard Maven property) |
-| `skipITs` | `-DskipITs` | Skip integration tests |
-| `maven.javadoc.skip` | `-Dmaven.javadoc.skip` | Skip javadoc generation |
+| Property             | Set by                 | Effect                                                   |
+| -------------------- | ---------------------- | -------------------------------------------------------- |
+| `quickly`            | `-Dquickly`            | Activates `quick-build` and `skip-j2cl-quickly` profiles |
+| `skipJ2CL`           | `-DskipJ2CL`           | Activates `skip-j2cl` profile (showcase only)            |
+| `skipTests`          | `-DskipTests`          | Skip unit tests (standard Maven property)                |
+| `skipITs`            | `-DskipITs`            | Skip integration tests                                   |
+| `maven.javadoc.skip` | `-Dmaven.javadoc.skip` | Skip javadoc generation                                  |
 
 ### Example Calls
 
@@ -111,30 +111,30 @@ mvn clean package -P showcase,prod
 
 ## Shell Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `format.sh` | Shortcut for `mvn process-sources -P format,showcase` |
-| `check.sh` | Shortcut for `mvn test -P check,showcase` |
-| `release.sh` | Orchestrate a release (see [Releasing](/releasing)) |
-| `unrelease.sh` | Roll back a failed release (see [Releasing](/releasing)) |
-| `versionBump.sh` | Bump version across all POMs and NPM packages |
-| `apidoc.sh` | Generate API documentation locally |
-| `depgraph.sh` | Generate dependency graph (requires Graphviz) |
+| Script           | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `format.sh`      | Shortcut for `mvn process-sources -P format,showcase`    |
+| `check.sh`       | Shortcut for `mvn test -P check,showcase`                |
+| `release.sh`     | Orchestrate a release (see [Releasing](/releasing))      |
+| `unrelease.sh`   | Roll back a failed release (see [Releasing](/releasing)) |
+| `versionBump.sh` | Bump version across all POMs and NPM packages            |
+| `apidoc.sh`      | Generate API documentation locally                       |
+| `depgraph.sh`    | Generate dependency graph (requires Graphviz)            |
 
 ## Node/pnpm Scripts
 
 The showcase module uses Node for markdown processing, CSS bundling, and local development. Scripts are defined in `showcase/package.json`:
 
-| Script | Command | Purpose |
-|--------|---------|---------|
-| `code` | `node code.mjs` | Extract `@code-start`/`@code-end` snippets from showcase Java sources into a generated `Code.java` class |
-| `markdown` | `node markdown.mjs` | Process `showcase/markdown/*.md` into JSON files with syntax highlighting and table of contents |
-| `watch` | `vite` | Start Vite dev server for CSS/HTML hot reloading |
-| `prod` | `vite build` | Build optimized production bundle |
-| `http-server` | `http-server target/showcase --ssl` | Serve the built showcase locally with HTTPS |
-| `audit:fix` | `node audit.mjs` | Suppress security advisories from `@patternfly/documentation-framework` transitive dependencies and dismiss the corresponding Dependabot alerts (see [Security Advisories](#security-advisories) below) |
-| `images:clean` | `rm -rf src/web/images/*` | Remove all downloaded component images |
-| `images:download` | `node images.mjs` | Download component images from the PatternFly website |
+| Script            | Command                             | Purpose                                                                                                                                                                                                 |
+| ----------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `code`            | `node code.mjs`                     | Extract `@code-start`/`@code-end` snippets from showcase Java sources into a generated `Code.java` class                                                                                                |
+| `markdown`        | `node markdown.mjs`                 | Process `showcase/markdown/*.md` into JSON files with syntax highlighting and table of contents                                                                                                         |
+| `watch`           | `vite`                              | Start Vite dev server for CSS/HTML hot reloading                                                                                                                                                        |
+| `prod`            | `vite build`                        | Build optimized production bundle                                                                                                                                                                       |
+| `http-server`     | `http-server target/showcase --ssl` | Serve the built showcase locally with HTTPS                                                                                                                                                             |
+| `audit:fix`       | `node audit.mjs`                    | Suppress security advisories from `@patternfly/documentation-framework` transitive dependencies and dismiss the corresponding Dependabot alerts (see [Security Advisories](#security-advisories) below) |
+| `images:clean`    | `rm -rf src/web/images/*`           | Remove all downloaded component images                                                                                                                                                                  |
+| `images:download` | `node images.mjs`                   | Download component images from the PatternFly website                                                                                                                                                   |
 
 ## Security Advisories
 

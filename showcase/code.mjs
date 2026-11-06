@@ -44,12 +44,23 @@ function escapeJava(str) {
     let sb = "";
     for (const c of str) {
         switch (c) {
-            case '"': sb += '\\"'; break;
-            case "\\": sb += "\\\\"; break;
-            case "\r": sb += "\\r"; break;
-            case "\n": sb += "\\n"; break;
-            case "\t": sb += "\\t"; break;
-            default: sb += c;
+            case '"':
+                sb += '\\"';
+                break;
+            case "\\":
+                sb += "\\\\";
+                break;
+            case "\r":
+                sb += "\\r";
+                break;
+            case "\n":
+                sb += "\\n";
+                break;
+            case "\t":
+                sb += "\\t";
+                break;
+            default:
+                sb += c;
         }
     }
     return sb;
@@ -110,7 +121,7 @@ for (const spec of SOURCES) {
     let files;
     try {
         files = readdirSync(dir)
-            .filter(f => statSync(join(dir, f)).isFile() && matchesGlob(f, spec.globSuffix))
+            .filter((f) => statSync(join(dir, f)).isFile() && matchesGlob(f, spec.globSuffix))
             .sort();
     } catch {
         continue;

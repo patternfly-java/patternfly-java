@@ -20,6 +20,7 @@ Compares a PatternFly (React/HTML) component against its PatternFly Java (PFJ) i
 ```
 
 Produces a markdown report and a JSON companion file:
+
 - Variations present in PatternFly but missing in PFJ
 - DOM structure differences
 - CSS class mismatches
@@ -50,6 +51,7 @@ Manages the local development environment for the PatternFly Java showcase. The 
 ```
 
 Features:
+
 - Runs a pre-flight build (`mvn verify -Dquickly -P showcase`) before starting
 - Detects externally-started processes (if you already started `mvn j2cl:watch` or `pnpm run watch` in another terminal)
 - Starts only the missing process if one is already running
@@ -66,6 +68,7 @@ Verifies that a PFJ component follows the project's conventions for documentatio
 ```
 
 Writes per-component JSON reports to `reports/pf-lint/<component>.json` and an aggregate `reports/pf-lint/summary.md`. Checks include:
+
 - Section markers and order (`factory`, `instance`, `add`, `builder`, `aria`, `events`, `api`, `internal`)
 - Javadoc completeness and format
 - Factory method naming
@@ -126,22 +129,22 @@ The skills form a pipeline where each skill's output feeds into the next:
 
 ### Data Flow
 
-- **`/pf-update`** analyzes PatternFly release changelogs and writes a prioritized work plan to `reports/pf-update/` (`.md` + `.json`). This identifies *which* components need attention.
-- **`/pf-compare`** takes a component name, opens both the PatternFly docs and PFJ showcase in a browser, extracts DOM/CSS data, and writes a gap analysis to `reports/pf-compare/` (`.md` + `.json`). This identifies *what* is missing or different.
+- **`/pf-update`** analyzes PatternFly release changelogs and writes a prioritized work plan to `reports/pf-update/` (`.md` + `.json`). This identifies _which_ components need attention.
+- **`/pf-compare`** takes a component name, opens both the PatternFly docs and PFJ showcase in a browser, extracts DOM/CSS data, and writes a gap analysis to `reports/pf-compare/` (`.md` + `.json`). This identifies _what_ is missing or different.
 - **`/pf-align`** reads the `/pf-compare` JSON report for a component and implements the action items — auto-generating simple fixes (CSS modifiers, ARIA attributes) and presenting context for complex items. Does not produce its own reports; progress is tracked through git history.
 - **`/pf-lint`** verifies the component follows project conventions (section order, Javadoc, naming, formatting) and writes per-component results to `reports/pf-lint/<component>.json` plus an aggregate `summary.md`.
 - **`/pf-status`** is read-only — it aggregates JSON reports from `reports/pf-lint/`, `reports/pf-compare/`, and `reports/pf-update/` into a single dashboard (`summary.json` + `summary.md`). It never modifies source code.
 
 ### Dependencies
 
-| Skill | Requires | Produces |
-|-------|----------|----------|
-| `/pf-dev-env` | Nothing | Running dev servers (J2CL + Vite) |
-| `/pf-update` | Nothing (fetches from GitHub) | `reports/pf-update/<version>.md` + `.json` |
-| `/pf-compare` | Dev env running (for browser access) | `reports/pf-compare/<component>.md` + `.json` |
-| `/pf-align` | `reports/pf-compare/<component>.json` | Modified source files (no report) |
-| `/pf-lint` | Nothing (reads source code directly) | `reports/pf-lint/<component>.json` + `reports/pf-lint/summary.md` |
-| `/pf-status` | JSON reports from other skills | `reports/pf-status/summary.json` + `summary.md` |
+| Skill         | Requires                              | Produces                                                          |
+| ------------- | ------------------------------------- | ----------------------------------------------------------------- |
+| `/pf-dev-env` | Nothing                               | Running dev servers (J2CL + Vite)                                 |
+| `/pf-update`  | Nothing (fetches from GitHub)         | `reports/pf-update/<version>.md` + `.json`                        |
+| `/pf-compare` | Dev env running (for browser access)  | `reports/pf-compare/<component>.md` + `.json`                     |
+| `/pf-align`   | `reports/pf-compare/<component>.json` | Modified source files (no report)                                 |
+| `/pf-lint`    | Nothing (reads source code directly)  | `reports/pf-lint/<component>.json` + `reports/pf-lint/summary.md` |
+| `/pf-status`  | JSON reports from other skills        | `reports/pf-status/summary.json` + `summary.md`                   |
 
 ### Independent vs. Sequential
 

@@ -24,410 +24,390 @@
 // ------------------------------------------------------ chart
 
 /** @constructor */
-function Chart() {
-}
+function Chart() {}
 
 /** @type {string} */
-Chart.prototype.name
+Chart.prototype.name;
 
 /** @type {string} */
-Chart.prototype.title
+Chart.prototype.title;
 
 /** @type {string} */
-Chart.prototype.route
+Chart.prototype.route;
 
 /** @type {string} */
-Chart.prototype.clazz
+Chart.prototype.clazz;
 
 /** @type {string} */
-Chart.prototype.summary
+Chart.prototype.summary;
 
 // ------------------------------------------------------ component
 
 /** @constructor */
-function Component() {
-}
+function Component() {}
 
 /** @type {string} */
-Component.prototype.name
+Component.prototype.name;
 
 /** @type {string} */
-Component.prototype.title
+Component.prototype.title;
 
 /** @type {string} */
-Component.prototype.route
+Component.prototype.route;
 
 /** @type {string} */
-Component.prototype.clazz
+Component.prototype.clazz;
 
 /** @type {string} */
-Component.prototype.illustration
+Component.prototype.illustration;
 
 /** @type {string} */
-Component.prototype.summary
+Component.prototype.summary;
 
 // ------------------------------------------------------ coordinates
 
 /** @constructor */
-function Coordinates() {
-}
+function Coordinates() {}
 
 /** @type {string} */
-Coordinates.prototype.latitude
+Coordinates.prototype.latitude;
 
 /** @type {string} */
-Coordinates.prototype.longitude
+Coordinates.prototype.longitude;
 
 // ------------------------------------------------------ date of birth
 
 /** @constructor */
-function DateOfBirth() {
-}
+function DateOfBirth() {}
 
 /** @type {string} */
-DateOfBirth.prototype.date
+DateOfBirth.prototype.date;
 
 /** @type {number} */
-DateOfBirth.prototype.age
+DateOfBirth.prototype.age;
 
 // ------------------------------------------------------ extension
 
 /** @constructor */
-function Extension() {
-}
+function Extension() {}
 
 /** @type {string} */
-Extension.prototype.name
+Extension.prototype.name;
 
 /** @type {string} */
-Extension.prototype.title
+Extension.prototype.title;
 
 /** @type {string} */
-Extension.prototype.route
+Extension.prototype.route;
 
 /** @type {string} */
-Extension.prototype.clazz
+Extension.prototype.clazz;
 
 /** @type {string} */
-Extension.prototype.summary
+Extension.prototype.summary;
 
 // ------------------------------------------------------ file data
 
 /** @constructor */
-function FileData() {
-}
+function FileData() {}
 
 /** @type {string} */
-FileData.prototype.id
+FileData.prototype.id;
 
 /** @type {string} */
-FileData.prototype.name
+FileData.prototype.name;
 
 /** @type {string} */
-FileData.prototype.description
+FileData.prototype.description;
 
 /** @type {string} */
-FileData.prototype.icon
+FileData.prototype.icon;
 
 /** @type {!Array<string>} */
-FileData.prototype.actions
+FileData.prototype.actions;
 
 /** @type {!Object<string, string>} */
-FileData.prototype.meta
+FileData.prototype.meta;
 
 /** @type {!Array<!FileData>} */
-FileData.prototype.children
+FileData.prototype.children;
 
 // ------------------------------------------------------ layout
 
 /** @constructor */
-function Layout() {
-}
+function Layout() {}
 
 /** @type {string} */
-Layout.prototype.name
+Layout.prototype.name;
 
 /** @type {string} */
-Layout.prototype.title
+Layout.prototype.title;
 
 /** @type {string} */
-Layout.prototype.route
+Layout.prototype.route;
 
 /** @type {string} */
-Layout.prototype.clazz
+Layout.prototype.clazz;
 
 /** @type {string} */
-Layout.prototype.summary
+Layout.prototype.summary;
 
 // ------------------------------------------------------ manifest item
 
 /** @constructor */
-function ManifestItem() {
-}
+function ManifestItem() {}
 
 /** @type {string} */
-ManifestItem.prototype.type
+ManifestItem.prototype.type;
 
 /** @type {string} */
-ManifestItem.prototype.id
+ManifestItem.prototype.id;
 
 /** @type {string} */
-ManifestItem.prototype.route
+ManifestItem.prototype.route;
 
 /** @type {string} */
-ManifestItem.prototype.title
+ManifestItem.prototype.title;
 
 /** @type {number} */
-ManifestItem.prototype.order
+ManifestItem.prototype.order;
 
 /** @type {boolean} */
-ManifestItem.prototype.hasContent
+ManifestItem.prototype.hasContent;
 
 /** @type {string} */
-ManifestItem.prototype.contentId
+ManifestItem.prototype.contentId;
 
 /** @type {!Array<!ManifestItem>} */
-ManifestItem.prototype.children
+ManifestItem.prototype.children;
 
 // ------------------------------------------------------ markdown data
 
 /** @constructor */
-function MarkdownData() {
-}
+function MarkdownData() {}
 
 /** @type {string} */
-MarkdownData.prototype.id
+MarkdownData.prototype.id;
 
 /** @type {string} */
-MarkdownData.prototype.title
+MarkdownData.prototype.title;
 
 /** @type {string} */
-MarkdownData.prototype.html
+MarkdownData.prototype.html;
 
 /** @type {!Array<!TocEntry>} */
-MarkdownData.prototype.toc
+MarkdownData.prototype.toc;
 
 // ------------------------------------------------------ location data
 
 /** @constructor */
-function LocationData() {
-}
+function LocationData() {}
 
 /** @type {!Street} */
-LocationData.prototype.street
+LocationData.prototype.street;
 
 /** @type {string} */
-LocationData.prototype.city
+LocationData.prototype.city;
 
 /** @type {string} */
-LocationData.prototype.state
+LocationData.prototype.state;
 
 /** @type {string} */
-LocationData.prototype.postcode
+LocationData.prototype.postcode;
 
 /** @type {!Coordinates} */
-LocationData.prototype.coordinates
+LocationData.prototype.coordinates;
 
 /** @type {!Timezone} */
-LocationData.prototype.timezone
+LocationData.prototype.timezone;
 
 // ------------------------------------------------------ login
 
 /** @constructor */
-function Login() {
-}
+function Login() {}
 
 /** @type {string} */
-Login.prototype.uuid
+Login.prototype.uuid;
 
 /** @type {string} */
-Login.prototype.username
+Login.prototype.username;
 
 /** @type {string} */
-Login.prototype.password
+Login.prototype.password;
 
 /** @type {string} */
-Login.prototype.salt
+Login.prototype.salt;
 
 /** @type {string} */
-Login.prototype.md5
+Login.prototype.md5;
 
 /** @type {string} */
-Login.prototype.sha1
+Login.prototype.sha1;
 
 /** @type {string} */
-Login.prototype.sha256
+Login.prototype.sha256;
 
 // ------------------------------------------------------ name
 
 /** @constructor */
-function Name() {
-}
+function Name() {}
 
 /** @type {string} */
-Name.prototype.title
+Name.prototype.title;
 
 /** @type {string} */
-Name.prototype.first
+Name.prototype.first;
 
 /** @type {string} */
-Name.prototype.last
+Name.prototype.last;
 
 // ------------------------------------------------------ picture
 
 /** @constructor */
-function Picture() {
-}
+function Picture() {}
 
 /** @type {string} */
-Picture.prototype.large
+Picture.prototype.large;
 
 /** @type {string} */
-Picture.prototype.medium
+Picture.prototype.medium;
 
 /** @type {string} */
-Picture.prototype.thumbnail
+Picture.prototype.thumbnail;
 
 // ------------------------------------------------------ record
 
 /** @constructor */
-function Record() {
-}
+function Record() {}
 
 /** @type {string} */
-Record.prototype.title
+Record.prototype.title;
 
 /** @type {string} */
-Record.prototype.released
+Record.prototype.released;
 
 /** @type {number} */
-Record.prototype.year
+Record.prototype.year;
 
 /** @type {string} */
-Record.prototype.url
+Record.prototype.url;
 
 /** @type {string} */
-Record.prototype.cover
+Record.prototype.cover;
 
 /** @type {!Array<!Track>} */
-Record.prototype.tracks
+Record.prototype.tracks;
 
 // ------------------------------------------------------ server
 
 /** @constructor */
-function Server() {
-}
+function Server() {}
 
 /** @type {string} */
-Server.prototype.name
+Server.prototype.name;
 
 /** @type {number} */
-Server.prototype.threads
+Server.prototype.threads;
 
 /** @type {number} */
-Server.prototype.applications
+Server.prototype.applications;
 
 /** @type {number} */
-Server.prototype.workspaces
+Server.prototype.workspaces;
 
 /** @type {string} */
-Server.prototype.status
+Server.prototype.status;
 
 /** @type {string} */
-Server.prototype.location
+Server.prototype.location;
 
 // ------------------------------------------------------ street
 
 /** @constructor */
-function Street() {
-}
+function Street() {}
 
 /** @type {number} */
-Street.prototype.number
+Street.prototype.number;
 
 /** @type {string} */
-Street.prototype.name
+Street.prototype.name;
 
 // ------------------------------------------------------ timezone
 
 /** @constructor */
-function Timezone() {
-}
+function Timezone() {}
 
 /** @type {string} */
-Timezone.prototype.offset
+Timezone.prototype.offset;
 
 /** @type {string} */
-Timezone.prototype.description
+Timezone.prototype.description;
 
 // ------------------------------------------------------ track
 
 /** @constructor */
-function Track() {
-}
+function Track() {}
 
 /** @type {number} */
-Track.prototype.track
+Track.prototype.track;
 
 /** @type {string} */
-Track.prototype.title
+Track.prototype.title;
 
 /** @type {!Array<string>} */
-Track.prototype.writer
+Track.prototype.writer;
 
 /** @type {string} */
-Track.prototype.length
+Track.prototype.length;
 
 // ------------------------------------------------------ toc entry
 
 /** @constructor */
-function TocEntry() {
-}
+function TocEntry() {}
 
 /** @type {string} */
-TocEntry.prototype.id
+TocEntry.prototype.id;
 
 /** @type {string} */
-TocEntry.prototype.text
+TocEntry.prototype.text;
 
 /** @type {number} */
-TocEntry.prototype.level
+TocEntry.prototype.level;
 
 // ------------------------------------------------------ user
 
 /** @constructor */
-function User() {
-}
+function User() {}
 
 /** @type {string} */
-User.prototype.gender
+User.prototype.gender;
 
 /** @type {!Name} */
-User.prototype.name
+User.prototype.name;
 
 /** @type {!LocationData} */
-User.prototype.location
+User.prototype.location;
 
 /** @type {string} */
-User.prototype.email
+User.prototype.email;
 
 /** @type {!Login} */
-User.prototype.login
+User.prototype.login;
 
 /** @type {!DateOfBirth} */
-User.prototype.dob
+User.prototype.dob;
 
 /** @type {!DateOfBirth} */
-User.prototype.registered
+User.prototype.registered;
 
 /** @type {string} */
-User.prototype.phone
+User.prototype.phone;
 
 /** @type {string} */
-User.prototype.cell
+User.prototype.cell;
 
 /** @type {!Picture} */
-User.prototype.picture
+User.prototype.picture;
 
 /** @type {string} */
-User.prototype.nat
+User.prototype.nat;

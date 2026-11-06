@@ -58,10 +58,10 @@ Builds the full project and publishes all modules to Maven Central with GPG sign
 
 Publishes three NPM packages to the npm registry:
 
-| Package | Source |
-|---------|--------|
-| `@patternfly-java/core` | `core/npm/` |
-| `@patternfly-java/finder` | `extensions/finder/npm/` |
+| Package                   | Source                                            |
+| ------------------------- | ------------------------------------------------- |
+| `@patternfly-java/core`   | `core/npm/`                                       |
+| `@patternfly-java/finder` | `extensions/finder/npm/`                          |
 | `@patternfly-java/charts` | `charts/npm/` (built with pnpm before publishing) |
 
 ### 4. Publish Showcase
@@ -94,13 +94,13 @@ The BOM must be published first because other modules depend on it. NPM packages
 
 The `versionBump.sh` script updates version strings across the project:
 
-| File(s) | Updated by |
-|---------|-----------|
-| All `pom.xml` files | `mvn versions:set` |
-| `bom/pom.xml` | `mvn versions:set` (separate reactor) |
-| `core/npm/package.json` | `npm version` |
-| `charts/npm/package.json` | `npm version` |
-| `extensions/finder/npm/package.json` | `npm version` |
+| File(s)                              | Updated by                            |
+| ------------------------------------ | ------------------------------------- |
+| All `pom.xml` files                  | `mvn versions:set`                    |
+| `bom/pom.xml`                        | `mvn versions:set` (separate reactor) |
+| `core/npm/package.json`              | `npm version`                         |
+| `charts/npm/package.json`            | `npm version`                         |
+| `extensions/finder/npm/package.json` | `npm version`                         |
 
 The documentation uses a placeholder version (`\{\{version\}\}`) instead of a concrete version string, so no version bumping is needed for markdown files.
 
@@ -110,13 +110,13 @@ The script is called by `release.sh` twice: once for the release version and onc
 
 After a successful release, the following artifacts are available:
 
-| Artifact | Location |
-|----------|----------|
-| Maven libraries | [Maven Central](https://central.sonatype.com/namespace/org.patternfly) |
-| NPM packages | [npmjs.com/@patternfly-java](https://www.npmjs.com/org/patternfly-java) |
-| Showcase website | [patternfly-java.github.io](https://patternfly-java.github.io) |
+| Artifact          | Location                                                                       |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Maven libraries   | [Maven Central](https://central.sonatype.com/namespace/org.patternfly)         |
+| NPM packages      | [npmjs.com/@patternfly-java](https://www.npmjs.com/org/patternfly-java)        |
+| Showcase website  | [patternfly-java.github.io](https://patternfly-java.github.io)                 |
 | API documentation | [patternfly-java.github.io/apidocs](https://patternfly-java.github.io/apidocs) |
-| GitHub Release | [GitHub Releases](https://github.com/patternfly-java/patternfly-java/releases) |
+| GitHub Release    | [GitHub Releases](https://github.com/patternfly-java/patternfly-java/releases) |
 
 ## Rolling Back a Release
 
