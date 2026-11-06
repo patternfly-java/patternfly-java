@@ -20,84 +20,86 @@ const WORKSPACE = "pnpm-workspace.yaml";
 const REPO = "patternfly-java/patternfly-java";
 const DISMISS_REASON = "not_used";
 const DISMISS_COMMENT =
-  "Transitive dependency of @patternfly/documentation-framework. " +
-  "Only CSS files are imported — none of its JS code paths are executed.";
+    "Transitive dependency of @patternfly/documentation-framework. " +
+    "Only CSS files are imported — none of its JS code paths are executed.";
 
 // ── pnpm audit ──────────────────────────────────────────────────────
 
 function currentIgnored() {
-  const content = readFileSync(WORKSPACE, "utf8");
-  const matches = content.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
-  return new Set(matches || []);
+    const content = readFileSync(WORKSPACE, "utf8");
+    const matches = content.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
+    return new Set(matches || []);
 }
 
 function auditGhsas() {
-  // Temporarily strip ignoreGhsas entries so pnpm audit reports ALL vulnerabilities,
-  // not just unignored ones. Without this, ignored entries look "stale" every run.
-  const original = readFileSync(WORKSPACE, "utf8");
-  const stripped = original.replace(/^(\s+ignoreGhsas:\n)((?:\s+-\s+GHSA-[a-z0-9-]+\n)*)/m, "$1");
-  writeFileSync(WORKSPACE, stripped);
-  let output;
-  try {
-    output = execSync("pnpm audit 2>&1", { encoding: "utf8" });
-  } catch (e) {
-    output = e.stdout || "";
-  } finally {
-    writeFileSync(WORKSPACE, original);
-  }
-  const matches = output.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
-  return [...new Set(matches || [])].sort();
+    // Temporarily strip ignoreGhsas entries so pnpm audit reports ALL vulnerabilities,
+    // not just unignored ones. Without this, ignored entries look "stale" every run.
+    const original = readFileSync(WORKSPACE, "utf8");
+    const stripped = original.replace(/^(\s+ignoreGhsas:\n)((?:\s+-\s+GHSA-[a-z0-9-]+\n)*)/m, "$1");
+    writeFileSync(WORKSPACE, stripped);
+    let output;
+    try {
+        output = execSync("pnpm audit 2>&1", { encoding: "utf8" });
+    } catch (e) {
+        output = e.stdout || "";
+    } finally {
+        writeFileSync(WORKSPACE, original);
+    }
+    const matches = output.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
+    return [...new Set(matches || [])].sort();
 }
 
 function addIgnoreEntries(missing) {
-  const content = readFileSync(WORKSPACE, "utf8");
-  const marker = "ignoreGhsas:\n";
-  const idx = content.indexOf(marker);
-  if (idx === -1) {
-    console.error("Could not find 'ignoreGhsas:' section in", WORKSPACE);
-    process.exit(1);
-  }
-  const insertionPoint = content.indexOf("\n\n", idx);
-  const newEntries = missing.map((id) => `    - ${id}`).join("\n");
-  const updated =
-    content.slice(0, insertionPoint) +
-    "\n" +
-    newEntries +
-    content.slice(insertionPoint);
-  writeFileSync(WORKSPACE, updated);
+    let content = readFileSync(WORKSPACE, "utf8");
+    // Replace empty list syntax with a block list header so entries can be appended
+    content = content.replace(/ignoreGhsas: \[]\n/, "ignoreGhsas:\n");
+    const marker = "ignoreGhsas:\n";
+    const idx = content.indexOf(marker);
+    if (idx === -1) {
+        console.error("Could not find 'ignoreGhsas:' section in", WORKSPACE);
+        process.exit(1);
+    }
+    const insertionPoint = content.indexOf("\n\n", idx);
+    const newEntries = missing.map((id) => `    - ${id}`).join("\n");
+    const updated = content.slice(0, insertionPoint) + "\n" + newEntries + content.slice(insertionPoint);
+    writeFileSync(WORKSPACE, updated);
 }
 
 function removeStaleEntries(stale) {
-  let content = readFileSync(WORKSPACE, "utf8");
-  for (const id of stale) {
-    content = content.replace(new RegExp(`^\\s*- ${id}\\n`, "m"), "");
-  }
-  writeFileSync(WORKSPACE, content);
+    let content = readFileSync(WORKSPACE, "utf8");
+    for (const id of stale) {
+        content = content.replace(new RegExp(`^\\s*- ${id}\\n`, "m"), "");
+    }
+    // If no GHSA entries remain, use an empty list so pnpm can parse the YAML
+    if (!content.match(/ignoreGhsas:\n\s+-\s+GHSA-/)) {
+        content = content.replace(/ignoreGhsas:\n/, "ignoreGhsas: []\n");
+    }
+    writeFileSync(WORKSPACE, content);
 }
 
 // ── Dependabot ──────────────────────────────────────────────────────
 
 function openDependabotAlerts() {
-  try {
-    const json = execSync(
-      `gh api repos/${REPO}/dependabot/alerts --jq '[.[] | select(.state == "open") | {number, ghsa: .security_advisory.ghsa_id, package: .security_vulnerability.package.name}]'`,
-      { encoding: "utf8" }
-    );
-    return JSON.parse(json);
-  } catch {
-    console.warn("Could not fetch Dependabot alerts (gh CLI not available or no access).");
-    return [];
-  }
+    try {
+        const json = execSync(
+            `gh api repos/${REPO}/dependabot/alerts --jq '[.[] | select(.state == "open") | {number, ghsa: .security_advisory.ghsa_id, package: .security_vulnerability.package.name}]'`,
+            { encoding: "utf8" },
+        );
+        return JSON.parse(json);
+    } catch {
+        console.warn("Could not fetch Dependabot alerts (gh CLI not available or no access).");
+        return [];
+    }
 }
 
 function dismissAlert(number) {
-  execSync(
-    `gh api --method PATCH repos/${REPO}/dependabot/alerts/${number} ` +
-      `-f state=dismissed ` +
-      `-f dismissed_reason=${DISMISS_REASON} ` +
-      `-f dismissed_comment="${DISMISS_COMMENT}"`,
-    { encoding: "utf8", stdio: "pipe" }
-  );
+    execSync(
+        `gh api --method PATCH repos/${REPO}/dependabot/alerts/${number} ` +
+            `-f state=dismissed ` +
+            `-f dismissed_reason=${DISMISS_REASON} ` +
+            `-f dismissed_comment="${DISMISS_COMMENT}"`,
+        { encoding: "utf8", stdio: "pipe" },
+    );
 }
 
 // ── main ────────────────────────────────────────────────────────────
@@ -110,34 +112,34 @@ const missing = reported.filter((id) => !ignored.has(id));
 const stale = [...ignored].filter((id) => !reportedSet.has(id)).sort();
 
 if (missing.length > 0) {
-  console.log(`Adding ${missing.length} new GHSA entr${missing.length === 1 ? "y" : "ies"} to ${WORKSPACE}:`);
-  missing.forEach((id) => console.log(`  + ${id}`));
-  addIgnoreEntries(missing);
+    console.log(`Adding ${missing.length} new GHSA entr${missing.length === 1 ? "y" : "ies"} to ${WORKSPACE}:`);
+    missing.forEach((id) => console.log(`  + ${id}`));
+    addIgnoreEntries(missing);
 } else {
-  console.log("pnpm audit: no new advisories to ignore.");
+    console.log("pnpm audit: no new advisories to ignore.");
 }
 
 if (stale.length > 0) {
-  console.log(`Removing ${stale.length} stale GHSA entr${stale.length === 1 ? "y" : "ies"} from ${WORKSPACE}:`);
-  stale.forEach((id) => console.log(`  - ${id}`));
-  removeStaleEntries(stale);
+    console.log(`Removing ${stale.length} stale GHSA entr${stale.length === 1 ? "y" : "ies"} from ${WORKSPACE}:`);
+    stale.forEach((id) => console.log(`  - ${id}`));
+    removeStaleEntries(stale);
 } else {
-  console.log("pnpm audit: no stale advisories to remove.");
+    console.log("pnpm audit: no stale advisories to remove.");
 }
 
 // 2. Dismiss open Dependabot alerts
 const alerts = openDependabotAlerts();
 if (alerts.length > 0) {
-  console.log(`\nDismissing ${alerts.length} open Dependabot alert${alerts.length === 1 ? "" : "s"}:`);
-  for (const alert of alerts) {
-    process.stdout.write(`  #${alert.number} ${alert.ghsa} (${alert.package})...`);
-    try {
-      dismissAlert(alert.number);
-      console.log(" dismissed");
-    } catch (e) {
-      console.log(" FAILED:", e.message);
+    console.log(`\nDismissing ${alerts.length} open Dependabot alert${alerts.length === 1 ? "" : "s"}:`);
+    for (const alert of alerts) {
+        process.stdout.write(`  #${alert.number} ${alert.ghsa} (${alert.package})...`);
+        try {
+            dismissAlert(alert.number);
+            console.log(" dismissed");
+        } catch (e) {
+            console.log(" FAILED:", e.message);
+        }
     }
-  }
 } else {
-  console.log("Dependabot: no open alerts.");
+    console.log("Dependabot: no open alerts.");
 }

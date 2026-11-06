@@ -13,30 +13,30 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {defineConfig} from 'vite';
-import {resolve} from 'path';
-import {existsSync, createReadStream} from 'fs';
-import {execSync} from 'child_process';
+import { defineConfig, lazyPlugins } from "vite-plus";
+import { resolve } from "path";
+import { existsSync, createReadStream } from "fs";
+import { execSync } from "child_process";
 
-const j2clDir = resolve(import.meta.dirname, 'target/showcase');
-const markdownDir = resolve(import.meta.dirname, 'markdown');
+const j2clDir = resolve(import.meta.dirname, "target/showcase");
+const markdownDir = resolve(import.meta.dirname, "markdown");
 
 function serveJ2cl() {
     return {
-        name: 'serve-j2cl',
+        name: "serve-j2cl",
         configureServer(server) {
             server.middlewares.use((req, res, next) => {
-                if (req.url.match(/showcase\.js$|\.bundle\.js$/) || req.url.includes('/sources/')) {
-                    const filePath = resolve(j2clDir, req.url.replace(/^\//, ''));
+                if (req.url.match(/showcase\.js$|\.bundle\.js$/) || req.url.includes("/sources/")) {
+                    const filePath = resolve(j2clDir, req.url.replace(/^\//, ""));
                     if (existsSync(filePath)) {
-                        res.setHeader('Content-Type', 'application/javascript');
+                        res.setHeader("Content-Type", "application/javascript");
                         createReadStream(filePath).pipe(res);
                         return;
                     }
                 }
                 next();
             });
-        }
+        },
     };
 }
 
@@ -47,57 +47,63 @@ function markdownPlugin() {
         if (reprocessing) return;
         reprocessing = true;
         try {
-            execSync('node markdown.mjs', {stdio: 'inherit'});
+            execSync("node markdown.mjs", { stdio: "inherit" });
         } finally {
             reprocessing = false;
         }
     }
 
     function isMarkdownSource(file) {
-        return file.startsWith(markdownDir) && (file.endsWith('.md') || file.endsWith('.yaml'));
+        return file.startsWith(markdownDir) && (file.endsWith(".md") || file.endsWith(".yaml"));
     }
 
     return {
-        name: 'markdown',
+        name: "markdown",
         buildStart() {
             reprocess();
         },
         configureServer(server) {
             server.watcher.add(markdownDir);
-            for (const event of ['change', 'add', 'unlink']) {
+            for (const event of ["change", "add", "unlink"]) {
                 server.watcher.on(event, (file) => {
                     if (isMarkdownSource(file)) {
                         reprocess();
                     }
                 });
             }
-        }
+        },
     };
 }
 
 export default defineConfig({
-    root: 'src/web',
-    plugins: [serveJ2cl(), markdownPlugin()],
+    fmt: {},
+    lint: {
+        jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
+        rules: { "vite-plus/prefer-vite-plus-imports": "error" },
+        options: { typeAware: true, typeCheck: true },
+    },
+    root: "src/web",
+    plugins: lazyPlugins(() => [serveJ2cl(), markdownPlugin()]),
     server: {
         port: 1234,
-        open: '/',
+        open: "/",
         fs: {
-            allow: [resolve(import.meta.dirname, '..')]
+            allow: [resolve(import.meta.dirname, "..")],
         },
         watch: {
-            ignored: ['!**/target/showcase/**']
-        }
+            ignored: ["!**/target/showcase/**"],
+        },
     },
     build: {
-        outDir: resolve(import.meta.dirname, 'target/showcase'),
+        outDir: resolve(import.meta.dirname, "target/showcase"),
         emptyOutDir: false,
-        cssMinify: 'esbuild',
+        cssMinify: "esbuild",
         chunkSizeWarningLimit: 2200,
         rollupOptions: {
             input: {
-                index: resolve(import.meta.dirname, 'src/web/index.html'),
-                '404': resolve(import.meta.dirname, 'src/web/404.html')
-            }
-        }
-    }
+                index: resolve(import.meta.dirname, "src/web/index.html"),
+                404: resolve(import.meta.dirname, "src/web/404.html"),
+            },
+        },
+    },
 });

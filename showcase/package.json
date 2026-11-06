@@ -1,8 +1,7 @@
 {
   "name": "patternfly-java-showcase",
-  "type": "module",
   "private": true,
-  "packageManager": "pnpm@12.16.1",
+  "type": "module",
   "scripts": {
     "audit:fix": "node audit.mjs",
     "code": "node code.mjs",
@@ -10,8 +9,8 @@
     "images:clean": "rm -rf src/web/images/*",
     "images:download": "node images.mjs",
     "markdown": "node markdown.mjs",
-    "prod": "vite build",
-    "watch": "vite"
+    "prod": "vp build",
+    "watch": "vp dev"
   },
   "dependencies": {
     "@github/relative-time-element": "^5.3.1",
@@ -30,7 +29,9 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
-    "vite": "8.3.5",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
     "yaml": "^2.9.1"
-  }
+  },
+  "packageManager": "pnpm@12.18.0"
 }
