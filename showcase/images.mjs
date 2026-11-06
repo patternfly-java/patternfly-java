@@ -29,7 +29,7 @@ if (!fs.existsSync(imageDir)) {
     fs.mkdirSync(imageDir, { recursive: true });
 }
 
-(async () => {
+void (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 

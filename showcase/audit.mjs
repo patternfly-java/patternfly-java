@@ -46,7 +46,7 @@ function auditGhsas() {
         writeFileSync(WORKSPACE, original);
     }
     const matches = output.match(/GHSA-[a-z0-9]+-[a-z0-9]+-[a-z0-9]+/g);
-    return [...new Set(matches || [])].sort();
+    return [...new Set(matches || [])].sort((a, b) => a.localeCompare(b));
 }
 
 function addIgnoreEntries(missing) {
