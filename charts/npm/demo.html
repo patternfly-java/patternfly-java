@@ -17,128 +17,130 @@
 -->
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>PatternFly Charts Web Components Demo</title>
-    <!-- PatternFly stylesheet -->
-    <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css"/>
-    <style>
-        body {
-            padding: 16px;
-        }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PatternFly Charts Web Components Demo</title>
+        <!-- PatternFly stylesheet -->
+        <link rel="stylesheet" href="https://unpkg.com/@patternfly/patternfly/patternfly.css" />
+        <style>
+            body {
+                padding: 16px;
+            }
 
-        section {
-            margin-bottom: 32px;
-        }
+            section {
+                margin-bottom: 32px;
+            }
 
-        h2 {
-            margin-top: 24px;
-        }
+            h2 {
+                margin-top: 24px;
+            }
 
-        .card {
-            border: 1px solid #d2d2d2;
-            border-radius: 3px;
-            padding: 16px;
-        }
-    </style>
-</head>
-<body>
-<header>
-    <h1 class="pf-v5-c-title pf-m-xl">PatternFly Charts Web Components</h1>
-    <p>Demo of <code>pfj-chart-donut</code>, <code>pfj-chart-donut-utilization</code>, <code>pfj-chart-donut-threshold</code>,
-        and <code>pfj-chart-bullet</code>.</p>
-</header>
+            .card {
+                border: 1px solid #d2d2d2;
+                border-radius: 3px;
+                padding: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="pf-v5-c-title pf-m-xl">PatternFly Charts Web Components</h1>
+            <p>
+                Demo of <code>pfj-chart-donut</code>, <code>pfj-chart-donut-utilization</code>,
+                <code>pfj-chart-donut-threshold</code>, and <code>pfj-chart-bullet</code>.
+            </p>
+        </header>
 
-<section class="card">
-    <h2 class="pf-v5-c-title pf-m-lg">Donut</h2>
-    <pfj-chart-donut
-            id="donut-chart-0"
-            width="300"
-            height="300"
-            title="Pets"
-            sub-title="Count"
-            legend-position="bottom"
-    ></pfj-chart-donut>
-</section>
+        <section class="card">
+            <h2 class="pf-v5-c-title pf-m-lg">Donut</h2>
+            <pfj-chart-donut
+                id="donut-chart-0"
+                width="300"
+                height="300"
+                title="Pets"
+                sub-title="Count"
+                legend-position="bottom"
+            ></pfj-chart-donut>
+        </section>
 
-<section class="card">
-    <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization</h2>
-    <pfj-chart-donut-utilization
-            width="300"
-            height="300"
-            title="60%"
-            sub-title="Utilization"
-            data='{"x":"Storage","y":60}'
-    ></pfj-chart-donut-utilization>
-</section>
+        <section class="card">
+            <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization</h2>
+            <pfj-chart-donut-utilization
+                width="300"
+                height="300"
+                title="60%"
+                sub-title="Utilization"
+                data='{"x":"Storage","y":60}'
+            ></pfj-chart-donut-utilization>
+        </section>
 
-<section class="card">
-    <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization with Threshold (Nested)</h2>
-    <pfj-chart-donut-threshold
-            aria-desc="Storage capacity"
-            aria-title="Donut utilization chart with static threshold example"
-            constrain-to-visible-area
-            data='[{"x":"Warning at 60%","y":60},{"x":"Danger at 90%","y":90}]'
-            name="chart10"
-            width="300"
-            height="300"
-    >
-        <pfj-chart-donut-utilization
-                id="utilization-threshold-chart-0"
-                sub-title="of 100 GBps"
-                title="75%"
-                thresholds='[{"value": 60}, {"value": 90}]'
-        ></pfj-chart-donut-utilization>
-    </pfj-chart-donut-threshold>
-</section>
+        <section class="card">
+            <h2 class="pf-v5-c-title pf-m-lg">Donut Utilization with Threshold (Nested)</h2>
+            <pfj-chart-donut-threshold
+                aria-desc="Storage capacity"
+                aria-title="Donut utilization chart with static threshold example"
+                constrain-to-visible-area
+                data='[{"x":"Warning at 60%","y":60},{"x":"Danger at 90%","y":90}]'
+                name="chart10"
+                width="300"
+                height="300"
+            >
+                <pfj-chart-donut-utilization
+                    id="utilization-threshold-chart-0"
+                    sub-title="of 100 GBps"
+                    title="75%"
+                    thresholds='[{"value": 60}, {"value": 90}]'
+                ></pfj-chart-donut-utilization>
+            </pfj-chart-donut-threshold>
+        </section>
 
-<section class="card">
-    <h2 class="pf-v5-c-title pf-m-lg">Bullet</h2>
-    <pfj-chart-bullet
-            id="bullet-chart-0"
-            width="600"
-            height="120"
-            aria-title="Bullet Chart"
-            comparative-warning-measure-data='[{"name":"Warning","y":88}]'
-            primary-segmented-measure-data='[{"name":"Measure","y":23},{"name":"Measure","y":60}]'
-            max-domain='{"y":132}'
-            qualitative-range-data='[{"name":"Range","y":50},{"name":"Range","y":75},{"name":"Range","y":100}]'
-            padding='{"top": 0, "right": 20, "bottom": 10, "left": 80}'
-            title="Threads"
-    ></pfj-chart-bullet>
-</section>
+        <section class="card">
+            <h2 class="pf-v5-c-title pf-m-lg">Bullet</h2>
+            <pfj-chart-bullet
+                id="bullet-chart-0"
+                width="600"
+                height="120"
+                aria-title="Bullet Chart"
+                comparative-warning-measure-data='[{"name":"Warning","y":88}]'
+                primary-segmented-measure-data='[{"name":"Measure","y":23},{"name":"Measure","y":60}]'
+                max-domain='{"y":132}'
+                qualitative-range-data='[{"name":"Range","y":50},{"name":"Range","y":75},{"name":"Range","y":100}]'
+                padding='{"top": 0, "right": 20, "bottom": 10, "left": 80}'
+                title="Threads"
+            ></pfj-chart-bullet>
+        </section>
 
-<script type="module">
-    import './src/charts.js';
+        <script type="module">
+            import "./src/charts.js";
 
-    (async () => {
-        await customElements.whenDefined('pfj-chart-donut');
-        const dc = document.getElementById('donut-chart-0');
-        if (dc?.updateComplete) await dc.updateComplete;
-        dc.data = [
-            {x: 'Cats', y: 25},
-            {x: 'Dogs', y: 55},
-            {x: 'Birds', y: 20}
-        ];
-        dc.labels = ({datum}) => `${datum.x}: ${datum.y}%`;
+            (async () => {
+                await customElements.whenDefined("pfj-chart-donut");
+                const dc = document.getElementById("donut-chart-0");
+                if (dc?.updateComplete) await dc.updateComplete;
+                dc.data = [
+                    { x: "Cats", y: 25 },
+                    { x: "Dogs", y: 55 },
+                    { x: "Birds", y: 20 },
+                ];
+                dc.labels = ({ datum }) => `${datum.x}: ${datum.y}%`;
 
-        const utc = document.getElementById('utilization-threshold-chart-0');
-        if (utc?.updateComplete) await utc.updateComplete;
-        utc.data = {x: 'Storage capacity', y: 0};
-        setInterval(() => {
-            let previous = utc.data.y;
-            let current = (previous + 10) % 100;
-            utc.data = {x: 'Storage capacity', y: current};
-            utc.title = `${current}%`;
-            utc.subTitle = `${current} of 100 GBps`;
-        }, 1000);
+                const utc = document.getElementById("utilization-threshold-chart-0");
+                if (utc?.updateComplete) await utc.updateComplete;
+                utc.data = { x: "Storage capacity", y: 0 };
+                setInterval(() => {
+                    let previous = utc.data.y;
+                    let current = (previous + 10) % 100;
+                    utc.data = { x: "Storage capacity", y: current };
+                    utc.title = `${current}%`;
+                    utc.subTitle = `${current} of 100 GBps`;
+                }, 1000);
 
-        await customElements.whenDefined('pfj-chart-bullet');
-        const bc = document.getElementById('bullet-chart-0');
-        if (bc?.updateComplete) await bc.updateComplete;
-        bc.labels = ({datum}) => `${datum.name}: ${datum.y}`;
-    })();
-</script>
-</body>
+                await customElements.whenDefined("pfj-chart-bullet");
+                const bc = document.getElementById("bullet-chart-0");
+                if (bc?.updateComplete) await bc.updateComplete;
+                bc.labels = ({ datum }) => `${datum.name}: ${datum.y}`;
+            })();
+        </script>
+    </body>
 </html>

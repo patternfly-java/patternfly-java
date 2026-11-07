@@ -13,14 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {defineConfig} from 'vite';
+import { defineConfig } from "vite-plus";
 
 export default defineConfig({
+    fmt: {},
+    lint: {
+        jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
+        rules: { "vite-plus/prefer-vite-plus-imports": "error" },
+        options: { typeAware: true, typeCheck: true },
+    },
     build: {
         lib: {
-            entry: 'src/charts.js',
-            formats: ['es'],
-            fileName: 'charts'
-        }
-    }
+            entry: "src/charts.js",
+            formats: ["es"],
+            fileName: "charts",
+        },
+    },
 });

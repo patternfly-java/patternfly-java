@@ -15,18 +15,17 @@
  */
 
 // Base class for the J2CL JsInterop base class org.patternfly.chart.ChartElement
-class ChartElement extends HTMLElement {
-}
+class ChartElement extends HTMLElement {}
 window.ChartElement = ChartElement;
 
-import './components/pfj-chart-bullet.js';
-import './components/pfj-chart-donut.js';
-import './components/pfj-chart-donut-utilization.js';
-import './components/pfj-chart-donut-threshold.js';
-import './components/pfj-chart-pie.js';
+import "./components/pfj-chart-bullet.js";
+import "./components/pfj-chart-donut.js";
+import "./components/pfj-chart-donut-utilization.js";
+import "./components/pfj-chart-donut-threshold.js";
+import "./components/pfj-chart-pie.js";
 
-export {ChartBulletWebComponent} from './components/pfj-chart-bullet.js';
-export {ChartDonutWebComponent} from './components/pfj-chart-donut.js';
-export {ChartDonutUtilizationWebComponent} from './components/pfj-chart-donut-utilization.js';
-export {ChartDonutThresholdWebComponent} from './components/pfj-chart-donut-threshold.js';
-export {ChartPieWebComponent} from './components/pfj-chart-pie.js';
+export { ChartBulletWebComponent } from "./components/pfj-chart-bullet.js";
+export { ChartDonutWebComponent } from "./components/pfj-chart-donut.js";
+export { ChartDonutUtilizationWebComponent } from "./components/pfj-chart-donut-utilization.js";
+export { ChartDonutThresholdWebComponent } from "./components/pfj-chart-donut-threshold.js";
+export { ChartPieWebComponent } from "./components/pfj-chart-pie.js";

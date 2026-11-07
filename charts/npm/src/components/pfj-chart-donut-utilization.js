@@ -13,11 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {parseAttrValue, ReactWrapperElement} from '../react-wrapper.js';
-import {ChartDonutUtilization} from '@patternfly/react-charts/victory';
+import { parseAttrValue, ReactWrapperElement } from "../react-wrapper.js";
+import { ChartDonutUtilization } from "@patternfly/react-charts/victory";
 
 export class ChartDonutUtilizationWebComponent extends ReactWrapperElement {
-
     constructor() {
         super();
         this._thresholds = undefined;
@@ -25,10 +24,10 @@ export class ChartDonutUtilizationWebComponent extends ReactWrapperElement {
 
     getReactComponent() {
         const extraProps = {};
-        if (this._thresholds && typeof this._thresholds !== 'string') {
+        if (this._thresholds && typeof this._thresholds !== "string") {
             extraProps.thresholds = this._thresholds;
-        } else if (this.getAttribute('thresholds')) {
-            extraProps.thresholds = parseAttrValue('thresholds', this.getAttribute('thresholds'));
+        } else if (this.getAttribute("thresholds")) {
+            extraProps.thresholds = parseAttrValue("thresholds", this.getAttribute("thresholds"));
         }
         return [ChartDonutUtilization, extraProps];
     }
@@ -43,4 +42,4 @@ export class ChartDonutUtilizationWebComponent extends ReactWrapperElement {
     }
 }
 
-customElements.define('pfj-chart-donut-utilization', ChartDonutUtilizationWebComponent);
+customElements.define("pfj-chart-donut-utilization", ChartDonutUtilizationWebComponent);

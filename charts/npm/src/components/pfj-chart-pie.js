@@ -13,11 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {parseAttrValue, ReactWrapperElement} from '../react-wrapper.js';
-import { ChartPie } from '@patternfly/react-charts/victory';
+import { parseAttrValue, ReactWrapperElement } from "../react-wrapper.js";
+import { ChartPie } from "@patternfly/react-charts/victory";
 
 export class ChartPieWebComponent extends ReactWrapperElement {
-
     constructor() {
         super();
         this._colorScale = undefined;
@@ -25,10 +24,10 @@ export class ChartPieWebComponent extends ReactWrapperElement {
 
     getReactComponent() {
         const extraProps = {};
-        if (this._colorScale && typeof this._colorScale !== 'string') {
+        if (this._colorScale && typeof this._colorScale !== "string") {
             extraProps.colorScale = this._colorScale;
-        } else if (this.getAttribute('color-scale')) {
-            extraProps.colorScale = parseAttrValue('color-scale', this.getAttribute('color-scale'));
+        } else if (this.getAttribute("color-scale")) {
+            extraProps.colorScale = parseAttrValue("color-scale", this.getAttribute("color-scale"));
         }
         return [ChartPie, extraProps];
     }
@@ -43,4 +42,4 @@ export class ChartPieWebComponent extends ReactWrapperElement {
     }
 }
 
-customElements.define('pfj-chart-pie', ChartPieWebComponent);
+customElements.define("pfj-chart-pie", ChartPieWebComponent);

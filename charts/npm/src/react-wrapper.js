@@ -13,27 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {css, html, LitElement} from 'lit';
-import React from 'react';
-import {createRoot} from 'react-dom/client';
+import { css, html, LitElement } from "lit";
+import React from "react";
+import { createRoot } from "react-dom/client";
 
 // ------------------------------------------------------ static helpers
 
 // Parse attribute values to JS types
 export const parseAttrValue = (name, value) => {
-    if (value === '' || value === undefined || value === null) {
+    if (value === "" || value === undefined || value === null) {
         // boolean attribute presence => true
         return true;
     }
     const trimmed = String(value).trim();
-    if (trimmed === 'true') return true;
-    if (trimmed === 'false') return false;
+    if (trimmed === "true") return true;
+    if (trimmed === "false") return false;
     if (/^\d+(?:\.\d+)?$/.test(trimmed)) return Number(trimmed);
     // JSON arrays or objects
-    if ((trimmed.startsWith('{') && trimmed.endsWith('}')) || (trimmed.startsWith('[') && trimmed.endsWith(']'))) {
+    if ((trimmed.startsWith("{") && trimmed.endsWith("}")) || (trimmed.startsWith("[") && trimmed.endsWith("]"))) {
         try {
             return JSON.parse(trimmed);
-        } catch (_) {
+        } catch {
             // fallthrough
         }
     }
@@ -46,7 +46,7 @@ const _buildPropsFromAttributes = (el) => {
     for (const attr of el.attributes) {
         const camel = _dashToCamel(attr.name);
         // skip standard attributes not relevant to React props
-        if (camel === 'class' || camel === 'style') continue;
+        if (camel === "class" || camel === "style") continue;
         props[camel] = parseAttrValue(camel, attr.value);
     }
     return props;
@@ -56,14 +56,14 @@ const _dashToCamel = (str) => str.replace(/-([a-z])/g, (_, c) => c.toUpperCase()
 
 // Props we currently do not support because they expect React elements
 const disallowedProps = new Set([
-    'containerComponent',
-    'desc',
-    'events',
-    'groupComponent',
-    'labelComponent',
-    'legendComponent',
-    'subTitleComponent',
-    'titleComponent',
+    "containerComponent",
+    "desc",
+    "events",
+    "groupComponent",
+    "labelComponent",
+    "legendComponent",
+    "subTitleComponent",
+    "titleComponent",
 ]);
 
 // ------------------------------------------------------ instance
@@ -113,14 +113,13 @@ export class ReactWrapperElement extends LitElement {
     }
 
     render() {
-        return html`
-            <div class="container"></div>
+        return html` <div class="container"></div>
             <slot style="display: none;"></slot>`;
     }
 
     // Must be implemented by subclasses to return [ReactComponent, extraProps]
     getReactComponent() {
-        throw new Error('getReactComponent() must be implemented by subclass');
+        throw new Error("getReactComponent() must be implemented by subclass");
     }
 
     // central render method for standalone and slotted elements.
@@ -130,7 +129,7 @@ export class ReactWrapperElement extends LitElement {
         const rawProps = _buildPropsFromAttributes(this);
         const commonProps = this._commonProps();
         const [Component, extraProps = {}] = this.getReactComponent();
-        const props = {...rawProps, ...commonProps, ...extraProps};
+        const props = { ...rawProps, ...commonProps, ...extraProps };
         for (const key of Object.keys(props)) {
             if (disallowedProps.has(key)) delete props[key];
         }
@@ -140,7 +139,7 @@ export class ReactWrapperElement extends LitElement {
     }
 
     _getReactChildren() {
-        const slot = this.renderRoot.querySelector('slot');
+        const slot = this.renderRoot.querySelector("slot");
         if (!slot) return [];
 
         const assignedElements = slot.assignedElements();
@@ -151,7 +150,7 @@ export class ReactWrapperElement extends LitElement {
                 const childRawProps = _buildPropsFromAttributes(el);
                 const childCommonProps = el._commonProps(); // Use child's common props, not parent's!
                 const [ChildComponent, childExtraProps = {}] = el.getReactComponent();
-                const childProps = {...childRawProps, ...childCommonProps, ...childExtraProps};
+                const childProps = { ...childRawProps, ...childCommonProps, ...childExtraProps };
                 for (const key of Object.keys(childProps)) {
                     if (disallowedProps.has(key)) delete childProps[key];
                 }
@@ -164,7 +163,7 @@ export class ReactWrapperElement extends LitElement {
     // ------------------------------------------------------ lifecycle
 
     firstUpdated(_changedProperties) {
-        this._container = this.renderRoot.querySelector('.container');
+        this._container = this.renderRoot.querySelector(".container");
 
         // Check if this element is slotted into a parent that will handle rendering
         const isSlotted = this._isSlottedChild();
@@ -177,17 +176,17 @@ export class ReactWrapperElement extends LitElement {
                     parent._renderReact();
                 }
             });
-            this._observer.observe(this, {attributes: true});
+            this._observer.observe(this, { attributes: true });
         } else {
             // If standalone, create React root and render normally
             this._root = createRoot(this._container);
             this._observer = new MutationObserver(() => this._renderReact());
-            this._observer.observe(this, {attributes: true, childList: true, subtree: true});
+            this._observer.observe(this, { attributes: true, childList: true, subtree: true });
 
             // Listen to slot changes to re-render when children change
-            const slot = this.renderRoot.querySelector('slot');
+            const slot = this.renderRoot.querySelector("slot");
             if (slot) {
-                slot.addEventListener('slotchange', () => this._renderReact());
+                slot.addEventListener("slotchange", () => this._renderReact());
             }
             this._renderReact();
         }
@@ -343,15 +342,15 @@ export class ReactWrapperElement extends LitElement {
 
     _commonProps() {
         const commonProps = {};
-        if (this._categories && typeof this._categories !== 'string') {
+        if (this._categories && typeof this._categories !== "string") {
             commonProps.categories = this._categories;
-        } else if (this.getAttribute('categories')) {
-            commonProps.categories = parseAttrValue('categories', this.getAttribute('categories'));
+        } else if (this.getAttribute("categories")) {
+            commonProps.categories = parseAttrValue("categories", this.getAttribute("categories"));
         }
-        if (this._data && typeof this._data !== 'string') {
+        if (this._data && typeof this._data !== "string") {
             commonProps.data = this._data;
-        } else if (this.getAttribute('data')) {
-            commonProps.data = parseAttrValue('data', this.getAttribute('data'));
+        } else if (this.getAttribute("data")) {
+            commonProps.data = parseAttrValue("data", this.getAttribute("data"));
         }
         if (this._height !== undefined) {
             commonProps.height = Number(this._height);
@@ -359,10 +358,10 @@ export class ReactWrapperElement extends LitElement {
         if (this._labels !== undefined) {
             commonProps.labels = this._labels;
         }
-        if (this._legendData && typeof this._legendData !== 'string') {
+        if (this._legendData && typeof this._legendData !== "string") {
             commonProps.legendData = this._legendData;
-        } else if (this.getAttribute('legend-data')) {
-            commonProps.legendData = parseAttrValue('legend-data', this.getAttribute('legend-data'));
+        } else if (this.getAttribute("legend-data")) {
+            commonProps.legendData = parseAttrValue("legend-data", this.getAttribute("legend-data"));
         }
         if (this._legendOrientation !== undefined) {
             commonProps.legendOrientation = this._legendOrientation;

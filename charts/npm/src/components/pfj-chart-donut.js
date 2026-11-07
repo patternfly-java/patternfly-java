@@ -13,14 +13,13 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {ReactWrapperElement} from '../react-wrapper.js';
-import {ChartDonut} from '@patternfly/react-charts/victory';
+import { ReactWrapperElement } from "../react-wrapper.js";
+import { ChartDonut } from "@patternfly/react-charts/victory";
 
 export class ChartDonutWebComponent extends ReactWrapperElement {
-
     getReactComponent() {
         return [ChartDonut, {}];
     }
 }
 
-customElements.define('pfj-chart-donut', ChartDonutWebComponent);
+customElements.define("pfj-chart-donut", ChartDonutWebComponent);
