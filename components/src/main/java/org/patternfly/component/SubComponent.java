@@ -29,7 +29,6 @@ import org.jboss.elemento.HTMLElementVisibilityMethods;
 import org.jboss.elemento.Id;
 import org.jboss.elemento.TypedBuilder;
 import org.patternfly.core.OuiaSupport;
-
 import elemental2.dom.HTMLElement;
 
 import static java.util.Objects.requireNonNull;
@@ -37,18 +36,18 @@ import static org.patternfly.component.ComponentRegistry.componentRegistry;
 
 /** Base class for sub-components that are part of a larger PatternFly component, such as card headers or modal bodies. */
 public abstract class SubComponent<E extends HTMLElement, B extends TypedBuilder<E, B>> implements
-        OuiaSupport<E, B>,
         ElementAttributeMethods<E, B>,
         ElementClassListMethods<E, B>,
-        ElementContainerMethods<E, B>,
         ElementConsumerMethods<E, B>,
+        ElementContainerMethods<E, B>,
         ElementEventMethods<E, B>,
         ElementIdMethods<E, B>,
         ElementQueryMethods<E>,
         HTMLElementAttributeMethods<E, B>,
         HTMLElementDataMethods<E, B>,
         HTMLElementStyleMethods<E, B>,
-        HTMLElementVisibilityMethods<E, B> {
+        HTMLElementVisibilityMethods<E, B>,
+        OuiaSupport<E, B> {
 
     final ComponentType componentType;
     final String subComponentId;
