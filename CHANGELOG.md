@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add `pageInfo()` accessor to Pagination for reading current pagination state
+- Add `onChange(PaginationHandler)` to Pagination for unified notification on any pagination change
+
+### Changed
+
+- Refactor pagination event handling to pass both previous and updated `PageInfo` to handlers, enabling before/after comparison in navigation callbacks
+- Sort implemented interface list alphabetically in `SubComponent`
+- Migrate showcase build tooling to Vite+
+- Migrate charts/npm package build to Vite+
+
+### Fixed
+
+- Fix vp check lint warnings in showcase scripts
+
 ## [0.15.0] - 2026-11-05
 
 ### Added
