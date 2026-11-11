@@ -6,6 +6,44 @@ updates:
     schedule:
       interval: "daily"
 
+  - package-ecosystem: "npm"
+    directory: "/charts/npm"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "victory-*"
+        versions: [">=38"]
+
+  - package-ecosystem: "npm"
+    directory: "/core"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/core/npm"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/icons"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/tokens"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/showcase"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/extensions/finder/npm"
+    schedule:
+      interval: "daily"
+
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
