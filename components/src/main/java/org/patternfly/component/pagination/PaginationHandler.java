@@ -18,8 +18,7 @@ package org.patternfly.component.pagination;
 import elemental2.dom.Event;
 
 /**
- * Handler for pagination navigation events. The {@link PageInfo} passed to {@link #onNavigation} reflects the state
- * <em>after</em> the navigation has been applied.
+ * Handler for pagination navigation events.
  */
 @FunctionalInterface
 public interface PaginationHandler {
@@ -27,9 +26,10 @@ public interface PaginationHandler {
     /**
      * Called when a pagination navigation event occurs.
      *
-     * @param event the browser event that triggered the navigation
+     * @param event      the browser event that triggered the navigation
      * @param pagination the pagination component
-     * @param pageInfo the page info <em>after</em> the navigation has been applied
+     * @param previous   the page info <em>before</em> the navigation has been applied
+     * @param update     the page info <em>after</em> the navigation has been applied
      */
-    void onNavigation(Event event, Pagination pagination, PageInfo pageInfo);
+    void onNavigation(Event event, Pagination pagination, PageInfo previous, PageInfo update);
 }

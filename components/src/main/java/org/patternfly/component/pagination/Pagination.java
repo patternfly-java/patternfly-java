@@ -17,6 +17,7 @@ package org.patternfly.component.pagination;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.jboss.elemento.Id;
 import org.patternfly.component.BaseComponent;
@@ -111,6 +112,7 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
     private final List<PaginationHandler> onLast;
     private final List<PaginationHandler> onPageSize;
     private final List<PaginationHandler> onPageInput;
+    private final List<PaginationHandler> onChange;
 
     private final HTMLElement rangeInfoElement;
     private final MenuToggle pageSizeMenuToggle;
@@ -134,41 +136,32 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
         this.onLast = new ArrayList<>();
         this.onPageSize = new ArrayList<>();
         this.onPageInput = new ArrayList<>();
+        this.onChange = new ArrayList<>();
 
         this.rangeInfoElement = div().css(component(pagination, totalItems)).element();
         this.pageSizeMenuToggle = menuToggle(plainText).text(""); // make sure textElement is assigned!
         this.pageSizeSelect = singleSelect(pageSizeMenuToggle).noDefaultSelectHandler();
         this.firstPageButton = button().plain().icon(doubleCaretLeft())
                 .aria(label, "Go to first page")
-                .onClick((e, b) -> {
-                    pageInfo(this.pageInfo.firstPage());
-                    fire(e, onFirst);
-                });
+                .onClick((e, b) ->
+                        onInternalUpdate(e, onFirst, () -> this.pageInfo.firstPage()));
         this.previousPageButton = button().plain().icon(caretLeft())
                 .aria(label, "Go to previous page")
-                .onClick((e, b) -> {
-                    pageInfo(this.pageInfo.previousPage());
-                    fire(e, onPrevious);
-                });
+                .onClick((e, b) ->
+                        onInternalUpdate(e, onPrevious, () -> this.pageInfo.previousPage()));
         this.nextPageButton = button().plain().icon(caretRight())
                 .aria(label, "Go to next page")
-                .onClick((e, b) -> {
-                    pageInfo(this.pageInfo.nextPage());
-                    fire(e, onNext);
-                });
+                .onClick((e, b) ->
+                        onInternalUpdate(e, onNext, () -> this.pageInfo.nextPage()));
         this.lastPageButton = button().plain().icon(doubleCaretRight())
                 .aria(label, "Go to last page")
-                .onClick((e, b) -> {
-                    pageInfo(this.pageInfo.lastPage());
-                    fire(e, onLast);
-                });
+                .onClick((e, b) ->
+                        onInternalUpdate(e, onLast, () -> this.pageInfo.lastPage()));
         this.pageInput = textInput(TextInputType.number, Id.build(ComponentType.Pagination.id, "input"))
                 .aria(label, "Current page")
                 .applyTo(input -> input.min(1))
-                .onChange((e, c, v) -> {
-                    pageInfo(this.pageInfo.withPage(Integer.parseInt(v)));
-                    fire(e, onPageInput);
-                });
+                .onChange((e, c, v) ->
+                        onInternalUpdate(e, onPageInput, () -> this.pageInfo.withPage(Integer.parseInt(v))));
         this.pagesElement = span().aria(hidden, true).element();
 
         add(rangeInfoElement);
@@ -177,8 +170,7 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
                         .onSingleSelect((e, mi, s) -> {
                             PageSize pageSize = mi.get(PAGE_SIZE_KEY);
                             if (pageSize != null) {
-                                pageInfo(this.pageInfo.withPageSize(pageSize.value));
-                                fire(e, onPageSize);
+                                onInternalUpdate(e, onPageSize, () -> this.pageInfo.withPageSize(pageSize.value));
                             }
                         })
                         .addContent(menuContent().addList(menuList().addItems(asList(PageSize.values()), pageSize ->
@@ -328,6 +320,12 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
         return this;
     }
 
+    /** Registers a handler called when the user changes anything related to pagination (combines all other handlers). */
+    public Pagination onChange(PaginationHandler handler) {
+        onChange.add(handler);
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     @Override
@@ -346,6 +344,18 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
     }
 
     // ------------------------------------------------------ internal
+
+    private void onInternalUpdate(Event event, List<PaginationHandler> handlers, Supplier<PageInfo> supplier) {
+        PageInfo previous = this.pageInfo;
+        this.pageInfo = supplier.get();
+        internalUpdate();
+        for (PaginationHandler handler : handlers) {
+            handler.onNavigation(event, this, previous, this.pageInfo);
+        }
+        for (PaginationHandler handler : onChange) {
+            handler.onNavigation(event, this, previous, this.pageInfo);
+        }
+    }
 
     private void internalUpdate() {
         HTMLElement[] elements = new HTMLElement[]{rangeInfoElement, pageSizeMenuToggle.textElement()};
@@ -376,12 +386,6 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
         setVisible(pagesElement, !pageInfo.isIndeterminate());
         if (!pageInfo.isIndeterminate()) {
             pagesElement.textContent = "of " + pageInfo.pages();
-        }
-    }
-
-    private void fire(Event event, List<PaginationHandler> handlers) {
-        for (PaginationHandler handler : handlers) {
-            handler.onNavigation(event, this, pageInfo);
         }
     }
 }

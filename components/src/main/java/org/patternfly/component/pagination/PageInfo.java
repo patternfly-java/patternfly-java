@@ -55,6 +55,11 @@ public record PageInfo(int page, int pageSize, int total) {
         page = clampPage(page, pageSize, total);
     }
 
+    @Override
+    public String toString() {
+        return "PageInfo(page=" + page + ", pageSize=" + pageSize + ", total=" + (isIndeterminate() ? "UNKNOWN" : total) + ')';
+    }
+
     // ------------------------------------------------------ read
 
     public int pages() {
@@ -149,11 +154,6 @@ public record PageInfo(int page, int pageSize, int total) {
     }
 
     // ------------------------------------------------------ internal
-
-    @Override
-    public String toString() {
-        return "PageInfo(page=" + page + ", pageSize=" + pageSize + ", total=" + (isIndeterminate() ? "UNKNOWN" : total) + ')';
-    }
 
     private int clampPage(int page, int pageSize, int total) {
         if (total == 0) {
