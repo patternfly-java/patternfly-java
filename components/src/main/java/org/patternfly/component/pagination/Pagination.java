@@ -341,6 +341,10 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
         internalUpdate();
     }
 
+    public PageInfo pageInfo() {
+        return pageInfo;
+    }
+
     // ------------------------------------------------------ internal
 
     private void internalUpdate() {
