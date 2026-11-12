@@ -1,6 +1,6 @@
 {
   "name": "@patternfly-java/core",
-  "version": "0.15.1",
+  "version": "0.15.2-SNAPSHOT",
   "private": false,
   "description": "CSS for PatternFly Java.",
   "keywords": [
