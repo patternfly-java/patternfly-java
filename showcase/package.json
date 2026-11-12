@@ -30,7 +30,7 @@
     "remark-rehype": "^11.1.2",
     "unified": "^11.0.5",
     "vite": "catalog:",
-    "vite-plus": "1.5.1",
+    "vite-plus": "catalog:",
     "yaml": "^2.9.1"
   },
   "packageManager": "pnpm@12.18.0"
