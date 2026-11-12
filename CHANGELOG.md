@@ -17,10 +17,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - Sort implemented interface list alphabetically in `SubComponent`
 - Migrate showcase build tooling to Vite+
 - Migrate charts/npm package build to Vite+
+- Migrate remaining npm packages (core, icons, tokens, finder) to Vite+ toolchain
+- Upgrade Vite+ from 1.5.x to 1.6.0 and use catalog references across all npm packages
+- Upgrade Elemento from 2.5.12 to 2.5.14
+- Upgrade Elemental2 from 1.4.0-RC2 to 1.4.0
 
 ### Fixed
 
 - Fix vp check lint warnings in showcase scripts
+- Fix `packageManager` version inconsistency across npm packages (align to pnpm 12.18.0)
+- Fix wrong package name in `tokens/package.json` (`"icons"` → `"tokens"`)
+- Fix TypeScript config errors in icons module (remove deprecated `downlevelIteration`, correct `module` setting)
 
 ## [0.15.0] - 2026-11-05
 
