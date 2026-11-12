@@ -1,8 +1,11 @@
 {
   "name": "patternfly-java-core",
-  "packageManager": "pnpm@12.16.1",
   "private": true,
   "scripts": {
     "generate-version": "node version.mjs"
-  }
+  },
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  },
+  "packageManager": "pnpm@12.18.0"
 }

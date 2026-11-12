@@ -1,14 +1,15 @@
 {
-  "name": "icons",
+  "name": "tokens",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@12.16.1",
   "scripts": {
     "generate": "node src/scripts/generate.mjs"
   },
   "devDependencies": {
     "@patternfly/react-tokens": "^6.7.0",
     "@types/node": "26.6.6",
-    "camelcase": "^10.0.0"
-  }
+    "camelcase": "^10.0.0",
+    "vite-plus": "catalog:"
+  },
+  "packageManager": "pnpm@12.18.0"
 }

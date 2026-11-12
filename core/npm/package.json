@@ -1,37 +1,40 @@
 {
-  "author": "Harald Pehl <harald.pehl@gmail.com>",
+  "name": "@patternfly-java/core",
+  "version": "0.15.1-SNAPSHOT",
+  "private": false,
+  "description": "CSS for PatternFly Java.",
+  "keywords": [
+    "css",
+    "elemento",
+    "finder",
+    "gwt",
+    "j2cl",
+    "java",
+    "patternfly"
+  ],
+  "homepage": "https://patternfly-java.github.io/",
   "bugs": {
     "url": "https://github.com/patternfly-java/patternfly-java/issues"
   },
-  "description": "CSS for PatternFly Java.",
-  "exports": {
-    ".": "./core.css"
-  },
-  "files": [
-    "core.css"
-  ],
-  "homepage": "https://patternfly-java.github.io/",
-  "keywords": [
-    "css",
-    "java",
-    "gwt",
-    "j2cl",
-    "patternfly",
-    "elemento",
-    "finder"
-  ],
   "license": "Apache-2.0",
-  "main": "core.css",
-  "name": "@patternfly-java/core",
-  "packageManager": "pnpm@12.16.1",
-  "peerDependencies": {
-    "@patternfly/patternfly": "^6.6.1"
-  },
-  "private": false,
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patternfly-java/patternfly-java.git"
   },
   "style": "core.css",
-  "version": "0.15.1-SNAPSHOT"
+  "files": [
+    "core.css"
+  ],
+  "main": "core.css",
+  "exports": {
+    ".": "./core.css"
+  },
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  },
+  "peerDependencies": {
+    "@patternfly/patternfly": "^6.6.1"
+  },
+  "packageManager": "pnpm@12.18.0"
 }
