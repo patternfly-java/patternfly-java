@@ -339,6 +339,11 @@ public class Pagination extends BaseComponent<HTMLElement, Pagination> implement
         internalUpdate();
     }
 
+    /**
+     * Returns the current pagination state, including the current page, page size, and total item count.
+     *
+     * @return the current page information
+     */
     public PageInfo pageInfo() {
         return pageInfo;
     }
