@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add compact variant to List component
+
+### Changed
+
+- Upgrade pnpm to 12.21.0
+- Upgrade Vite+ from 1.6.0 to 1.7.0
+- Upgrade jboss-parent from 54 to 55
+
 ## [0.15.1] - 2026-11-12
 
 ### Added
