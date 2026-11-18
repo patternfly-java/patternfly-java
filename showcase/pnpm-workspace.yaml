@@ -38,14 +38,11 @@ peerDependencyRules:
     - "@patternfly/react-core"
     - "@patternfly/react-icons"
     - "@patternfly/react-table"
-    - vite
-  allowedVersions:
-    vite: "*"
 
 minimumReleaseAgeExclude:
   - "@patternfly/documentation-framework@6.54.1"
 catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@1.6.0
-  vite-plus: 1.6.0
+  vite: npm:@voidzero-dev/vite-plus-core@8.3.8000
+  vite-plus: 1.7.0
 overrides:
   vite@*: "catalog:"
