@@ -5,7 +5,7 @@
     "generate-version": "node version.mjs"
   },
   "devDependencies": {
-    "vite-plus": "catalog:"
+    "vite-plus": "1.7.0"
   },
   "packageManager": "pnpm@12.21.0"
 }
