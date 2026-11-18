@@ -30,7 +30,9 @@ import org.patternfly.core.RemoveItemHandler;
 import org.patternfly.core.Roles;
 import org.patternfly.core.UpdateItemHandler;
 import org.patternfly.style.Classes;
+import org.patternfly.style.Modifiers;
 import org.patternfly.style.Modifiers.Bordered;
+import org.patternfly.style.Modifiers.Compact;
 import org.patternfly.style.Modifiers.Inline;
 import org.patternfly.style.Modifiers.Plain;
 
@@ -54,6 +56,7 @@ import static org.patternfly.style.Size.lg;
  */
 public class List extends BaseComponent<HTMLElement, List> implements
         Bordered<HTMLElement, List>,
+        Compact<HTMLElement, List>,
         Inline<HTMLElement, List>,
         Ordered<HTMLElement, List, ListItem>,
         Plain<HTMLElement, List> {
