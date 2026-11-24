@@ -21,5 +21,5 @@ package org.patternfly.extension.codeeditor;
 @FunctionalInterface
 public interface ChangeHandler {
 
-    void onChange(String code, CodeEditor codeEditor);
+    void onChange(CodeEditor codeEditor, String code);
 }

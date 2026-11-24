@@ -119,4 +119,7 @@ msg "  ${GREEN}✔${NOFORMAT} charts"
 cd "${script_dir}/extensions/finder/npm"
 npm version "${NEW_VERSION}" --no-git-tag-version &> /dev/null
 msg "  ${GREEN}✔${NOFORMAT} extensions/finder"
+cd "${script_dir}/extensions/codeeditor/npm"
+npm version "${NEW_VERSION}" --no-git-tag-version &> /dev/null
+msg "  ${GREEN}✔${NOFORMAT} extensions/codeeditor"
 cd "${script_dir}"

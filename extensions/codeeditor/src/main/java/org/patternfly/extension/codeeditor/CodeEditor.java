@@ -18,6 +18,7 @@ package org.patternfly.extension.codeeditor;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Modifiers.Readonly2;
+import elemental2.dom.CSSStyleProperties;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Any;
 import jsinterop.base.Js;
@@ -124,6 +125,11 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         return this;
     }
 
+    public CodeEditor fontSize(String fontSize) {
+        editorElement.style.fontSize = CSSStyleProperties.FontSizeUnionType.of(fontSize);
+        return this;
+    }
+
     @Override
     public CodeEditor that() {
         return this;
@@ -137,7 +143,7 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
             if (detail != null) {
                 Any value = detail.asPropertyMap().getAsAny("code");
                 if (value != null) {
-                    handler.onChange(value.asString(), this);
+                    handler.onChange(this, value.asString());
                 }
             }
         });

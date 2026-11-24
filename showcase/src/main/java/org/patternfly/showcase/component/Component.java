@@ -51,7 +51,7 @@ public class Component {
 
     @JsOverlay
     public final String designGuidelines() {
-        return "https://www.patternfly.org/components/" + name + "/design-guidelines";
+        return "https://www.patternfly.org" + route + "/design-guidelines";
     }
 
     @JsOverlay

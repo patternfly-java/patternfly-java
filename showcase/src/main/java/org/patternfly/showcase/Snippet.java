@@ -25,7 +25,6 @@ import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.icon.IconSets;
 import org.patternfly.layout.stack.StackItem;
 import org.patternfly.style.Classes;
-
 import elemental2.dom.HTMLElement;
 
 import static org.jboss.elemento.Elements.a;
@@ -44,6 +43,7 @@ import static org.patternfly.extension.codeeditor.CodeEditorAction.codeEditorAct
 import static org.patternfly.extension.codeeditor.CodeEditorAction.codeEditorCopyToClipboardAction;
 import static org.patternfly.extension.codeeditor.CodeEditorActions.codeEditorActions;
 import static org.patternfly.extension.codeeditor.CodeEditorHeader.codeEditorHeader;
+import static org.patternfly.extension.codeeditor.Language.JAVA;
 import static org.patternfly.icon.IconSets.fas.link;
 import static org.patternfly.layout.flex.AlignItems.center;
 import static org.patternfly.layout.flex.Flex.flex;
@@ -101,6 +101,10 @@ public class Snippet implements IsElement<HTMLElement> {
                 .addItem(preview = stackItem().add(demoElement()))
                 .addItem(stackItem()
                         .add(codeEditor = codeEditor().css("ws-code-editor")
+                                .readonly()
+                                .language(JAVA)
+                                .height("20lh")
+                                .fontSize("12px")
                                 .addHeader(codeEditorHeader().plain()
                                         .addActions(codeEditorActions()
                                                 .addAction(codeEditorAction(button()
