@@ -14,37 +14,67 @@
  *  limitations under the License.
  */
 import { StreamLanguage, LanguageSupport } from "@codemirror/language";
+import { Tag, tagHighlighter } from "@lezer/highlight";
+
+export const logfileTimestamp = Tag.define();
+export const logfileCategory = Tag.define();
+export const logfileLevelError = Tag.define();
+export const logfileLevelWarn = Tag.define();
+export const logfileLevelInfo = Tag.define();
+export const logfileLevelDebug = Tag.define();
+export const logfileException = Tag.define();
+
+const tokenTable = {
+    timestamp: logfileTimestamp,
+    category: logfileCategory,
+    "level-error": logfileLevelError,
+    "level-warn": logfileLevelWarn,
+    "level-info": logfileLevelInfo,
+    "level-debug": logfileLevelDebug,
+    exception: logfileException,
+};
 
 const logfileLanguage = StreamLanguage.define({
     token(stream) {
         if (stream.match(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}/)) {
-            return "logfile-timestamp";
+            return "timestamp";
         }
         if (stream.match(/\[[a-z.]+\]/)) {
-            return "logfile-category";
+            return "category";
         }
         if (stream.match(/ERROR/)) {
-            return "logfile-level-error";
+            return "level-error";
         }
         if (stream.match(/WARN/)) {
-            return "logfile-level-warn";
+            return "level-warn";
         }
         if (stream.match(/INFO/)) {
-            return "logfile-level-info";
+            return "level-info";
         }
         if (stream.match(/DEBUG/)) {
-            return "logfile-level-debug";
+            return "level-debug";
         }
         if (stream.match(/\w*Exception/)) {
-            return "logfile-exception";
+            return "exception";
         }
         if (stream.match(/\w*Error/)) {
-            return "logfile-exception";
+            return "exception";
         }
         stream.next();
         return null;
     },
+    tokenTable,
 });
+
+export const logfileHighlighter = tagHighlighter([
+    { tag: logfileTimestamp, class: "cm-logfile-timestamp" },
+    { tag: logfileCategory, class: "cm-logfile-category" },
+    { tag: logfileLevelError, class: "cm-logfile-level-error" },
+    { tag: logfileLevelWarn, class: "cm-logfile-level-warn" },
+    { tag: logfileLevelInfo, class: "cm-logfile-level-info" },
+    { tag: logfileLevelDebug, class: "cm-logfile-level-debug" },
+    { tag: logfileException, class: "cm-logfile-exception" },
+]);
 
 export function logfile() {
     return new LanguageSupport(logfileLanguage);

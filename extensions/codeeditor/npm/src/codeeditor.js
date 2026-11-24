@@ -17,6 +17,7 @@ import { basicSetup } from "codemirror";
 import { Compartment, EditorState } from "@codemirror/state";
 import { EditorView, lineNumbers as lineNumbersExtension, placeholder as placeholderExtension } from "@codemirror/view";
 import { languages } from "./languages.js";
+import { logfileHighlighter } from "./logfile.js";
 import { createPfTheme, pfHighlightStyle } from "./theme.js";
 
 class CodeEditorElement extends HTMLElement {
@@ -30,6 +31,7 @@ class CodeEditorElement extends HTMLElement {
         this._lineWrapping = false;
         this._placeholder = null;
         this._tabSize = 4;
+        this._height = null;
         this._view = null;
         this._dirty = false;
         this._dark = false;
@@ -119,6 +121,15 @@ class CodeEditorElement extends HTMLElement {
         this._scheduleUpdate();
     }
 
+    get height() {
+        return this._height;
+    }
+
+    set height(value) {
+        this._height = value;
+        this._applyHeight();
+    }
+
     // ------------------------------------------------------ lifecycle
 
     connectedCallback() {
@@ -129,6 +140,7 @@ class CodeEditorElement extends HTMLElement {
                 basicSetup,
                 this._themeCompartment.of(createPfTheme(this._dark)),
                 pfHighlightStyle,
+                logfileHighlighter,
                 this._languageCompartment.of(this._resolveLanguage()),
                 this._readOnlyCompartment.of(EditorState.readOnly.of(this._readOnly)),
                 this._lineNumbersCompartment.of(this._lineNumbers ? lineNumbersExtension() : []),
@@ -147,6 +159,7 @@ class CodeEditorElement extends HTMLElement {
             ],
         });
         this._view = new EditorView({ state, parent: this });
+        this._applyHeight();
         this._themeObserver = new MutationObserver(() => this._checkDarkMode());
         this._themeObserver.observe(document.documentElement, {
             attributes: true,
@@ -167,6 +180,19 @@ class CodeEditorElement extends HTMLElement {
     }
 
     // ------------------------------------------------------ internal
+
+    _applyHeight() {
+        if (this._view) {
+            const el = this._view.dom;
+            if (this._height) {
+                el.style.height = this._height;
+                el.querySelector(".cm-scroller").style.overflow = "auto";
+            } else {
+                el.style.height = "";
+                el.querySelector(".cm-scroller").style.overflow = "";
+            }
+        }
+    }
 
     _isDarkMode() {
         return getComputedStyle(this).colorScheme === "dark";

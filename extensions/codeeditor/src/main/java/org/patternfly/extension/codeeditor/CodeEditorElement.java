@@ -48,4 +48,7 @@ public class CodeEditorElement extends HTMLElement {
 
     /** Tab size in spaces. Defaults to {@code 4} (JS-side default). */
     public int tabSize;
+
+    /** Editor height as CSS value (e.g. {@code "400px"}). Defaults to {@code null} (auto-size). */
+    public String height;
 }

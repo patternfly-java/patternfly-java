@@ -48,3 +48,6 @@ CodeEditorElement.prototype.placeholder;
 
 /** @type {number} */
 CodeEditorElement.prototype.tabSize;
+
+/** @type {string} */
+CodeEditorElement.prototype.height;

@@ -119,6 +119,11 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         return this;
     }
 
+    public CodeEditor height(String height) {
+        editorElement.height = height;
+        return this;
+    }
+
     @Override
     public CodeEditor that() {
         return this;
