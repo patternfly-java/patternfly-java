@@ -43,28 +43,28 @@ export const pfTheme = EditorView.theme({
     ".cm-activeLineGutter": {
         backgroundColor: "var(--pf-t--global--background--color--200)",
     },
-    // logfile-specific styles
+    // logfile-specific styles using semantic PF text color tokens
     ".cm-logfile-timestamp": {
-        color: "#447384",
+        color: "var(--pf-t--global--text--color--status--custom--default)",
     },
     ".cm-logfile-category": {
-        color: "#71362D",
+        color: "var(--pf-t--global--text--color--status--info--default)",
     },
     ".cm-logfile-level-error": {
-        color: "#CC0000",
+        color: "var(--pf-t--global--text--color--status--danger--default)",
     },
     ".cm-logfile-level-warn": {
-        color: "#FF9911",
+        color: "var(--pf-t--global--text--color--status--warning--default)",
     },
     ".cm-logfile-level-info": {
         color: "inherit",
     },
     ".cm-logfile-level-debug": {
-        color: "#666666",
+        color: "var(--pf-t--global--text--color--200)",
     },
     ".cm-logfile-exception": {
-        color: "#FFBC11",
-        backgroundColor: "#c82e2e",
+        color: "var(--pf-t--global--text--color--status--on-danger--default, #fff)",
+        backgroundColor: "var(--pf-t--global--color--status--danger--default)",
     },
 });
 
@@ -72,11 +72,11 @@ export const pfHighlightStyle = syntaxHighlighting(
     HighlightStyle.define([
         {
             tag: tags.keyword,
-            color: "var(--pf-t--global--color--nonstatus--purple--default)",
+            color: "var(--pf-t--color--purple--50)",
         },
         {
             tag: [tags.string, tags.special(tags.brace)],
-            color: "var(--pf-t--global--color--nonstatus--green--default)",
+            color: "var(--pf-t--color--green--50)",
         },
         {
             tag: tags.comment,
@@ -84,23 +84,23 @@ export const pfHighlightStyle = syntaxHighlighting(
         },
         {
             tag: [tags.number, tags.literal],
-            color: "var(--pf-t--global--color--nonstatus--orange--default)",
+            color: "var(--pf-t--color--orange--50)",
         },
         {
             tag: tags.variableName,
-            color: "var(--pf-t--global--color--nonstatus--blue--default)",
+            color: "var(--pf-t--color--blue--50)",
         },
         {
             tag: [tags.typeName, tags.className],
-            color: "var(--pf-t--global--color--nonstatus--yellow--default)",
+            color: "var(--pf-t--color--yellow--50)",
         },
         {
             tag: [tags.tagName, tags.attributeName],
-            color: "var(--pf-t--global--color--nonstatus--red--default)",
+            color: "var(--pf-t--color--red--50)",
         },
         {
             tag: tags.meta,
-            color: "var(--pf-t--global--color--nonstatus--purple--default)",
+            color: "var(--pf-t--color--purple--50)",
         },
     ])
 );

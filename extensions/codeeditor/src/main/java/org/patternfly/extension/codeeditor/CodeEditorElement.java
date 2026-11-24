@@ -28,11 +28,24 @@ import elemental2.dom.HTMLElement;
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class CodeEditorElement extends HTMLElement {
 
+    /** Editor content. Defaults to {@code ""}. */
     public String code;
+
+    /** Language mode key (e.g. {@code "java"}, {@code "json"}). Defaults to {@code null} (no highlighting). */
     public String language;
+
+    /** Whether the editor is read-only. Defaults to {@code false}. */
     public boolean readOnly;
+
+    /** Whether line numbers are shown. Defaults to {@code true} (JS-side default). */
     public boolean lineNumbers;
+
+    /** Whether long lines wrap. Defaults to {@code false}. */
     public boolean lineWrapping;
+
+    /** Placeholder text shown when the editor is empty. Defaults to {@code null}. */
     public String placeholder;
+
+    /** Tab size in spaces. Defaults to {@code 4} (JS-side default). */
     public int tabSize;
 }
