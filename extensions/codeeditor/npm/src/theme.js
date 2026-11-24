@@ -19,31 +19,13 @@ import { tags } from "@lezer/highlight";
 
 export const pfTheme = EditorView.theme({
     "&": {
-        backgroundColor: "var(--pf-t--global--background--color--100)",
         color: "var(--pf-t--global--text--color--100)",
         fontFamily: "var(--pf-t--global--font--family--mono)",
     },
-    ".cm-content": {
-        caretColor: "var(--pf-t--global--text--color--100)",
-    },
-    ".cm-cursor, .cm-dropCursor": {
-        borderLeftColor: "var(--pf-t--global--text--color--100)",
-    },
-    "&.cm-focused .cm-selectionBackground, .cm-selectionBackground": {
-        backgroundColor: "var(--pf-t--global--background--color--300)",
-    },
-    ".cm-activeLine": {
-        backgroundColor: "var(--pf-t--global--background--color--200)",
-    },
     ".cm-gutters": {
-        backgroundColor: "var(--pf-t--global--background--color--100)",
-        color: "var(--pf-t--global--text--color--200)",
         border: "none",
     },
-    ".cm-activeLineGutter": {
-        backgroundColor: "var(--pf-t--global--background--color--200)",
-    },
-    // logfile-specific styles using semantic PF text color tokens
+    // logfile-specific styles
     ".cm-logfile-timestamp": {
         color: "var(--pf-t--global--text--color--status--custom--default)",
     },
