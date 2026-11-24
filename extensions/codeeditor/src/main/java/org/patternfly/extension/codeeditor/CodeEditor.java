@@ -15,7 +15,6 @@
  */
 package org.patternfly.extension.codeeditor;
 
-import org.jboss.elemento.Elements;
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
 import org.patternfly.style.Classes;
@@ -23,17 +22,22 @@ import org.patternfly.style.Modifiers.Readonly2;
 
 import elemental2.dom.HTMLElement;
 
+import jsinterop.base.Js;
+
+import static org.jboss.elemento.Elements.createHtmlElement;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.insertFirst;
-import static org.jboss.elemento.Elements.pre;
+import static org.jboss.elemento.EventType.change;
 import static org.patternfly.style.Classes.codeEditor;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.main;
 
 /**
- * A code editor is a versatile text editor that allows for editing various languages.
+ * A code editor is a versatile text editor that allows for editing various languages. Backed by
+ * <a href="https://codemirror.net/">CodeMirror 6</a> via the
+ * {@code @patternfly-java/codeeditor} NPM package.
  *
- * @see <a href= "https://www.patternfly.org/components/code-editor">https://www.patternfly.org/components/code-editor</a>
+ * @see <a href="https://www.patternfly.org/components/code-editor">https://www.patternfly.org/components/code-editor</a>
  */
 public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         implements Readonly2<HTMLElement, CodeEditor> {
@@ -50,20 +54,18 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
 
     // ------------------------------------------------------ instance
 
-    private final HTMLElement preElement;
+    private final CodeEditorElement editorElement;
 
     CodeEditor(String code) {
         super(ComponentType.CodeEditor, div().css(component(codeEditor)).element());
 
+        editorElement = Js.uncheckedCast(
+                createHtmlElement("pfj-code-editor", CodeEditorElement.class));
         add(div().css(component(codeEditor, main))
-                .add(Elements.code().css(component(codeEditor, Classes.code))
-                        .attr("dir", "ltr")
-                        .add(preElement = pre().css(component(codeEditor, Classes.code, Classes.pre))
-                                .element())
-                        .element()));
+                .add(editorElement));
 
         if (code != null) {
-            preElement.textContent = code;
+            editorElement.code = code;
         }
         storeComponent();
     }
@@ -83,7 +85,39 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
     // ------------------------------------------------------ builder
 
     public CodeEditor code(String code) {
-        preElement.textContent = code;
+        editorElement.code = code;
+        return this;
+    }
+
+    public CodeEditor language(Language language) {
+        editorElement.language = language.value();
+        return this;
+    }
+
+    @Override
+    public CodeEditor readonly(boolean readonly) {
+        Readonly2.super.readonly(readonly);
+        editorElement.readOnly = readonly;
+        return this;
+    }
+
+    public CodeEditor lineNumbers(boolean lineNumbers) {
+        editorElement.lineNumbers = lineNumbers;
+        return this;
+    }
+
+    public CodeEditor lineWrapping(boolean lineWrapping) {
+        editorElement.lineWrapping = lineWrapping;
+        return this;
+    }
+
+    public CodeEditor placeholder(String placeholder) {
+        editorElement.placeholder = placeholder;
+        return this;
+    }
+
+    public CodeEditor tabSize(int tabSize) {
+        editorElement.tabSize = tabSize;
         return this;
     }
 
@@ -92,9 +126,20 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
         return this;
     }
 
+    // ------------------------------------------------------ events
+
+    public CodeEditor onChange(ChangeHandler handler) {
+        editorElement.addEventListener(change.name, e -> {
+            String code = Js.asPropertyMap(e).getAsAny("detail")
+                    .asPropertyMap().getAsAny("code").asString();
+            handler.onChange(code, this);
+        });
+        return this;
+    }
+
     // ------------------------------------------------------ api
 
     public String code() {
-        return preElement.textContent;
+        return editorElement.code;
     }
 }
