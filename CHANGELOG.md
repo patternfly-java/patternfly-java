@@ -8,18 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
-- Add CodeMirror 6 integration to the code editor extension via new `@patternfly-java/codeeditor` NPM package, replacing the static `<pre>` element with an interactive `<pfj-code-editor>` web component
-- Add `Language` enum with 23 language modes (21 official CodeMirror languages, TypeScript, and a custom logfile mode for WildFly/JBoss log files)
-- Add `ChangeHandler` interface for code editor content change events
-- Add builder methods to `CodeEditor` for `language`, `readOnly`, `lineNumbers`, `lineWrapping`, `placeholder`, `tabSize`, `height`, and `onChange`
-- Add dark mode support with automatic detection of PatternFly theme changes
-- Add PatternFly-styled search and replace panel (Ctrl/Cmd+F)
+- Add CodeMirror 6 code editor via new `@patternfly-java/codeeditor` NPM package with 23 language modes, dark/light theme support, configurable height, and built-in search/replace
 - Add compact variant to List component
 
 ### Changed
 
-- Replace static `<pre>` display in code editor with editable CodeMirror 6 editor using PatternFly design token theming
-- Use CSS `light-dark()` with PF palette shade tokens for syntax colors that adapt to light and dark themes
 - Upgrade pnpm to 12.21.0
 - Upgrade Vite+ from 1.6.0 to 1.7.0
 - Upgrade jboss-parent from 54 to 55
