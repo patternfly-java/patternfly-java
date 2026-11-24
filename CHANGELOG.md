@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-11-24
+
 ### Added
 
 - Add CodeMirror 6 code editor via new `@patternfly-java/codeeditor` NPM package with 23 language modes, dark/light theme support, configurable height, and built-in search/replace
@@ -1492,7 +1494,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.15.1...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.16.0...HEAD
+[0.16.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.15.1...v0.16.0
 [0.15.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.3...v0.15.0
 [0.14.3]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.2...v0.14.3
