@@ -13,19 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { StreamLanguage } from "@codemirror/language";
-import { LanguageSupport } from "@codemirror/language";
-import { Tag, styleTags, tags as defaultTags } from "@lezer/highlight";
-
-export const logfileTags = {
-    timestamp: Tag.define(),
-    category: Tag.define(),
-    levelError: Tag.define(),
-    levelWarn: Tag.define(),
-    levelInfo: Tag.define(),
-    levelDebug: Tag.define(),
-    exception: Tag.define(),
-};
+import { StreamLanguage, LanguageSupport } from "@codemirror/language";
 
 const logfileLanguage = StreamLanguage.define({
     token(stream) {

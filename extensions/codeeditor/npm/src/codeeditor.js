@@ -147,6 +147,7 @@ class CodeEditorElement extends HTMLElement {
 
     disconnectedCallback() {
         if (this._view) {
+            this._code = this._view.state.doc.toString();
             this._view.destroy();
             this._view = null;
         }
