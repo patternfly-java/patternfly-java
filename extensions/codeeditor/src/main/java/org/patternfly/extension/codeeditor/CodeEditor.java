@@ -22,6 +22,7 @@ import org.patternfly.style.Modifiers.Readonly2;
 
 import elemental2.dom.HTMLElement;
 
+import jsinterop.base.Any;
 import jsinterop.base.Js;
 
 import static org.jboss.elemento.Elements.createHtmlElement;
@@ -130,9 +131,13 @@ public class CodeEditor extends BaseComponent<HTMLElement, CodeEditor>
 
     public CodeEditor onChange(ChangeHandler handler) {
         editorElement.addEventListener(change.name, e -> {
-            String code = Js.asPropertyMap(e).getAsAny("detail")
-                    .asPropertyMap().getAsAny("code").asString();
-            handler.onChange(code, this);
+            Any detail = Js.asPropertyMap(e).getAsAny("detail");
+            if (detail != null) {
+                Any value = detail.asPropertyMap().getAsAny("code");
+                if (value != null) {
+                    handler.onChange(value.asString(), this);
+                }
+            }
         });
         return this;
     }
