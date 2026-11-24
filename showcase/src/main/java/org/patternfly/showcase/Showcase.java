@@ -116,6 +116,10 @@ public final class Showcase {
                                                 .addItems(groupComponents("forms"), sc ->
                                                         navigationItem(sc.route, sc.title, sc.route)),
                                         "/components/expandable-section")
+                                .insertGroupAfter(expandableNavigationGroup("file-upload", "File upload")
+                                                .addItems(groupComponents("file-upload"), sc ->
+                                                        navigationItem(sc.route, sc.title, sc.route)),
+                                        "/components/expandable-section")
                                 .insertGroupAfter(expandableNavigationGroup("menus", "Menus")
                                                 .addItems(groupComponents("menus"), sc ->
                                                         navigationItem(sc.route, sc.title, sc.route)),

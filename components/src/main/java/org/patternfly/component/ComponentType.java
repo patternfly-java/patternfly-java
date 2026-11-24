@@ -69,6 +69,8 @@ public enum ComponentType {
 
     ExpandableSection("exs", "PF6/Component/ExpandableSection"),
 
+    FileUpload("fu", "PF6/Component/FileUpload"),
+
     FilterInputGroup("fig", "PF6/Component/FilterInputGroup"),
 
     FilterInputGroupTypeahead("figt", "PF6/Component/FilterInputGroupTypeahead"),

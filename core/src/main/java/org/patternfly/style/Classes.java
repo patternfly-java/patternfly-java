@@ -97,6 +97,7 @@ public interface Classes {
     String disabled = "disabled";
     String display = "display";
     String divider = "divider";
+    String dragHover = "drag-hover";
     String drawer = "drawer";
     String dropdown = "dropdown";
     String dynamic = "dynamic";
@@ -115,6 +116,10 @@ public interface Classes {
     String favorite = "favorite";
     String favorited = "favorited";
     String fieldGroup = "field-group";
+    String fileDetails = "file-details";
+    String fileDetailsSpinner = "file-details-spinner";
+    String fileSelect = "file-select";
+    String fileUpload = "file-upload";
     String fill = "fill";
     String fillColumns = "fill-columns";
     String filled = "filled";

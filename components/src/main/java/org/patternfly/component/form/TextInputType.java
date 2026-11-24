@@ -24,6 +24,8 @@ public enum TextInputType {
 
     email,
 
+    file,
+
     month,
 
     number,

@@ -85,6 +85,7 @@ public class TextInput extends FormControl<HTMLElement, TextInput> implements
     static {
         typeMapping.put(TextInputType.date, InputType.date);
         typeMapping.put(TextInputType.email, InputType.email);
+        typeMapping.put(TextInputType.file, InputType.file);
         typeMapping.put(TextInputType.month, InputType.month);
         typeMapping.put(TextInputType.number, InputType.number);
         typeMapping.put(TextInputType.search, InputType.search);

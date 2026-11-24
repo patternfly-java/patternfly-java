@@ -245,20 +245,6 @@
     "illustration": "expandable-section.png",
     "summary": "An <b>expandable section</b> is a content section with a text toggle that reveals content that is hidden by default."
   },
-  "multiple-file-upload": {
-    "name": "multiple-file-upload",
-    "title": "Multiple file upload",
-    "route": "/components/file-upload/multiple-file-upload",
-    "illustration": "file-upload-multiple.png",
-    "summary": "A <b>multiple file upload</b> component allows users to select and upload multiple files to a specific location."
-  },
-  "simple-file-upload": {
-    "name": "simple-file-upload",
-    "title": "Simple file upload",
-    "route": "/components/file-upload/simple-file-upload",
-    "illustration": "file-upload.png",
-    "summary": "A <b>simple file upload</b> component allows users to select and upload a single file to a specific location."
-  },
   "form": {
     "name": "form",
     "title": "Form",
@@ -384,6 +370,13 @@
     "clazz": "org.patternfly.component.modal.Modal",
     "illustration": "modal.png",
     "summary": "A <b>modal</b> is a window that overlays a page to display important information, without requiring users to navigate to a new page."
+  },
+  "multiple-file-upload": {
+    "name": "multiple-file-upload",
+    "title": "Multiple file upload",
+    "route": "/components/file-upload/multiple-file-upload",
+    "illustration": "file-upload-multiple.png",
+    "summary": "A <b>multiple file upload</b> component allows users to select and upload multiple files to a specific location."
   },
   "navigation": {
     "name": "navigation",
@@ -515,6 +508,14 @@
     "route": "/components/sidebar",
     "illustration": "sidebar.png",
     "summary": "A <b>sidebar</b> is a panel that splits content into a secondary area within a page."
+  },
+  "simple-file-upload": {
+    "name": "simple-file-upload",
+    "title": "Simple file upload",
+    "route": "/components/file-upload/simple-file-upload",
+    "clazz": "org.patternfly.component.upload.FileUpload",
+    "illustration": "file-upload.png",
+    "summary": "A <b>simple file upload</b> component allows users to select and upload a single file to a specific location."
   },
   "simple-list": {
     "name": "simple-list",
