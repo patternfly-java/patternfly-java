@@ -17,11 +17,8 @@ package org.patternfly.extension.codeeditor;
 
 import org.patternfly.component.BaseComponent;
 import org.patternfly.component.ComponentType;
-import org.patternfly.style.Classes;
 import org.patternfly.style.Modifiers.Readonly2;
-
 import elemental2.dom.HTMLElement;
-
 import jsinterop.base.Any;
 import jsinterop.base.Js;
 
