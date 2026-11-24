@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import { StreamLanguage, LanguageSupport } from "@codemirror/language";
+import { StreamLanguage, LanguageSupport, syntaxHighlighting } from "@codemirror/language";
 import { Tag, tagHighlighter } from "@lezer/highlight";
 
 export const logfileTimestamp = Tag.define();
@@ -66,7 +66,7 @@ const logfileLanguage = StreamLanguage.define({
     tokenTable,
 });
 
-export const logfileHighlighter = tagHighlighter([
+export const logfileHighlighter = syntaxHighlighting(tagHighlighter([
     { tag: logfileTimestamp, class: "cm-logfile-timestamp" },
     { tag: logfileCategory, class: "cm-logfile-category" },
     { tag: logfileLevelError, class: "cm-logfile-level-error" },
@@ -74,7 +74,7 @@ export const logfileHighlighter = tagHighlighter([
     { tag: logfileLevelInfo, class: "cm-logfile-level-info" },
     { tag: logfileLevelDebug, class: "cm-logfile-level-debug" },
     { tag: logfileException, class: "cm-logfile-exception" },
-]);
+]));
 
 export function logfile() {
     return new LanguageSupport(logfileLanguage);
