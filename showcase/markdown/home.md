@@ -53,7 +53,7 @@ PatternFly Java aims to provide almost complete support for PatternFly's design 
 - **50+ Components** — Alerts, buttons, cards, dropdowns, modals, tables, tabs, and many more. Browse the component demos in the sidebar.
 - **Charts** — Area, bar, donut, line, pie, and other chart types via the [`@patternfly-java/charts`](https://www.npmjs.com/package/@patternfly-java/charts) NPM package.
 - **Layouts** — Bullseye, flex, gallery, grid, level, split, and stack layouts for responsive page design.
-- **Extensions** — Code editor and finder extensions for specialized use cases.
+- **Extensions** — Code editor (powered by [CodeMirror 6](https://codemirror.net/) via the [`@patternfly-java/codeeditor`](https://www.npmjs.com/package/@patternfly-java/codeeditor) NPM package) and finder extensions for specialized use cases.
 - **Design Tokens** — All PatternFly [design tokens](https://www.patternfly.org/tokens/about-tokens) available as type-safe Java enum constants.
 - **Icons** — FontAwesome, PatternFly, and Red Hat icon sets with convenient factory methods.
 
@@ -79,4 +79,20 @@ Import it in your JavaScript file:
 
 ```js
 import "@patternfly-java/charts/dist/charts";
+```
+
+## Code Editor
+
+To use the code editor with syntax highlighting and editing capabilities, you need to install the [`@patternfly-java/codeeditor`](https://www.npmjs.com/package/@patternfly-java/codeeditor) NPM package. This package wraps [CodeMirror 6](https://codemirror.net/) as a web component.
+
+Install the package using npm:
+
+```
+npm install @patternfly-java/codeeditor
+```
+
+Import it in your JavaScript file:
+
+```js
+import "@patternfly-java/codeeditor/dist/codeeditor";
 ```

@@ -17,6 +17,7 @@ import "@patternfly/patternfly/patternfly.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/patternfly-charts.css";
 import "../../../charts/npm/src/charts.js";
+import "../../../extensions/codeeditor/npm/src/codeeditor.js";
 import "../../../core/npm/core.css";
 import "../../../extensions/finder/npm/finder.css";
 import "@patternfly/documentation-framework/global.css";

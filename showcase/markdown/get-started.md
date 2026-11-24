@@ -40,7 +40,11 @@ Then add a dependency on the components you need:
 
 ## JavaScript Dependencies
 
-PatternFly Java has **no JavaScript** dependencies. The only exception is the charts package, which wraps PatternFly React Chart components as web components so they can be used from Java.
+PatternFly Java has **no JavaScript** dependencies. The exceptions are the charts and code editor packages, which wrap third-party libraries as web components so they can be used from Java.
+
+### @patternfly-java/charts
+
+Wraps PatternFly React Chart components as web components. Only needed if you use chart components.
 
 ```
 npm install @patternfly-java/charts
@@ -48,6 +52,18 @@ npm install @patternfly-java/charts
 
 ```js
 import "@patternfly-java/charts/dist/charts";
+```
+
+### @patternfly-java/codeeditor
+
+Wraps [CodeMirror 6](https://codemirror.net/) as a web component with PatternFly theming and syntax highlighting for 22+ languages. Only needed if you use the code editor extension.
+
+```
+npm install @patternfly-java/codeeditor
+```
+
+```js
+import "@patternfly-java/codeeditor/dist/codeeditor";
 ```
 
 ## Stylesheets
