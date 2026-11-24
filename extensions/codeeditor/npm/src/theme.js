@@ -19,11 +19,9 @@ import { tags } from "@lezer/highlight";
 
 const themeRules = {
     "&": {
-        color: "var(--pf-t--global--text--color--100)",
         fontFamily: "var(--pf-t--global--font--family--mono)",
     },
     ".cm-gutters": {
-        color: "var(--pf-t--global--text--color--200)",
         border: "none",
     },
     // logfile-specific styles
