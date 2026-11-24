@@ -18,6 +18,7 @@ package org.patternfly.showcase.component;
 import org.jboss.elemento.router.Route;
 import org.patternfly.extension.codeeditor.CodeEditor;
 import org.patternfly.extension.codeeditor.CodeEditorAction;
+import org.patternfly.extension.codeeditor.Language;
 import org.patternfly.extension.codeeditor.CodeEditorActions;
 import org.patternfly.extension.codeeditor.CodeEditorHeader;
 import org.patternfly.extension.codeeditor.CodeEditorHeaderMain;
@@ -72,6 +73,7 @@ public class CodeEditorComponent extends SnippetPage {
                                                 .addAction(codeEditorAction(download()))
                                                 .addAction(codeEditorAction(upload())))
                                         .addTab(codeEditorTab(code(), "Java")))
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-basic
@@ -89,6 +91,7 @@ public class CodeEditorComponent extends SnippetPage {
                                                 .addAction(codeEditorAction(download()))
                                                 .addAction(codeEditorAction(button().icon(upload()).control().disabled())))
                                         .addTab(codeEditorTab(code(), "Java")))
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-readonly
@@ -101,6 +104,7 @@ public class CodeEditorComponent extends SnippetPage {
                         .add(codeEditor()
                                 .addHeader(codeEditorHeader()
                                         .addTab(codeEditorTab(code(), "Java")))
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-no-actions
@@ -116,6 +120,7 @@ public class CodeEditorComponent extends SnippetPage {
                                                 .addAction(codeEditorCopyToClipboardAction())
                                                 .addAction(codeEditorAction(download()))
                                                 .addAction(codeEditorAction(button().icon(upload()).control().disabled()))))
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-no-tab
@@ -126,6 +131,7 @@ public class CodeEditorComponent extends SnippetPage {
                 // @code-start:code-editor-no-actions-no-tab
                 div()
                         .add(codeEditor()
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-no-actions-no-tab
@@ -146,6 +152,7 @@ public class CodeEditorComponent extends SnippetPage {
                                         .addLinks(codeEditorLinks()
                                                 .addLink(codeEditorViewShortcutsLink()))
                                         .addTab(codeEditorTab(code(), "Java")))
+                                .language(Language.JAVA)
                                 .code(CODE))
                         .element()
                 // @code-end:code-editor-header-content
