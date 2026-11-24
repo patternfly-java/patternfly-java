@@ -149,9 +149,9 @@
     "name": "code-editor",
     "title": "Code editor",
     "route": "/components/code-editor",
-    "clazz": "org.patternfly.component.code.CodeEditor",
+    "clazz": "org.patternfly.extension.codeeditor.CodeEditor",
     "illustration": "code-editor.png",
-    "summary": "A <b>code editor</b> is a versatile <Link to='https://microsoft.github.io/monaco-editor/'>Monaco-based</Link> text editor that supports various programming languages."
+    "summary": "A <b>code editor</b> is a versatile text editor that supports syntax highlighting for various programming languages, powered by <Link to='https://codemirror.net/'>CodeMirror 6</Link>."
   },
   "content": {
     "name": "content",
