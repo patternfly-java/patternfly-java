@@ -17,7 +17,7 @@ import { basicSetup } from "codemirror";
 import { Compartment, EditorState } from "@codemirror/state";
 import { EditorView, lineNumbers as lineNumbersExtension, placeholder as placeholderExtension } from "@codemirror/view";
 import { languages } from "./languages.js";
-import { pfTheme, pfHighlightStyle } from "./theme.js";
+import { createPfTheme, pfHighlightStyle } from "./theme.js";
 
 class CodeEditorElement extends HTMLElement {
 
@@ -32,12 +32,15 @@ class CodeEditorElement extends HTMLElement {
         this._tabSize = 4;
         this._view = null;
         this._dirty = false;
+        this._dark = false;
+        this._themeCompartment = new Compartment();
         this._languageCompartment = new Compartment();
         this._readOnlyCompartment = new Compartment();
         this._lineNumbersCompartment = new Compartment();
         this._lineWrappingCompartment = new Compartment();
         this._placeholderCompartment = new Compartment();
         this._tabSizeCompartment = new Compartment();
+        this._themeObserver = null;
     }
 
     // ------------------------------------------------------ properties
@@ -119,11 +122,12 @@ class CodeEditorElement extends HTMLElement {
     // ------------------------------------------------------ lifecycle
 
     connectedCallback() {
+        this._dark = this._isDarkMode();
         const state = EditorState.create({
             doc: this._code,
             extensions: [
                 basicSetup,
-                pfTheme,
+                this._themeCompartment.of(createPfTheme(this._dark)),
                 pfHighlightStyle,
                 this._languageCompartment.of(this._resolveLanguage()),
                 this._readOnlyCompartment.of(EditorState.readOnly.of(this._readOnly)),
@@ -143,9 +147,18 @@ class CodeEditorElement extends HTMLElement {
             ],
         });
         this._view = new EditorView({ state, parent: this });
+        this._themeObserver = new MutationObserver(() => this._checkDarkMode());
+        this._themeObserver.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class", "style"],
+        });
     }
 
     disconnectedCallback() {
+        if (this._themeObserver) {
+            this._themeObserver.disconnect();
+            this._themeObserver = null;
+        }
         if (this._view) {
             this._code = this._view.state.doc.toString();
             this._view.destroy();
@@ -154,6 +167,20 @@ class CodeEditorElement extends HTMLElement {
     }
 
     // ------------------------------------------------------ internal
+
+    _isDarkMode() {
+        return getComputedStyle(this).colorScheme === "dark";
+    }
+
+    _checkDarkMode() {
+        const dark = this._isDarkMode();
+        if (dark !== this._dark && this._view) {
+            this._dark = dark;
+            this._view.dispatch({
+                effects: this._themeCompartment.reconfigure(createPfTheme(dark)),
+            });
+        }
+    }
 
     _scheduleUpdate() {
         if (!this._dirty && this._view) {

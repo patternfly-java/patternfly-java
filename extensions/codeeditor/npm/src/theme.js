@@ -17,12 +17,13 @@ import { EditorView } from "codemirror";
 import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
 import { tags } from "@lezer/highlight";
 
-export const pfTheme = EditorView.theme({
+const themeRules = {
     "&": {
         color: "var(--pf-t--global--text--color--100)",
         fontFamily: "var(--pf-t--global--font--family--mono)",
     },
     ".cm-gutters": {
+        color: "var(--pf-t--global--text--color--200)",
         border: "none",
     },
     // logfile-specific styles
@@ -48,17 +49,21 @@ export const pfTheme = EditorView.theme({
         color: "var(--pf-t--global--text--color--status--on-danger--default, #fff)",
         backgroundColor: "var(--pf-t--global--color--status--danger--default)",
     },
-});
+};
+
+export function createPfTheme(dark) {
+    return EditorView.theme(themeRules, { dark });
+}
 
 export const pfHighlightStyle = syntaxHighlighting(
     HighlightStyle.define([
         {
             tag: tags.keyword,
-            color: "var(--pf-t--color--purple--50)",
+            color: "light-dark(var(--pf-t--color--purple--50), var(--pf-t--color--purple--30))",
         },
         {
             tag: [tags.string, tags.special(tags.brace)],
-            color: "var(--pf-t--color--green--50)",
+            color: "light-dark(var(--pf-t--color--green--50), var(--pf-t--color--green--30))",
         },
         {
             tag: tags.comment,
@@ -66,23 +71,23 @@ export const pfHighlightStyle = syntaxHighlighting(
         },
         {
             tag: [tags.number, tags.literal],
-            color: "var(--pf-t--color--orange--50)",
+            color: "light-dark(var(--pf-t--color--orange--50), var(--pf-t--color--orange--30))",
         },
         {
             tag: tags.variableName,
-            color: "var(--pf-t--color--blue--50)",
+            color: "light-dark(var(--pf-t--color--blue--50), var(--pf-t--color--blue--30))",
         },
         {
             tag: [tags.typeName, tags.className],
-            color: "var(--pf-t--color--yellow--50)",
+            color: "light-dark(var(--pf-t--color--yellow--50), var(--pf-t--color--yellow--30))",
         },
         {
             tag: [tags.tagName, tags.attributeName],
-            color: "var(--pf-t--color--red--50)",
+            color: "light-dark(var(--pf-t--color--red--50), var(--pf-t--color--red--30))",
         },
         {
             tag: tags.meta,
-            color: "var(--pf-t--color--purple--50)",
+            color: "light-dark(var(--pf-t--color--purple--50), var(--pf-t--color--purple--30))",
         },
     ])
 );
