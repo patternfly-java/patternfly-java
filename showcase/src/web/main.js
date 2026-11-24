@@ -13,13 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
+import "@github/relative-time-element";
+
 import "@patternfly/patternfly/patternfly.css";
 import "@patternfly/patternfly/patternfly-addons.css";
 import "@patternfly/patternfly/patternfly-charts.css";
-import "../../../charts/npm/src/charts.js";
-import "../../../extensions/codeeditor/npm/src/codeeditor.js";
-import "../../../core/npm/core.css";
-import "../../../extensions/finder/npm/finder.css";
+
 import "@patternfly/documentation-framework/global.css";
 import "@patternfly/documentation-framework/components/autoLinkHeader/autoLinkHeader.css";
 import "@patternfly/documentation-framework/components/cssVariables/cssVariables.css";
@@ -29,9 +28,12 @@ import "@patternfly/documentation-framework/components/sectionGallery/sectionGal
 import "@patternfly/documentation-framework/components/tableOfContents/tableOfContents.css";
 import "@patternfly/documentation-framework/layouts/sideNavLayout/sideNavLayout.css";
 import "@patternfly/documentation-framework/templates/mdx.css";
-import "./showcase.css";
 
-import "@github/relative-time-element";
+import "../../../charts/npm/src/charts.js";
+import "../../../extensions/codeeditor/npm/src/codeeditor.js";
+import "../../../core/npm/core.css";
+import "../../../extensions/finder/npm/finder.css";
+import "./showcase.css";
 
 // Load J2CL-compiled showcase app
 const script = document.createElement("script");

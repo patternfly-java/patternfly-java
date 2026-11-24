@@ -343,6 +343,10 @@ public class CodeEditorComponent extends SnippetPage {
                 // @code-start:code-editor-json
                 div()
                         .add(codeEditor()
+                                .addHeader(codeEditorHeader()
+                                        .addActions(codeEditorActions()
+                                                .addAction(codeEditorCopyToClipboardAction()))
+                                        .addTab(codeEditorTab(code(), "JSON")))
                                 .language(Language.JSON)
                                 .code(JSON_CODE))
                         .element()
@@ -354,6 +358,10 @@ public class CodeEditorComponent extends SnippetPage {
                 // @code-start:code-editor-html
                 div()
                         .add(codeEditor()
+                                .addHeader(codeEditorHeader()
+                                        .addActions(codeEditorActions()
+                                                .addAction(codeEditorCopyToClipboardAction()))
+                                        .addTab(codeEditorTab(code(), "HTML")))
                                 .language(Language.HTML)
                                 .code(HTML_CODE))
                         .element()
@@ -365,13 +373,17 @@ public class CodeEditorComponent extends SnippetPage {
                 // @code-start:code-editor-yaml
                 div()
                         .add(codeEditor()
+                                .addHeader(codeEditorHeader()
+                                        .addActions(codeEditorActions()
+                                                .addAction(codeEditorCopyToClipboardAction()))
+                                        .addTab(codeEditorTab(code(), "YAML")))
                                 .language(Language.YAML)
                                 .code(YAML_CODE))
                         .element()
                 // @code-end:code-editor-yaml
         ));
 
-        addSnippet(new Snippet("code-editor-logfile", "Logfile",
+        addSnippet(new Snippet("code-editor-logfile", "Logfile (readonly)",
                 Code.code("code-editor-logfile"), () ->
                 // @code-start:code-editor-logfile
                 div()
@@ -379,9 +391,7 @@ public class CodeEditorComponent extends SnippetPage {
                                 .height("20lh")
                                 .addHeader(codeEditorHeader()
                                         .addActions(codeEditorActions()
-                                                .addAction(codeEditorCopyToClipboardAction())
-                                                .addAction(codeEditorAction(download()))
-                                                .addAction(codeEditorAction(upload())))
+                                                .addAction(codeEditorCopyToClipboardAction()))
                                         .addTab(codeEditorTab(code(), "Logfile")))
                                 .language(Language.LOGFILE)
                                 .code(LOGFILE))

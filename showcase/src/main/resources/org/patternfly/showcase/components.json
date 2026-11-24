@@ -151,7 +151,7 @@
     "route": "/components/code-editor",
     "clazz": "org.patternfly.extension.codeeditor.CodeEditor",
     "illustration": "code-editor.png",
-    "summary": "A <b>code editor</b> is a versatile text editor that supports syntax highlighting for various programming languages, powered by <Link to='https://codemirror.net/'>CodeMirror 6</Link>."
+    "summary": "A <b>code editor</b> is a versatile text editor that supports syntax highlighting for various programming languages, powered by <a href='https://codemirror.net/'>CodeMirror 6</a>."
   },
   "content": {
     "name": "content",
@@ -181,7 +181,7 @@
     "title": "Date and time picker",
     "route": "/components/date-and-time/date-and-time-picker",
     "illustration": "date-and-time-picker.png",
-    "summary": "A <b>date and time picker</b> allows users to select both a specific date and a time, by combining <Link to='/components/date-and-time/date-picker'>date picker</Link> and <Link to='/components/date-and-time/time-picker'>time picker</Link> components."
+    "summary": "A <b>date and time picker</b> allows users to select both a specific date and a time, by combining <a href='/components/date-and-time/date-picker'>date picker</a> and <a href='/components/date-and-time/time-picker'>time picker</a> components."
   },
   "description-list": {
     "name": "description-list",
@@ -305,7 +305,7 @@
     "route": "/components/icon",
     "clazz": "org.patternfly.component.icon.Icon",
     "illustration": "icon.png",
-    "summary": "An <b>icon</b> component is a container that supports <Link to='/design-foundations/icons#all-icons'>icons</Link> of varying dimensions and styles, as well as <Link to='/components/spinner'>spinners.</Link>"
+    "summary": "An <b>icon</b> component is a container that supports <a href='/design-foundations/icons#all-icons'>icons</a> of varying dimensions and styles, as well as <a href='/components/spinner'>spinners.</a>"
   },
   "inline-edit": {
     "name": "inline-edit",
@@ -594,7 +594,7 @@
     "route": "/components/text-input-group",
     "clazz": "org.patternfly.component.textinputgroup.TextInputGroup",
     "illustration": "text-input-group.png",
-    "summary": "A <b>text input group</b> is a more custom, flexible, and composable version of a <Link to='/components/forms/text-input'>text input</Link> that includes elements like icons and buttons."
+    "summary": "A <b>text input group</b> is a more custom, flexible, and composable version of a <a href='/components/forms/text-input'>text input</a> that includes elements like icons and buttons."
   },
   "text-input": {
     "name": "text-input",
