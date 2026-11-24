@@ -2,8 +2,35 @@
   "name": "@patternfly-java/codeeditor",
   "version": "0.15.2-SNAPSHOT",
   "private": false,
-  "type": "module",
+  "description": "CodeMirror 6 web component for PatternFly Java",
+  "keywords": [
+    "codemirror",
+    "code-editor",
+    "elemento",
+    "gwt",
+    "j2cl",
+    "java",
+    "patternfly"
+  ],
+  "homepage": "https://patternfly-java.github.io/",
+  "bugs": {
+    "url": "https://github.com/patternfly-java/patternfly-java/issues"
+  },
   "license": "Apache-2.0",
+  "author": "Harald Pehl <harald.pehl@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly-java/patternfly-java.git"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/codeeditor.js",
+  "exports": {
+    ".": "./dist/codeeditor.js",
+    "./dist/*": "./dist/*"
+  },
   "scripts": {
     "build": "vp build",
     "clean": "rimraf dist",

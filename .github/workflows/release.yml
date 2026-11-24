@@ -86,6 +86,12 @@ jobs:
       - name: Publish @patternfly-java/finder
         working-directory: extensions/finder/npm
         run: npm publish --access public
+      - name: Publish @patternfly-java/codeeditor
+        working-directory: extensions/codeeditor/npm
+        run: |
+          pnpm install
+          pnpm run build
+          npm publish --access public
       - name: Publish @patternfly-java/charts
         working-directory: charts/npm
         run: |
@@ -107,6 +113,8 @@ jobs:
         with:
           node-version: 24
       - run: corepack enable
+      - run: pnpm install
+        working-directory: extensions/codeeditor/npm
       - run: pnpm install
         working-directory: charts/npm
       - uses: actions/setup-java@v6

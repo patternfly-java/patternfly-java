@@ -21,6 +21,8 @@ jobs:
           node-version: 24
       - run: corepack enable
       - run: pnpm install
+        working-directory: extensions/codeeditor/npm
+      - run: pnpm install
         working-directory: charts/npm
       - uses: actions/setup-java@v6
         with:
