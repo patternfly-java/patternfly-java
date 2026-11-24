@@ -24,6 +24,25 @@ const themeRules = {
     ".cm-gutters": {
         border: "none",
     },
+    // search panel
+    ".cm-panels": {
+        fontFamily: "var(--pf-t--global--font--family--body)",
+        fontSize: "var(--pf-t--global--font--size--body--default)",
+    },
+    ".cm-search": {
+        padding: "var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--md)",
+    },
+    ".cm-textfield": {
+        fontSize: "var(--pf-t--global--font--size--body--default)",
+        borderRadius: "var(--pf-t--global--border--radius--small)",
+        padding: "var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--sm)",
+    },
+    ".cm-button": {
+        fontSize: "var(--pf-t--global--font--size--body--default)",
+        borderRadius: "var(--pf-t--global--border--radius--small)",
+        padding: "var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--sm)",
+        textTransform: "capitalize",
+    },
     // logfile-specific styles
     ".cm-logfile-timestamp": {
         color: "var(--pf-t--global--text--color--status--custom--default)",
