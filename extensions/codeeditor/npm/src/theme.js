@@ -106,5 +106,5 @@ export const pfHighlightStyle = syntaxHighlighting(
             tag: tags.meta,
             color: "light-dark(var(--pf-t--color--purple--50), var(--pf-t--color--purple--30))",
         },
-    ])
+    ]),
 );

@@ -14,24 +14,69 @@
  *  limitations under the License.
  */
 import camelCase from "camelcase";
-import {mkdir, writeFile} from "node:fs/promises";
-import {fab, far, fas} from "./faIcons.mjs";
-import {patternfly} from "./pfIcons.mjs";
-import {rhMicrons, rhStandard, rhUi} from "./rhIcons.mjs";
+import { mkdir, writeFile } from "node:fs/promises";
+import { fab, far, fas } from "./faIcons.mjs";
+import { patternfly } from "./pfIcons.mjs";
+import { rhMicrons, rhStandard, rhUi } from "./rhIcons.mjs";
 
 // ------------------------------------------------------ constants
 
 const keywords = [
-    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "clone",
-    "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally",
-    "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long",
-    "native", "new", "package", "private", "protected", "public", "return", "short", "static",
-    "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try",
-    "void", "volatile", "while",
+    "abstract",
+    "assert",
+    "boolean",
+    "break",
+    "byte",
+    "case",
+    "catch",
+    "char",
+    "class",
+    "clone",
+    "const",
+    "continue",
+    "default",
+    "do",
+    "double",
+    "else",
+    "enum",
+    "extends",
+    "final",
+    "finally",
+    "float",
+    "for",
+    "goto",
+    "if",
+    "implements",
+    "import",
+    "instanceof",
+    "int",
+    "interface",
+    "long",
+    "native",
+    "new",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "return",
+    "short",
+    "static",
+    "strictfp",
+    "super",
+    "switch",
+    "synchronized",
+    "this",
+    "throw",
+    "throws",
+    "transient",
+    "try",
+    "void",
+    "volatile",
+    "while",
 ];
 const root = "../main/java";
 const path = "org/patternfly/icon";
-const package_ = path.replaceAll('/', '.');
+const package_ = path.replaceAll("/", ".");
 const DEFAULT_CHUNK_SIZE = 400;
 
 // ------------------------------------------------------ icon spec
@@ -41,9 +86,9 @@ const iconSpecDescriptions = {
     far: '<a href="https://fontawesome.com/search?o=r&m=free&s=regular">Fontawesome regular icons</a>',
     fas: '<a href="https://fontawesome.com/search?o=r&m=free&s=solid">Fontawesome solid icons</a>',
     patternfly: '<a href="https://www.patternfly.org/design-foundations/icons/#patternfly-icons">PatternFly icons</a>',
-    rhMicrons: 'Red Hat microns icons',
-    rhStandard: 'Red Hat standard icons',
-    rhUi: 'Red Hat UI icons',
+    rhMicrons: "Red Hat microns icons",
+    rhStandard: "Red Hat standard icons",
+    rhUi: "Red Hat UI icons",
 };
 
 const CHUNK_SIZE = parseInt(process.argv[2]) || DEFAULT_CHUNK_SIZE;
@@ -82,7 +127,7 @@ public enum ${className} {
             const constant = failSafeName(camelCase(id));
             return `${constant}(new IconSpec("${set}", "${id}", ${icon.xOffset || 0}, ${icon.yOffset || 0}, ${icon.width}, ${icon.height}, "${icon.svgPathData}", "${icon.license}")),`;
         })
-        .join('\n    ')};
+        .join("\n    ")};
 
     final IconSpec iconSpec;
 
@@ -96,11 +141,11 @@ const generateIconSpecFiles = (set, icons) => {
     const chunks = chunkEntries(icons);
     if (chunks.length === 1) {
         const className = iconSpecClassName(set);
-        return [{className, content: generateIconSpecEnum(className, set, chunks[0])}];
+        return [{ className, content: generateIconSpecEnum(className, set, chunks[0]) }];
     }
     return chunks.map((chunk, i) => {
         const className = iconSpecClassName(set, i);
-        return {className, content: generateIconSpecEnum(className, set, chunk)};
+        return { className, content: generateIconSpecEnum(className, set, chunk) };
     });
 };
 
@@ -121,18 +166,22 @@ const iconSpecClassForConstant = (set, icons) => {
 // ------------------------------------------------------ icon spec lookup
 
 const generateIconSpecLookup = (iconSets) => {
-    const cases = iconSets.map(({name, icons}) => {
-        const chunks = chunkEntries(icons);
-        if (chunks.length === 1) {
-            return `            case "${name}":
+    const cases = iconSets
+        .map(({ name, icons }) => {
+            const chunks = chunkEntries(icons);
+            if (chunks.length === 1) {
+                return `            case "${name}":
                 return ${iconSpecClassName(name)}.valueOf(iconName).iconSpec;`;
-        }
-        const tryBlocks = chunks.map((_, i) => {
-            const cn = iconSpecClassName(name, i);
-            return `                try { return ${cn}.valueOf(iconName).iconSpec; } catch (IllegalArgumentException ignored) {}`;
-        }).join('\n');
-        return `            case "${name}":\n${tryBlocks}\n                throw new IllegalArgumentException("Unknown icon: '" + name + "'");`;
-    }).join('\n');
+            }
+            const tryBlocks = chunks
+                .map((_, i) => {
+                    const cn = iconSpecClassName(name, i);
+                    return `                try { return ${cn}.valueOf(iconName).iconSpec; } catch (IllegalArgumentException ignored) {}`;
+                })
+                .join("\n");
+            return `            case "${name}":\n${tryBlocks}\n                throw new IllegalArgumentException("Unknown icon: '" + name + "'");`;
+        })
+        .join("\n");
 
     return `package ${package_};
 
@@ -197,7 +246,7 @@ import javax.annotation.processing.Generated;
 @SuppressWarnings("SpellCheckingInspection")
 // WARNING: This class is generated. Do not modify.
 public interface IconSets {
-    ${iconSets.map(({name, icons}) => generateIconSet(name, icons)).join("\n    ")}
+    ${iconSets.map(({ name, icons }) => generateIconSet(name, icons)).join("\n    ")}
 }
 `;
 
@@ -205,11 +254,11 @@ const generateIconSet = (set, icons) => {
     const classForConstant = iconSpecClassForConstant(set, icons);
     return `public interface ${set} {
         ${Object.entries(icons)
-        .map(([id]) => {
-            const constant = failSafeName(camelCase(id));
-            return `static PredefinedIcon ${constant}() { return new PredefinedIcon(${classForConstant(constant)}.${constant}.iconSpec); }`;
-        })
-        .join('\n        ')}
+            .map(([id]) => {
+                const constant = failSafeName(camelCase(id));
+                return `static PredefinedIcon ${constant}() { return new PredefinedIcon(${classForConstant(constant)}.${constant}.iconSpec); }`;
+            })
+            .join("\n        ")}
     }`;
 };
 
@@ -219,18 +268,16 @@ const failSafeName = (name) => {
     if (keywords.includes(name)) return name + "_";
     if (/^\d/.test(name)) return "_" + name;
     return name;
-}
+};
 
 // ------------------------------------------------------ main
 
 const iconSets = [fab, far, fas, patternfly, rhMicrons, rhStandard, rhUi];
-const iconCount = iconSets
-    .map(iconSet => Object.keys(iconSet.icons).length)
-    .reduce((acc, cur) => acc + cur, 0);
+const iconCount = iconSets.map((iconSet) => Object.keys(iconSet.icons).length).reduce((acc, cur) => acc + cur, 0);
 const dir = new URL(`${root}/${path}/`, import.meta.url);
 await mkdir(dir, { recursive: true });
-for (const {name, icons} of iconSets) {
-    for (const {className, content} of generateIconSpecFiles(name, icons)) {
+for (const { name, icons } of iconSets) {
+    for (const { className, content } of generateIconSpecFiles(name, icons)) {
         await writeFile(new URL(`./${className}.java`, dir), content, "utf8");
     }
 }

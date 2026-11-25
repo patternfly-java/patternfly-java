@@ -22,14 +22,14 @@ function flattenPath(svgPathData) {
         return svgPathData;
     }
     if (Array.isArray(svgPathData)) {
-        return svgPathData.map(item => typeof item === "string" ? item : item.path).join(" ");
+        return svgPathData.map((item) => (typeof item === "string" ? item : item.path)).join(" ");
     }
     return String(svgPathData);
 }
 
 function convertIcons(icons, prefix) {
     let result = {};
-    Object.keys(icons).forEach(key => {
+    Object.keys(icons).forEach((key) => {
         const stripped = key.startsWith(prefix) ? key.slice(prefix.length) : key;
         const icon = icons[key];
         result[stripped] = {
@@ -38,12 +38,12 @@ function convertIcons(icons, prefix) {
             width: icon.width,
             height: icon.height,
             svgPathData: flattenPath(icon.svgPathData),
-            license: "Red Hat, Inc. MIT"
+            license: "Red Hat, Inc. MIT",
         };
     });
     return result;
 }
 
-export const rhMicrons = {name: "rhMicrons", icons: convertIcons(rhIconsMicrons, "rh-microns-")};
-export const rhStandard = {name: "rhStandard", icons: convertIcons(rhIconsStandard, "rh-standard-")};
-export const rhUi = {name: "rhUi", icons: convertIcons(rhIconsUI, "rh-ui-")};
+export const rhMicrons = { name: "rhMicrons", icons: convertIcons(rhIconsMicrons, "rh-microns-") };
+export const rhStandard = { name: "rhStandard", icons: convertIcons(rhIconsStandard, "rh-standard-") };
+export const rhUi = { name: "rhUi", icons: convertIcons(rhIconsUI, "rh-ui-") };

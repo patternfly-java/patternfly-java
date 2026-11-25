@@ -36,7 +36,8 @@ import "@patternfly-java/codeeditor/dist/codeeditor";
 
     const editor = document.getElementById("editor");
     editor.language = "java";
-    editor.code = 'public class Hello {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}';
+    editor.code =
+        'public class Hello {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}';
     editor.lineNumbers = true;
     editor.readOnly = false;
     editor.tabSize = 4;
@@ -50,16 +51,16 @@ import "@patternfly-java/codeeditor/dist/codeeditor";
 
 ## Properties
 
-| Property | Type | Default | Description |
-|---|---|---|---|
-| `code` | `string` | `""` | Editor content |
-| `language` | `string` | `null` | Language mode (see below) |
-| `readOnly` | `boolean` | `false` | Whether the editor is read-only |
-| `lineNumbers` | `boolean` | `true` | Show line numbers |
-| `lineWrapping` | `boolean` | `false` | Wrap long lines |
-| `placeholder` | `string` | `null` | Placeholder text when empty |
-| `tabSize` | `number` | `4` | Tab size in spaces |
-| `height` | `string` | `null` | Editor height as CSS value (e.g. `"400px"`, `"20lh"`) |
+| Property       | Type      | Default | Description                                           |
+| -------------- | --------- | ------- | ----------------------------------------------------- |
+| `code`         | `string`  | `""`    | Editor content                                        |
+| `language`     | `string`  | `null`  | Language mode (see below)                             |
+| `readOnly`     | `boolean` | `false` | Whether the editor is read-only                       |
+| `lineNumbers`  | `boolean` | `true`  | Show line numbers                                     |
+| `lineWrapping` | `boolean` | `false` | Wrap long lines                                       |
+| `placeholder`  | `string`  | `null`  | Placeholder text when empty                           |
+| `tabSize`      | `number`  | `4`     | Tab size in spaces                                    |
+| `height`       | `string`  | `null`  | Editor height as CSS value (e.g. `"400px"`, `"20lh"`) |
 
 ## Supported Languages
 
@@ -67,6 +68,6 @@ import "@patternfly-java/codeeditor/dist/codeeditor";
 
 ## Events
 
-| Event | Detail | Description |
-|---|---|---|
+| Event    | Detail             | Description                   |
+| -------- | ------------------ | ----------------------------- |
 | `change` | `{ code: string }` | Fired on every content change |

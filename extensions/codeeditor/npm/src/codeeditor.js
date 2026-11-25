@@ -13,15 +13,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {basicSetup} from "codemirror";
-import {Compartment, EditorState} from "@codemirror/state";
-import {EditorView, lineNumbers as lineNumbersExtension, placeholder as placeholderExtension} from "@codemirror/view";
-import {languages} from "./languages.js";
-import {logfileHighlighter} from "./logfile.js";
-import {createPfTheme, pfHighlightStyle} from "./theme.js";
+import { basicSetup } from "codemirror";
+import { Compartment, EditorState } from "@codemirror/state";
+import { EditorView, lineNumbers as lineNumbersExtension, placeholder as placeholderExtension } from "@codemirror/view";
+import { languages } from "./languages.js";
+import { logfileHighlighter } from "./logfile.js";
+import { createPfTheme, pfHighlightStyle } from "./theme.js";
 
 class CodeEditorElement extends HTMLElement {
-
     constructor() {
         super();
         this._code = "";
@@ -60,7 +59,7 @@ class CodeEditorElement extends HTMLElement {
             const currentCode = this._view.state.doc.toString();
             if (currentCode !== newCode) {
                 this._view.dispatch({
-                    changes: {from: 0, to: this._view.state.doc.length, insert: newCode},
+                    changes: { from: 0, to: this._view.state.doc.length, insert: newCode },
                 });
             }
         }
@@ -151,14 +150,14 @@ class CodeEditorElement extends HTMLElement {
                     if (update.docChanged) {
                         this.dispatchEvent(
                             new CustomEvent("change", {
-                                detail: {code: update.state.doc.toString()},
-                            })
+                                detail: { code: update.state.doc.toString() },
+                            }),
                         );
                     }
                 }),
             ],
         });
-        this._view = new EditorView({state, parent: this});
+        this._view = new EditorView({ state, parent: this });
         this._applyHeight();
         this._themeObserver = new MutationObserver(() => this._checkDarkMode());
         this._themeObserver.observe(document.documentElement, {
@@ -243,4 +242,4 @@ class CodeEditorElement extends HTMLElement {
 
 window.CodeEditorElement = CodeEditorElement;
 customElements.define("pfj-code-editor", CodeEditorElement);
-export {CodeEditorElement};
+export { CodeEditorElement };

@@ -13,9 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {fas as FAS} from "@fortawesome/free-solid-svg-icons";
-import {far as FAR} from "@fortawesome/free-regular-svg-icons";
-import {fab as FAB} from "@fortawesome/free-brands-svg-icons";
+import { fas as FAS } from "@fortawesome/free-solid-svg-icons";
+import { far as FAR } from "@fortawesome/free-regular-svg-icons";
+import { fab as FAB } from "@fortawesome/free-brands-svg-icons";
 
 // Based on https://github.com/patternfly/patternfly-react/packages/react-icons/scripts/icons/faIcons.mjs
 
@@ -32,7 +32,7 @@ function convertIcon(icon) {
         width,
         height,
         svgPathData,
-        license: "FontAwesome. CC-BY-4.0"
+        license: "FontAwesome. CC-BY-4.0",
     };
 }
 
@@ -56,7 +56,7 @@ function convertIcons(icons) {
     return Object.values(icons)
         .map((icon) => ({
             name: getIconName(icon),
-            data: convertIcon(icon)
+            data: convertIcon(icon),
         }))
         .reduce((acc, cur) => {
             acc[cur.name] = cur.data;
@@ -64,6 +64,6 @@ function convertIcons(icons) {
         }, {});
 }
 
-export const fab = {name: "fab", icons: convertIcons(FAB)};
-export const far = {name: "far", icons: convertIcons(FAR)};
-export const fas = {name: "fas", icons: convertIcons(FAS)};
+export const fab = { name: "fab", icons: convertIcons(FAB) };
+export const far = { name: "far", icons: convertIcons(FAR) };
+export const fas = { name: "fas", icons: convertIcons(FAS) };

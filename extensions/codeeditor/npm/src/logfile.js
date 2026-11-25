@@ -66,15 +66,17 @@ const logfileLanguage = StreamLanguage.define({
     tokenTable,
 });
 
-export const logfileHighlighter = syntaxHighlighting(tagHighlighter([
-    { tag: logfileTimestamp, class: "cm-logfile-timestamp" },
-    { tag: logfileCategory, class: "cm-logfile-category" },
-    { tag: logfileLevelError, class: "cm-logfile-level-error" },
-    { tag: logfileLevelWarn, class: "cm-logfile-level-warn" },
-    { tag: logfileLevelInfo, class: "cm-logfile-level-info" },
-    { tag: logfileLevelDebug, class: "cm-logfile-level-debug" },
-    { tag: logfileException, class: "cm-logfile-exception" },
-]));
+export const logfileHighlighter = syntaxHighlighting(
+    tagHighlighter([
+        { tag: logfileTimestamp, class: "cm-logfile-timestamp" },
+        { tag: logfileCategory, class: "cm-logfile-category" },
+        { tag: logfileLevelError, class: "cm-logfile-level-error" },
+        { tag: logfileLevelWarn, class: "cm-logfile-level-warn" },
+        { tag: logfileLevelInfo, class: "cm-logfile-level-info" },
+        { tag: logfileLevelDebug, class: "cm-logfile-level-debug" },
+        { tag: logfileException, class: "cm-logfile-exception" },
+    ]),
+);
 
 export function logfile() {
     return new LanguageSupport(logfileLanguage);

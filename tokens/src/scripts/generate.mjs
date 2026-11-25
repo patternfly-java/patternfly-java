@@ -13,23 +13,68 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-import {mkdir, writeFile} from 'node:fs/promises';
-import camelCase from 'camelcase';
+import { mkdir, writeFile } from "node:fs/promises";
+import camelCase from "camelcase";
 import * as TOKENS from "@patternfly/react-tokens";
 
 // ------------------------------------------------------ constants
 
 const keywords = [
-    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class", "clone",
-    "const", "continue", "default", "do", "double", "else", "enum", "extends", "final", "finally",
-    "float", "for", "goto", "if", "implements", "import", "instanceof", "int", "interface", "long",
-    "native", "new", "package", "private", "protected", "public", "return", "short", "static",
-    "strictfp", "super", "switch", "synchronized", "this", "throw", "throws", "transient", "try",
-    "void", "volatile", "while",
+    "abstract",
+    "assert",
+    "boolean",
+    "break",
+    "byte",
+    "case",
+    "catch",
+    "char",
+    "class",
+    "clone",
+    "const",
+    "continue",
+    "default",
+    "do",
+    "double",
+    "else",
+    "enum",
+    "extends",
+    "final",
+    "finally",
+    "float",
+    "for",
+    "goto",
+    "if",
+    "implements",
+    "import",
+    "instanceof",
+    "int",
+    "interface",
+    "long",
+    "native",
+    "new",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "return",
+    "short",
+    "static",
+    "strictfp",
+    "super",
+    "switch",
+    "synchronized",
+    "this",
+    "throw",
+    "throws",
+    "transient",
+    "try",
+    "void",
+    "volatile",
+    "while",
 ];
 const root = "../main/java";
 const path = "org/patternfly/token";
-const package_ = path.replaceAll('/', '.');
+const package_ = path.replaceAll("/", ".");
 
 // ------------------------------------------------------ tokens
 
@@ -47,7 +92,7 @@ import javax.annotation.processing.Generated;
 @SuppressWarnings("SpellCheckingInspection")
 // WARNING: This class is generated. Do not modify.
 public enum Token {
-    ${entries.map(([javaName, token]) => generateConstant(javaName, token)).join('\n    ')};
+    ${entries.map(([javaName, token]) => generateConstant(javaName, token)).join("\n    ")};
 
     /** The CSS custom property name starting with <code>--pf-t</code> */
     public final String name;
@@ -64,27 +109,24 @@ public enum Token {
 }
 `;
 
-const generateConstant = (javaName, token) =>
-    `${javaName}("${token.name}", "${token.value}", "${token.var}"),`;
+const generateConstant = (javaName, token) => `${javaName}("${token.name}", "${token.value}", "${token.var}"),`;
 
-const failSafeName = (value) => keywords.includes(value) ? value + "_" : value
+const failSafeName = (value) => (keywords.includes(value) ? value + "_" : value);
 
 // ------------------------------------------------------ main
 
 let tokens = Object.keys(TOKENS)
-    .filter(key => key.startsWith("t_"))
-    .map(key => {
+    .filter((key) => key.startsWith("t_"))
+    .map((key) => {
         let javaName = failSafeName(camelCase(key.substring(2)));
         // @ts-ignore
-        let safeValue = (TOKENS[key].value).toString()
-            .replace(/\n/g, "\\n")
-            .replace(/"/g, '\\"');
+        let safeValue = TOKENS[key].value.toString().replace(/\n/g, "\\n").replace(/"/g, '\\"');
         // @ts-ignore
-        let token = {name: TOKENS[key].name, value: safeValue, var: TOKENS[key].var};
+        let token = { name: TOKENS[key].name, value: safeValue, var: TOKENS[key].var };
         return [javaName, token];
     });
 
 const dir = new URL(`${root}/${path}/`, import.meta.url);
 await mkdir(dir, { recursive: true });
-await writeFile(new URL(`./Token.java`, dir), generateTokens(tokens), 'utf8');
+await writeFile(new URL(`./Token.java`, dir), generateTokens(tokens), "utf8");
 console.info(`Generated code for ${tokens.length} tokens`);
