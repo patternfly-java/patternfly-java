@@ -45,7 +45,6 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.Node;
 
-import static elemental2.dom.DomGlobal.console;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
@@ -115,10 +114,12 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     private HTMLElement loadingIndicator;
     private HTMLElement helperTextContainer;
     private ValidationStatus status;
+    private int dragCounter;
 
     FileUpload(String id) {
         super(ComponentType.FileUpload, div().css(component(fileUpload)).element());
         this.status = ValidationStatus.default_;
+        this.dragCounter = 0;
         this.fileChangeHandlers = new ArrayList<>();
         this.clearHandlers = new ArrayList<>();
 
@@ -364,28 +365,30 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     }
 
     private void onDragEnter(Event event) {
-        console.log("### Drag enter");
         event.preventDefault();
         event.stopPropagation();
+        dragCounter++;
         element().classList.add(modifier(Classes.dragHover));
     }
 
     private void onDragOver(Event event) {
-        console.log("### Drag over");
         event.preventDefault();
         event.stopPropagation();
     }
 
     private void onDragLeave(Event event) {
-        console.log("### Drag leave");
         event.preventDefault();
         event.stopPropagation();
-        element().classList.remove(modifier(Classes.dragHover));
+        dragCounter--;
+        if (dragCounter == 0) {
+            element().classList.remove(modifier(Classes.dragHover));
+        }
     }
 
     private void onDrop(Event event) {
         event.preventDefault();
         event.stopPropagation();
+        dragCounter = 0;
         element().classList.remove(modifier(Classes.dragHover));
         DragEvent dragEvent = (DragEvent) event;
         if (dragEvent.dataTransfer != null && dragEvent.dataTransfer.files != null
