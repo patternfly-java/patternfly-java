@@ -31,7 +31,7 @@
     ".": "./finder.css"
   },
   "devDependencies": {
-    "vite-plus": "catalog:"
+    "vite-plus": "1.8.0"
   },
   "peerDependencies": {
     "@patternfly/patternfly": "^6.6.1"

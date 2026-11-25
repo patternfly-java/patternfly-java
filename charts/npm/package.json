@@ -57,7 +57,7 @@
   "devDependencies": {
     "rimraf": "6.1.4",
     "vite": "catalog:",
-    "vite-plus": "catalog:"
+    "vite-plus": "1.8.0"
   },
   "packageManager": "pnpm@12.23.0"
 }
