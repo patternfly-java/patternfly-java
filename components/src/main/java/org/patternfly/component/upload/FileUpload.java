@@ -528,18 +528,17 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
             detailsTextArea.textArea().element().readOnly = true;
         }
         fileChangeHandler.forEach(h -> h.onChange(event, this, file));
-        double handle = setTimeout(__ -> loading(true), LOADING_TIMEOUT);
         if (type == FileReaderType.text || type == FileReaderType.dataURL) {
+            double handle = setTimeout(__ -> loading(true), LOADING_TIMEOUT);
             readStartHandler.forEach(h -> h.onRead(event, this, file));
-            FileReader reader = new FileReader();
 
+            FileReader reader = new FileReader();
             reader.onerror = e -> {
                 clearTimeout(handle);
                 loading(false);
                 readFailedHandler.forEach(h -> h.onRead(event, this, file, reader.error));
                 return null;
             };
-
             reader.onload = e -> {
                 clearTimeout(handle);
                 loading(false);
