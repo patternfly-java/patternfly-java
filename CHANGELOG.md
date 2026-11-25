@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Add simple file upload component with browse and drag & drop support, reading files as text or data URL, editable file content, custom previews, helper text, and file type (`accept()`) and size (`maxSize()`) restrictions ([#47](https://github.com/patternfly-java/patternfly-java/issues/47))
+
+### Changed
+
+- Improve code editor styling
+- Upgrade Vite+ from 1.7.0 to 1.8.0
+
 ## [0.16.0] - 2026-11-24
 
 ### Added
