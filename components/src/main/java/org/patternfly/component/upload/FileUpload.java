@@ -40,11 +40,14 @@ import elemental2.dom.DragEvent;
 import elemental2.dom.Element;
 import elemental2.dom.Event;
 import elemental2.dom.File;
+import elemental2.dom.FileReader;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.Node;
 
+import static elemental2.dom.DomGlobal.clearTimeout;
+import static elemental2.dom.DomGlobal.setTimeout;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.failSafeRemoveFromParent;
 import static org.jboss.elemento.Elements.input;
@@ -57,6 +60,7 @@ import static org.jboss.elemento.EventType.dragleave;
 import static org.jboss.elemento.EventType.dragover;
 import static org.jboss.elemento.EventType.drop;
 import static org.jboss.elemento.InputType.file;
+import static org.patternfly.component.ValidationStatus.error;
 import static org.patternfly.component.button.Button.button;
 import static org.patternfly.component.form.TextArea.textArea;
 import static org.patternfly.component.form.TextInput.textInput;
@@ -64,6 +68,7 @@ import static org.patternfly.component.form.TextInputType.text;
 import static org.patternfly.component.spinner.Spinner.spinner;
 import static org.patternfly.core.Aria.describedBy;
 import static org.patternfly.core.Aria.label;
+import static org.patternfly.core.Timeouts.LOADING_TIMEOUT;
 import static org.patternfly.style.Classes.component;
 import static org.patternfly.style.Classes.fileDetails;
 import static org.patternfly.style.Classes.fileDetailsSpinner;
@@ -88,6 +93,7 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
         Required<HTMLElement, FileUpload>,
         Validatable<HTMLElement, FileUpload> {
 
+
     // ------------------------------------------------------ factory
 
     public static FileUpload fileUpload(String id) {
@@ -101,7 +107,6 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     private static final String DEFAULT_BROWSE_TEXT = "Upload";
     private static final String DEFAULT_CLEAR_TEXT = "Clear";
 
-    // private final filenameInput;
     private final HTMLInputElementBuilder<HTMLInputElement> fileInput;
     private final TextInput filenameInput;
     private final Button uploadButton;
@@ -109,19 +114,40 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     private final TextArea detailsTextArea;
     private final HTMLContainerBuilder<HTMLDivElement> detailsContainer;
     private final HTMLContainerBuilder<HTMLDivElement> customPreview;
-    private final List<ChangeHandler<FileUpload, File>> fileChangeHandlers;
-    private final List<ComponentHandler<FileUpload>> clearHandlers;
+    private final List<FileReadHandler> readStartHandler;
+    private final List<FileReadHandler> readFinishedHandler;
+    private final List<FileErrorHandler> readFailedHandler;
+    private final List<FileRejectedHandler> rejectedHandler;
+    private final List<ComponentHandler<FileUpload>> clearHandler;
+    private final List<ChangeHandler<FileUpload, File>> fileChangeHandler;
+    private final List<ChangeHandler<FileUpload, String>> dataChangeHandler;
+
+    private long maxSize;
+    private int dragCounter;
+    private boolean disabled;
+    private boolean allowEditingUploadedText;
+    private AcceptedFileTypes acceptedFileTypes;
+    private FileReaderType type;
+    private ValidationStatus status;
     private HTMLElement loadingIndicator;
     private HTMLElement helperTextContainer;
-    private ValidationStatus status;
-    private int dragCounter;
 
     FileUpload(String id) {
         super(ComponentType.FileUpload, div().css(component(fileUpload)).element());
-        this.status = ValidationStatus.default_;
+        this.maxSize = 0;
         this.dragCounter = 0;
-        this.fileChangeHandlers = new ArrayList<>();
-        this.clearHandlers = new ArrayList<>();
+        this.disabled = false;
+        this.allowEditingUploadedText = false;
+        this.acceptedFileTypes = AcceptedFileTypes.parse(null);
+        this.type = null;
+        this.status = ValidationStatus.default_;
+        this.readStartHandler = new ArrayList<>();
+        this.readFinishedHandler = new ArrayList<>();
+        this.readFailedHandler = new ArrayList<>();
+        this.rejectedHandler = new ArrayList<>();
+        this.clearHandler = new ArrayList<>();
+        this.fileChangeHandler = new ArrayList<>();
+        this.dataChangeHandler = new ArrayList<>();
 
         String filenameId = Id.build(id, "filename");
         String uploadId = Id.build(id, "upload");
@@ -141,12 +167,15 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
                 .aria(describedBy, uploadId);
         uploadButton = button(DEFAULT_BROWSE_TEXT).control().id(uploadId)
                 .on(click, e -> fileInput.element().click());
-        clearButton = button(DEFAULT_CLEAR_TEXT).control().id(clearId)
+        clearButton = button(DEFAULT_CLEAR_TEXT).control().id(clearId).disabled()
                 .on(click, e -> clear());
         detailsContainer = div().css(component(fileUpload, fileDetails));
-        detailsTextArea = textArea(detailsId);
+        detailsTextArea = textArea(detailsId).onKeyup((e, c, value) -> {
+            if (!disabled) {
+                clearButton.disabled(value.isEmpty());
+            }
+        });
         customPreview = div();
-        setVisible(customPreview, false);
 
         // Don't use add() - this implements ElementContainerDelegate!
         element().appendChild(fileInput.element());
@@ -167,6 +196,9 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
         on(dragover, this::onDragOver);
         on(dragleave, this::onDragLeave);
         on(drop, this::onDrop);
+
+        setVisible(detailsContainer, false);
+        setVisible(customPreview, false);
     }
 
     @Override
@@ -207,7 +239,16 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
 
     // ------------------------------------------------------ builder
 
-    /** Shows the file details textarea below the file select area. */
+    public FileUpload allowEditingUploadedText() {
+        return allowEditingUploadedText(true);
+    }
+
+    public FileUpload allowEditingUploadedText(boolean allowEdit) {
+        this.allowEditingUploadedText = allowEdit;
+        return this;
+    }
+
+    /** Hides the file details textarea below the file select area. */
     public FileUpload hideDetails() {
         return hideDetails(true);
     }
@@ -224,21 +265,42 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
         return this;
     }
 
-    /** Sets the text for the upload button. */
-    public FileUpload uploadButtonText(String text) {
-        uploadButton.text(text);
-        return this;
-    }
-
     /** Sets the text for the clear button. */
     public FileUpload clearButtonText(String text) {
         clearButton.text(text);
         return this;
     }
 
-    /** Sets the accepted file types (e.g. ".csv", "image/*"). */
+    /** Sets the text for the upload button. */
+    public FileUpload uploadButtonText(String text) {
+        uploadButton.text(text);
+        return this;
+    }
+
+    /**
+     * Restricts the accepted file types. The value is a comma-separated list of file extensions (e.g. {@code .csv}), MIME types
+     * (e.g. {@code text/csv}), or wildcard MIME types (e.g. {@code image/*}). The value is used as {@code accept} attribute of
+     * the file input and to validate files that are selected or dropped. Files that don't match are rejected and reported to
+     * the handlers registered with {@link #onFileRejected(FileRejectedHandler)}.
+     */
     public FileUpload accept(String accept) {
         fileInput.accept(accept);
+        acceptedFileTypes = AcceptedFileTypes.parse(accept);
+        return this;
+    }
+
+    /**
+     * Restricts the maximum file size in bytes. Files that are larger are rejected and reported to the handlers registered with
+     * {@link #onFileRejected(FileRejectedHandler)}. A value {@code <= 0} means no restriction.
+     */
+    public FileUpload maxSize(long maxSize) {
+        this.maxSize = maxSize;
+        return this;
+    }
+
+    public FileUpload type(FileReaderType type) {
+        this.type = type;
+        setVisible(detailsContainer, true);
         return this;
     }
 
@@ -260,6 +322,15 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
         return this;
     }
 
+    @Override
+    public FileUpload disabled(boolean disabled) {
+        this.disabled = disabled;
+        uploadButton.disabled(disabled);
+        clearButton.disabled(disabled);
+        detailsTextArea.disabled(disabled);
+        return this;
+    }
+
     /** Makes the file details textarea read-only. */
     public FileUpload readonly() {
         return readonly(true);
@@ -272,23 +343,10 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     }
 
     @Override
-    public FileUpload disabled(boolean disabled) {
-        uploadButton.disabled(disabled);
-        clearButton.disabled(disabled);
-        detailsTextArea.disabled(disabled);
-        return this;
-    }
-
-    @Override
     public FileUpload validated(ValidationStatus status) {
         this.status = status;
         this.detailsTextArea.validated(status);
         return this;
-    }
-
-    @Override
-    public void resetValidation() {
-        validated(ValidationStatus.default_);
     }
 
     @Override
@@ -298,19 +356,62 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
 
     // ------------------------------------------------------ events
 
-    /** Registers a handler that is called when a file is selected or dropped. */
-    public FileUpload onFileChange(ChangeHandler<FileUpload, File> handler) {
-        fileChangeHandlers.add(handler);
+    public FileUpload onFileReadStart(FileReadHandler handler) {
+        readStartHandler.add(handler);
         return this;
     }
 
-    /** Registers a handler that is called when the clear button is clicked. */
+    public FileUpload onFileReadFinished(FileReadHandler handler) {
+        readFinishedHandler.add(handler);
+        return this;
+    }
+
+    public FileUpload onFileReadFailed(FileErrorHandler handler) {
+        readFailedHandler.add(handler);
+        return this;
+    }
+
+    /**
+     * Adds a handler that is called when a file was rejected because of its {@linkplain #accept(String) type} or
+     * {@linkplain #maxSize(long) size}.
+     */
+    public FileUpload onFileRejected(FileRejectedHandler handler) {
+        rejectedHandler.add(handler);
+        return this;
+    }
+
     public FileUpload onClear(ComponentHandler<FileUpload> handler) {
-        clearHandlers.add(handler);
+        clearHandler.add(handler);
+        return this;
+    }
+
+    public FileUpload onFileChange(ChangeHandler<FileUpload, File> handler) {
+        fileChangeHandler.add(handler);
+        return this;
+    }
+
+    public FileUpload onDataChange(ChangeHandler<FileUpload, String> handler) {
+        dataChangeHandler.add(handler);
         return this;
     }
 
     // ------------------------------------------------------ api
+
+    /** Clears the filename, file content, and resets the file input. */
+    public void clear() {
+        loading(false);
+        fileInput.value("");
+        filenameInput.value("");
+        detailsTextArea.value("");
+        detailsTextArea.textArea().element().readOnly = false;
+        clearButton.disabled();
+        clearHandler.forEach(h -> h.handle(new Event(""), this));
+    }
+
+    @Override
+    public void resetValidation() {
+        validated(ValidationStatus.default_);
+    }
 
     public HTMLInputElementBuilder<HTMLInputElement> fileInput() {
         return fileInput;
@@ -328,14 +429,6 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
     /** Returns the current validation status. */
     public ValidationStatus validationStatus() {
         return status;
-    }
-
-    /** Clears the filename, file content, and resets the file input. */
-    public void clear() {
-        fileInput.value("");
-        filenameInput.value("");
-        detailsTextArea.value("");
-        clearHandlers.forEach(h -> h.handle(new Event(""), this));
     }
 
     // ------------------------------------------------------ internal
@@ -358,9 +451,7 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
 
     private void onFileInputChanged(Event event) {
         if (fileInput.element().files != null && fileInput.element().files.length > 0) {
-            File file = fileInput.element().files.getAt(0);
-            filenameInput.value(file.name);
-            fireFileChange(event, file);
+            checkAndRead(event, fileInput.element().files.getAt(0), null);
         }
     }
 
@@ -393,14 +484,79 @@ public class FileUpload extends BaseComponent<HTMLElement, FileUpload> implement
         DragEvent dragEvent = (DragEvent) event;
         if (dragEvent.dataTransfer != null && dragEvent.dataTransfer.files != null
                 && dragEvent.dataTransfer.files.length > 0) {
-            File file = dragEvent.dataTransfer.files.getAt(0);
-            fileInput.element().files = dragEvent.dataTransfer.files;
-            filenameInput.value(file.name);
-            fireFileChange(event, file);
+            checkAndRead(event, dragEvent.dataTransfer.files.getAt(0),
+                    () -> fileInput.element().files = dragEvent.dataTransfer.files);
         }
     }
 
-    private void fireFileChange(Event event, File file) {
-        fileChangeHandlers.forEach(h -> h.onChange(event, this, file));
+    // ------------------------------------------------------ read file
+
+    private void checkAndRead(Event event, File file, Runnable onSuccess) {
+        resetValidation();
+        if (rejected(event, file)) {
+            fileInput.value("");
+            validated(error);
+        } else {
+            filenameInput.value(file.name);
+            readFile(event, file, onSuccess);
+        }
+    }
+
+    private boolean rejected(Event event, File file) {
+        FileRejectionReason reason = rejectionReason(file);
+        if (reason != null) {
+            rejectedHandler.forEach(h -> h.onRejected(event, this, file, reason));
+            return true;
+        }
+        return false;
+    }
+
+    private FileRejectionReason rejectionReason(File file) {
+        if (!acceptedFileTypes.matches(file.name, file.type)) {
+            return FileRejectionReason.fileType;
+        } else if (maxSize > 0 && file.size > maxSize) {
+            return FileRejectionReason.fileSize;
+        }
+        return null;
+    }
+
+    private void readFile(Event event, File file, Runnable onSuccess) {
+        if (!disabled) {
+            clearButton.disabled(false);
+        }
+        if (!allowEditingUploadedText) {
+            detailsTextArea.textArea().element().readOnly = true;
+        }
+        fileChangeHandler.forEach(h -> h.onChange(event, this, file));
+        double handle = setTimeout(__ -> loading(true), LOADING_TIMEOUT);
+        if (type == FileReaderType.text || type == FileReaderType.dataURL) {
+            readStartHandler.forEach(h -> h.onRead(event, this, file));
+            FileReader reader = new FileReader();
+
+            reader.onerror = e -> {
+                clearTimeout(handle);
+                loading(false);
+                readFailedHandler.forEach(h -> h.onRead(event, this, file, reader.error));
+                return null;
+            };
+
+            reader.onload = e -> {
+                clearTimeout(handle);
+                loading(false);
+                details(reader.result.asString());
+                if (onSuccess != null) {
+                    onSuccess.run();
+                }
+                readFinishedHandler.forEach(h -> h.onRead(event, this, file));
+                dataChangeHandler.forEach(h -> h.onChange(event, this, reader.result.asString()));
+                return null;
+            };
+
+            if (type == FileReaderType.text) {
+                reader.readAsText(file);
+            } else {
+                reader.readAsDataURL(file);
+            }
+        }
     }
 }
