@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.16.1] - 2026-11-26
+
 ### Added
 
 - Add simple file upload component with browse and drag & drop support, reading files as text or data URL, editable file content, custom previews, helper text, and file type (`accept()`) and size (`maxSize()`) restrictions ([#47](https://github.com/patternfly-java/patternfly-java/issues/47))
@@ -1504,7 +1506,8 @@ Stay tuned for more to come...
 - for dependency upgrades
 -->
 
-[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.16.0...HEAD
+[Unreleased]: https://github.com/patternfly-java/patternfly-java/compare/v0.16.1...HEAD
+[0.16.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.16.0...v0.16.1
 [0.16.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.15.1...v0.16.0
 [0.15.1]: https://github.com/patternfly-java/patternfly-java/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/patternfly-java/patternfly-java/compare/v0.14.3...v0.15.0

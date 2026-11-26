@@ -1,6 +1,6 @@
 {
   "name": "@patternfly-java/codeeditor",
-  "version": "0.15.2-SNAPSHOT",
+  "version": "0.16.1",
   "private": false,
   "description": "CodeMirror 6 web component for PatternFly Java",
   "keywords": [
