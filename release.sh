@@ -139,6 +139,10 @@ msg "   4. ${CYAN}Commit${NOFORMAT} and ${CYAN}push${NOFORMAT} to origin (which 
 msg "   5. Bump the version to ${CYAN}${SNAPSHOT_VERSION}${NOFORMAT}"
 msg "   6. ${CYAN}Commit${NOFORMAT} and ${CYAN}push${NOFORMAT} to origin"
 msg ""
+# TODO: Remove this reminder once @patternfly-java/codeeditor has been published by the release workflow
+msg "${YELLOW}Before you continue:${NOFORMAT} Make sure the ${CYAN}trusted publisher${NOFORMAT} for ${CYAN}@patternfly-java/codeeditor${NOFORMAT} is set up"
+msg "at https://www.npmjs.com/package/@patternfly-java/codeeditor/access (re-create it if it expired)."
+msg ""
 echo "Do you wish to continue?"
 select yn in "Yes" "No"; do
     case $yn in
