@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "@patternfly/react-tokens": "^6.7.0",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "camelcase": "^10.0.0",
     "vite-plus": "catalog:"
   },
