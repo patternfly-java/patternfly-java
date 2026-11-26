@@ -15,8 +15,6 @@
  */
 package org.patternfly.showcase.component;
 
-import org.jboss.elemento.HTMLContainerBuilder;
-import org.jboss.elemento.intl.NumberFormat;
 import org.jboss.elemento.router.Route;
 import org.patternfly.component.help.HelperTextItem;
 import org.patternfly.component.upload.FileErrorHandler;
@@ -28,10 +26,10 @@ import org.patternfly.component.upload.FileUpload;
 import org.patternfly.showcase.Code;
 import org.patternfly.showcase.Snippet;
 import org.patternfly.showcase.SnippetPage;
-import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.removeChildrenFrom;
+import static org.jboss.elemento.Elements.setVisible;
+import static org.jboss.elemento.Elements.strong;
 import static org.jboss.elemento.intl.Format.narrow;
 import static org.jboss.elemento.intl.Format.unit;
 import static org.jboss.elemento.intl.Notation.compact;
@@ -45,6 +43,7 @@ import static org.patternfly.component.help.HelperTextItem.helperTextItem;
 import static org.patternfly.component.icon.Icon.icon;
 import static org.patternfly.component.upload.FileReaderType.text;
 import static org.patternfly.component.upload.FileUpload.fileUpload;
+import static org.patternfly.core.ObservableValue.ov;
 import static org.patternfly.icon.IconSets.rhUi.documentFill;
 import static org.patternfly.showcase.ApiDoc.Type.component;
 import static org.patternfly.showcase.ApiDoc.Type.handler;
@@ -128,30 +127,40 @@ public class FileUploadComponent extends SnippetPage {
         addSnippet(new Snippet("sfu-custom-preview", "Customizing the file preview",
                 Code.code("sfu-custom-preview"), () -> {
             // @code-start:sfu-custom-preview
-            HTMLContainerBuilder<HTMLDivElement> preview = div();
+            var fileNameElement = strong();
+            var fileSizeElement = strong();
+            var preview = div()
+                    .style("display", "none")
+                    .add(icon(documentFill()).inline())
+                    .add(" Custom preview for ").add(fileNameElement).add(", size ").add(fileSizeElement);
+
+            var fileName = ov("").subscribe((v, __) -> fileNameElement.text(v));
+            var fileSize = ov("").subscribe((v, __) -> fileSizeElement.text(v));
+
+            var nf = numberFormat(numberFormatOptions()
+                    .style(unit)
+                    .unit(byte_)
+                    .notation(compact)
+                    .unitDisplay(narrow));
+
             return div()
                     .add(fileUpload("sfu-custom-preview")
                             .add(preview)
-                            .onFileChange((event, fu, file) -> {
-                                NumberFormat nf = numberFormat(numberFormatOptions()
-                                        .notation(compact)
-                                        .style(unit)
-                                        .unit(byte_)
-                                        .unitDisplay(narrow));
-                                removeChildrenFrom(preview);
-                                preview.add(icon(documentFill()).inline())
-                                        .add(" Custom preview for " + file.name + ", size " + nf.format(file.size));
+                            .onFileChange((e, __, file) -> {
+                                setVisible(preview, true);
+                                fileName.set(file.name);
+                                fileSize.set(nf.format(file.size));
                             }))
                     .element();
             // @code-end:sfu-custom-preview
         }));
 
         startApiDocs(FileUpload.class);
+        addApiDoc(FileUpload.class, component);
         addApiDoc(FileErrorHandler.class, handler);
-        addApiDoc(FileReaderType.class, other);
         addApiDoc(FileReadHandler.class, handler);
         addApiDoc(FileRejectedHandler.class, handler);
+        addApiDoc(FileReaderType.class, other);
         addApiDoc(FileRejectionReason.class, other);
-        addApiDoc(FileUpload.class, component);
     }
 }
