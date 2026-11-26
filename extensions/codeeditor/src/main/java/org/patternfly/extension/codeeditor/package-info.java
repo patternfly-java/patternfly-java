@@ -35,6 +35,12 @@
  *         .addAction(codeEditorCopyToClipboardAction()));
  *}
  *
+ * <h2>Syntax highlighting</h2>
+ * <p>
+ * Syntax colors follow the PatternFly code editor and can be customized with CSS custom properties named
+ * {@code --pfj-code-editor--<name>--color}. See {@link org.patternfly.extension.codeeditor.CodeEditor} for the list of
+ * names.
+ *
  * @see org.patternfly.extension.codeeditor.CodeEditor
  * @see <a href="https://www.patternfly.org/extensions/code-editor">PatternFly Code Editor</a>
  */

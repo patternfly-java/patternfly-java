@@ -72,39 +72,75 @@ export function createPfTheme(dark) {
     return EditorView.theme(themeRules, { dark });
 }
 
+// ------------------------------------------------------ syntax highlighting
+
+/**
+ * Syntax colors ported from the PatternFly React code editor (Monaco themes `pf-v6-theme-light` and
+ * `pf-v6-theme-dark`): palette shade 50 in light mode, shade 30 in dark mode. Every color can be
+ * overridden with a CSS custom property `--pfj-code-editor--<name>--color`, e.g.
+ * `--pfj-code-editor--keyword--color: hotpink;`.
+ *
+ * @see https://github.com/patternfly/patternfly-react/blob/main/packages/react-code-editor/src/components/CodeEditor/CodeEditorTheme.ts
+ */
+const palette = (color) => `light-dark(var(--pf-t--color--${color}--50), var(--pf-t--color--${color}--30))`;
+
+const syntaxColors = {
+    keyword: palette("purple"),
+    string: palette("green"),
+    comment: palette("gray"),
+    number: palette("orange"),
+    variable: palette("blue"),
+    builtin: palette("teal"),
+    type: palette("yellow"),
+    tag: palette("red"),
+    attribute: palette("red"),
+    "attribute-value": palette("blue"),
+    property: palette("red"),
+    key: palette("orange"),
+    regexp: palette("red"),
+    meta: palette("purple"),
+    delimiter: palette("gray"),
+    heading: palette("purple"),
+    inserted: palette("green"),
+    deleted: palette("red"),
+    changed: palette("orange"),
+    invalid: palette("red"),
+};
+
+const color = (name) => `var(--pfj-code-editor--${name}--color, ${syntaxColors[name]})`;
+
 export const pfHighlightStyle = syntaxHighlighting(
     HighlightStyle.define([
-        {
-            tag: tags.keyword,
-            color: "light-dark(var(--pf-t--color--purple--50), var(--pf-t--color--purple--30))",
-        },
-        {
-            tag: [tags.string, tags.special(tags.brace)],
-            color: "light-dark(var(--pf-t--color--green--50), var(--pf-t--color--green--30))",
-        },
-        {
-            tag: tags.comment,
-            color: "var(--pf-t--global--text--color--200)",
-        },
-        {
-            tag: [tags.number, tags.literal],
-            color: "light-dark(var(--pf-t--color--orange--50), var(--pf-t--color--orange--30))",
-        },
-        {
-            tag: tags.variableName,
-            color: "light-dark(var(--pf-t--color--blue--50), var(--pf-t--color--blue--30))",
-        },
-        {
-            tag: [tags.typeName, tags.className],
-            color: "light-dark(var(--pf-t--color--yellow--50), var(--pf-t--color--yellow--30))",
-        },
-        {
-            tag: [tags.tagName, tags.attributeName],
-            color: "light-dark(var(--pf-t--color--red--50), var(--pf-t--color--red--30))",
-        },
-        {
-            tag: tags.meta,
-            color: "light-dark(var(--pf-t--color--purple--50), var(--pf-t--color--purple--30))",
-        },
+        // keywords (incl. null, this, modifiers, ...), booleans and primitive types
+        { tag: [tags.keyword, tags.bool, tags.standard(tags.typeName)], color: color("keyword") },
+        { tag: [tags.string, tags.special(tags.brace)], color: color("string") },
+        { tag: tags.comment, color: color("comment"), fontStyle: "italic" },
+        { tag: [tags.number, tags.literal, tags.constant(tags.variableName)], color: color("number") },
+        { tag: tags.regexp, color: color("regexp") },
+        { tag: tags.variableName, color: color("variable") },
+        { tag: [tags.standard(tags.variableName), tags.labelName], color: color("builtin") },
+        { tag: [tags.typeName, tags.className], color: color("type") },
+        // markup
+        { tag: tags.tagName, color: color("tag") },
+        { tag: tags.attributeName, color: color("attribute") },
+        { tag: tags.attributeValue, color: color("attribute-value") },
+        { tag: tags.angleBracket, color: color("delimiter") },
+        // JSON keys, CSS properties, object members / YAML keys, object literal keys
+        { tag: tags.propertyName, color: color("property") },
+        { tag: tags.definition(tags.propertyName), color: color("key") },
+        // annotations, decorators / XML declarations, doctype
+        { tag: tags.meta, color: color("meta") },
+        { tag: [tags.processingInstruction, tags.documentMeta], color: color("delimiter") },
+        // markdown
+        { tag: tags.heading, color: color("heading"), fontWeight: "bold" },
+        { tag: tags.emphasis, fontStyle: "italic" },
+        { tag: tags.strong, fontWeight: "bold" },
+        { tag: tags.strikethrough, textDecoration: "line-through" },
+        { tag: [tags.link, tags.url], textDecoration: "underline" },
+        // diffs and errors
+        { tag: tags.inserted, color: color("inserted") },
+        { tag: tags.deleted, color: color("deleted") },
+        { tag: tags.changed, color: color("changed") },
+        { tag: tags.invalid, color: color("invalid") },
     ]),
 );

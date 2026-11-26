@@ -9,10 +9,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 - Add simple file upload component with browse and drag & drop support, reading files as text or data URL, editable file content, custom previews, helper text, and file type (`accept()`) and size (`maxSize()`) restrictions ([#47](https://github.com/patternfly-java/patternfly-java/issues/47))
+- Add CSS custom properties `--pfj-code-editor--<name>--color` to customize code editor syntax colors
 
 ### Changed
 
-- Improve code editor styling
+- Align code editor styling and syntax highlighting with the PatternFly code editor theme, adding colors for property names, markup, Markdown, diffs and invalid syntax
 - Upgrade Vite+ from 1.7.0 to 1.8.0
 
 ## [0.16.0] - 2026-11-24
